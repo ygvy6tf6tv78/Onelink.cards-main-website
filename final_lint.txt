@@ -1,0 +1,10 @@
+
+> onelink-website@0.1.0 lint
+> eslint .
+
+
+/Users/krishang/Downloads/CodeX/OneLink.cards -Main Website/src/lib/booking.ts
+  2:3  warning  'formBusinessTypes' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+

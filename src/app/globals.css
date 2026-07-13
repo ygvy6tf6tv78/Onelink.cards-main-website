@@ -31,7 +31,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 *,
@@ -53,7 +53,8 @@ body {
     radial-gradient(circle at top right, rgba(0, 169, 255, 0.06), transparent 24%),
     linear-gradient(180deg, #f8fbfe 0%, #f3f7fb 42%, #f8fbfd 100%);
   color: var(--foreground);
-  font-family: "Inter", "Avenir Next", "Segoe UI", sans-serif;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,8 +76,47 @@ button {
 }
 
 .font-display {
-  font-family: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
-  letter-spacing: -0.02em;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.type-hero {
+  font-size: clamp(2.5rem, calc(2rem + 3vw), 4.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.type-section-title {
+  font-size: clamp(1.875rem, calc(1.5rem + 1.7vw), 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.type-section-copy {
+  font-size: clamp(0.9375rem, calc(0.875rem + 0.3vw), 1.125rem);
+  font-weight: 500;
+  line-height: 1.72;
+}
+
+.type-card-title {
+  font-size: clamp(1.1875rem, calc(1.05rem + 0.35vw), 1.375rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.type-card-copy {
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.type-badge {
+  font-size: clamp(0.6875rem, 0.8vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.09em;
 }
 
 .text-balance {
@@ -154,12 +194,12 @@ button {
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(0, 169, 255, 0.12);
-  background: rgba(0, 169, 255, 0.06);
-  padding: 0.4rem 0.85rem;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
+  border: 1px solid rgba(0, 169, 255, 0.14);
+  background: rgba(0, 169, 255, 0.07);
+  padding: 0.36rem 0.72rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--accent-strong);
 }
@@ -175,6 +215,28 @@ button {
   color: var(--muted);
 }
 
+.contact-input {
+  width: 100%;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #f8fafc;
+  padding: 0.75rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0f172a;
+  outline: none;
+}
+
+.contact-input::placeholder {
+  color: #94a3b8;
+}
+
+.contact-input:focus {
+  border-color: rgba(0, 169, 255, 0.65);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 169, 255, 0.1);
+}
+
 .premium-divider {
   height: 1px;
   background: linear-gradient(
@@ -183,6 +245,23 @@ button {
     rgba(21, 21, 21, 0.08),
     rgba(21, 21, 21, 0)
   );
+}
+
+@keyframes shine-sweep {
+  0%, 72% { transform: translateX(-135%) skewX(-18deg); }
+  100% { transform: translateX(235%) skewX(-18deg); }
+}
+
+.shine-sweep::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -35%;
+  z-index: 2;
+  width: 22%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+  opacity: 0.45;
+  animation: shine-sweep 5.8s ease-in-out infinite;
 }
 
 .accent-dot::before {
@@ -215,6 +294,7 @@ button {
   animation: one-marquee-right 140s linear infinite;
 }
 
+
 @keyframes one-marquee-left {
   from {
     transform: translateX(0);
@@ -232,6 +312,17 @@ button {
 
   to {
     transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .one-marquee-left,
+  .one-marquee-right {
+    animation-play-state: paused;
   }
 }
 

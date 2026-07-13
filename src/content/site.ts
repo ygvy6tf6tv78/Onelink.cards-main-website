@@ -143,14 +143,22 @@ export const siteConfig = {
     name: "OneLink",
     tagline: "One link. Every action.",
     description:
-      "A premium digital business presence that brings discovery, trust, and customer action into one page.",
+      "OneLink helps businesses bring their services, products and customer actions into one smart digital experience.",
   },
   contact: {
     whatsappNumber: sanitizePhoneNumber(
       process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919622121100",
     ),
     phone: process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+91 9622121100",
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@onelink.cards",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@repixelx.tech",
+    company: "Kriyon Group Private Limited",
+    officeLines: [
+      "Room No. 2, First Floor",
+      "Tawi Enclave, Vill Nandini, Gol Gujral",
+      "Jammu, Jammu & Kashmir 180002, India",
+    ],
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Room+No.+2%2C+First+Floor%2C+Tawi+Enclave%2C+Vill+Nandini%2C+Gol+Gujral%2C+Jammu%2C+Jammu+%26+Kashmir+180002%2C+India",
   },
   social: {
     instagram:
@@ -159,9 +167,11 @@ export const siteConfig = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQs", href: "#faqs" },
+  { label: "Work", href: "/#work" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "FAQs", href: "/#faqs" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const heroTrustBadges = [
@@ -194,10 +204,22 @@ export const whyOneLinkBenefits = [
 ];
 
 export const trustHighlights = [
-  "Secure Razorpay payments",
-  "Proper GST invoice",
-  "Human onboarding support",
-  "Preview and approval before launch",
+  {
+    title: "Secure Hosting",
+    description: "Professionally managed and protected.",
+  },
+  {
+    title: "Transparent Pricing",
+    description: "Clear charges with no hidden surprises.",
+  },
+  {
+    title: "Human Support",
+    description: "Real assistance whenever required.",
+  },
+  {
+    title: "Easy Updates",
+    description: "Keep your information and offers current.",
+  },
 ];
 
 export const comparisonLists = {
@@ -530,7 +552,7 @@ export const pricingPlans: Plan[] = [
       "Management software",
     description: "Complete business management software",
     badge: "Complete Software",
-    ctaLabel: "Go Elite",
+    ctaLabel: "Get Elite",
     setupAmount: 9799,
     hostingAmount: 7999,
     orderAmount: 17798,
@@ -559,9 +581,9 @@ export const pricingPlans: Plan[] = [
     name: "Enterprise",
     audience:
       "Custom systems and integrations",
-    description: "Custom software and integrations",
+    description: "Custom solutions for growing brands, multiple locations and advanced business requirements.",
     badge: "Custom Solution",
-    ctaLabel: "Discuss Your Requirements",
+    ctaLabel: "Request Proposal",
     setupAmount: 24999,
     hostingAmount: 0,
     orderAmount: 24999,
@@ -600,22 +622,22 @@ export const howItWorksSteps = [
   {
     number: "01",
     title: "Choose your plan",
-    description: "Select a plan and platform period that fits your business.",
+    description: "Select the setup that fits your business.",
   },
   {
     number: "02",
     title: "Share your requirements",
-    description: "Our team collects your content, links, actions and business details.",
+    description: "Send your content, branding and preferred customer actions.",
   },
   {
     number: "03",
-    title: "Review your OneLink",
-    description: "We design your page and send a complete preview for approval.",
+    title: "We design your OneLink",
+    description: "Our team creates a customized experience around your business.",
   },
   {
     number: "04",
-    title: "Approve and go live",
-    description: "Request final changes, approve the page and launch your OneLink.",
+    title: "Review and go live",
+    description: "Approve your OneLink and receive your link, QR code and launch-ready assets.",
   },
 ];
 

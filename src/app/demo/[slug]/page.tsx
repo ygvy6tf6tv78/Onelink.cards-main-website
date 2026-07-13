@@ -58,7 +58,7 @@ export default async function DemoPage({ params }: DemoPageProps) {
             </h1>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ActionLink href="/#demos" variant="secondary">
+            <ActionLink href="/#work" variant="secondary">
               Back to examples
             </ActionLink>
             <ActionLink href={whatsappHref}>WhatsApp Us</ActionLink>

@@ -4,70 +4,79 @@ import { siteConfig } from "@/content/site";
 
 export function Footer() {
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}`;
+  const callHref = `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`;
+  const emailHref = `mailto:${siteConfig.contact.email}`;
 
   return (
-    <footer className="relative mt-24 overflow-hidden bg-[#0A0A0A] pt-20 sm:mt-32 sm:pt-24 lg:pt-32">
-      {/* Glow effect at the top */}
-      <div className="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#00A9FF] to-transparent opacity-80" />
-      <div className="absolute left-1/2 top-0 h-[250px] w-full max-w-[800px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,#00A9FF_0%,transparent_70%)] opacity-20 blur-[60px]" />
-      <div className="absolute inset-x-0 -top-24 h-48 w-full bg-[#00A9FF]/15 blur-3xl" />
-
-      <div className="relative mx-auto max-w-7xl px-6 pb-12 sm:px-8 lg:px-12">
-        <div className="xl:grid xl:grid-cols-4 xl:gap-12">
-          <div className="space-y-8 xl:col-span-2">
-            <Wordmark className="h-10 brightness-0 invert opacity-100" />
-            <p className="max-w-sm text-[15px] leading-relaxed text-gray-400">
-              One smart business page for better discovery, customer action and business growth. Stop sharing links, start sharing OneLink.
-            </p>
-            <div className="flex space-x-6">
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[12px] font-medium text-gray-300">
-                A venture by <strong className="font-bold text-white">Kriyon Group Private Limited</strong>
+    <footer className="relative mt-14 px-3 pb-3 sm:mt-20 sm:px-4 sm:pb-4">
+      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(140deg,#04182f_0%,#073b67_48%,#075986_100%)] text-white shadow-[0_34px_90px_-50px_rgba(3,31,58,0.7)] sm:rounded-[38px]">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00A9FF]/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 left-1/4 h-96 w-96 rounded-full bg-[#00A9FF]/10 blur-3xl" />
+        <div className="relative px-6 pb-8 pt-10 sm:px-9 sm:pb-10 sm:pt-12 lg:px-12 lg:pt-14">
+          <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-[1.55fr_0.7fr_0.7fr_0.7fr_1.2fr] xl:gap-9">
+            <div className="sm:col-span-2 xl:col-span-1">
+              <Wordmark className="mb-5 h-7 brightness-0 invert opacity-90" alt="OneLink" />
+              <p className="max-w-sm text-[15px] font-normal leading-[1.72] text-white/68 sm:text-[16px]">
+                OneLink helps businesses bring their services, products and customer actions into one smart digital experience.
+              </p>
+              <p className="mt-5 inline-flex rounded-full border border-white/12 bg-white/[0.07] px-3.5 py-1.5 text-[11px] font-semibold text-white/78">
+                A product by Kriyon Group Private Limited
               </p>
             </div>
-          </div>
-          
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.15em] text-white">Product</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li><Link href="/portfolio" className="text-[14px] font-medium text-gray-400 transition hover:text-white">Portfolio</Link></li>
-                  <li><Link href="/#pricing" className="text-[14px] font-medium text-gray-400 transition hover:text-white">Pricing</Link></li>
-                  <li><Link href="/#faqs" className="text-[14px] font-medium text-gray-400 transition hover:text-white">FAQs</Link></li>
-                </ul>
+
+            <FooterColumn title="Explore">
+              <Link href="/#work">Work</Link>
+              <Link href="/#pricing">Pricing</Link>
+              <Link href="/#how-it-works">How It Works</Link>
+              <Link href="/#faqs">FAQs</Link>
+              <Link href="/contact">Contact</Link>
+            </FooterColumn>
+
+            <FooterColumn title="Support">
+              <a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
+              <a href={callHref}>Call</a>
+              <a href={emailHref}>Email</a>
+              <Link href="/contact">Contact Page</Link>
+            </FooterColumn>
+
+            <FooterColumn title="Legal">
+              <Link href="/terms">Terms</Link>
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/refund">Refund Policy</Link>
+            </FooterColumn>
+
+            <div>
+              <h3 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#9edcff]">Contact Details</h3>
+              <div className="mt-4 space-y-4 text-[14px] font-normal leading-relaxed text-white/70 sm:text-[15px]">
+                <p><span className="text-white/40">Phone</span><br /><a href={callHref} className="text-white/82 hover:text-white">{siteConfig.contact.phone}</a></p>
+                <p><span className="text-white/40">Email</span><br /><a href={emailHref} className="break-all text-white/82 hover:text-white">{siteConfig.contact.email}</a></p>
+                <address className="not-italic"><span className="text-white/40">Registered Office</span><br /><strong className="font-semibold text-white/82">{siteConfig.contact.company}</strong>{siteConfig.contact.officeLines.map((line) => <span key={line} className="block">{line}</span>)}</address>
               </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.15em] text-white">Support</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li><a href={whatsappHref} target="_blank" rel="noreferrer" className="text-[14px] font-medium text-gray-400 transition hover:text-white">WhatsApp</a></li>
-                  <li><a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`} className="text-[14px] font-medium text-gray-400 transition hover:text-white">Call</a></li>
-                  <li><a href={`mailto:${siteConfig.contact.email}`} className="text-[14px] font-medium text-gray-400 transition hover:text-white">Email</a></li>
-                </ul>
-              </div>
+              <Link href="/contact" className="mt-5 inline-flex min-h-11 items-center rounded-full border border-white/14 bg-white px-5 text-[14px] font-semibold text-[#06436d] shadow-sm hover:-translate-y-0.5">Talk to Our Team</Link>
             </div>
-            
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-[13px] font-bold uppercase tracking-[0.15em] text-white">Legal</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li><Link href="/terms" className="text-[14px] font-medium text-gray-400 transition hover:text-white">Terms</Link></li>
-                  <li><Link href="/privacy" className="text-[14px] font-medium text-gray-400 transition hover:text-white">Privacy</Link></li>
-                  <li><Link href="/refund" className="text-[14px] font-medium text-gray-400 transition hover:text-white">Refund Policy</Link></li>
-                </ul>
-              </div>
+          </div>
+
+          <div className="mt-12 border-t border-white/12 pt-8 sm:mt-14 sm:pt-10">
+            <div className="overflow-hidden py-1 sm:py-2">
+              <Wordmark className="h-auto w-[44%] max-w-[500px] brightness-0 invert opacity-95 sm:w-[38%]" />
+              <div className="mt-4 h-1 w-20 rounded-full bg-[#00A9FF]" />
+            </div>
+            <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-[11px] font-medium text-white/48 sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
+              <p>© 2026 OneLink. All rights reserved.</p>
+              <p>Designed and built by <a href="https://www.repixelx.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-white/72 hover:text-white">RepixelX Studio</a></p>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
-          <div>
-            <p className="text-[13px] font-medium text-gray-500">&copy; {new Date().getFullYear()} OneLink. All rights reserved.</p>
-          </div>
-          <p className="mt-4 text-[13px] font-medium text-gray-500 lg:mt-0 lg:text-right">
-            Designed and built by <a href="https://www.repixelx.com" target="_blank" rel="noopener noreferrer" className="font-bold text-gray-400 transition hover:text-white">RepixelX Studio</a>.
-          </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#9edcff]">{title}</h3>
+      <div className="mt-4 flex flex-col items-start gap-3.5 text-[14px] font-medium text-white/68 [&_a]:transition [&_a:hover]:text-white sm:text-[15px]">{children}</div>
+    </div>
   );
 }

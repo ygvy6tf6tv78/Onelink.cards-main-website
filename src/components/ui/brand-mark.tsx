@@ -89,8 +89,8 @@ export function Wordmark({
     <Image
       src="/Group%201000008683.png"
       alt={alt}
-      width={220}
-      height={64}
+      width={2048}
+      height={476}
       className={cn("h-9 w-auto object-contain", className)}
     />
   );

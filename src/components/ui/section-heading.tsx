@@ -23,11 +23,11 @@ export function SectionHeading({
         className,
       )}
     >
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent-strong)] opacity-85">{eyebrow}</span>
-      <h2 className="font-display mt-4 text-[2rem] font-bold tracking-[-0.04em] text-[var(--foreground)] sm:mt-5 sm:text-[2.6rem] lg:text-[3.2rem] leading-[1.1]">
+      <span className="eyebrow">{eyebrow}</span>
+      <h2 className="font-display type-section-title mt-4 text-[var(--foreground)] sm:mt-5">
         {title}
       </h2>
-      <p className="text-muted mt-5 max-w-2xl text-[15px] font-medium leading-[1.7] sm:mt-6 sm:text-[17px] text-neutral-500">
+      <p className="type-section-copy text-muted mt-5 max-w-2xl text-neutral-500 sm:mt-6">
         {description}
       </p>
     </div>

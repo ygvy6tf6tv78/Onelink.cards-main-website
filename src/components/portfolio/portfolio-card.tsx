@@ -3,30 +3,30 @@ import type { PortfolioItem } from "@/content/portfolio";
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
   return (
-    <article className="group">
+    <article className="group h-full">
       <a href={item.href} target="_blank" rel="noreferrer" className="block">
-        <div className="overflow-hidden rounded-[28px] bg-[#eef4f9] shadow-[0_24px_70px_-42px_rgba(15,23,42,0.34)] ring-1 ring-black/5 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_30px_80px_-42px_rgba(15,23,42,0.38)]">
+        <div className="overflow-hidden rounded-[24px] border border-white/80 bg-[#eef4f9] p-1.5 shadow-[0_20px_54px_-32px_rgba(15,23,42,0.32)] ring-1 ring-black/[0.045] transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_30px_72px_-34px_rgba(15,23,42,0.4)] sm:rounded-[28px]">
           <Image
             src={item.image}
             alt={`${item.title} OneLink portfolio preview`}
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
-            className="h-auto w-full object-contain transition duration-500 group-hover:scale-[1.015]"
+            className="h-auto w-full rounded-[20px] object-contain transition duration-500 ease-out group-hover:scale-[1.02] sm:rounded-[23px]"
           />
         </div>
       </a>
 
-      <div className="pt-5">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--accent-strong)]">
+      <div className="pt-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-[var(--accent-strong)]">
           {item.label ?? item.category}
         </p>
-        <h3 className="font-display mt-2 text-[1.45rem] font-semibold tracking-[-0.04em] text-[var(--foreground)] sm:text-[1.62rem]">
+        <h3 className="font-display type-card-title mt-1.5 text-[var(--foreground)]">
           {item.title}
         </h3>
         <a
           href={item.href}
           target="_blank"
           rel="noreferrer"
-          className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] transition hover:text-[var(--accent-strong)]"
+          className="mt-2.5 inline-flex items-center gap-2 text-[14px] font-semibold text-[var(--foreground)] transition hover:text-[var(--accent-strong)]"
         >
           View Live
           <svg

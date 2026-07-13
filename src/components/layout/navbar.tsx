@@ -27,10 +27,10 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-3 sm:top-6 sm:px-6 lg:px-8">
       <motion.div
-        initial={{ opacity: 0, y: -18, clipPath: "inset(0 82% 0 0 round 999px)" }}
-        animate={{ opacity: 1, y: 0, clipPath: `inset(0 0% 0 0 round ${isMenuOpen ? "28px" : "999px"})` }}
-        transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1], clipPath: { duration: 0.3 } }}
-        className="mx-auto w-full max-w-[1200px] overflow-hidden border border-white/70 bg-white/70 shadow-[0_10px_34px_rgba(15,23,42,0.08)] backdrop-blur-2xl"
+        initial={{ opacity: 0, y: -14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className="mx-auto w-full max-w-[1200px] overflow-hidden rounded-[22px] border border-white/70 bg-white/70 shadow-[0_10px_34px_rgba(15,23,42,0.08)] backdrop-blur-2xl lg:rounded-full"
       >
         <div className="grid min-h-[64px] grid-cols-[1fr_auto] items-center gap-3 px-3 py-2 sm:min-h-[70px] sm:px-5 lg:grid-cols-[minmax(190px,1fr)_auto_minmax(220px,1fr)]">
           <Link href="/" className="group flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3">
@@ -39,15 +39,15 @@ export function Navbar() {
               imageClassName="w-[26px] sm:w-[31px]"
             />
             <div className="min-w-0">
-              <p className="font-display whitespace-nowrap text-[1.08rem] font-bold tracking-[-0.045em] text-[#111827] sm:text-[1.25rem]">
+              <p className="font-display whitespace-nowrap text-[1.15rem] font-extrabold tracking-[-0.045em] text-[#111827] sm:text-[1.35rem]">
                 OneLink
               </p>
-              <p className="hidden text-[10px] font-bold uppercase tracking-[0.18em] text-[#9ca3af] lg:block">Smart Business Page</p>
+              <p className="hidden text-[11px] font-semibold uppercase tracking-[0.12em] text-[#9ca3af] lg:block">Smart Business Page</p>
             </div>
           </Link>
 
           <div className="hidden items-center justify-center lg:flex">
-            <nav className="flex items-center gap-10 text-[15px] font-semibold text-[var(--muted-strong)]">
+            <nav className="flex items-center gap-8 text-[14px] font-semibold text-[var(--muted-strong)] xl:gap-10 xl:text-[15px]">
               {navItems.map((item) => (
                 <a
                   key={item.href}
@@ -57,14 +57,6 @@ export function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <a
-                href="https://www.kriyongroup.com/legal"
-                target="_blank"
-                rel="noreferrer"
-                className="tracking-[-0.01em] text-[var(--muted)] transition hover:text-[var(--foreground)]"
-              >
-                Terms &amp; Conditions
-              </a>
             </nav>
           </div>
 
@@ -79,10 +71,10 @@ export function Navbar() {
               <Icon name="whatsapp" className="h-5 w-5 lg:h-[18px] lg:w-[18px]" />
             </a>
             <a
-              href="#pricing"
-              className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[#00A9FF] py-1 pl-5 pr-1 text-[14px] font-bold text-white shadow-[0_8px_20px_-6px_rgba(0,169,255,0.4)] transition hover:-translate-y-0.5 hover:bg-[#0089FF] lg:inline-flex"
+              href="/#pricing"
+              className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[#00A9FF] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_8px_20px_-6px_rgba(0,169,255,0.4)] transition hover:-translate-y-0.5 hover:bg-[#0089FF] lg:inline-flex"
             >
-              <span>Buy Now</span>
+              <span>Get OneLink</span>
               <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-[#00A9FF]">
                 <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M3.5 8h9" />
@@ -116,10 +108,10 @@ export function Navbar() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              initial={{ height: 0, opacity: 0, y: -8 }}
+              animate={{ height: 'auto', opacity: 1, y: 0 }}
+              exit={{ height: 0, opacity: 0, y: -6 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
               className="border-t border-black/5 bg-[#FDFDFD] lg:hidden"
             >
               <nav className="flex flex-col p-4 gap-1">
@@ -128,21 +120,18 @@ export function Navbar() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-between px-4 py-4 rounded-[16px] text-[15px] font-bold text-[#151515] hover:bg-[#F8F9FA] transition-colors active:bg-[#F1F3F5]"
+                    className="flex items-center justify-between px-4 py-4 rounded-[16px] text-[15px] font-semibold text-[#151515] hover:bg-[#F8F9FA] transition-colors active:bg-[#F1F3F5]"
                   >
                     <span>{item.label}</span>
                     <Icon name="chevron-right" className="h-4 w-4 text-[#9ca3af]" />
                   </a>
                 ))}
                 <a
-                  href="https://www.kriyongroup.com/legal"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/#pricing"
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-between px-4 py-4 rounded-[16px] text-[15px] font-bold text-[#9ca3af] hover:bg-[#F8F9FA] transition-colors active:bg-[#F1F3F5]"
+                  className="mt-2 flex min-h-12 items-center justify-center rounded-[16px] bg-[#00A9FF] px-4 py-3 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(0,169,255,0.7)]"
                 >
-                  <span>Terms &amp; Conditions</span>
-                  <Icon name="chevron-right" className="h-4 w-4 text-[#9ca3af]" />
+                  Get OneLink
                 </a>
                 <div className="mt-2 border-t border-black/5 p-2 pt-4">
                   <p className="mb-3 text-[12px] font-bold uppercase tracking-widest text-[#9ca3af]">Talk to our team</p>

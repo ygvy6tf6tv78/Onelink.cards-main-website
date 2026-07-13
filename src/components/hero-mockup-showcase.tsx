@@ -8,6 +8,7 @@ import hotelMetropolisMockup from "../../onelink_mockups/hotel-metropolis-origin
 import dograAssociatesMockup from "../../onelink_mockups/dogra-associates.png";
 import newVisionMockup from "../../onelink_mockups/new-vision-diagnostics.png";
 import { cn } from "@/lib/utils";
+import { BrandMark } from "@/components/ui/brand-mark";
 
 const slides: Array<{
   id: string;
@@ -62,7 +63,6 @@ export function HeroMockupShowcase() {
     return () => window.clearInterval(timer);
   }, [isPaused]);
 
-  const activeSlide = slides[activeIndex];
   const previousSlide = slides[(activeIndex - 1 + slides.length) % slides.length];
   const nextSlide = slides[(activeIndex + 1) % slides.length];
 
@@ -80,33 +80,19 @@ export function HeroMockupShowcase() {
           <motion.div
             animate={{ y: [0, -8, 0], rotate: [-7, -5.5, -7] }}
             transition={{ duration: 8.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="absolute left-2 top-[88px] hidden w-[142px] opacity-[0.24] blur-[0.8px] xl:block"
+            className="absolute left-2 top-[88px] z-0 hidden w-[142px] opacity-[0.24] blur-[0.8px] xl:block"
+            aria-hidden="true"
           >
-            <Image
-              src={previousSlide.src}
-              alt={previousSlide.alt}
-              sizes="284px"
-              quality={90}
-              loading="eager"
-              fetchPriority="low"
-              className="h-auto w-full object-contain"
-            />
+            <Image src={previousSlide.src} alt="" sizes="296px" quality={85} className="h-auto w-full object-contain" />
           </motion.div>
 
           <motion.div
             animate={{ y: [0, -10, 0], rotate: [8, 6.2, 8] }}
             transition={{ duration: 7.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="absolute right-4 top-[68px] hidden w-[154px] opacity-[0.26] blur-[0.8px] lg:block"
+            className="absolute right-4 top-[68px] z-0 hidden w-[154px] opacity-[0.26] blur-[0.8px] lg:block"
+            aria-hidden="true"
           >
-            <Image
-              src={nextSlide.src}
-              alt={nextSlide.alt}
-              sizes="308px"
-              quality={90}
-              loading="eager"
-              fetchPriority="low"
-              className="h-auto w-full object-contain"
-            />
+            <Image src={nextSlide.src} alt="" sizes="308px" quality={85} className="h-auto w-full object-contain" />
           </motion.div>
 
           <div className="relative z-10 flex w-full justify-center">
@@ -162,18 +148,16 @@ export function HeroMockupShowcase() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto mt-2.5 w-full max-w-[408px] rounded-[20px] bg-white px-4 py-3 shadow-[0_16px_44px_-12px_rgba(15,23,42,0.14)] sm:mt-3 sm:rounded-[22px] sm:px-5 sm:py-3.5">
+        <div className="relative z-20 mx-auto mt-2.5 w-full max-w-[408px] rounded-[24px] border border-white/20 bg-[#00A9FF] px-4 py-3.5 text-white shadow-[0_20px_50px_-16px_rgba(0,169,255,0.5)] sm:mt-3 sm:px-5 sm:py-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex min-w-0 flex-1 items-center gap-3">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[11px] bg-[#E0F2FE] sm:h-9 sm:w-9 sm:rounded-[12px]">
-                <span className="text-[15px] text-[#00A9FF] sm:text-[16px]">✦</span>
-              </div>
+              <BrandMark className="h-9 w-9 shrink-0 rounded-[12px] border-white/20 bg-white shadow-none" imageClassName="w-[20px]" alt="" />
               <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#00A9FF]">
-                  {activeSlide.label}
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">
+                  One smart page
                 </p>
-                <p className="mt-0.5 text-[13px] font-semibold leading-tight tracking-tight text-[#151515] sm:text-[14px]">
-                  {activeSlide.description}
+                <p className="mt-0.5 text-[13px] font-bold leading-tight tracking-tight text-white sm:text-[14px]">
+                  Everything, inside OneLink.
                 </p>
               </div>
             </div>
@@ -187,8 +171,8 @@ export function HeroMockupShowcase() {
                   className={cn(
                     "rounded-full transition-all duration-300",
                     index === activeIndex
-                      ? "h-2 w-5 bg-[#00A9FF]"
-                      : "h-2 w-2 bg-[#E5E7EB] hover:bg-[#D1D5DB]",
+                      ? "h-2 w-5 bg-white"
+                      : "h-2 w-2 bg-white/35 hover:bg-white/60",
                   )}
                   aria-label={`Show ${slide.label}`}
                 />

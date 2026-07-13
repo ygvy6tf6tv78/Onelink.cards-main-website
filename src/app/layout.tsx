@@ -5,9 +5,6 @@ import "@fontsource/manrope/500.css";
 import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/700.css";
 import "@fontsource/manrope/800.css";
-import "@fontsource/sora/600.css";
-import "@fontsource/sora/700.css";
-import "@fontsource/sora/800.css";
 import "./globals.css";
 import { LayoutWrapper } from "@/components/layout/layout-wrapper";
 
@@ -93,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full scroll-smooth">
+    <html lang="en" className="h-full scroll-smooth" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col">
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

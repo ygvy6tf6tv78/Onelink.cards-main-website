@@ -26,10 +26,10 @@ export default function PortfolioPage() {
                 </svg>
                 Back to home
               </Link>
-              <h1 className="font-display mt-2 w-full text-[1.95rem] font-semibold leading-[1.08] tracking-[-0.055em] text-[var(--foreground)] sm:text-[2.45rem] lg:text-[2.9rem]">
+              <h1 className="font-display type-section-title mt-2 w-full text-[var(--foreground)]">
                 Real OneLinks for real businesses.
               </h1>
-              <p className="mt-4 max-w-2xl text-[14px] font-semibold leading-relaxed text-[var(--muted-strong)] sm:text-[16px]">
+              <p className="type-section-copy mt-4 max-w-2xl text-[var(--muted-strong)]">
                 Browse live pages by category and see how calls, WhatsApp, payments, reviews and location fit into one clean link.
               </p>
             </div>

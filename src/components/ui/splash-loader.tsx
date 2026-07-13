@@ -23,7 +23,7 @@ export function SplashLoader() {
       setIsVisible(false);
       sessionStorage.setItem("splashPlayed", "true");
       document.body.style.overflow = "unset";
-    }, 1800);
+    }, 1250);
 
     return () => {
       window.clearTimeout(timer);
@@ -45,21 +45,21 @@ export function SplashLoader() {
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
         >
           <div className="relative flex flex-col items-center px-6">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A9FF]/8 blur-3xl" />
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col items-center justify-center gap-6"
+              className="relative flex flex-col items-center justify-center gap-6"
             >
-              <Wordmark className="h-11 sm:h-12" />
-              
-              <div className="h-[3px] w-32 overflow-hidden rounded-full bg-gray-100">
+              <Wordmark className="h-9 sm:h-10" />
+              <div className="h-[2px] w-24 overflow-hidden rounded-full bg-[#dcebf4]">
                 <motion.div
                   className="h-full bg-[#00A9FF]"
                   initial={{ width: "0%", x: "-100%" }}
                   animate={{ width: ["0%", "50%", "100%"], x: ["-100%", "0%", "0%"] }}
                   transition={{
-                    duration: 1.5,
+                    duration: 1.05,
                     ease: "easeInOut",
                   }}
                 />

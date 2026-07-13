@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { pricingPlans, type Plan } from "@/content/site";
+import { pricingPlans, siteConfig, type Plan } from "@/content/site";
 import { Icon } from "@/components/icons";
 import { BuyButton } from "@/components/payment/buy-button";
 import { Reveal } from "@/components/ui/reveal";
@@ -28,7 +28,7 @@ const enterpriseHighlights = [
 export function PricingSection() {
   const topPlans = pricingPlans.filter((plan) => plan.id !== "enterprise");
   const enterprisePlan = pricingPlans.find((plan) => plan.id === "enterprise");
-  const enterpriseHref = "/contact";
+  const enterpriseHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss an Enterprise setup.")}`;
   return (
     <section
       id="pricing"
@@ -86,7 +86,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
       className={cn(
         "group relative mx-auto flex h-full w-full max-w-[calc(100vw-40px)] min-w-0 flex-col overflow-hidden rounded-[28px] border bg-white p-5 transition-all sm:max-w-none sm:p-7",
         isSignature
-          ? "shine-sweep border-[#d8b86e] bg-[linear-gradient(180deg,#fffdf8_0%,#fff9ef_100%)] shadow-[0_24px_70px_-38px_rgba(155,109,20,0.42)]"
+          ? "border-shine border-[#d8b86e] bg-[linear-gradient(180deg,#fffdf8_0%,#fff9ef_100%)] shadow-[0_24px_70px_-38px_rgba(155,109,20,0.42)]"
           : isElite
             ? "border-[#b9d9f0] bg-white shadow-sm"
             : "border-[#d6dde5] bg-white shadow-sm",
@@ -189,7 +189,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
 
 function EnterprisePanel({ plan, href }: { plan: Plan; href: string }) {
   return (
-    <div className="shine-sweep relative mx-auto mt-10 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#d7b978]/55 bg-[linear-gradient(135deg,#071727_0%,#10283e_52%,#172e42_100%)] p-5 text-white shadow-[0_32px_90px_-48px_rgba(7,23,39,0.75)] sm:max-w-7xl sm:p-7 lg:mt-16 lg:p-8">
+    <div className="border-shine relative mx-auto mt-10 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#d7b978]/55 bg-[linear-gradient(135deg,#071727_0%,#10283e_52%,#172e42_100%)] p-5 text-white shadow-[0_32px_90px_-48px_rgba(7,23,39,0.75)] sm:max-w-7xl sm:p-7 lg:mt-16 lg:p-8">
       <div className="pointer-events-none absolute -right-14 -top-20 h-64 w-64 rounded-full bg-[#e6c980]/12 blur-3xl" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#f6e6b7,transparent)] opacity-75" />
       <div className="relative grid gap-7 lg:grid-cols-[230px_minmax(0,1fr)_290px] lg:items-center lg:gap-9">

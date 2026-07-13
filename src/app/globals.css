@@ -247,21 +247,29 @@ button {
   );
 }
 
-@keyframes shine-sweep {
-  0%, 72% { transform: translateX(-135%) skewX(-18deg); }
-  100% { transform: translateX(235%) skewX(-18deg); }
+@keyframes border-shine {
+  0%, 68% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.shine-sweep::after {
+.border-shine {
+  isolation: isolate;
+}
+
+.border-shine::before {
   content: "";
   position: absolute;
-  inset: -20% auto -20% -35%;
-  z-index: 2;
-  width: 22%;
+  inset: 0;
+  z-index: 3;
+  padding: 1.5px;
+  border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
-  opacity: 0.45;
-  animation: shine-sweep 5.8s ease-in-out infinite;
+  background: linear-gradient(110deg, #8f6a1e, #d6b65f, #fff4c9, #ffffff, #e2c36c, #8f6a1e);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-shine 5.8s ease-in-out infinite;
 }
 
 .accent-dot::before {

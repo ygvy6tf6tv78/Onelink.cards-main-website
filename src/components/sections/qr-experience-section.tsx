@@ -27,19 +27,19 @@ export function QrExperienceSection() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:gap-10">
           <Reveal delay={0.04} y={18}>
             <div className="max-w-[560px]">
-              <p className="text-[12px] font-bold uppercase tracking-[0.11em] text-[#087cbc]">Custom QR included</p>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#087cbc]">Custom QR included</p>
               <h2 className="font-display type-section-title mt-4 text-[#0f172a]">
                 Your OneLink, ready to scan.
               </h2>
-              <p className="mt-3.5 max-w-[54ch] text-[15px] font-normal leading-[1.68] text-[#5f6b7a] sm:text-[16px]">
+              <p className="mt-3.5 max-w-[54ch] text-[15px] font-medium leading-[1.7] text-[#5f6b7a] sm:text-[16px]">
                 Every OneLink comes with a <strong className="font-bold text-[#087cbc]">custom QR code</strong> that customers can scan to instantly open your menu, services, bookings, payments, location and other important customer actions.
               </p>
               <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
                 <ActionLink href="#pricing" variant="blue" withArrow className="min-h-11 rounded-[12px] px-5">
                   Get Your OneLink + QR
                 </ActionLink>
-                <ActionLink href="#qr-examples" variant="secondary" className="min-h-11 rounded-[12px] px-5">
-                  View QR Examples
+                <ActionLink href="#work" variant="secondary" className="min-h-11 rounded-[12px] px-5">
+                  View OneLink Examples
                 </ActionLink>
               </div>
             </div>

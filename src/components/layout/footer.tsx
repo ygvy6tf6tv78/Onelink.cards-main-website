@@ -29,14 +29,13 @@ export function Footer() {
               <Link href="/#pricing">Pricing</Link>
               <Link href="/#how-it-works">How It Works</Link>
               <Link href="/#faqs">FAQs</Link>
-              <Link href="/contact">Contact</Link>
+              <a href={whatsappHref} target="_blank" rel="noreferrer">Contact</a>
             </FooterColumn>
 
             <FooterColumn title="Support">
               <a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
               <a href={callHref}>Call</a>
               <a href={emailHref}>Email</a>
-              <Link href="/contact">Contact Page</Link>
             </FooterColumn>
 
             <FooterColumn title="Legal">
@@ -52,7 +51,7 @@ export function Footer() {
                 <p><span className="text-white/40">Email</span><br /><a href={emailHref} className="break-all text-white/82 hover:text-white">{siteConfig.contact.email}</a></p>
                 <address className="not-italic"><span className="text-white/40">Registered Office</span><br /><strong className="font-semibold text-white/82">{siteConfig.contact.company}</strong>{siteConfig.contact.officeLines.map((line) => <span key={line} className="block">{line}</span>)}</address>
               </div>
-              <Link href="/contact" className="mt-5 inline-flex min-h-11 items-center rounded-full border border-white/14 bg-white px-5 text-[14px] font-semibold text-[#06436d] shadow-sm hover:-translate-y-0.5">Talk to Our Team</Link>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex min-h-11 items-center rounded-full border border-white/14 bg-white px-5 text-[14px] font-semibold text-[#06436d] shadow-sm hover:-translate-y-0.5">Talk to Our Team</a>
             </div>
           </div>
 

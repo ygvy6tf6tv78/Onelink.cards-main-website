@@ -1,7 +1,9 @@
 import { Reveal } from "@/components/ui/reveal";
 import { ActionLink } from "@/components/ui/action-link";
+import { siteConfig } from "@/content/site";
 
 export function ContactSection() {
+  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
   return (
     <section
       id="contact"
@@ -20,7 +22,7 @@ export function ContactSection() {
               <ActionLink href="#pricing" variant="secondary" className="h-11 min-h-11 min-w-[180px] rounded-[12px] bg-white px-5 py-0 sm:h-auto sm:min-h-0 sm:py-3 text-[14px]">
                 Get OneLink + QR
               </ActionLink>
-              <ActionLink href="/contact" variant="blue" className="h-11 min-h-11 min-w-[180px] rounded-[12px] px-5 py-0 sm:h-auto sm:min-h-0 sm:py-3 text-[14px]">
+              <ActionLink href={whatsappHref} variant="blue" className="h-11 min-h-11 min-w-[180px] rounded-[12px] px-5 py-0 sm:h-auto sm:min-h-0 sm:py-3 text-[14px]">
                 Contact Our Team
               </ActionLink>
             </div>

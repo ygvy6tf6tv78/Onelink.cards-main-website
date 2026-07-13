@@ -171,7 +171,6 @@ export const navItems: NavItem[] = [
   { label: "Pricing", href: "/#pricing" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "FAQs", href: "/#faqs" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export const heroTrustBadges = [

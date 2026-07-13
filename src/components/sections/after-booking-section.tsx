@@ -20,10 +20,11 @@ export function AfterBookingSection() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid overflow-hidden rounded-[18px] border border-slate-900/[0.08] bg-white/72 shadow-[0_26px_64px_-52px_rgba(15,23,42,0.28)] md:grid-cols-2 xl:grid-cols-4">
+        <div className="relative mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="pointer-events-none absolute left-[8%] right-[8%] top-8 hidden h-px bg-[linear-gradient(90deg,transparent,#9edcff,#9edcff,transparent)] xl:block" />
           {howItWorksSteps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.06}>
-              <article className="group relative h-full px-6 py-7 transition-colors duration-300 hover:bg-white md:border-r md:border-slate-900/[0.07] xl:px-7 xl:py-8 xl:last:border-r-0">
+              <article className="group relative h-full rounded-[17px] border border-slate-900/[0.08] bg-white px-6 py-7 shadow-[0_20px_54px_-44px_rgba(15,23,42,0.3)] transition duration-300 hover:-translate-y-1 hover:border-[#00A9FF]/24 xl:px-7 xl:py-8">
                 <div className="flex items-center justify-between gap-4">
                   <span className="font-display text-[32px] font-bold leading-none tracking-[-0.05em] text-[#00A9FF]/42 transition-colors group-hover:text-[#00A9FF]">{step.number}</span>
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-[#eaf7fe] text-[#087cbc]">

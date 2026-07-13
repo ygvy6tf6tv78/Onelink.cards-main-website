@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SplashLoader } from "@/components/ui/splash-loader";
+import { FloatingWhatsApp } from "@/components/ui/floating-whatsapp";
 
 interface LayoutWrapperProps {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
       <Navbar />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }

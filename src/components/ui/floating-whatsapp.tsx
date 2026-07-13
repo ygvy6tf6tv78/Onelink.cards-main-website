@@ -1,29 +1,48 @@
 "use client";
 
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "@/components/icons";
 import { siteConfig } from "@/content/site";
-import { motion } from "framer-motion";
 
 export function FloatingWhatsApp() {
-  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(
-    "Hello OneLink, I am interested in getting a link.",
-  )}`;
+  const [isOpen, setIsOpen] = useState(false);
+  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
+  const callHref = `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`;
 
   return (
-    <motion.a
-      href={whatsappHref}
-      target="_blank"
-      rel="noreferrer"
-      animate={{ y: [0, -10, 0] }}
-      transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-      className="group fixed bottom-6 right-6 z-[99] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_-6px_rgba(37,211,102,0.8)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_12px_36px_-6px_rgba(37,211,102,1)] sm:bottom-8 sm:right-8"
-      aria-label="Chat with us on WhatsApp"
-    >
-      <Icon name="whatsapp" className="h-7 w-7 transition-transform duration-300 group-hover:scale-110" />
-      <span className="absolute -top-1 -right-1 flex h-3 w-3">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-white border-2 border-[#25D366]"></span>
-      </span>
-    </motion.a>
+    <div className="fixed bottom-5 right-5 z-[99] sm:bottom-7 sm:right-7">
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.div
+            initial={{ opacity: 0, y: 12, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.97 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute bottom-[68px] right-0 w-[238px] overflow-hidden rounded-[16px] border border-slate-900/[0.08] bg-white p-3 shadow-[0_22px_64px_-20px_rgba(15,23,42,0.32)]"
+          >
+            <p className="px-2 pb-2 pt-1 text-[12px] font-bold uppercase tracking-[0.08em] text-[#64748b]">Contact OneLink</p>
+            <a href={whatsappHref} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-[11px] px-3 py-3 text-[14px] font-semibold text-[#0f172a] hover:bg-[#effcf4]">
+              <span className="grid h-9 w-9 place-items-center rounded-[9px] bg-[#25D366]/12 text-[#168447]"><Icon name="whatsapp" className="h-5 w-5" /></span>
+              WhatsApp
+            </a>
+            <a href={callHref} className="mt-1 flex items-center gap-3 rounded-[11px] px-3 py-3 text-[14px] font-semibold text-[#0f172a] hover:bg-[#eef8ff]">
+              <span className="grid h-9 w-9 place-items-center rounded-[9px] bg-[#00A9FF]/10 text-[#087cbc]"><Icon name="phone" className="h-5 w-5" /></span>
+              Call {siteConfig.contact.phone}
+            </a>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((value) => !value)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Close contact options" : "Open contact options"}
+        className="grid h-14 w-14 place-items-center rounded-full bg-[#00A9FF] text-white shadow-[0_16px_38px_-12px_rgba(0,169,255,0.7)] transition hover:-translate-y-0.5 hover:bg-[#008ed9]"
+      >
+        <Icon name={isOpen ? "close" : "phone"} className="h-6 w-6" />
+      </button>
+    </div>
   );
 }

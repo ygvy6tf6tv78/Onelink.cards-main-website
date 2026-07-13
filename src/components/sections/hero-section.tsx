@@ -49,7 +49,7 @@ export function HeroSection() {
               </ActionLink>
             </div>
             <ActionLink
-              href="/contact"
+              href={whatsappHref}
               variant="secondary"
               withArrow
               className="min-h-11 w-full min-w-0 shrink-0 basis-0 !rounded-[12px] border border-slate-900/10 bg-white px-4 py-2.5 text-[14px] font-semibold text-[#0f172a] shadow-[0_12px_28px_-22px_rgba(15,23,42,0.3)] hover:bg-[#f8fafc] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"

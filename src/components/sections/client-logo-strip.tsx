@@ -6,9 +6,9 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 
 const trustStats = [
-  { value: 25, suffix: "+", label: "Businesses onboarded" },
+  { value: 26, suffix: "+", label: "Businesses onboarded" },
   { value: 15, suffix: "+", label: "Business categories" },
-  { value: 15, suffix: "+", label: "Customer actions" },
+  { value: 50, suffix: "+", label: "Customer actions enabled" },
 ];
 
 export function ClientLogoStrip() {

@@ -9,7 +9,7 @@ import "./globals.css";
 import { LayoutWrapper } from "@/components/layout/layout-wrapper";
 
 /** Canonical site URL (include www if that is what users share). */
-const defaultSiteOrigin = "https://onelink.cards";
+const defaultSiteOrigin = "https://www.onelink.cards";
 const siteOrigin = (
   process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
   process.env.NEXT_PUBLIC_APP_URL?.trim() ||

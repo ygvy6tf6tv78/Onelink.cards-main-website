@@ -29,12 +29,6 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.onelink.cards" }],
-        destination: "https://onelink.cards/:path*",
-        permanent: true,
-      },
     ];
   },
   async headers() {

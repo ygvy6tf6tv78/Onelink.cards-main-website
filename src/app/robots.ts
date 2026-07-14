@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/book/", "/payment/", "/demo/"],
     },
-    sitemap: "https://onelink.cards/sitemap.xml",
-    host: "https://onelink.cards",
+    sitemap: "https://www.onelink.cards/sitemap.xml",
+    host: "https://www.onelink.cards",
   };
 }

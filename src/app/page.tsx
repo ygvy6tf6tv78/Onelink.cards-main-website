@@ -10,8 +10,8 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://onelink.cards/#website",
-    url: "https://onelink.cards/",
+    "@id": "https://www.onelink.cards/#website",
+    url: "https://www.onelink.cards/",
     name: "OneLink",
     alternateName: ["OneLink Cards", "OneLink Smart Business Page"],
     inLanguage: "en-IN",
@@ -19,13 +19,13 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://onelink.cards/#organization",
+    "@id": "https://www.onelink.cards/#organization",
     name: "OneLink",
     alternateName: "OneLink Cards",
-    url: "https://onelink.cards/",
+    url: "https://www.onelink.cards/",
     logo: {
       "@type": "ImageObject",
-      url: "https://onelink.cards/Group%201000008683.png",
+      url: "https://www.onelink.cards/Group%201000008683.png",
     },
     description: "OneLink is a premium mobile-first smart business page and customer-action platform.",
     parentOrganization: {
@@ -45,13 +45,13 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": "https://onelink.cards/#service",
+    "@id": "https://www.onelink.cards/#service",
     name: "OneLink Smart Business Page",
     serviceType: "Smart business page and customer-action platform",
-    provider: { "@id": "https://onelink.cards/#organization" },
+    provider: { "@id": "https://www.onelink.cards/#organization" },
     areaServed: { "@type": "Country", name: "India" },
     description: "A professionally designed mobile-first business page for services, menus, products, bookings, payments, reviews, locations and customer enquiries.",
-    url: "https://onelink.cards/",
+    url: "https://www.onelink.cards/",
   },
 ];
 

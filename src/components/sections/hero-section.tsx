@@ -16,18 +16,27 @@ export function HeroSection() {
         aria-hidden
       />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-[160px]">
-        <Reveal className="flex flex-col items-start justify-center text-left" delay={0.04}>
-          <SectionBadge label="One smart business page" className="mt-8 sm:mt-4" />
-          <a href="https://www.kriyongroup.com/" target="_blank" rel="noopener noreferrer" className="mt-3 text-[12px] font-bold tracking-[0.005em] text-[#526173] hover:text-[#00A9FF] sm:text-[13px]">
-            A Creative Technology Venture by Kriyon Group Pvt. Ltd.
-          </a>
-          <h1 className="font-display mt-5 max-w-none text-[40px] font-[780] leading-[1.02] tracking-[-0.05em] sm:mt-6 sm:text-[50px] lg:text-[52px] xl:text-[56px]">
-            <span className="block whitespace-nowrap text-[var(--foreground)]">Stop sharing links.</span>
-            <span className="mt-1 block whitespace-nowrap text-[var(--accent)]">Share OneLink.</span>
-          </h1>
-          <p className="mt-4 max-w-[58ch] text-pretty text-[15px] font-medium leading-[1.7] text-[#435267] sm:mt-5">
-            Bring your business, services, products and customer actions into one beautifully designed experience with one smart link and custom QR code.
-          </p>
+        <div className="flex flex-col items-start justify-center text-left">
+          <Reveal delay={0.02} y={10} amount={0.01} margin="0px">
+            <SectionBadge label="One smart business page" className="mt-8 sm:mt-4" />
+          </Reveal>
+          <Reveal delay={0.1} y={10} amount={0.01} margin="0px">
+            <a href="https://www.kriyongroup.com/" target="_blank" rel="noopener noreferrer" className="mt-3 block text-[12px] font-bold tracking-[0.005em] text-[#526173] hover:text-[#00A9FF] sm:text-[13px]">
+              A Creative Technology Venture by Kriyon Group Pvt. Ltd.
+            </a>
+          </Reveal>
+          <Reveal delay={0.17} y={14} amount={0.01} margin="0px">
+            <h1 className="font-display mt-5 max-w-none text-[40px] font-[780] leading-[1.02] tracking-[-0.05em] sm:mt-6 sm:text-[50px] lg:text-[52px] xl:text-[56px]">
+              <span className="block whitespace-nowrap text-[var(--foreground)]">Stop sharing links.</span>
+              <span className="mt-1 block whitespace-nowrap text-[var(--accent)]">Share OneLink.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.24} y={14} amount={0.01} margin="0px">
+            <p className="mt-4 max-w-[58ch] text-pretty text-[15px] font-medium leading-[1.7] text-[#435267] sm:mt-5">
+              Bring your business, services, products and customer actions into one beautifully designed experience with one smart link and custom QR code.
+            </p>
+          </Reveal>
+          <Reveal delay={0.31} y={14} amount={0.01} margin="0px" className="w-full">
           <div className="mt-6 grid w-full grid-cols-2 gap-2.5 sm:hidden">
             <ActionLink href="#pricing" variant="blue" withArrow className="min-h-12 !rounded-[12px] px-3 text-[13px] font-bold [&_svg]:h-4 [&_svg]:w-4">
               Get Your OneLink
@@ -58,7 +67,8 @@ export function HeroSection() {
               View Live Examples
             </ActionLink>
           </div>
-
+          </Reveal>
+          <Reveal delay={0.38} y={10} amount={0.01} margin="0px">
           <div className="mt-5 flex flex-wrap items-center justify-start gap-x-3 gap-y-2 border-t border-slate-900/[0.07] pt-4">
             <p className="mr-1 text-[11px] font-semibold text-[#526173]">Secure checkout via Razorpay</p>
             <div className="flex items-center gap-3 opacity-65 grayscale">
@@ -68,8 +78,9 @@ export function HeroSection() {
               <img src="/payment-logos/mastercard.svg" alt="Mastercard" className="h-[17px] w-auto max-w-[30px] object-contain" />
             </div>
           </div>
-        </Reveal>
-        <Reveal delay={0} y={16} className="relative overflow-visible pt-2 pb-2 sm:pb-0 sm:pt-0 lg:pt-1">
+          </Reveal>
+        </div>
+        <Reveal delay={0.12} y={18} amount={0.01} margin="0px" className="relative overflow-visible pt-2 pb-2 sm:pb-0 sm:pt-0 lg:pt-1">
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">

@@ -20,12 +20,12 @@ export function TrustSection() {
           </p>
         </Reveal>
 
-          <div className="mt-10 grid gap-4 rounded-[30px] border border-[#e3edf3] bg-[linear-gradient(145deg,#fbfdff_0%,#f3f9fd_100%)] p-3 shadow-[0_28px_72px_-58px_rgba(15,23,42,0.38)] sm:grid-cols-2 sm:p-4 lg:grid-cols-12 lg:gap-5 lg:p-5">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:gap-5">
             {trustHighlights.map((signal, index) => (
               <Reveal key={signal.title} delay={index * 0.06} y={16} className={index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-3"}>
                 <article className={index === 0
-                  ? "group relative flex h-full min-h-[226px] flex-col items-start overflow-hidden rounded-[24px] border border-[#9edcff] bg-[linear-gradient(140deg,#ffffff_0%,#eaf8ff_100%)] p-7 text-left shadow-[0_24px_62px_-44px_rgba(0,126,191,0.38)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_68px_-42px_rgba(0,126,191,0.42)] sm:p-8"
-                  : "group relative flex h-full min-h-[190px] flex-col items-start overflow-hidden rounded-[20px] border border-[#dfeaf2] bg-white p-6 text-left shadow-[0_18px_48px_-40px_rgba(15,23,42,0.28)] transition duration-300 hover:-translate-y-1 hover:border-[#a9d9f2] hover:shadow-[0_24px_52px_-38px_rgba(0,126,191,0.25)]"}>
+                  ? "group relative flex h-full min-h-[226px] flex-col items-start overflow-hidden rounded-[24px] border border-[#9edcff] bg-[linear-gradient(140deg,#ffffff_0%,#eef9ff_100%)] p-7 text-left shadow-[0_22px_56px_-40px_rgba(0,126,191,0.34)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_64px_-40px_rgba(0,126,191,0.4)] sm:p-8"
+                  : "group relative flex h-full min-h-[190px] flex-col items-start overflow-hidden rounded-[20px] border border-[#dfeaf2] bg-white p-6 text-left shadow-[0_18px_48px_-40px_rgba(15,23,42,0.26)] transition duration-300 hover:-translate-y-1 hover:border-[#a9d9f2] hover:shadow-[0_24px_52px_-38px_rgba(0,126,191,0.24)]"}>
                   <div className="pointer-events-none absolute -right-12 -top-14 h-36 w-36 rounded-full bg-[#00A9FF]/10 blur-2xl" />
                   {index === 0 ? <Image src="/Group%201000008683.png" alt="" width={520} height={120} className="pointer-events-none absolute -bottom-3 -right-16 w-[72%] rotate-[-7deg] opacity-[0.025]" aria-hidden="true" /> : null}
                   <div className={index === 0 ? "flex h-13 w-13 shrink-0 items-center justify-center rounded-[16px] border border-[#9edcff] bg-[#00A9FF] text-white shadow-[0_14px_28px_-16px_rgba(0,169,255,0.62)]" : "flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] bg-[linear-gradient(145deg,#eef9ff,#dff3ff)] text-[#00A9FF] shadow-[inset_0_0_0_1px_rgba(0,169,255,0.1)]"}>

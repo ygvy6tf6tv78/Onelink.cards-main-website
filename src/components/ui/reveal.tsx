@@ -9,6 +9,8 @@ type RevealProps = {
   className?: string;
   delay?: number;
   y?: number;
+  amount?: number;
+  margin?: NonNullable<React.ComponentProps<typeof motion.div>["viewport"]>["margin"];
 };
 
 export function Reveal({
@@ -16,6 +18,8 @@ export function Reveal({
   className,
   delay = 0,
   y = 18,
+  amount = 0.16,
+  margin = "0px 0px -6% 0px",
 }: RevealProps) {
   const splashComplete = useSplashComplete();
 
@@ -25,7 +29,7 @@ export function Reveal({
       className={cn("relative z-10", className)}
       initial={{ opacity: 0, y, scale: 0.995, filter: "blur(4px)" }}
       whileInView={splashComplete ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : { opacity: 0, y, scale: 0.995, filter: "blur(4px)" }}
-      viewport={{ once: true, amount: 0.08 }}
+      viewport={{ once: true, amount, margin }}
       transition={{ duration: 0.68, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

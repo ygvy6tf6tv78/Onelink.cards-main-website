@@ -24,8 +24,8 @@ const socialImageAbsolute = new URL("/og-share.png", metadataBase).href;
 
 const socialPreview = {
   url: socialImageAbsolute,
-  width: 1200,
-  height: 630,
+  width: 2748,
+  height: 2382,
   alt: "Stop sharing links. Share OneLink.",
   type: "image/png" as const,
 };

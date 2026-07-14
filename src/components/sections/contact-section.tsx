@@ -1,34 +1,33 @@
 import { Reveal } from "@/components/ui/reveal";
 import { ActionLink } from "@/components/ui/action-link";
-import { siteConfig } from "@/content/site";
+import { SectionBadge } from "@/components/ui/section-badge";
 
 export function ContactSection() {
-  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
   return (
     <section
       id="contact"
-      className="section-shell px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16"
+      className="section-shell bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="rounded-[24px] border border-white/10 bg-[linear-gradient(140deg,#04182f_0%,#073b67_48%,#075986_100%)] px-6 py-9 text-center shadow-[0_28px_72px_-44px_rgba(3,31,58,0.65)] sm:px-10 sm:py-11">
-            <h2 className="font-display type-section-title mx-auto max-w-2xl text-white">
+          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(140deg,#04182f_0%,#073b67_48%,#075986_100%)] px-6 py-12 text-center shadow-[0_30px_78px_-46px_rgba(3,31,58,0.68)] sm:px-10 sm:py-14">
+            <div className="pointer-events-none absolute -left-16 -top-20 h-52 w-52 rounded-full bg-[#00A9FF]/18 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -right-12 h-56 w-56 rounded-full bg-[#00A9FF]/18 blur-3xl" />
+            <div className="relative"><SectionBadge label="Ready to Launch" className="!border-white !bg-white !text-[#00A9FF] shadow-[0_14px_30px_-20px_rgba(0,0,0,0.55)]" /></div>
+            <h2 className="font-display type-section-title relative mx-auto mt-4 max-w-2xl text-white">
               Ready to launch your OneLink?
             </h2>
-            <p className="type-section-copy mx-auto mt-3 max-w-2xl text-white/68">
-              Launch your OneLink with a custom QR code ready for your store, packaging, menu or marketing material.
+            <p className="type-section-copy relative mx-auto mt-4 max-w-2xl text-white/68">
+              Bring your business into one professionally designed page and give customers a faster way to call, book, order, pay or visit.
             </p>
-            <div className="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row sm:items-center">
-              <ActionLink href="#pricing" variant="secondary" className="h-11 min-h-11 min-w-[180px] rounded-[12px] bg-white px-5 py-0 sm:h-auto sm:min-h-0 sm:py-3 text-[14px]">
-                Get OneLink + QR
+            <div className="relative mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
+              <ActionLink href="#pricing" variant="blue" className="h-11 min-h-11 min-w-[170px] rounded-[12px] px-5 py-0 text-[14px] sm:h-auto sm:min-h-0 sm:py-3">
+                Get OneLink
               </ActionLink>
-              <ActionLink href={whatsappHref} variant="blue" className="h-11 min-h-11 min-w-[180px] rounded-[12px] px-5 py-0 sm:h-auto sm:min-h-0 sm:py-3 text-[14px]">
-                Contact Our Team
+              <ActionLink href="#work" variant="secondary" className="h-11 min-h-11 min-w-[170px] rounded-[12px] border-[#c7dfec] bg-white px-5 py-0 text-[14px] sm:h-auto sm:min-h-0 sm:py-3">
+                Explore Live Examples
               </ActionLink>
             </div>
-            <p className="mt-4 text-[10px] font-medium uppercase tracking-[0.1em] text-white/45">
-              Custom Design <span className="mx-1.5 text-[#cbd5e1]">·</span> Fast Setup <span className="mx-1.5 text-[#cbd5e1]">·</span> Ongoing Support
-            </p>
           </div>
         </Reveal>
       </div>

@@ -8,7 +8,6 @@ import hotelMetropolisMockup from "../../onelink_mockups/hotel-metropolis-origin
 import dograAssociatesMockup from "../../onelink_mockups/dogra-associates.png";
 import newVisionMockup from "../../onelink_mockups/new-vision-diagnostics.png";
 import { cn } from "@/lib/utils";
-import { BrandMark } from "@/components/ui/brand-mark";
 
 const slides: Array<{
   id: string;
@@ -47,21 +46,22 @@ const slides: Array<{
   },
 ];
 
+const customerQuestions = [
+  { text: "How to book?", className: "left-0 top-[112px] sm:-left-3 sm:top-[138px]", delay: 0 },
+  { text: "What services?", className: "right-0 top-[205px] sm:-right-4 sm:top-[235px]", delay: 0.9 },
+  { text: "Where located?", className: "left-3 bottom-[74px] sm:left-2 sm:bottom-[92px]", delay: 1.8 },
+];
+
 export function HeroMockupShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) {
-      return;
-    }
-
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
-    }, 4800);
+    }, 2000);
 
     return () => window.clearInterval(timer);
-  }, [isPaused]);
+  }, []);
 
   const previousSlide = slides[(activeIndex - 1 + slides.length) % slides.length];
   const nextSlide = slides[(activeIndex + 1) % slides.length];
@@ -69,8 +69,6 @@ export function HeroMockupShowcase() {
   return (
     <div
       className="relative mx-auto max-w-[610px] -mt-4 py-0 sm:-mt-5 sm:py-1 lg:-mt-1 lg:py-0 max-[639px]:pb-2"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       <div className="absolute inset-x-14 top-12 h-36 rounded-full bg-[rgba(0,169,255,0.12)] blur-3xl sm:top-20 sm:h-52" />
       <div className="absolute left-4 top-10 h-20 w-20 rounded-full bg-white/70 blur-2xl sm:left-10 sm:top-12 sm:h-28 sm:w-28" />
@@ -85,6 +83,30 @@ export function HeroMockupShowcase() {
           >
             <Image src={previousSlide.src} alt="" sizes="296px" quality={85} className="h-auto w-full object-contain" />
           </motion.div>
+
+          {customerQuestions.map((question) => (
+            <motion.div
+              key={question.text}
+              animate={{ x: [0, 5, -2, 0], y: [0, -7, 2, 0] }}
+              transition={{ duration: 10.8, delay: question.delay, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              className={cn(
+                "pointer-events-none absolute z-20 hidden rounded-[11px] border border-slate-900/[0.08] bg-white/92 px-3 py-2 text-[11px] font-semibold text-[#263548] shadow-[0_18px_38px_-20px_rgba(0,126,191,0.45)] backdrop-blur-md sm:block lg:text-[12px]",
+                question.className,
+              )}
+            >
+              <span className="pointer-events-none absolute inset-0 -z-10 rounded-[14px] bg-[#00A9FF]/16 blur-xl" />
+              <motion.span
+                animate={{ x: [0, 7, 2, 0], y: [0, -5, 3, 0], rotate: [-8, 2, -3, -8] }}
+                transition={{ duration: 6.2, delay: question.delay, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                className="absolute -bottom-3.5 -left-3.5 z-20 text-[#00A9FF] drop-shadow-[0_4px_8px_rgba(0,126,191,0.38)]"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 1.8 12.7 8l-4.1 1.1-2.1 4.1L3 1.8Z" fill="currentColor" stroke="white" strokeWidth="1" strokeLinejoin="round" />
+                </svg>
+              </motion.span>
+              <span>{question.text}</span>
+            </motion.div>
+          ))}
 
           <motion.div
             animate={{ y: [0, -10, 0], rotate: [8, 6.2, 8] }}
@@ -148,38 +170,22 @@ export function HeroMockupShowcase() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto mt-2.5 w-full max-w-[408px] rounded-[24px] border border-white/20 bg-[#00A9FF] px-4 py-3.5 text-white shadow-[0_20px_50px_-16px_rgba(0,169,255,0.5)] sm:mt-3 sm:px-5 sm:py-4">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex min-w-0 flex-1 items-center gap-3">
-              <BrandMark className="h-9 w-9 shrink-0 rounded-[12px] border-white/20 bg-white shadow-none" imageClassName="w-[20px]" alt="" />
-              <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">
-                  One smart page
-                </p>
-                <p className="mt-0.5 text-[13px] font-bold leading-tight tracking-tight text-white sm:text-[14px]">
-                  Everything, inside OneLink.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex shrink-0 items-center gap-1.5">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  className={cn(
-                    "rounded-full transition-all duration-300",
-                    index === activeIndex
-                      ? "h-2 w-5 bg-white"
-                      : "h-2 w-2 bg-white/35 hover:bg-white/60",
-                  )}
-                  aria-label={`Show ${slide.label}`}
-                />
-              ))}
-            </div>
+        <div className="relative z-20 mx-auto mt-1 flex w-fit items-center gap-1.5 rounded-full border border-slate-900/[0.08] bg-white/88 px-3 py-2 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.34)] backdrop-blur">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              className={cn(
+                "rounded-full transition-all duration-300",
+                index === activeIndex
+                  ? "h-1.5 w-5 bg-[#00A9FF]"
+                  : "h-1.5 w-1.5 bg-[#b8c5d1] hover:bg-[#7f93a5]",
+              )}
+              aria-label={`Show ${slide.label}`}
+            />
+          ))}
           </div>
-        </div>
       </div>
     </div>
   );

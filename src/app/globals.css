@@ -11,7 +11,7 @@
   --muted-strong: #334155;
   --border: rgba(15, 23, 42, 0.08);
   --accent: #00a9ff;
-  --accent-strong: #087cbc;
+  --accent-strong: #00a9ff;
   --accent-violet: #8b6dff;
   --accent-soft: rgba(0, 169, 255, 0.1);
   --accent-glow: rgba(0, 169, 255, 0.18);
@@ -88,10 +88,21 @@ button {
 }
 
 .type-section-title {
-  font-size: clamp(1.875rem, calc(1.5rem + 1.7vw), 3rem);
+  font-size: clamp(1.75rem, calc(1.45rem + 1.45vw), 2.65rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.045em;
+}
+
+.section-title-gradient {
+  display: block;
+  padding-bottom: 0.08em;
+  line-height: 1.14;
+  color: #0f172a;
+  background: linear-gradient(112deg, #0f172a 8%, #27384a 43%, #00a9ff 66%, #8593a2 78%, #111827 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .type-section-copy {
@@ -247,13 +258,30 @@ button {
   );
 }
 
-@keyframes border-shine {
-  0%, 68% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@property --border-shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-shine-rotate {
+  to { --border-shine-angle: 360deg; }
 }
 
 .border-shine {
   isolation: isolate;
+  --shine-soft: rgba(255, 226, 132, 0.72);
+  --shine-strong: #fff0aa;
+}
+
+.border-shine-white {
+  --shine-soft: rgba(255, 255, 255, 0.68);
+  --shine-strong: #ffffff;
+}
+
+.border-shine-blue {
+  --shine-soft: rgba(184, 230, 255, 0.82);
+  --shine-strong: #ffffff;
 }
 
 .border-shine::before {
@@ -261,15 +289,21 @@ button {
   position: absolute;
   inset: 0;
   z-index: 3;
-  padding: 1.5px;
+  padding: 3px;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(110deg, #8f6a1e, #d6b65f, #fff4c9, #ffffff, #e2c36c, #8f6a1e);
-  background-size: 300% 100%;
+  background: conic-gradient(
+    from var(--border-shine-angle),
+    transparent 0deg 248deg,
+    var(--shine-soft) 284deg,
+    var(--shine-strong) 318deg,
+    var(--shine-soft) 348deg,
+    transparent 360deg
+  );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: border-shine 5.8s ease-in-out infinite;
+  animation: border-shine-rotate 3.4s linear infinite;
 }
 
 .accent-dot::before {

@@ -9,6 +9,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
           <Image
             src={item.image}
             alt={`${item.title} OneLink portfolio preview`}
+            quality={92}
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
             className="h-auto w-full rounded-[20px] object-contain transition duration-500 ease-out group-hover:scale-[1.02] sm:rounded-[23px]"
           />
@@ -22,6 +23,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
         <h3 className="font-display type-card-title mt-1.5 text-[var(--foreground)]">
           {item.title}
         </h3>
+        <p className="mt-2 max-w-[42ch] text-[14px] font-normal leading-[1.6] text-[#64748b]">{item.description}</p>
         <a
           href={item.href}
           target="_blank"

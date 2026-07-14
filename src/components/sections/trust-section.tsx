@@ -1,53 +1,44 @@
+import Image from "next/image";
 import { trustHighlights } from "@/content/site";
 import { Icon } from "@/components/icons";
 import { Reveal } from "@/components/ui/reveal";
-import { BrandMark } from "@/components/ui/brand-mark";
+import { SectionBadge } from "@/components/ui/section-badge";
 
-const trustIcons = ["shield", "invoice", "user", "bolt"] as const;
+const trustIcons = ["shield", "phone", "user", "bolt", "spark", "check"] as const;
 
 export function TrustSection() {
   return (
-    <section className="section-shell relative overflow-hidden px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-      <div className="relative z-10 mx-auto max-w-7xl overflow-hidden rounded-[26px] border border-white/10 bg-[linear-gradient(135deg,#03182d_0%,#06365e_52%,#07517d_100%)] p-7 text-white shadow-[0_34px_90px_-54px_rgba(3,31,58,0.8)] sm:p-9 lg:p-12">
-        <div className="pointer-events-none absolute -right-20 -top-28 h-72 w-72 rounded-full bg-[#00A9FF]/16 blur-3xl" />
-        <div className="relative grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-16">
-          <Reveal>
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] py-1 pl-1 pr-3">
-                <BrandMark className="h-6 w-6 rounded-[8px] border-white/10 bg-white shadow-none" imageClassName="w-[13px]" alt="" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.09em] text-[#9bddff]">Trust & support</span>
-              </div>
-              <h2 className="font-display type-section-title mt-4 max-w-[18ch] text-white">
-                Built for reliability and long-term use.
-              </h2>
-              <p className="type-section-copy mt-5 max-w-[42ch] text-white/66">
-                Clear ownership, dependable infrastructure and a real team behind every OneLink.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-2.5">
-                {['Managed hosting', 'Clear pricing', 'Human support'].map((label) => (
-                  <span key={label} className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-[11px] font-semibold text-white/76">{label}</span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+    <section className="section-shell relative overflow-hidden bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <Reveal>
+          <div className="text-center"><SectionBadge label="Why businesses trust OneLink" /></div>
+          <h2 className="section-title-gradient font-display type-section-title mx-auto mt-4 max-w-3xl text-center">
+            Built for reliable, real-world business use.
+          </h2>
+          <p className="type-section-copy mx-auto mt-4 max-w-3xl text-center text-[#64748b]">
+            Secure infrastructure, thoughtful support and a flexible experience designed to keep your business available and easy to manage.
+          </p>
+        </Reveal>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="mt-10 grid gap-4 rounded-[30px] border border-[#e3edf3] bg-[linear-gradient(145deg,#fbfdff_0%,#f3f9fd_100%)] p-3 shadow-[0_28px_72px_-58px_rgba(15,23,42,0.38)] sm:grid-cols-2 sm:p-4 lg:grid-cols-12 lg:gap-5 lg:p-5">
             {trustHighlights.map((signal, index) => (
-              <Reveal key={signal.title} delay={index * 0.06} y={16}>
-                <article className="group flex h-full min-h-[148px] gap-4 rounded-[17px] border border-white/[0.11] bg-[linear-gradient(145deg,rgba(255,255,255,0.09),rgba(255,255,255,0.035))] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#4dc4ff]/35 hover:bg-white/[0.09]">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border border-[#44c2ff]/20 bg-[#00A9FF]/10 text-[#54c8ff]">
-                    <Icon name={trustIcons[index] ?? "check"} className="h-[18px] w-[18px]" />
+              <Reveal key={signal.title} delay={index * 0.06} y={16} className={index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-3"}>
+                <article className={index === 0
+                  ? "group relative flex h-full min-h-[226px] flex-col items-start overflow-hidden rounded-[24px] border border-[#69ceff] bg-[linear-gradient(140deg,#087cbc_0%,#00A9FF_56%,#0677b6_100%)] p-7 text-left text-white shadow-[0_28px_68px_-42px_rgba(0,126,191,0.52)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_34px_74px_-42px_rgba(0,126,191,0.56)] sm:p-8"
+                  : "group relative flex h-full min-h-[190px] flex-col items-start overflow-hidden rounded-[20px] border border-[#dfeaf2] bg-white p-6 text-left shadow-[0_18px_48px_-40px_rgba(15,23,42,0.28)] transition duration-300 hover:-translate-y-1 hover:border-[#a9d9f2] hover:shadow-[0_24px_52px_-38px_rgba(0,126,191,0.25)]"}>
+                  <div className="pointer-events-none absolute -right-12 -top-14 h-36 w-36 rounded-full bg-[#00A9FF]/10 blur-2xl" />
+                  {index === 0 ? <Image src="/Group%201000008683.png" alt="" width={520} height={120} className="pointer-events-none absolute -bottom-3 -right-16 w-[72%] rotate-[-7deg] opacity-[0.07] brightness-0 invert" aria-hidden="true" /> : null}
+                  <div className={index === 0 ? "flex h-13 w-13 shrink-0 items-center justify-center rounded-[16px] border border-white/25 bg-white/16 text-white shadow-[0_14px_28px_-16px_rgba(3,61,96,0.55)]" : "flex h-11 w-11 shrink-0 items-center justify-center rounded-[13px] bg-[linear-gradient(145deg,#eef9ff,#dff3ff)] text-[#00A9FF] shadow-[inset_0_0_0_1px_rgba(0,169,255,0.1)]"}>
+                    <Icon name={trustIcons[index] ?? "check"} className={index === 0 ? "h-5 w-5" : "h-[18px] w-[18px]"} />
                   </div>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-white/38">0{index + 1}</p>
-                    <h3 className="type-card-title mt-1.5 text-white">{signal.title}</h3>
-                    <p className="type-card-copy mt-2.5 text-white/64">{signal.description}</p>
+                  <div className="relative mt-5">
+                    <h3 className={index === 0 ? "type-card-title text-white" : "type-card-title text-[#0f172a]"}>{signal.title}</h3>
+                    <p className={index === 0 ? "type-card-copy mt-2 max-w-[46ch] text-white/78" : "type-card-copy mt-2 max-w-[46ch] text-[#64748b]"}>{signal.description}</p>
                   </div>
                 </article>
               </Reveal>
             ))}
           </div>
-        </div>
       </div>
     </section>
   );

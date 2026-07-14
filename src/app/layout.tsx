@@ -24,19 +24,19 @@ const socialImageAbsolute = new URL("/og-share.png", metadataBase).href;
 
 const socialPreview = {
   url: socialImageAbsolute,
-  width: 880,
-  height: 504,
-  alt: "OneLink — smart business page preview",
+  width: 2748,
+  height: 2382,
+  alt: "Stop sharing links. Share OneLink.",
   type: "image/png" as const,
 };
 
 export const metadata: Metadata = {
   title: {
-    default: "OneLink | Premium Smart Business Pages",
+    default: "OneLink Smart Business Page for Every Customer Action",
     template: "%s | OneLink",
   },
   description:
-    "OneLink helps restaurants, gyms, salons, spas, cafes, and modern brands turn one link into bookings, calls, reviews, payments, menus, and more.",
+    "Bring your services, menus, products, bookings, payments, reviews, locations and enquiries into one professionally designed business page.",
   applicationName: "OneLink",
   metadataBase,
   keywords: [
@@ -66,9 +66,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "OneLink | Premium Smart Business Pages",
+    title: "Stop sharing links. Share OneLink.",
     description:
-      "Stop sharing multiple links. Share OneLink and guide every customer action from one premium business page.",
+      "One smart business page for everything your customer needs to call, book, order, pay, review or visit.",
     url: openGraphPageUrl,
     siteName: "OneLink",
     locale: "en_IN",
@@ -77,9 +77,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OneLink | Premium Smart Business Pages",
+    title: "Stop sharing links. Share OneLink.",
     description:
-      "OneLink helps restaurants, gyms, salons, spas, cafes, and modern brands turn one link into bookings, calls, reviews, payments, menus, and more.",
+      "One smart business page for everything your customer needs to call, book, order, pay, review or visit.",
     images: [socialPreview],
   },
 };

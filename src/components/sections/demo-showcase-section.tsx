@@ -6,6 +6,7 @@ import { portfolioItems } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
 import { cn } from "@/lib/utils";
+import { SectionBadge } from "@/components/ui/section-badge";
 
 // Create a unique list of categories plus "All"
 const categories = ["All", ...Array.from(new Set(portfolioItems.map((item) => item.category)))];
@@ -18,21 +19,18 @@ export function DemoShowcaseSection() {
     : portfolioItems.filter(item => item.category === activeCategory);
 
   return (
-    <section id="work" className="section-shell scroll-mt-28 px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+    <section id="work" className="section-shell scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-            <div className="max-w-3xl">
-              <span className="eyebrow">Portfolio</span>
-              <h2 className="font-display mt-4 max-w-[24ch] text-balance text-[30px] font-bold leading-[1.08] tracking-[-0.04em] text-[var(--foreground)] sm:text-[34px] lg:text-[38px]">
+          <div className="text-center">
+            <div className="mx-auto max-w-3xl">
+              <SectionBadge label="Portfolio" />
+              <h2 className="section-title-gradient font-display mx-auto mt-4 max-w-[24ch] text-balance text-[30px] font-bold leading-[1.08] tracking-[-0.04em] sm:text-[36px] lg:text-[42px]">
                 Built for real businesses. Designed around every brand.
               </h2>
             </div>
-            <p className="max-w-[50ch] text-pretty text-[15px] font-normal leading-[1.7] text-[var(--muted-strong)] sm:text-[16px] lg:text-right">
-              Explore customized OneLink experiences created for different industries and customer journeys.
-            </p>
           </div>
-          <div className="thin-scrollbar -mx-4 mt-7 flex gap-2.5 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
+          <div className="thin-scrollbar -mx-4 mt-8 flex gap-2.5 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0">
             {categories.map((category) => (
               <button
                 key={category}
@@ -56,12 +54,15 @@ export function DemoShowcaseSection() {
           </div>
         </Reveal>
 
-        <div className="mt-11 grid gap-x-6 gap-y-9 md:grid-cols-2 xl:grid-cols-3">
+        <div
+          key={activeCategory}
+          className="mt-11 grid gap-x-6 gap-y-9 md:grid-cols-2 xl:grid-cols-3"
+        >
           {filteredItems.length > 0 ? (
-            filteredItems.map((item, index) => (
-              <Reveal key={item.id} delay={index * 0.06}>
+            filteredItems.map((item) => (
+              <div key={item.id} className="relative z-10">
                 <PortfolioCard item={item} />
-              </Reveal>
+              </div>
             ))
           ) : (
             <div className="col-span-full py-12 text-center text-gray-500 font-semibold">
@@ -74,7 +75,7 @@ export function DemoShowcaseSection() {
           <div className="mt-9 flex justify-center">
             <Link
               href="/portfolio"
-              className="group inline-flex h-11 w-full max-w-sm items-center justify-center gap-2.5 rounded-full border border-[#00A9FF]/20 bg-[#eef9ff] px-5 text-[13px] font-semibold text-[#087cbc] shadow-[0_16px_36px_-26px_rgba(0,169,255,0.5)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/35 hover:bg-white sm:w-auto sm:max-w-none"
+              className="group inline-flex h-11 w-full max-w-sm items-center justify-center gap-2.5 rounded-full border border-[#00A9FF]/20 bg-[#eef9ff] px-5 text-[13px] font-semibold text-[#00A9FF] shadow-[0_16px_36px_-26px_rgba(0,169,255,0.5)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/35 hover:bg-white sm:w-auto sm:max-w-none"
             >
               Explore All OneLinks
               <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

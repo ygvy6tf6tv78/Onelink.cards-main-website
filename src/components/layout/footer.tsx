@@ -2,26 +2,39 @@ import Link from "next/link";
 import { Wordmark } from "@/components/ui/brand-mark";
 import { siteConfig } from "@/content/site";
 
+const tickerOne = ["Smart Business Pages", "Custom QR Design", "Bookings", "Payments", "Reviews", "Menus"];
+const tickerTwo = ["WhatsApp Actions", "Multi-Location", "Customer Enquiries", "Brand-Led Design", "Mobile First", "Human Support"];
+
 export function Footer() {
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}`;
   const callHref = `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`;
   const emailHref = `mailto:${siteConfig.contact.email}`;
 
   return (
-    <footer className="relative mt-14 px-3 pb-3 sm:mt-20 sm:px-4 sm:pb-4">
-      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(140deg,#04182f_0%,#073b67_48%,#075986_100%)] text-white shadow-[0_34px_90px_-50px_rgba(3,31,58,0.7)] sm:rounded-[38px]">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00A9FF]/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-40 left-1/4 h-96 w-96 rounded-full bg-[#00A9FF]/10 blur-3xl" />
-        <div className="relative px-6 pb-8 pt-10 sm:px-9 sm:pb-10 sm:pt-12 lg:px-12 lg:pt-14">
-          <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-[1.55fr_0.7fr_0.7fr_0.7fr_1.2fr] xl:gap-9">
-            <div className="sm:col-span-2 xl:col-span-1">
-              <Wordmark className="mb-5 h-7 brightness-0 invert opacity-90" alt="OneLink" />
-              <p className="max-w-sm text-[15px] font-normal leading-[1.72] text-white/68 sm:text-[16px]">
-                OneLink helps businesses bring their services, products and customer actions into one smart digital experience.
+    <footer className="relative mt-14 overflow-hidden bg-[#080a0d] px-3 pb-3 pt-10 text-white sm:mt-20 sm:px-4 sm:pb-4 sm:pt-14">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(0,169,255,0.13),transparent_58%)]" />
+
+      <div className="relative -mx-3 mb-8 overflow-hidden py-3 sm:-mx-4 sm:mb-10 sm:py-5" aria-label="OneLink capabilities">
+        <TickerRow items={tickerOne} direction="left" />
+        <div className="mt-4 sm:mt-6"><TickerRow items={tickerTwo} direction="right" alternate /></div>
+      </div>
+
+      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[28px] border border-white/12 bg-[linear-gradient(140deg,#04182f_0%,#07517d_54%,#087cbc_100%)] shadow-[0_34px_90px_-46px_rgba(0,0,0,0.72)] sm:rounded-[36px]">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00A9FF]/24 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 left-1/4 h-96 w-96 rounded-full bg-[#00A9FF]/12 blur-3xl" />
+        <div className="relative px-6 pb-8 pt-10 sm:px-10 sm:pb-10 sm:pt-12 lg:px-14 lg:pb-12 lg:pt-14">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.72fr_0.72fr_0.85fr_1.15fr] lg:gap-8">
+            <div className="sm:col-span-2 lg:col-span-1">
+              <Wordmark className="!h-auto !w-[112px] brightness-0 invert" alt="OneLink" />
+              <a href="https://www.kriyongroup.com/" target="_blank" rel="noopener noreferrer" className="mt-4 block max-w-[220px] text-[10px] font-bold uppercase leading-[1.5] tracking-[0.075em] text-white/60 hover:text-white">
+                A Creative Technology Venture by Kriyon Group Pvt. Ltd. ↗
+              </a>
+              <p className="mt-5 max-w-sm text-[15px] font-medium leading-[1.72] text-white/72">
+                OneLink brings your services, products and customer actions into one professionally designed digital experience.
               </p>
-              <p className="mt-5 inline-flex rounded-full border border-white/12 bg-white/[0.07] px-3.5 py-1.5 text-[11px] font-semibold text-white/78">
-                A product by Kriyon Group Private Limited
-              </p>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-white px-5 text-[14px] font-bold text-[#06436d] shadow-[0_14px_28px_-18px_rgba(0,0,0,0.4)] hover:-translate-y-0.5">
+                Talk to Our Team
+              </a>
             </div>
 
             <FooterColumn title="Explore">
@@ -29,7 +42,6 @@ export function Footer() {
               <Link href="/#pricing">Pricing</Link>
               <Link href="/#how-it-works">How It Works</Link>
               <Link href="/#faqs">FAQs</Link>
-              <a href={whatsappHref} target="_blank" rel="noreferrer">Contact</a>
             </FooterColumn>
 
             <FooterColumn title="Support">
@@ -45,24 +57,23 @@ export function Footer() {
             </FooterColumn>
 
             <div>
-              <h3 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#9edcff]">Contact Details</h3>
-              <div className="mt-4 space-y-4 text-[14px] font-normal leading-relaxed text-white/70 sm:text-[15px]">
-                <p><span className="text-white/40">Phone</span><br /><a href={callHref} className="text-white/82 hover:text-white">{siteConfig.contact.phone}</a></p>
-                <p><span className="text-white/40">Email</span><br /><a href={emailHref} className="break-all text-white/82 hover:text-white">{siteConfig.contact.email}</a></p>
-                <address className="not-italic"><span className="text-white/40">Registered Office</span><br /><strong className="font-semibold text-white/82">{siteConfig.contact.company}</strong>{siteConfig.contact.officeLines.map((line) => <span key={line} className="block">{line}</span>)}</address>
+              <FooterTitle>Contact</FooterTitle>
+              <div className="mt-4 space-y-3 text-[14px] font-medium leading-relaxed text-white/76">
+                <a href={callHref} className="block hover:text-white">{siteConfig.contact.phone}</a>
+                <a href={emailHref} className="block break-all hover:text-white">{siteConfig.contact.email}</a>
+                <address className="not-italic text-white/62">
+                  <strong className="font-semibold text-white/82">{siteConfig.contact.company}</strong>
+                  {siteConfig.contact.officeLines.map((line) => <span key={line} className="block">{line}</span>)}
+                </address>
               </div>
-              <a href={whatsappHref} target="_blank" rel="noreferrer" className="mt-5 inline-flex min-h-11 items-center rounded-full border border-white/14 bg-white px-5 text-[14px] font-semibold text-[#06436d] shadow-sm hover:-translate-y-0.5">Talk to Our Team</a>
             </div>
           </div>
 
-          <div className="mt-12 border-t border-white/12 pt-8 sm:mt-14 sm:pt-10">
-            <div className="overflow-hidden py-1 sm:py-2">
-              <Wordmark className="h-auto w-[44%] max-w-[500px] brightness-0 invert opacity-95 sm:w-[38%]" />
-              <div className="mt-4 h-1 w-20 rounded-full bg-[#00A9FF]" />
-            </div>
-            <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-[11px] font-medium text-white/48 sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
-              <p>© 2026 OneLink. All rights reserved.</p>
-              <p>Designed and built by <a href="https://www.repixelx.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-white/72 hover:text-white">RepixelX Studio</a></p>
+          <div className="mt-12 border-t border-white/18 pt-8 sm:mt-14 sm:pt-10">
+            <Wordmark className="!h-auto !w-[58%] !max-w-[360px] brightness-0 invert opacity-95 sm:!w-[34%]" alt="OneLink" />
+            <div className="mt-7 flex flex-col gap-3 border-t border-white/12 pt-5 text-[11px] font-medium text-white/50 sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
+              <p><a href="https://www.kriyongroup.com/" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">A Creative Technology Venture by Kriyon Group Pvt. Ltd. ↗</a></p>
+              <p>Designed and built by <a href="https://www.repixelx.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-white/78 hover:text-white">RepixelX Studio ↗</a></p>
             </div>
           </div>
         </div>
@@ -71,11 +82,27 @@ export function Footer() {
   );
 }
 
+function TickerRow({ items, direction, alternate = false }: { items: string[]; direction: "left" | "right"; alternate?: boolean }) {
+  const repeated = [...items, ...items, ...items, ...items];
+  return (
+    <div className={direction === "left" ? "one-marquee-left flex w-max gap-8 whitespace-nowrap" : "one-marquee-right flex w-max gap-8 whitespace-nowrap"}>
+      {repeated.map((item, index) => {
+        const outlined = (index + (alternate ? 1 : 0)) % 2 === 1;
+        return <span key={`${item}-${index}`} className={outlined ? "px-2 font-display text-[1.85rem] font-bold text-transparent sm:text-[2.65rem] lg:text-[3.1rem]" : "px-2 font-display text-[1.85rem] font-bold text-white sm:text-[2.65rem] lg:text-[3.1rem]"} style={outlined ? { WebkitTextStroke: "1px rgba(255,255,255,0.62)" } : undefined}>{item}</span>;
+      })}
+    </div>
+  );
+}
+
+function FooterTitle({ children }: { children: React.ReactNode }) {
+  return <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#9edcff]">{children}</h3>;
+}
+
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#9edcff]">{title}</h3>
-      <div className="mt-4 flex flex-col items-start gap-3.5 text-[14px] font-medium text-white/68 [&_a]:transition [&_a:hover]:text-white sm:text-[15px]">{children}</div>
+      <FooterTitle>{title}</FooterTitle>
+      <div className="mt-4 flex flex-col items-start gap-3 text-[14px] font-medium text-white/72 [&_a]:transition [&_a:hover]:text-white">{children}</div>
     </div>
   );
 }

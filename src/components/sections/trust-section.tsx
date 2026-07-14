@@ -10,7 +10,7 @@ export function TrustSection() {
   return (
     <section className="section-shell relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="relative z-10 mx-auto max-w-7xl">
-        <Reveal>
+        <Reveal x={26} y={14}>
           <div className="text-center"><SectionBadge label="Why businesses trust OneLink" /></div>
           <h2 className="section-title-gradient font-display type-section-title mx-auto mt-4 max-w-3xl text-center">
             Built for reliable, real-world business use.
@@ -22,7 +22,7 @@ export function TrustSection() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:gap-5">
             {trustHighlights.map((signal, index) => (
-              <Reveal key={signal.title} delay={index * 0.06} y={16} className={index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-3"}>
+              <Reveal key={signal.title} delay={index * 0.06} x={index % 2 === 0 ? -26 : 26} y={14} className={index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-3"}>
                 <article className={index === 0
                   ? "group relative flex h-full min-h-[226px] flex-col items-start overflow-hidden rounded-[24px] border border-[#9edcff] bg-[linear-gradient(140deg,#ffffff_0%,#eef9ff_100%)] p-7 text-left shadow-[0_22px_56px_-40px_rgba(0,126,191,0.34)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_64px_-40px_rgba(0,126,191,0.4)] sm:p-8"
                   : "group relative flex h-full min-h-[190px] flex-col items-start overflow-hidden rounded-[20px] border border-[#dfeaf2] bg-white p-6 text-left shadow-[0_18px_48px_-40px_rgba(15,23,42,0.26)] transition duration-300 hover:-translate-y-1 hover:border-[#a9d9f2] hover:shadow-[0_24px_52px_-38px_rgba(0,126,191,0.24)]"}>

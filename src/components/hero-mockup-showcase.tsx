@@ -81,7 +81,7 @@ export function HeroMockupShowcase() {
             className="absolute left-2 top-[88px] z-0 hidden w-[142px] opacity-[0.24] blur-[0.8px] xl:block"
             aria-hidden="true"
           >
-            <Image src={previousSlide.src} alt="" sizes="296px" quality={85} className="h-auto w-full object-contain" />
+            <Image src={previousSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain" />
           </motion.div>
 
           {customerQuestions.map((question) => (
@@ -114,7 +114,7 @@ export function HeroMockupShowcase() {
             className="absolute right-4 top-[68px] z-0 hidden w-[154px] opacity-[0.26] blur-[0.8px] lg:block"
             aria-hidden="true"
           >
-            <Image src={nextSlide.src} alt="" sizes="308px" quality={85} className="h-auto w-full object-contain" />
+            <Image src={nextSlide.src} alt="" sizes="308px" quality={85} loading="eager" className="h-auto w-full object-contain" />
           </motion.div>
 
           <div className="relative z-10 flex w-full justify-center">

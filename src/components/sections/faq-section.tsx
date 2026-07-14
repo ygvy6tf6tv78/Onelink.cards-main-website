@@ -48,7 +48,7 @@ export function FaqSection() {
   return (
     <section id="faqs" className="section-shell scroll-mt-28 bg-[#f7fafc] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-14">
-        <Reveal>
+        <Reveal x={-28} y={14}>
           <div className="lg:sticky lg:top-28">
             <SectionBadge label="FAQs" />
             <h2 className="section-title-gradient font-display type-section-title mt-4 max-w-xl">
@@ -74,7 +74,7 @@ export function FaqSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.08} className="space-y-3">
+        <Reveal delay={0.08} x={28} y={14} className="space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (

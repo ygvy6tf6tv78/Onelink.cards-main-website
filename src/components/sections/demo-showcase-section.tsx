@@ -21,7 +21,7 @@ export function DemoShowcaseSection() {
   return (
     <section id="work" className="section-shell scroll-mt-28 bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
-        <Reveal>
+        <Reveal x={-28} y={14}>
           <div className="text-center">
             <div className="mx-auto max-w-3xl">
               <SectionBadge label="Portfolio" />
@@ -60,7 +60,7 @@ export function DemoShowcaseSection() {
         >
           {filteredItems.length > 0 ? (
             filteredItems.map((item, index) => (
-              <Reveal key={item.id} delay={index * 0.07} y={18} className="relative z-10">
+              <Reveal key={item.id} delay={index * 0.07} x={index % 2 === 0 ? -30 : 30} y={16} className="relative z-10">
                 <PortfolioCard item={item} />
               </Reveal>
             ))
@@ -71,7 +71,7 @@ export function DemoShowcaseSection() {
           )}
         </div>
 
-        <Reveal delay={0.12}>
+        <Reveal delay={0.12} x={24} y={10}>
           <div className="mt-9 flex justify-center">
             <Link
               href="/portfolio"

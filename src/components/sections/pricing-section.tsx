@@ -42,7 +42,7 @@ export function PricingSection() {
     >
       <div className="relative mx-auto max-w-7xl">
         <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
-          <Reveal>
+          <Reveal x={-28} y={14}>
             <SectionBadge label="Pricing" />
             <h2 className="section-title-gradient font-display mt-4 text-[30px] font-bold leading-[1.08] tracking-[-0.045em] sm:text-[34px] lg:text-[40px]">
               Choose the Right OneLink
@@ -58,7 +58,7 @@ export function PricingSection() {
           {topPlans.map((plan, index) => {
             const isSignature = plan.id === "signature";
             return (
-              <Reveal key={plan.id} delay={index * 0.05} className={cn("flex h-full transition-transform", isSignature ? "lg:z-10" : "lg:pt-7")}>
+              <Reveal key={plan.id} delay={index * 0.05} x={index === 0 ? -30 : index === 2 ? 30 : 0} y={18} className={cn("flex h-full transition-transform", isSignature ? "lg:z-10" : "lg:pt-7")}>
                 <PricingCard plan={plan} isSignature={isSignature} />
               </Reveal>
             );
@@ -67,7 +67,7 @@ export function PricingSection() {
         </div>
 
         {enterprisePlan ? (
-          <Reveal delay={0.16}>
+          <Reveal delay={0.16} x={28} y={14}>
             <EnterprisePanel plan={enterprisePlan} href={enterpriseHref} />
           </Reveal>
         ) : null}

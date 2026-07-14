@@ -9,7 +9,7 @@ export function ContactSection() {
       className="section-shell bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
     >
       <div className="mx-auto max-w-7xl">
-        <Reveal>
+        <Reveal x={-22} y={16}>
           <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(140deg,#04182f_0%,#073b67_48%,#075986_100%)] px-6 py-12 text-center shadow-[0_30px_78px_-46px_rgba(3,31,58,0.68)] sm:px-10 sm:py-14">
             <div className="pointer-events-none absolute -left-16 -top-20 h-52 w-52 rounded-full bg-[#00A9FF]/18 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -right-12 h-56 w-56 rounded-full bg-[#00A9FF]/18 blur-3xl" />

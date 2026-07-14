@@ -19,7 +19,7 @@ export function QrExperienceSection() {
   return (
     <section id="qr" className="section-shell scroll-mt-28 bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
-        <Reveal delay={0.04} y={18}>
+        <Reveal delay={0.04} x={-26} y={14}>
           <div className="text-center"><SectionBadge label="Custom QR Included" /></div>
           <h2 className="section-title-gradient font-display type-section-title mx-auto mt-4 max-w-3xl text-center">
             Your OneLink, ready to scan.
@@ -31,7 +31,7 @@ export function QrExperienceSection() {
 
           <div id="qr-examples" className="mx-auto mt-9 grid w-full max-w-4xl scroll-mt-28 gap-5 md:grid-cols-2">
             {qrCards.map((card, index) => (
-              <Reveal key={card.src} delay={index * 0.07} y={16}>
+              <Reveal key={card.src} delay={index * 0.07} x={index === 0 ? -30 : 30} y={14}>
                 <div className="group overflow-hidden rounded-[11px] border border-slate-900/[0.08] bg-white p-1 shadow-[0_16px_42px_-34px_rgba(15,23,42,0.32)] transition duration-300 hover:-translate-y-0.5 hover:border-[#00A9FF]/20">
                   <Image
                     src={card.src}

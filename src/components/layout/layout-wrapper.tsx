@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { SplashLoader } from "@/components/ui/splash-loader";
 import { FloatingWhatsApp } from "@/components/ui/floating-whatsapp";
 import { SplashCompleteProvider } from "@/components/ui/splash-context";
+import { Reveal } from "@/components/ui/reveal";
 
 interface LayoutWrapperProps {
   children: React.ReactNode;
@@ -48,7 +49,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
           {children}
         </motion.div>
       </AnimatePresence>
-      <Footer />
+      <Reveal y={14}><Footer /></Reveal>
       <FloatingWhatsApp />
     </SplashCompleteProvider>
   );

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
     "Read the Terms & Conditions that govern the purchase and use of OneLink services.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

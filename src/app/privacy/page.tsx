@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Learn how OneLink collects, uses, and protects customer and business information.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

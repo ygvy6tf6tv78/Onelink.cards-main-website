@@ -17,7 +17,7 @@ const qrCards = [
 
 export function QrExperienceSection() {
   return (
-    <section id="qr" className="section-shell scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section id="qr" className="section-shell scroll-mt-28 bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <Reveal delay={0.04} y={18}>
           <div className="text-center"><SectionBadge label="Custom QR Included" /></div>
@@ -29,7 +29,7 @@ export function QrExperienceSection() {
           </p>
         </Reveal>
 
-          <div id="qr-examples" className="mx-auto mt-9 grid w-full max-w-3xl scroll-mt-28 gap-6 md:grid-cols-2">
+          <div id="qr-examples" className="mx-auto mt-9 grid w-full max-w-4xl scroll-mt-28 gap-5 md:grid-cols-2">
             {qrCards.map((card, index) => (
               <Reveal key={card.src} delay={index * 0.07} y={16}>
                 <div className="group overflow-hidden rounded-[11px] border border-slate-900/[0.08] bg-white p-1 shadow-[0_16px_42px_-34px_rgba(15,23,42,0.32)] transition duration-300 hover:-translate-y-0.5 hover:border-[#00A9FF]/20">

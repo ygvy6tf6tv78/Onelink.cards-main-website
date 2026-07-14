@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 export const metadata: Metadata = {
   title: "Portfolio — OneLink",
   description: "Real OneLink pages live for restaurants, consultants, retail, and more.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {

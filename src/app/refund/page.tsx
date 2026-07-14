@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Refund & Cancellation Policy",
   description:
     "Review the OneLink refund and cancellation policy for bookings, renewals, and add-ons.",
+  alternates: { canonical: "/refund" },
 };
 
 export default function RefundPage() {

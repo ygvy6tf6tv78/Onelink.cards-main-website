@@ -19,7 +19,7 @@ export function DemoShowcaseSection() {
     : portfolioItems.filter(item => item.category === activeCategory);
 
   return (
-    <section id="work" className="section-shell scroll-mt-28 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section id="work" className="section-shell scroll-mt-28 bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="text-center">
@@ -59,10 +59,10 @@ export function DemoShowcaseSection() {
           className="mt-11 grid gap-x-6 gap-y-9 md:grid-cols-2 xl:grid-cols-3"
         >
           {filteredItems.length > 0 ? (
-            filteredItems.map((item) => (
-              <div key={item.id} className="relative z-10">
+            filteredItems.map((item, index) => (
+              <Reveal key={item.id} delay={index * 0.07} y={18} className="relative z-10">
                 <PortfolioCard item={item} />
-              </div>
+              </Reveal>
             ))
           ) : (
             <div className="col-span-full py-12 text-center text-gray-500 font-semibold">

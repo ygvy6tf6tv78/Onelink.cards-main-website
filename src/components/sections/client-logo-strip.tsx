@@ -16,20 +16,20 @@ export function ClientLogoStrip() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
 
   return (
-    <section ref={sectionRef} className="bg-white px-4 py-12 sm:px-6 sm:py-14 lg:px-8" aria-labelledby="client-trust-title">
+    <section ref={sectionRef} className="bg-white px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16" aria-labelledby="client-trust-title">
       <Reveal>
         <div className="mx-auto max-w-7xl">
           <div className="space-y-9 sm:px-2">
             <div className="text-center">
               <SectionBadge label="Trust" />
-              <h2 id="client-trust-title" className="section-title-gradient font-display mt-4 text-[1.35rem] font-bold tracking-[-0.035em] sm:text-[1.55rem]">
+              <h2 id="client-trust-title" className="section-title-gradient font-display mt-4 text-[1.55rem] font-bold tracking-[-0.035em] sm:text-[1.85rem]">
                 Trusted by growing businesses
               </h2>
             </div>
             <dl className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-3 sm:gap-0">
               {trustStats.map((stat, index) => (
                 <div key={stat.label} className={index > 0 ? "text-center sm:border-l sm:border-slate-900/[0.09] sm:px-5" : "text-center sm:px-5"}>
-                  <dt className="font-display text-[2.15rem] font-bold tracking-[-0.05em] text-[#00A9FF] sm:text-[2.55rem]">
+                  <dt className="font-display text-[2.6rem] font-extrabold tracking-[-0.055em] text-[#00A9FF] sm:text-[3rem]">
                     <CountUp value={stat.value} play={isInView} />{stat.suffix}
                   </dt>
                   <dd className="mt-1.5 text-[11px] font-semibold uppercase leading-snug tracking-[0.08em] text-[#526173] sm:text-[12px]">{stat.label}</dd>

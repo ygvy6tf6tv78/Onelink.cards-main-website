@@ -31,6 +31,7 @@ export async function generateMetadata({
   return {
     title: `${demo.title} Demo`,
     description: demo.description,
+    robots: { index: false, follow: false, noarchive: true },
   };
 }
 

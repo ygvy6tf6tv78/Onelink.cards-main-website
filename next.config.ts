@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  trailingSlash: false,
   turbopack: {
     root: process.cwd(),
   },
@@ -18,6 +21,37 @@ const nextConfig: NextConfig = {
         hostname: "upload.wikimedia.org",
       },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.onelink.cards" }],
+        destination: "https://onelink.cards/:path*",
+        permanent: true,
+      },
+    ];
+  },
+  async headers() {
+    const noIndexHeaders = [
+      { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+    ];
+
+    return [
+      { source: "/api/:path*", headers: noIndexHeaders },
+      { source: "/book/:path*", headers: noIndexHeaders },
+      { source: "/payment/:path*", headers: noIndexHeaders },
+      { source: "/demo/:path*", headers: noIndexHeaders },
+      {
+        source: "/og-share.png",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      },
+    ];
   },
 };
 

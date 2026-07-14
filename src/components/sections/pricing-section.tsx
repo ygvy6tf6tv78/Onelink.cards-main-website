@@ -228,11 +228,11 @@ function EnterprisePanel({ plan, href }: { plan: Plan; href: string }) {
               <h3 className="font-display text-[1.6rem] font-bold leading-tight tracking-[-0.04em] text-white sm:text-[1.9rem]">One brand. Multiple locations. One connected customer experience.</h3>
             </div>
           </div>
-          <p className="mt-3 max-w-3xl text-[15px] font-normal leading-[1.7] text-white/68 sm:text-[16px]">
-            Built for chains, franchises, multi-location businesses and custom customer journeys that require central control, branch-level information and advanced workflows.
+          <p className="mt-3 max-w-2xl text-[14px] font-normal leading-[1.65] text-white/68 sm:text-[15px]">
+            For chains, franchises and multi-location brands that need central control with branch-level customer journeys.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {enterpriseHighlights.map((highlight) => (
+            {enterpriseHighlights.slice(0, 4).map((highlight) => (
               <span key={highlight} className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-[11px] font-semibold text-white/74">
                 <Icon name="check" className="h-3 w-3 text-[#55c5ff]" />
                 {highlight}
@@ -259,9 +259,8 @@ function EnterprisePanel({ plan, href }: { plan: Plan; href: string }) {
           <p className="mt-2 font-display text-[2.15rem] font-semibold leading-none tracking-[-0.05em] text-white tabular-nums">
             {formatCurrency(plan.setupAmount)}
           </p>
-          <div className="mt-4 space-y-2 border-t border-white/10 pt-4 text-[11px] font-medium text-white/62">
-            <p>+ One-Time Setup</p>
-            <p><span className="text-white/42">Monthly Platform Pricing:</span> <strong className="font-semibold text-[#9bddff]">Custom</strong></p>
+          <div className="mt-4 border-t border-white/10 pt-4 text-[11px] font-medium text-white/62">
+            <p>Custom platform plan based on scope</p>
           </div>
           <a href={href} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-[#00A9FF] px-4 text-[15px] font-semibold text-white shadow-[0_14px_28px_-15px_rgba(0,169,255,0.58)] transition hover:-translate-y-0.5 hover:bg-[#0099e8]">
             Discuss Enterprise

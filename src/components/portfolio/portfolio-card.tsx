@@ -5,7 +5,9 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
   return (
     <article className="group h-full">
       <a href={item.href} target="_blank" rel="noreferrer" className="block">
-        <div className="overflow-hidden rounded-[24px] border border-white/80 bg-[#eef4f9] p-1.5 shadow-[0_20px_54px_-32px_rgba(15,23,42,0.32)] ring-1 ring-black/[0.045] transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_30px_72px_-34px_rgba(15,23,42,0.4)] sm:rounded-[28px]">
+        <div className="relative isolate">
+          <div className="pointer-events-none absolute inset-x-3 -bottom-3 top-3 -z-10 rounded-[24px] bg-[linear-gradient(135deg,#dff4ff_0%,#eef8fd_58%,#d9effb_100%)] shadow-[0_22px_50px_-32px_rgba(0,126,191,0.34)] transition duration-300 group-hover:translate-y-1 sm:rounded-[28px]" />
+          <div className="overflow-hidden rounded-[24px] border border-slate-900/[0.07] bg-white p-1.5 shadow-[0_18px_48px_-34px_rgba(15,23,42,0.3)] transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_28px_66px_-36px_rgba(15,23,42,0.38)] sm:rounded-[28px]">
           <Image
             src={item.image}
             alt={`${item.title} OneLink portfolio preview`}
@@ -13,6 +15,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
             className="h-auto w-full rounded-[20px] object-contain transition duration-500 ease-out group-hover:scale-[1.02] sm:rounded-[23px]"
           />
+          </div>
         </div>
       </a>
 

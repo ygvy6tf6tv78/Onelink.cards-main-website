@@ -22,8 +22,8 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
       setIsVisible(false);
       sessionStorage.setItem("splashPlayed", "true");
       document.body.style.overflow = "unset";
-      window.setTimeout(() => onComplete?.(), 180);
-    }, 1180);
+      window.setTimeout(() => onComplete?.(), 80);
+    }, 820);
 
     return () => {
       window.clearTimeout(timer);
@@ -38,7 +38,7 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+            transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
           }}
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-white"
         >
@@ -53,7 +53,7 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
                   className="h-full w-full origin-left rounded-full bg-[linear-gradient(90deg,#087cbc_0%,#00A9FF_60%,#55c5ff_100%)] shadow-[0_0_12px_rgba(0,169,255,0.3)]"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ duration: 1.02, ease: [0.33, 1, 0.68, 1] }}
+                  transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
                 />
               </div>
             </div>

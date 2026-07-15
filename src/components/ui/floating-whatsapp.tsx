@@ -11,7 +11,7 @@ export function FloatingWhatsApp() {
   const callHref = `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`;
 
   return (
-    <div className="fixed bottom-5 right-5 z-[99] sm:bottom-7 sm:right-7">
+    <div className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-5 z-[99] sm:bottom-7 sm:right-7">
       <AnimatePresence>
         {isOpen ? (
           <motion.div
@@ -39,7 +39,7 @@ export function FloatingWhatsApp() {
         onClick={() => setIsOpen((value) => !value)}
         aria-expanded={isOpen}
         aria-label={isOpen ? "Close contact options" : "Open contact options"}
-        className="grid h-14 w-14 place-items-center rounded-full bg-[#00A9FF] text-white shadow-[0_16px_38px_-12px_rgba(0,169,255,0.7)] transition hover:-translate-y-0.5 hover:bg-[#008ed9]"
+        className="grid h-14 w-14 place-items-center rounded-full border-[3px] !border-white bg-[#00A9FF] text-white shadow-[0_16px_38px_-12px_rgba(0,169,255,0.72),0_0_0_1px_rgba(0,126,191,0.2)] transition-colors duration-200 hover:bg-[#008ed9] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#00A9FF]/25"
       >
         <Icon name={isOpen ? "close" : "phone"} className="h-6 w-6" />
       </button>

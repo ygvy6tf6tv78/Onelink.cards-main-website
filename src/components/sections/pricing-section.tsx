@@ -72,23 +72,18 @@ export function PricingSection() {
         </div>
 
         <Reveal delay={0.12} y={12}>
-          <div className="mx-auto mt-7 flex max-w-5xl flex-col items-center justify-between gap-4 rounded-[18px] border border-[#00A9FF]/14 bg-white/82 px-5 py-4 text-center shadow-[0_16px_36px_-30px_rgba(15,23,42,0.32)] sm:flex-row sm:text-left">
-            <p className="text-[13px] font-semibold leading-6 text-[#526173] sm:text-[14px]">
-              Setup is charged once. Platform Care renews based on your selected plan.{" "}
-              <Link href="/terms" className="font-bold text-[#087cbc] underline decoration-[#00A9FF]/45 underline-offset-4 hover:text-[#005f91]">
-                Terms &amp; Conditions apply.
-              </Link>
-            </p>
-            <Link href="/terms" className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-[11px] border border-[#00A9FF]/24 bg-[#edf8ff] px-4 text-[13px] font-bold text-[#087cbc] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/45 hover:bg-white">
-              View Terms &amp; Conditions
-            </Link>
-          </div>
+          <PricingTermsNotice className="mt-7" />
         </Reveal>
 
         {enterprisePlan ? (
-          <Reveal delay={0.16} x={28} y={14}>
-            <EnterprisePanel href={enterpriseHref} />
-          </Reveal>
+          <>
+            <Reveal delay={0.16} x={28} y={14}>
+              <EnterprisePanel href={enterpriseHref} plan={enterprisePlan} />
+            </Reveal>
+            <Reveal delay={0.2} y={12}>
+              <PricingTermsNotice className="mt-5" />
+            </Reveal>
+          </>
         ) : null}
 
       </div>
@@ -221,7 +216,23 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
   );
 }
 
-function EnterprisePanel({ href }: { href: string }) {
+function PricingTermsNotice({ className }: { className?: string }) {
+  return (
+    <div className={cn("mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-[18px] border border-[#00A9FF]/14 bg-white/82 px-5 py-4 text-center shadow-[0_16px_36px_-30px_rgba(15,23,42,0.32)] sm:flex-row sm:text-left", className)}>
+      <p className="text-[13px] font-semibold leading-6 text-[#526173] sm:text-[14px]">
+        Setup is charged once. Platform Care renews based on your selected plan.{" "}
+        <Link href="/terms" className="font-bold text-[#087cbc] underline decoration-[#00A9FF]/45 underline-offset-4 hover:text-[#005f91]">
+          Terms &amp; Conditions apply.
+        </Link>
+      </p>
+      <Link href="/terms" className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-[11px] border border-[#00A9FF]/24 bg-[#edf8ff] px-4 text-[13px] font-bold text-[#087cbc] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/45 hover:bg-white">
+        View Terms &amp; Conditions
+      </Link>
+    </div>
+  );
+}
+
+function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
   return (
     <div className="border-shine border-shine-blue relative mx-auto mt-12 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#00A9FF]/70 bg-[linear-gradient(135deg,#04182f_0%,#06466f_52%,#087cbc_100%)] p-5 text-white shadow-[0_32px_78px_-42px_rgba(0,126,191,0.58)] sm:max-w-7xl sm:p-7 lg:mt-14 lg:p-8">
       <div className="pointer-events-none absolute -right-14 -top-20 h-64 w-64 rounded-full bg-[#00A9FF]/30 blur-3xl" />
@@ -269,11 +280,13 @@ function EnterprisePanel({ href }: { href: string }) {
         </div>
 
         <div className="rounded-[18px] border border-white/14 bg-white/[0.07] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] sm:p-6 lg:order-3">
-          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#9bddff]">Enterprise</p>
-          <p className="mt-2 font-display text-[1.55rem] font-bold leading-tight tracking-[-0.035em] text-white">
-            Built around your business.
+          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#9bddff]">Custom Package</p>
+          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.1em] text-white/58">Starting from</p>
+          <p className="mt-1 font-display text-[2rem] font-bold leading-none tracking-[-0.04em] text-white tabular-nums sm:text-[2.2rem]">
+            {formatPricingCurrency(plan.setupAmount)}
           </p>
-          <p className="mt-3 text-[12px] font-medium leading-relaxed text-white/65">Custom scope, integrations and rollout planning.</p>
+          <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.09em] text-[#9bddff]">+ GST</p>
+          <p className="mt-3 text-[12px] font-medium leading-relaxed text-white/65">Custom scope, integrations and rollout planning built around your business.</p>
           <a href={href} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-[#00A9FF] px-4 text-[15px] font-semibold text-white shadow-[0_14px_28px_-15px_rgba(0,169,255,0.58)] transition hover:-translate-y-0.5 hover:bg-[#0099e8]">
             Contact Sales
             <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 8h9" /><path d="M8.5 3l4.5 5-4.5 5" /></svg>

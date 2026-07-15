@@ -71,10 +71,6 @@ export function PricingSection() {
           </div>
         </div>
 
-        <Reveal delay={0.12} y={12}>
-          <PricingTermsNotice className="mt-7" />
-        </Reveal>
-
         {enterprisePlan ? (
           <>
             <Reveal delay={0.16} x={28} y={14}>

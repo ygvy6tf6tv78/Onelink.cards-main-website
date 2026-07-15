@@ -8,6 +8,7 @@ export type LegalSection = {
 export type LegalDocument = {
   title: string;
   subtitle: string;
+  updatedOn?: string;
   sections: LegalSection[];
 };
 
@@ -16,166 +17,126 @@ export const legalUpdatedOn = "3 April 2026";
 export const termsDocument: LegalDocument = {
   title: "Terms & Conditions",
   subtitle:
-    "Please read these terms carefully before purchasing or using OneLink.",
+    "The key commercial terms for purchasing, activating and using OneLink.",
+  updatedOn: "15 July 2026",
   sections: [
     {
-      id: "introduction",
-      title: "Introduction",
+      id: "acceptance",
+      title: "Acceptance of Terms",
       paragraphs: [
-        "These Terms & Conditions govern the purchase, booking, delivery, and use of OneLink services. By booking, paying for, accessing, or using the service, you agree to be bound by these terms.",
-        "If you do not agree with these terms, please do not proceed with payment or service use. These terms should be read together with the applicable pricing page, invoice, order confirmation, and related policies published on this website.",
+        "These Terms & Conditions govern the purchase, setup, access and use of OneLink services. By purchasing a plan, approving a proposal, making a payment or using a OneLink page, you agree to these terms.",
       ],
     },
     {
-      id: "about-onelink",
-      title: "About OneLink",
+      id: "professional-setup",
+      title: "One-Time Professional Setup",
       paragraphs: [
-        "OneLink is a done-for-you smart business page and mini website service created for businesses that want one premium page for calls, payments, bookings, reviews, menus, maps, and related customer actions.",
-        "Depending on the plan selected, the service may include business-page design, link setup, domain connection, hosting, support, QR setup, poster creatives, and related digital delivery components.",
+        "The One-Time Professional Setup fee covers business onboarding, content organisation, professional design, brand customisation, action and link configuration, branded QR-code setup, testing and launch support.",
+        "The setup fee is charged separately from Platform Care and becomes non-refundable once onboarding, design, configuration, content work or production has started.",
       ],
     },
     {
-      id: "business-identity",
-      title: "Business Identity",
+      id: "platform-care",
+      title: "Platform Care",
       paragraphs: [
-        "OneLink is a venture by Kriyon Group Private Limited.",
-        "Official billing details, tax invoice particulars, and statutory information are shared on valid invoice documents, order confirmations, or on a valid request where required for compliance or customer support.",
+        "Platform Care keeps the customer’s OneLink active for the selected term and may include secure hosting, platform access, routine maintenance, technical support, compatibility updates and eligible minor content updates.",
+        "The applicable One-Time Professional Setup fee and selected Platform Care fee must be paid before work begins, unless otherwise agreed in writing.",
       ],
     },
     {
-      id: "eligibility",
-      title: "Eligibility",
+      id: "renewal",
+      title: "Renewal Policy",
       paragraphs: [
-        "You must provide true, accurate, and complete information while booking or using the service.",
-        "You confirm that you have the authority to submit your business name, brand assets, logos, menus, service descriptions, contact information, images, links, and any other material required to build the page.",
+        "Platform Care must be renewed before expiry to continue uninterrupted service. Pricing may be revised at renewal to reflect infrastructure, support, product, inflation, tax or operating-cost changes.",
+        "For existing active customers, an increase in the standard Platform Care fee will not exceed 7% within a 12-month period unless the customer changes the plan, adds branches, users or modules, increases the service scope, or agrees to separate enterprise terms.",
       ],
     },
     {
-      id: "plans-pricing-taxes",
-      title: "Plans, Pricing, and Taxes",
+      id: "refunds",
+      title: "Refund Policy",
       paragraphs: [
-        "All prices are listed in Indian Rupees unless stated otherwise. Pricing on the website, invoice, or booking flow should be read together with the plan inclusions shown at the time of purchase.",
-        "Where stated, GST may be included in displayed pricing. Inclusions, renewal periods, hosting terms, support duration, and related entitlements vary depending on the selected plan. Add-ons, custom requests, and scope expansions are billed separately where applicable.",
+        "Setup fees are non-refundable once work has commenced. Platform Care fees are generally non-refundable after activation, except where required by applicable law.",
+        "Custom development, integrations, add-ons, additional branches, priority work and third-party services are non-refundable once work or procurement has begun.",
       ],
     },
     {
-      id: "booking-payment",
-      title: "Booking and Payment",
+      id: "cancellation",
+      title: "Cancellation",
       paragraphs: [
-        "Payment may be collected through Razorpay or other enabled payment methods. Supported options may include UPI, debit cards, credit cards, net banking, and eligible EMI options depending on gateway availability.",
-        "A booking is treated as confirmed only after successful payment confirmation. Invoice acknowledgement, payment confirmation, or order confirmation may be shared after the transaction is successfully processed.",
+        "Customers may choose not to renew after their active paid term ends. Cancellation does not create a refund entitlement for setup work, an activated Platform Care term, custom development, add-ons or third-party expenses.",
+        "If Platform Care expires without renewal, the OneLink page, dashboard, support, updates, public URL or QR destination may be suspended or become unavailable.",
       ],
     },
     {
-      id: "project-process",
-      title: "Project Start and Delivery Process",
+      id: "included-updates",
+      title: "Included Updates",
       paragraphs: [
-        "After booking, the team may contact you for requirement gathering, approvals, onboarding, and execution planning. Calls, meetings, or review checkpoints may be scheduled to understand your business and align the final page direction.",
-        "Delivery timelines depend on the timely sharing of required inputs, approvals, and decisions from your side. Missing inputs, incomplete content, slow approvals, or scope changes can affect delivery timelines.",
+        "Each active Platform Care Plan includes up to five minor content update requests per calendar month, unless a different limit is stated in the selected plan or proposal.",
+        "Minor updates include changes to existing text, prices, timings, contact details, images, menu items, services or products. Unused updates do not carry forward, and unrelated edits may be counted as separate requests.",
       ],
     },
     {
-      id: "client-inputs",
-      title: "Client Inputs and Content",
+      id: "additional-updates",
+      title: "Additional Updates",
       paragraphs: [
-        "You are responsible for supplying accurate business information, logos, images, text, pricing, service information, menus, links, maps, reviews, social handles, and other required content.",
-        "You confirm that you own or are authorized to use all submitted content. We may rely on your instructions and supplied materials while building the page.",
+        "Additional updates beyond the included allowance are chargeable. Current pricing will be communicated before work begins and may change from time to time.",
+        "Large content replacements, full menu or catalogue re-entry, structural changes and priority updates may be quoted as separate work or support packages.",
       ],
     },
     {
-      id: "revisions",
-      title: "Revisions",
+      id: "new-features",
+      title: "New Features & Custom Work",
       paragraphs: [
-        "Where a revision or design correction window is offered, it covers reasonable design and content corrections within the original booked scope. This may include alignment fixes, text corrections, small visual adjustments, and content corrections shared during the stated window.",
-        "Major redesigns, scope changes, new sections, new features, additional content restructuring, or materially changed business direction are not treated as standard revisions and may be billed separately.",
+        "New features, workflows, integrations, dashboards, redesigns, branches, automation or custom functionality are not included in routine updates.",
+        "OneLink will review these requirements and provide a separate scope, quotation and timeline before starting work. A verbal discussion does not confirm that custom work is included without charge.",
       ],
     },
     {
-      id: "domains-hosting-support",
-      title: "Domains, Hosting, and Support",
+      id: "customer-responsibilities",
+      title: "Customer Responsibilities",
       paragraphs: [
-        "Domain connection, hosting, and support are included only according to the selected plan and only for the included term shown at the time of purchase.",
-        "Where a plan requires renewal after an included period, failure to renew may result in the expiry or suspension of the related services after the covered term ends. Starter or lower-duration plans may use different domain, subdomain, or link arrangements from full-duration plans.",
+        "Customers must provide accurate, lawful and authorised business information, branding assets, menus, services, products, pricing, contact details, location links, media and approvals.",
+        "The customer is responsible for the accuracy and authority of supplied content. OneLink is not responsible for disputes or losses caused by incorrect, unlawful or unauthorised customer-provided information.",
       ],
     },
     {
-      id: "qr-deliverables",
-      title: "QR Code and Creative Deliverables",
+      id: "delivery",
+      title: "Delivery",
       paragraphs: [
-        "QR code setup, poster design, counter display creatives, or related supporting assets are included only if they are specifically listed in the chosen plan or order summary.",
-        "Final deliverables may be shared in standard digital formats suitable for online use, display, or print support as applicable.",
+        "Delivery timelines begin after required payment, complete content, necessary access, links and approvals have been received.",
+        "Missing information, repeated revisions, third-party dependencies or delayed approvals may extend delivery. Major changes to an approved direction or scope may be quoted separately.",
       ],
     },
     {
-      id: "addons",
-      title: "Admin Panel and Micro Changes",
+      id: "pricing-gst",
+      title: "Pricing & GST",
       paragraphs: [
-        "Admin Panel access is optional and separately billed where applicable. Micro Changes are limited to small update requests such as one text change, one price change, or one image change per unit.",
-        "Structural edits, layout redesigns, branding revisions, advanced configuration work, feature additions, or larger content changes are outside the scope of Micro Changes unless separately agreed.",
-      ],
-    },
-    {
-      id: "acceptable-use",
-      title: "Acceptable Use",
-      paragraphs: [
-        "OneLink may not be used for illegal, infringing, fraudulent, misleading, abusive, defamatory, harmful, or prohibited business activities.",
-        "We reserve the right to refuse, pause, or terminate service where misuse, policy breach, unlawful conduct, or harmful business activity is identified or reasonably suspected.",
-      ],
-    },
-    {
-      id: "third-party-services",
-      title: "Third-Party Services",
-      paragraphs: [
-        "The service may depend on third-party providers and platforms such as payment gateways, hosting services, domain providers, messaging apps, maps, social platforms, review platforms, and analytics systems.",
-        "We are not responsible for outages, platform restrictions, policy changes, API changes, suspensions, downtime, or service interruptions caused by third-party providers beyond our reasonable control.",
-      ],
-    },
-    {
-      id: "no-guaranteed-results",
-      title: "No Guaranteed Business Results",
-      paragraphs: [
-        "OneLink is a digital setup, presentation, and conversion-support solution. It does not guarantee leads, sales, reach, customer growth, search rankings, conversions, or business results.",
-        "Business outcomes depend on many external factors including pricing, offer quality, market demand, content quality, response time, and business operations.",
-      ],
-    },
-    {
-      id: "limitation-of-liability",
-      title: "Limitation of Liability",
-      paragraphs: [
-        "To the extent permitted by law, our total liability relating to any specific order or service is limited to the amount actually paid for that relevant service or order.",
-        "To the extent legally permitted, we are not liable for indirect, incidental, special, punitive, or consequential losses, including loss of profit, goodwill, data, expected sales, or business interruption.",
-      ],
-    },
-    {
-      id: "suspension-termination",
-      title: "Suspension / Termination",
-      paragraphs: [
-        "We may suspend or terminate service in cases of policy violations, unlawful use, abusive conduct, repeated non-cooperation, fraudulent activity, chargebacks, or material misuse of the service.",
-        "Suspension or termination does not automatically entitle the customer to a refund where work has already started or value has already been delivered.",
+        "All displayed prices are exclusive of GST unless expressly stated otherwise. Applicable GST and statutory charges will be added to the invoice.",
+        "OneLink may revise pricing for future purchases and renewals. A promotional price does not guarantee the same discounted price at renewal.",
       ],
     },
     {
       id: "intellectual-property",
       title: "Intellectual Property",
       paragraphs: [
-        "The OneLink brand, internal design systems, codebase, workflows, templates, and service methods remain the property of the company unless expressly agreed otherwise in writing.",
-        "You retain rights over your own submitted brand content, business materials, logos, and assets, subject to your confirmation that you are authorized to use and share them.",
+        "The OneLink platform, code, systems, templates, workflows, design framework, dashboards, product architecture and related intellectual property remain the property of Kriyon Group Private Limited or its authorised licensors.",
+        "Customers retain ownership of their original business content. Payment does not transfer ownership of OneLink source code, platform architecture or reusable systems.",
       ],
     },
     {
-      id: "governing-law",
-      title: "Governing Law and Jurisdiction",
+      id: "limitation-of-liability",
+      title: "Limitation of Liability",
       paragraphs: [
-        "These terms are governed by the laws of India.",
-        "Any dispute arising from or relating to the service shall be subject to the jurisdiction of the courts at Jammu, Jammu & Kashmir, unless changed in writing on the advice of legal counsel.",
+        "OneLink does not guarantee enquiries, bookings, sales, search rankings, customer conversion, social growth or revenue. Results depend on the customer’s offer, traffic, reputation, pricing, response time and operations.",
+        "To the extent permitted by law, OneLink is not responsible for losses arising from third-party services, customer-provided content, network failures or events beyond reasonable control.",
       ],
     },
     {
       id: "contact",
       title: "Contact",
       paragraphs: [
-        "For legal notices, service questions, or support requests, please contact us through the support email or official support route published on this website.",
-        "We may ask for your order reference, booking ID, invoice number, business name, and contact details to process a request efficiently.",
+        "For support, billing or legal enquiries, contact OneLink, a venture of Kriyon Group Private Limited.",
+        "Phone: +91 9622121100 · Email: onelink@repixelx.tech · Website: onelink.cards",
       ],
     },
   ],

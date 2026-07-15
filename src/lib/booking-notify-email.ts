@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const DEFAULT_NOTIFY_TO = "hello@repixelx.tech";
+const DEFAULT_NOTIFY_TO = "onelink@repixelx.tech";
 
 /** Admin inboxes that receive lead + payment alerts (comma / semicolon / space separated). */
 export function getBookingNotifyRecipients(): string[] {

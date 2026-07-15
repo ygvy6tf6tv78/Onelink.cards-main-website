@@ -20,7 +20,7 @@ const metadataBase = new URL(`${siteOrigin}/`);
 const openGraphPageUrl = new URL("/", metadataBase).href;
 
 /** Absolute URL — WhatsApp / Telegram require a fully qualified og:image (PNG, not SVG). */
-const socialImageAbsolute = new URL("/onelink-whatsapp-preview-2026.png", metadataBase).href;
+const socialImageAbsolute = new URL("/onelink-social-preview-final-2026.png", metadataBase).href;
 
 const socialPreview = {
   url: socialImageAbsolute,

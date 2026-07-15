@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  return <LegalPage document={termsDocument} eyebrow="Terms" />;
+  return <LegalPage document={termsDocument} eyebrow="Terms" continuous />;
 }

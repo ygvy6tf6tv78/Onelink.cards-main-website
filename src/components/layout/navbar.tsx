@@ -69,9 +69,10 @@ export function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="Chat with OneLink on WhatsApp"
-              className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-black/8 bg-white text-[#25D366] shadow-[0_10px_24px_rgba(14,30,37,0.05)] transition hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:bg-[#f6fff9] lg:h-10 lg:w-10"
+              className="flex h-11 w-11 items-center justify-center gap-2 rounded-[14px] border border-black/8 bg-white text-[#25D366] shadow-[0_10px_24px_rgba(14,30,37,0.05)] transition hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:bg-[#f6fff9] lg:h-10 lg:w-auto lg:px-3"
             >
               <Icon name="whatsapp" className="h-5 w-5 lg:h-[18px] lg:w-[18px]" />
+              <span className="hidden text-[13px] font-semibold text-[#111827] lg:inline">WhatsApp</span>
             </a>
             <Link
               href="/#pricing"

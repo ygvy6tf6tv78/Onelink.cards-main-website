@@ -150,7 +150,7 @@ export const siteConfig = {
       process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919622121100",
     ),
     phone: process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+91 9622121100",
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@repixelx.tech",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "onelink@repixelx.tech",
     company: "Kriyon Group Private Limited",
     officeLines: [
       "Room No. 2, First Floor",
@@ -167,10 +167,10 @@ export const siteConfig = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "Work", href: "/#work" },
+  { label: "Portfolio", href: "/#work" },
   { label: "Pricing", href: "/#pricing" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "FAQs", href: "/#faqs" },
+  { label: "Support", href: "/#faqs" },
 ];
 
 export const heroTrustBadges = [
@@ -581,8 +581,8 @@ export const pricingPlans: Plan[] = [
     id: "enterprise",
     name: "Enterprise",
     audience:
-      "Custom systems and integrations",
-    description: "Custom solutions for growing brands, multiple locations and advanced business requirements.",
+      "Custom solutions",
+    description: "Custom solutions for chains, branches and larger businesses.",
     badge: "Custom Solution",
     ctaLabel: "Request Proposal",
     setupAmount: 24999,

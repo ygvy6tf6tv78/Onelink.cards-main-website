@@ -6,6 +6,14 @@ import { SectionBadge } from "@/components/ui/section-badge";
 import { siteConfig } from "@/content/site";
 import { Icon } from "@/components/icons";
 
+const heroIntegrations = [
+  { label: "Google Reviews", image: "/integration-logos/google-reviews.png", imageClass: "h-7 w-auto max-w-[78px]" },
+  { label: "Google Maps", image: "/integration-logos/google-maps.png", imageClass: "h-7 w-7" },
+  { label: "Razorpay", image: "/payment-logos/razorpay.svg", imageClass: "h-[19px] w-auto max-w-[78px]" },
+  { label: "UPI", image: "/payment-logos/upi.svg", imageClass: "h-[23px] w-auto max-w-[54px]" },
+  { label: "Instagram", image: "/integration-logos/instagram.png", imageClass: "h-7 w-7" },
+] as const;
+
 export function HeroSection() {
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
 
@@ -45,8 +53,8 @@ export function HeroSection() {
               <Icon name="whatsapp" className="h-5 w-5" />
               WhatsApp
             </ActionLink>
-            <ActionLink href={whatsappHref} variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[12px] border border-slate-900/10 bg-white px-4 text-[14px] font-bold [&_svg]:h-4 [&_svg]:w-4">
-              Talk to Our Team
+            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[12px] border border-[#00A9FF]/30 !bg-[#eaf7ff] px-4 text-[14px] font-bold !text-[#006da6] shadow-[0_12px_26px_-20px_rgba(0,109,166,0.55)] hover:border-[#00A9FF]/50 hover:!bg-[#dcf2ff] [&_svg]:h-4 [&_svg]:w-4">
+              View Live Examples
             </ActionLink>
           </div>
           <div className="mt-7 hidden w-full max-w-lg flex-row flex-nowrap items-stretch gap-3 sm:flex">
@@ -62,20 +70,36 @@ export function HeroSection() {
               href="#work"
               variant="secondary"
               withArrow
-              className="min-h-11 w-full min-w-0 shrink-0 basis-0 !rounded-[12px] border border-slate-900/10 bg-white px-4 py-2.5 text-[14px] font-semibold text-[#0f172a] shadow-[0_12px_28px_-22px_rgba(15,23,42,0.3)] hover:bg-[#f8fafc] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+              className="min-h-11 min-w-[180px] flex-1 !rounded-[12px] border border-[#00A9FF]/30 !bg-[#eaf7ff] px-4 py-2.5 text-[14px] font-bold !text-[#006da6] shadow-[0_12px_26px_-20px_rgba(0,109,166,0.55)] hover:border-[#00A9FF]/50 hover:!bg-[#dcf2ff] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
             >
               View Live Examples
             </ActionLink>
           </div>
           </HeroEntrance>
           <HeroEntrance delay={0.41} x={-16} y={8}>
-          <div className="mt-5 flex flex-wrap items-center justify-start gap-x-3 gap-y-2 border-t border-slate-900/[0.07] pt-4">
-            <p className="mr-1 text-[11px] font-semibold text-[#526173]">Secure checkout via Razorpay</p>
-            <div className="flex items-center gap-3 opacity-65 grayscale">
-              <img src="/payment-logos/razorpay.svg" alt="Razorpay" className="h-[14px] w-auto max-w-[74px] object-contain" />
-              <img src="/payment-logos/upi.svg" alt="UPI" className="h-[15px] w-auto max-w-[42px] object-contain" />
-              <img src="/payment-logos/visa.svg" alt="Visa" className="h-[13px] w-auto max-w-[40px] object-contain" />
-              <img src="/payment-logos/mastercard.svg" alt="Mastercard" className="h-[17px] w-auto max-w-[30px] object-contain" />
+          <div className="mt-5 w-full max-w-xl border-t border-slate-900/[0.07] pt-4">
+            <p className="text-left text-[11px] font-bold leading-5 text-[#435267] sm:text-[12px]">
+              Connect with the tools your customers already use.
+            </p>
+            <div className="mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex min-w-max items-center justify-start gap-4 pr-2 sm:gap-5">
+                <div className="group flex h-9 items-center justify-start">
+                  <Icon
+                    name="whatsapp"
+                    className="h-7 w-7 text-[#25D366] transition-transform duration-300 ease-out group-hover:scale-105"
+                  />
+                  <span className="sr-only">WhatsApp</span>
+                </div>
+                {heroIntegrations.map((item) => (
+                  <div key={item.label} className="group flex h-9 items-center justify-start">
+                    <img
+                      src={item.image}
+                      alt={item.label}
+                      className={`${item.imageClass} object-contain transition-transform duration-300 ease-out group-hover:scale-105`}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           </HeroEntrance>

@@ -37,6 +37,7 @@ const structuredData = [
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-9622121100",
+      email: "mailto:onelink@repixelx.tech",
       contactType: "sales",
       areaServed: "IN",
       availableLanguage: ["English", "Hindi"],

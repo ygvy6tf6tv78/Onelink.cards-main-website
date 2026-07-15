@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
 import sonnetCafeMockup from "../../onelink_mockups/sonnet-cafe-original.png";
-import hotelMetropolisMockup from "../../onelink_mockups/hotel-metropolis-original.png";
+import mangoMockup from "../../onelink_mockups/mangoonelink.png";
 import dograAssociatesMockup from "../../onelink_mockups/dogra-associates.png";
 import newVisionMockup from "../../onelink_mockups/new-vision-diagnostics.png";
 import { cn } from "@/lib/utils";
@@ -24,11 +24,11 @@ const slides: Array<{
     description: "Orders, menu, payments, reviews.",
   },
   {
-    id: "hotel-metropolis",
-    src: hotelMetropolisMockup,
-    alt: "OneLink hotel mobile mockup",
-    label: "Hotel page",
-    description: "Room booking, calls, gallery, reviews.",
+    id: "mango",
+    src: mangoMockup,
+    alt: "OneLink restaurant mobile mockup",
+    label: "Restaurant page",
+    description: "Menu, orders, payments, location.",
   },
   {
     id: "dogra-associates",

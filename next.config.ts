@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
       { source: "/payment/:path*", headers: noIndexHeaders },
       { source: "/demo/:path*", headers: noIndexHeaders },
       {
-        source: "/onelink-whatsapp-preview-2026.png",
+        source: "/onelink-social-preview-final-2026.png",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
       },
     ];

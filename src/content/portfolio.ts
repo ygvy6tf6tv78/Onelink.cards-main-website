@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import mangoImage from "../../Portfolio/mango.png";
+import burgerBazaarImage from "../../Portfolio/burger-bazaar.png";
 import honeyFreshImage from "../../Portfolio/honeyfreshnfrozen.png";
 import caRamitImage from "../../Portfolio/carammit.png";
 import meraHalwaiImage from "../../Portfolio/merahalwai.png";
@@ -7,7 +8,6 @@ import honeyMoneyImage from "../../Portfolio/honeymoneyfishcompany.png";
 import jayEssImage from "../../Portfolio/jayess.png";
 import sonnetCafeMockup from "../../onelink_mockups/sonnet-cafe.png";
 import poshakEHoorMockup from "../../onelink_mockups/poshak-e-hoor.png";
-import hotelMetropolisMockup from "../../onelink_mockups/hotel-metropolis.png";
 import newVisionMockup from "../../onelink_mockups/new-vision.png";
 import linguaVibeMockup from "../../onelink_mockups/lingua-vibe.png";
 
@@ -41,13 +41,13 @@ export const portfolioItems: PortfolioItem[] = [
     image: newVisionMockup,
   },
   {
-    id: "metropolis-hotel",
-    title: "Metropolis Hotel",
-    category: "Hotels",
-    label: "Hotel",
-    description: "A branded hotel experience connecting rooms, property details, directions and booking enquiries.",
-    href: "https://metropolis.onelink.cards/",
-    image: hotelMetropolisMockup,
+    id: "burger-bazaar",
+    title: "Burger Bazaar",
+    category: "Restaurants",
+    label: "Restaurant",
+    description: "A bold restaurant experience connecting menus, online ordering, payments, location and customer actions.",
+    href: "https://burgerbazaar.onelink.cards/",
+    image: burgerBazaarImage,
   },
   {
     id: "mango",

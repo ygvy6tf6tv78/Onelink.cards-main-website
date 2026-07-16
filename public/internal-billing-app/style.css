@@ -1,0 +1,606 @@
+:root {
+    --primary: #00A9FF;
+    --primary-hover: #1D4ED8;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+    --bg-body: #F8FAFC;
+    --bg-panel: #FFFFFF;
+
+    /* Invoice Colors */
+    --inv-primary: #1E293B;
+    --inv-accent: #00A9FF;
+    --inv-border: #E2E8F0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 8% 0%, rgba(0,169,255,0.12), transparent 28%), #F3F8FB;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* App Layout */
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Editor Panel (Left) */
+.editor-panel {
+    width: 400px;
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 14px 0 42px -34px rgba(15, 23, 42, 0.34);
+    z-index: 10;
+}
+
+.editor-header {
+    padding: 1.25rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.billing-form {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+.btn-whatsapp:hover { background: #128C7E; }
+
+.btn-email {
+    background: #111827;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+.btn-email:hover { background: #374151; }
+
+.form-section {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #E1ECF3;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #FFFFFF 0%, #F8FCFE 100%);
+    box-shadow: 0 18px 34px -34px rgba(15, 23, 42, 0.32);
+}
+
+.form-section h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #E5EEF4;
+    padding-bottom: 0.65rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text-main);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #FFFFFF;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Preview Panel (Right) */
+.preview-panel {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(145deg, #EAF3F8 0%, #DCE9F1 100%);
+}
+
+@media (max-width: 900px) {
+    .app-container {
+        display: block;
+        height: auto;
+        overflow: visible;
+    }
+
+    .editor-panel {
+        width: 100%;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .billing-form {
+        overflow: visible;
+    }
+
+    .preview-panel {
+        overflow: auto;
+        padding: 1rem;
+        justify-content: flex-start;
+    }
+
+    .invoice-container {
+        min-width: 210mm;
+    }
+}
+
+.invoice-container {
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    /* A4 Dimensions at 96 DPI: 210mm x 297mm ≈ 794px x 1123px */
+    width: 210mm;
+    min-height: 297mm;
+    margin-bottom: 2rem;
+}
+
+/* ==================================================
+   A4 INVOICE LAYOUT (Professional & Corporate)
+   ================================================== */
+.invoice-page {
+    padding: 15mm; /* Reduced padding to create more vertical space */
+    color: #111827; /* Strict dark gray/black */
+    box-sizing: border-box;
+    height: 297mm; /* Fixed height to prevent 2nd page */
+    overflow: hidden; /* Prevent spill over */
+    font-family: 'Inter', sans-serif;
+    border-top: 8px solid #00A9FF;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Premium Watermark */
+.invoice-page::before {
+    content: "";
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background-image: url('logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.inv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+.inv-brand-wrapper {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.inv-logo {
+    width: 65px;
+    height: auto;
+    object-fit: contain;
+}
+
+.inv-brand-info h1 {
+    font-family: 'Galano Grotesque', 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.2rem 0;
+    color: #111827;
+}
+
+.inv-brand-highlight {
+    color: #00A9FF;
+}
+
+.inv-tagline {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4B5563;
+    margin: 0 0 0.2rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.inv-company {
+    font-size: 0.75rem;
+    color: #6B7280;
+    margin: 0;
+}
+
+.inv-meta {
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
+
+.inv-title {
+    font-family: 'Galano Grotesque', 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #4B5563;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.inv-meta-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.2rem 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.meta-label {
+    color: #6B7280;
+    font-weight: 500;
+}
+
+.meta-value {
+    font-weight: 600;
+    color: #111827;
+}
+
+.inv-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #111827;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #111827;
+}
+.inv-status.paid { border-color: #059669; color: #059669; }
+.inv-status.partially { border-color: #D97706; color: #D97706; }
+.inv-status.overdue { border-color: #DC2626; color: #DC2626; }
+
+.inv-addresses {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-top: 2px solid #E5E7EB;
+    border-bottom: 2px solid #E5E7EB;
+    padding: 1.5rem 0;
+}
+
+.inv-address-box {
+    width: 45%;
+}
+.inv-address-box.right {
+    text-align: left;
+}
+
+.inv-address-box h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6B7280;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+.inv-address-box .strong {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #111827;
+    margin-bottom: 0.4rem;
+}
+
+.inv-product-section {
+    margin-bottom: 2rem;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #111827;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #111827;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 1.5rem 0;
+    border-bottom: 1px solid #E5E7EB;
+}
+.product-item.addon-row {
+    padding-top: 1rem;
+}
+
+.product-details {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: #111827;
+}
+
+.product-subtitle {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+.product-subtitle .strong {
+    font-weight: 700;
+}
+
+.product-desc {
+    font-size: 0.85rem;
+    color: #4B5563;
+    margin-bottom: 0.75rem;
+}
+
+.product-billing-mode {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4B5563;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.split-breakdown {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    padding-left: 1rem;
+    border-left: 2px solid #D1D5DB;
+}
+
+.split-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    color: #4B5563;
+}
+.split-row:last-child {
+    margin-bottom: 0;
+}
+
+.product-amounts {
+    width: 150px;
+}
+
+.amount-line {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.amount-line.note-text {
+    font-size: 0.8rem;
+    color: #9CA3AF;
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-top: 0.2rem;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.inv-totals-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+.inv-amount-words {
+    width: 50%;
+    font-size: 0.85rem;
+    padding-top: 0.5rem;
+}
+.inv-amount-words p {
+    margin-bottom: 0.25rem;
+}
+.inv-amount-words p:last-child {
+    font-weight: 600;
+    color: #111827;
+}
+
+.inv-totals {
+    width: 40%;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.total-row.grand-total {
+    border-top: 2px solid #111827;
+    margin-top: 0.5rem;
+    padding: 0.75rem 0 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #111827;
+}
+
+.payment-structure-box {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.payment-structure-box .total-row {
+    padding: 0.25rem 0;
+}
+
+.p-paid { font-weight: 600; color: #111827; }
+.p-due { font-weight: 700; color: #111827; }
+
+.renewal-note {
+    margin-top: 1.5rem; /* Reduced to avoid pushing footer out of bounds */
+    font-size: 0.85rem;
+    color: #4B5563;
+    font-style: italic;
+}
+
+.inv-footer {
+    margin-top: auto; /* Naturally pushes footer to bottom without overlapping */
+    text-align: center;
+    font-size: 0.75rem;
+    color: #6B7280;
+    border-top: 1px solid #E5E7EB;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+}
+.inv-footer p {
+    margin-bottom: 0.15rem;
+}
+
+
+/* ==================================================
+   PRINT STYLES
+   ================================================== */
+@media print {
+    body {
+        background: white;
+    }
+    .hide-on-print {
+        display: none !important;
+    }
+    .app-container, .preview-panel {
+        height: auto;
+        overflow: visible;
+        display: block;
+        padding: 0;
+        background: white;
+    }
+    .invoice-container {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        min-height: auto;
+    }
+    .invoice-page {
+        padding: 0; /* Let the printer handle margins, or keep 20mm if printing borderless */
+    }
+    /* Hide the footer on screen if we want, but usually it's fine. */
+}

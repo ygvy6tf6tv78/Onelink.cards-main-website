@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
 import sonnetCafeMockup from "../../onelink_mockups/sonnet-cafe-original.png";
-import mangoMockup from "../../onelink_mockups/mangoonelink.png";
+import burgerBazaarMockup from "../../onelink_mockups/burger-bazaar.png";
 import dograAssociatesMockup from "../../onelink_mockups/dogra-associates.png";
 import newVisionMockup from "../../onelink_mockups/new-vision-diagnostics.png";
 import { cn } from "@/lib/utils";
@@ -24,18 +24,11 @@ const slides: Array<{
     description: "Orders, menu, payments, reviews.",
   },
   {
-    id: "mango",
-    src: mangoMockup,
-    alt: "OneLink restaurant mobile mockup",
-    label: "Restaurant page",
+    id: "burger-bazaar",
+    src: burgerBazaarMockup,
+    alt: "Burger Bazaar OneLink restaurant mobile mockup",
+    label: "Burger Bazaar",
     description: "Menu, orders, payments, location.",
-  },
-  {
-    id: "dogra-associates",
-    src: dograAssociatesMockup,
-    alt: "OneLink professional services mobile mockup",
-    label: "Professional page",
-    description: "Services, payments, email, bookings.",
   },
   {
     id: "new-vision",
@@ -43,6 +36,13 @@ const slides: Array<{
     alt: "OneLink diagnostics business mobile mockup",
     label: "Clinic page",
     description: "Appointments, packages, reports, support.",
+  },
+  {
+    id: "dogra-associates",
+    src: dograAssociatesMockup,
+    alt: "OneLink chartered accountant mobile mockup",
+    label: "CA page",
+    description: "Services, payments, email, bookings.",
   },
 ];
 

@@ -14,8 +14,7 @@ type CategoryFilter = {
 
 const categoryFilters: CategoryFilter[] = [
   { id: "all", label: "All Work", ids: null },
-  { id: "restaurants", label: "Restaurants", ids: ["mango", "sonnet-cafe"] },
-  { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"] },
+  { id: "restaurants", label: "Restaurants", ids: ["burger-bazaar", "mango", "sonnet-cafe"] },
   { id: "retail", label: "Retail Shops", ids: ["poshak-e-hoor"] },
   { id: "startups", label: "Startups", ids: ["mera-halwai"] },
   { id: "cas", label: "CAs", ids: ["ca-ramit"] },

@@ -26,7 +26,8 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
     pathname?.startsWith("/terms") || 
     pathname?.startsWith("/privacy") || 
     pathname?.startsWith("/refund") || 
-    pathname?.startsWith("/shipping");
+    pathname?.startsWith("/shipping") ||
+    pathname?.startsWith("/--12");
 
   if (isExcluded) {
     return (

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneLink Billing System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- LEFT PANEL: Editor Form -->
+        <aside class="editor-panel hide-on-print">
+            <div class="editor-header">
+                <h2>Invoice Generator</h2>
+                <div style="display: flex; gap: 0.4rem;">
+                    <button type="button" id="whatsapp-btn" class="btn-whatsapp" title="Send WhatsApp">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+                        WA
+                    </button>
+                    <button type="button" id="email-btn" class="btn-email" title="Send Email">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
+                        Mail
+                    </button>
+                    <button type="button" id="download-btn" class="btn-primary" style="font-size: 0.85rem; padding: 0.5rem 0.75rem;">PDF</button>
+                </div>
+            </div>
+
+            <form id="billing-form" class="billing-form">
+
+                <!-- Invoice Meta -->
+                <div class="form-section">
+                    <h3>1. Invoice Details</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Invoice Number</label>
+                            <input type="text" id="inv-number" value="INV-2026-001">
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Status</label>
+                            <select id="inv-status">
+                                <option value="Pending">Pending</option>
+                                <option value="Paid">Paid</option>
+                                <option value="Partially Paid">Partially Paid</option>
+                                <option value="Overdue">Overdue</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Invoice Date</label>
+                            <input type="date" id="inv-date">
+                        </div>
+                        <div class="form-group">
+                            <label>Due Date</label>
+                            <input type="date" id="inv-due-date">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client Details -->
+                <div class="form-section">
+                    <h3>2. Client Details</h3>
+                    <div class="form-group">
+                        <label>Business Name (Optional)</label>
+                        <input type="text" id="client-business" placeholder="e.g. The Grand Hotel">
+                    </div>
+                    <div class="form-group">
+                        <label>Client Name</label>
+                        <input type="text" id="client-name" placeholder="Client Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number (WhatsApp)</label>
+                        <input type="text" id="client-contact" placeholder="+91 99999 99999">
+                    </div>
+                    <div class="form-group">
+                        <label>Client Email (Optional)</label>
+                        <input type="email" id="client-email" placeholder="client@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Client GSTIN (Optional)</label>
+                        <input type="text" id="client-gstin" placeholder="GSTIN">
+                    </div>
+                    <div class="form-group">
+                        <label>Client Address (Optional)</label>
+                        <textarea id="client-address" rows="2" placeholder="Full Address"></textarea>
+                    </div>
+                </div>
+
+                <!-- Plan Selection -->
+                <div class="form-section">
+                    <h3>3. Plan Selection</h3>
+                    <div class="form-group">
+                        <label>OneLink Plan</label>
+                        <select id="plan-name">
+                            <option value="essential">Essential</option>
+                            <option value="signature" selected>Signature</option>
+                            <option value="elite">Elite</option>
+                            <option value="custom">Custom Plan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Platform Care</label>
+                        <select id="care-duration">
+                            <option value="3-month">3 Months</option>
+                            <option value="6-month">6 Months</option>
+                            <option value="12-month" selected>1 Year</option>
+                        </select>
+                    </div>
+                    <div class="custom-plan-fields" style="display:none;">
+                      <div class="form-group">
+                        <label>Custom Plan Name</label>
+                        <input type="text" id="custom-plan-name" placeholder="Custom OneLink package">
+                      </div>
+                      <div class="form-grid">
+                        <div class="form-group">
+                          <label>Setup Fee</label>
+                          <input type="number" id="custom-setup-price" value="0" min="0">
+                        </div>
+                        <div class="form-group">
+                          <label>Care Plan Price</label>
+                          <input type="number" id="custom-care-price" value="0" min="0">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group compact-last">
+                        <label>Short Description (Optional)</label>
+                        <textarea id="plan-desc" rows="2" placeholder="Brief details about the package..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Payment Mode -->
+                <div class="form-section">
+                    <h3>4. Payment</h3>
+                    <div class="form-group compact-last">
+                        <label>Payment Mode</label>
+                        <select id="payment-structure">
+                            <option value="full">Full Payment</option>
+                            <option value="advance">50% Advance + 50% Balance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Adjustments -->
+                <div class="form-section">
+                    <h3>5. Adjustments & Notes</h3>
+                    <div class="form-group" style="display: flex; gap: 1rem;">
+                        <div style="flex: 1;">
+                            <label>Discount Type</label>
+                            <select id="discount-type">
+                                <option value="amount">Amount (₹)</option>
+                                <option value="percent">Percentage (%)</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label id="discount-label">Discount (₹)</label>
+                            <input type="number" id="discount-amount" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>GST Percentage (%)</label>
+                        <input type="number" id="gst-percent" value="18">
+                    </div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label>Invoice Note (Optional)</label>
+                        <textarea id="invoice-note" rows="2" placeholder="e.g. Plan renews at ₹2,499/year from Year 2 onwards."></textarea>
+                    </div>
+                </div>
+
+            </form>
+        </aside>
+
+        <!-- RIGHT PANEL: Invoice Preview -->
+        <main class="preview-panel">
+            <div class="invoice-container">
+                <!-- A4 PAGE -->
+                <div class="invoice-page" id="invoice-page">
+
+                    <!-- Header -->
+                    <div class="inv-header">
+                        <div class="inv-brand-wrapper">
+                            <!-- Placeholder for logo -->
+                            <img src="logo.png" alt="" class="inv-logo" id="inv-logo-img" onerror="this.style.display='none'">
+                            <div class="inv-brand-info">
+                                <h1 class="inv-brand-name">One<span class="inv-brand-highlight">Link</span></h1>
+                                <p class="inv-tagline">Digital Smart Business Page</p>
+                                <p class="inv-company">Digital business billing</p>
+                            </div>
+                        </div>
+                        <div class="inv-meta">
+                            <h2 class="inv-title">BILL</h2>
+                            <div class="inv-meta-grid">
+                                <div class="meta-label">Invoice No:</div><div class="meta-value" id="display-inv-no">INV-2026-001</div>
+                                <div class="meta-label">Date:</div><div class="meta-value" id="display-inv-date"></div>
+                                <div class="meta-label">Due Date:</div><div class="meta-value" id="display-inv-due"></div>
+                            </div>
+                            <div class="inv-status" id="display-status">Pending</div>
+                        </div>
+                    </div>
+
+                    <!-- Addresses -->
+                    <div class="inv-addresses">
+                        <div class="inv-address-box" style="display:none;">
+                            <h3>Billed By:</h3>
+                            <p class="strong">OneLink</p>
+                            <p>Digital Smart Business Page</p>
+                        </div>
+                        <div class="inv-address-box right">
+                            <h3>Billed To:</h3>
+                            <p class="strong" id="display-client-business"></p>
+                            <p id="display-client-name"></p>
+                            <p id="display-client-contact"></p>
+                            <p id="display-client-gstin-container" style="display:none;"><strong>GSTIN:</strong> <span id="display-client-gstin"></span></p>
+                            <p id="display-client-address"></p>
+                        </div>
+                    </div>
+
+                    <!-- Product Section -->
+                    <div class="inv-product-section">
+                        <div class="product-header">
+                            <div>Description</div>
+                            <div class="text-right">Amount</div>
+                        </div>
+
+                        <div class="product-item">
+                            <div class="product-details">
+                                <h4 class="product-title">OneLink Digital Smart Business Page</h4>
+                                <p class="product-subtitle"><span id="display-plan-name" class="strong"></span></p>
+                                <p class="product-desc" id="display-plan-desc"></p>
+                                <p class="product-billing-mode" id="display-billing-mode"></p>
+
+                                <div id="display-price-breakdown" class="split-breakdown">
+                                    <div class="split-row">
+                                        <span>One-time professional setup</span> <span id="display-setup-amount"></span>
+                                    </div>
+                                    <div class="split-row">
+                                        <span id="display-care-label">Platform Care</span> <span id="display-care-amount"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-amounts text-right">
+                                <div class="amount-line"><span id="display-base-amount"></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Totals Section -->
+                    <div class="inv-totals-wrapper">
+                        <div class="inv-amount-words">
+                            <p><strong>Amount in Words:</strong></p>
+                            <p id="display-amount-words">Rupees Zero Only</p>
+                        </div>
+
+                        <div class="inv-totals">
+                            <div class="total-row" id="row-discount" style="display:none;">
+                                <span>Discount:</span>
+                                <span>- ₹<span id="display-discount">0</span></span>
+                            </div>
+                            <div class="total-row">
+                                <span>Taxable Amount:</span>
+                                <span>₹<span id="display-taxable">0</span></span>
+                            </div>
+                            <div class="total-row" id="row-gst">
+                                <span>GST (<span id="display-gst-percent">18</span>%):</span>
+                                <span>₹<span id="display-gst-amount">0</span></span>
+                            </div>
+                            <div class="total-row grand-total">
+                                <span>Grand Total:</span>
+                                <span>₹<span id="display-grand-total">0</span></span>
+                            </div>
+
+                            <!-- Payment Structure -->
+                            <div class="payment-structure-box" id="display-payment-structure">
+                                <div class="total-row p-paid">
+                                    <span id="label-paid">Paid Amount:</span>
+                                    <span>₹<span id="display-paid-amount">0</span></span>
+                                </div>
+                                <div class="total-row p-due">
+                                    <span>Balance Due:</span>
+                                    <span>₹<span id="display-balance-due">0</span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="renewal-note" id="display-renewal-note" style="display:none;">
+                        Note: Plan renews at ₹<span id="display-renewal-amount"></span>/year from Year 2 onwards.
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="inv-footer">
+                        <p>By proceeding with this bill, you agree to the applicable service terms.</p>
+                        <p>This is a computer generated invoice and does not require a physical signature.</p>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

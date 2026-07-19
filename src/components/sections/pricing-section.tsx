@@ -12,9 +12,9 @@ import { SectionBadge } from "@/components/ui/section-badge";
 import { cn, formatCurrency } from "@/lib/utils";
 
 const primaryCareRows = [
-  { id: "3-month", label: "3 Months", highlight: "Flexible Start" },
-  { id: "6-month", label: "6 Months", highlight: "Best Value" },
-  { id: "12-month", label: "12 Months", highlight: "Best Savings" },
+  { id: "3-month", label: "3 Months" },
+  { id: "6-month", label: "6 Months" },
+  { id: "12-month", label: "12 Months" },
 ];
 
 function formatPricingCurrency(amount: number) {
@@ -57,7 +57,7 @@ export function PricingSection() {
           {topPlans.map((plan, index) => {
             const isSignature = plan.id === "signature";
             return (
-              <Reveal key={plan.id} delay={index * 0.05} x={index === 0 ? -30 : index === 2 ? 30 : 0} y={18} className={cn("flex h-full transition-transform", isSignature ? "lg:z-10" : "lg:pt-7")}>
+              <Reveal key={plan.id} delay={index * 0.05} x={index === 0 ? -30 : index === 2 ? 30 : 0} y={18} className={cn("flex h-full transition-transform", isSignature && "lg:z-10")}>
                 <PricingCard plan={plan} isSignature={isSignature} />
               </Reveal>
             );
@@ -85,66 +85,55 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
   const isElite = plan.id === "elite";
   const tone = getPlanTone(plan);
   const [selectedCare, setSelectedCare] = useState("6-month");
+  const trialOption = plan.maintenanceOptions.find((item) => item.id === "1-month");
 
   return (
     <article
       className={cn(
-        "group relative mx-auto flex h-full w-full max-w-[calc(100vw-40px)] min-w-0 flex-col overflow-hidden rounded-[24px] border bg-white p-5 transition-all duration-300 sm:max-w-none sm:p-7",
+        "group relative mx-auto flex h-full w-full max-w-[calc(100vw-40px)] min-w-0 flex-col overflow-visible rounded-[20px] border bg-white p-5 transition-all duration-300 sm:max-w-none sm:p-6",
         isSignature
-          ? "border-shine border-shine-blue border-[#53c4ff] bg-[linear-gradient(145deg,#087cbc_0%,#00A9FF_48%,#0677b6_100%)] shadow-[0_34px_80px_-36px_rgba(0,126,191,0.58)] lg:-translate-y-3"
+          ? "border-[#00A9FF]/60 shadow-[0_26px_58px_-38px_rgba(0,126,191,0.48)] ring-1 ring-[#00A9FF]/12"
           : isElite
-            ? "border-transparent bg-white [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(145deg,#9edcff,#00A9FF,#087cbc)_border-box] shadow-[0_18px_46px_-38px_rgba(15,23,42,0.34)] hover:-translate-y-1 hover:shadow-[0_24px_54px_-38px_rgba(3,80,122,0.32)]"
-            : "border-transparent bg-white [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(145deg,#bdeaff,#00A9FF,#087cbc)_border-box] shadow-[0_18px_46px_-38px_rgba(15,23,42,0.3)] hover:-translate-y-1 hover:shadow-[0_24px_54px_-38px_rgba(15,23,42,0.3)]",
+            ? "border-[#d8e5ed] shadow-[0_20px_48px_-40px_rgba(15,23,42,0.32)]"
+            : "border-[#dfe7ee] shadow-[0_20px_48px_-40px_rgba(15,23,42,0.28)]",
       )}
     >
-      <div className={cn("pointer-events-none absolute inset-x-0 top-0 h-24", tone.wash)} />
+      {isSignature ? (
+        <span className="absolute left-1/2 top-0 z-20 inline-flex -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-[#00A9FF] bg-[#087cbc] px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_10px_22px_-13px_rgba(3,80,122,0.9)]">
+          Most Popular
+        </span>
+      ) : null}
 
-      <div className="relative z-[1] flex min-h-0 flex-1 flex-col">
-        <p className={cn("text-[11px] font-bold uppercase tracking-[0.2em]", isSignature ? "text-white/78" : tone.label)}>
-          {plan.badge}
-        </p>
-
-        <div className="mt-4 flex items-center gap-4">
+      <div className={cn("relative z-[1] flex min-h-0 flex-1 flex-col", isSignature && "pt-2")}>
+        <div className="flex items-center gap-4">
           <PricingBrandMark
             tone={tone.markTone}
-            className="h-12 w-12 rounded-[14px] [&_img]:w-7"
+            className="h-11 w-11 rounded-[13px] [&_img]:w-6"
           />
-          <h3 className={cn("min-w-0 flex-1 text-left text-[24px] font-extrabold leading-tight tracking-[-0.025em] sm:text-[26px]", isSignature ? "text-white" : "text-[#111821]")}>
+          <h3 className="min-w-0 flex-1 text-left text-[24px] font-extrabold leading-tight tracking-[-0.025em] text-[#111821] sm:text-[26px]">
             {plan.name}
           </h3>
         </div>
 
-        <p className={cn("mt-4 max-w-[32ch] text-[14px] font-medium leading-relaxed sm:text-[15px]", isSignature ? "text-white/76" : "text-[#64748B]")}>
+        <p className="mt-3 max-w-[32ch] text-[14px] font-medium leading-relaxed text-[#64748B]">
           {plan.description}
         </p>
 
-        <div className={cn("mt-6 rounded-[18px] border p-5", isSignature ? "border-white/50 bg-white shadow-[0_18px_38px_-28px_rgba(3,61,96,0.55)]" : "border-[#e8eef5] bg-white/72")}>
-          <div className="flex items-end gap-2">
-            {plan.originalAmount ? (
-              <span className="pb-1 text-[14px] font-semibold text-[#94A3B8] line-through">{formatCurrency(plan.originalAmount)}</span>
-            ) : null}
-          </div>
-          <p className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#526173]">
-            One-time implementation charge
+        <div className="mt-5 rounded-[14px] border border-[#e5edf3] bg-[#fbfdff] px-4 py-3.5">
+          <p className="text-[9px] font-bold uppercase tracking-[0.09em] text-[#64748B]">
+            One-time design &amp; development fee
           </p>
-          <p className="mt-0 text-[36px] font-bold leading-none tracking-tight text-[#111821] tabular-nums sm:text-[40px]">
-            {formatPricingCurrency(plan.setupAmount)}
-          </p>
-          <div className="mt-2.5">
-            <span className={cn("inline-flex max-w-full rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase leading-tight tracking-[0.025em]", isSignature ? "border-[#ccecff] bg-white text-[#087cbc] shadow-sm" : tone.gstPill)}>
-              Professional Design &amp; Development Fee · GST Extra
-            </span>
-          </div>
-          <p className="mt-2 text-[10px] font-medium leading-[1.55] text-[#64748B]">
-            Covers custom design, development, content setup, integrations, testing and launch.
+          <p className="mt-1 flex items-baseline gap-2 font-bold leading-none tracking-tight text-[#111821] tabular-nums">
+            <span className="text-[38px] sm:text-[42px]">{formatCurrency(plan.setupAmount)}</span>
+            <span className="text-[11px] font-extrabold uppercase tracking-[0.06em] text-[#087cbc]">+ GST</span>
           </p>
         </div>
 
         <div className="mt-6">
-          <p className={cn("text-[11px] font-bold uppercase tracking-[0.13em] sm:text-[12px]", isSignature ? "text-white/90" : "text-[#526173]")}>
+          <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#526173]">
             Choose Your Care Plan
           </p>
-          <div className="mt-3 grid w-full min-w-0 grid-cols-3 gap-2">
+          <div className="mt-4 grid w-full min-w-0 grid-cols-3 gap-2">
             {primaryCareRows.map((row) => {
               const option = plan.maintenanceOptions.find((item) => item.id === row.id);
 
@@ -155,82 +144,51 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
                   onClick={() => setSelectedCare(row.id)}
                   aria-pressed={selectedCare === row.id}
                   className={cn(
-                    "relative flex min-h-[104px] min-w-0 flex-col items-center justify-center rounded-[14px] border px-1.5 pb-3 pt-5 text-center transition duration-200",
-                    selectedCare === row.id
-                      ? tone.selectorActive
-                      : row.id === "6-month"
-                        ? isSignature
-                          ? "border-white/45 bg-white/[0.14] text-white shadow-[0_12px_26px_-18px_rgba(2,15,29,0.7)] ring-1 ring-white/20"
-                          : "border-[#00A9FF]/45 bg-[#f0faff] text-[#087cbc] shadow-[0_12px_28px_-20px_rgba(0,169,255,0.55)] ring-1 ring-[#00A9FF]/15"
-                        : isSignature
-                          ? "border-white/16 bg-white/[0.07] text-white/80 hover:bg-white/[0.11]"
-                          : "border-[#e2e8f0] bg-white/70 text-[#64748B] hover:border-[#b9dff3] hover:bg-white",
+                    "relative flex min-h-[70px] min-w-0 flex-col items-center justify-center rounded-[11px] border px-1.5 py-2 text-center transition duration-200",
+                    row.id === "6-month"
+                      ? "border-[#00A9FF]/55 bg-[#edf8ff] text-[#087cbc]"
+                      : selectedCare === row.id
+                        ? "border-[#94A3B8] bg-[#f8fafc] text-[#263548]"
+                        : "border-[#e5eaf0] bg-white text-[#64748B] hover:border-[#c8d5df]",
                   )}
                 >
-                  <span
-                    className={cn(
-                      "absolute left-1/2 top-2 inline-flex -translate-x-1/2 whitespace-nowrap rounded-full border px-1.5 py-1 text-[8px] font-extrabold uppercase leading-none tracking-[0.025em] sm:px-2 sm:text-[8px]",
-                      row.id === "6-month"
-                        ? "border-[#00A9FF] bg-[#00A9FF] text-white shadow-[0_6px_14px_-8px_rgba(0,126,191,0.9)]"
-                        : selectedCare === row.id
-                          ? "border-[#00A9FF]/35 bg-[#eaf8ff] text-[#087cbc]"
-                          : isSignature
-                            ? "border-white/40 bg-white text-[#087cbc]"
-                            : "border-[#dce7ef] bg-white text-[#526173]",
-                    )}
-                  >
-                    {row.highlight}
-                  </span>
-                  <span className={cn("mt-5 text-[10px] font-extrabold uppercase tracking-[0.045em] sm:text-[11px]", selectedCare === row.id ? (isSignature ? "text-[#087cbc]" : "text-[#111821]") : (isSignature ? "text-white/75" : "text-[#526173]"))}>
+                  {row.id === "6-month" ? (
+                    <span className="absolute left-1/2 top-0 z-10 inline-flex -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-[#087cbc] px-2 py-1 text-[8px] font-extrabold uppercase leading-none tracking-[0.04em] text-white">
+                      Best Value
+                    </span>
+                  ) : null}
+                  <span className="text-[10px] font-extrabold uppercase tracking-[0.045em] text-[#526173] sm:text-[11px]">
                     {row.label}
                   </span>
-                  <span className={cn("mt-1.5 text-[17px] font-extrabold leading-none tabular-nums sm:text-[18px]", selectedCare === row.id ? tone.value : (isSignature ? "text-white" : "text-[#263548]"))}>
+                  <span className={cn("mt-1.5 text-[16px] font-extrabold leading-none tabular-nums sm:text-[17px]", row.id === "6-month" ? "text-[#087cbc]" : "text-[#263548]")}>
                     {formatPricingCurrency(option?.price ?? 0)}
                   </span>
                 </button>
               );
             })}
           </div>
-          {(() => {
-            const trialOption = plan.maintenanceOptions.find((item) => item.id === "1-month");
-            return (
-              <button
-                type="button"
-                onClick={() => setSelectedCare("1-month")}
-                aria-pressed={selectedCare === "1-month"}
-                className={cn(
-                  "mt-2.5 flex min-h-14 w-full items-center justify-between gap-3 rounded-[13px] border px-3.5 py-2.5 text-left transition duration-200",
-                  selectedCare === "1-month"
-                    ? tone.selectorActive
-                    : isSignature
-                      ? "border-white/16 bg-white/[0.07] text-white hover:bg-white/[0.11]"
-                      : "border-[#e2e8f0] bg-white/55 text-[#526173] hover:border-[#b9dff3] hover:bg-white",
-                )}
-              >
-                <span className="min-w-0">
-                  <span className={cn("block text-[10px] font-semibold", selectedCare === "1-month" && isSignature ? "text-[#087cbc]" : isSignature ? "text-white/68" : "text-[#64748B]")}>
-                    Want to try OneLink first?
-                  </span>
-                  <span className={cn("mt-0.5 block text-[11px] font-extrabold uppercase tracking-[0.07em]", selectedCare === "1-month" && isSignature ? "text-[#111821]" : isSignature ? "text-white" : "text-[#263548]")}>
-                    1 Month · Try OneLink
-                  </span>
-                </span>
-                <span className={cn("shrink-0 text-[18px] font-extrabold tabular-nums", selectedCare === "1-month" ? tone.value : isSignature ? "text-white" : "text-[#263548]")}>
-                  {formatPricingCurrency(trialOption?.price ?? 0)}
-                </span>
-              </button>
-            );
-          })()}
+          <button
+            type="button"
+            onClick={() => setSelectedCare("1-month")}
+            aria-pressed={selectedCare === "1-month"}
+            className={cn(
+              "mt-2.5 flex w-full items-center justify-between gap-3 border-t border-[#e5eaf0] px-1 py-2 text-left text-[11px] transition",
+              selectedCare === "1-month" ? "font-bold text-[#087cbc]" : "font-medium text-[#64748B] hover:text-[#263548]",
+            )}
+          >
+            <span>Try for 1 month</span>
+            <span className="shrink-0 font-extrabold tabular-nums">{formatPricingCurrency(trialOption?.price ?? 0)}</span>
+          </button>
         </div>
 
-        <div className={cn("mt-6 flex min-h-0 flex-1 flex-col rounded-[20px] border p-4", tone.featureWrap)}>
-          <p className={cn("text-[11px] font-bold uppercase tracking-[0.18em]", isSignature ? "text-[#087cbc]" : "text-[#94A3B8]")}>
+        <div className="mt-6 flex min-h-0 flex-1 flex-col border-t border-[#e5eaf0] pt-5">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#64748B]">
             Included
           </p>
-          <div className="mt-3 space-y-2">
+          <div className="mt-2 divide-y divide-[#edf1f4]">
             {plan.features.slice(0, 5).map((feature) => (
-              <div key={feature.text} className="flex items-start gap-2.5 rounded-[12px] bg-white/74 px-3 py-2 text-[12px] font-medium leading-snug tracking-tight text-[#475569] sm:text-[13px]">
-                <span className={cn("mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full", tone.icon)}>
+              <div key={feature.text} className="flex items-start gap-2.5 py-2.5 text-[13px] font-medium leading-snug tracking-tight text-[#334155]">
+                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#edf8ff] text-[#087cbc]">
                   <Icon name="check" className="h-2.5 w-2.5" />
                 </span>
                 {feature.text}

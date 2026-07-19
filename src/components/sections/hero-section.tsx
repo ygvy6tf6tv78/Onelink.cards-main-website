@@ -53,7 +53,7 @@ export function HeroSection() {
               <Icon name="whatsapp" className="h-5 w-5" />
               WhatsApp
             </ActionLink>
-            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[12px] border border-[#00A9FF]/30 !bg-[#eaf7ff] px-4 text-[14px] font-bold !text-[#006da6] shadow-[0_12px_26px_-20px_rgba(0,109,166,0.55)] hover:border-[#00A9FF]/50 hover:!bg-[#dcf2ff] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[12px] border border-[#cceafa] !bg-white px-4 text-[14px] font-bold !text-[#006da6] shadow-[0_12px_26px_-20px_rgba(0,109,166,0.38)] hover:border-[#9edcff] hover:!bg-[#f7fcff] [&_svg]:h-4 [&_svg]:w-4">
               View Live Examples
             </ActionLink>
           </div>
@@ -70,7 +70,7 @@ export function HeroSection() {
               href="#work"
               variant="secondary"
               withArrow
-              className="min-h-11 min-w-[180px] flex-1 !rounded-[12px] border border-[#00A9FF]/30 !bg-[#eaf7ff] px-4 py-2.5 text-[14px] font-bold !text-[#006da6] shadow-[0_12px_26px_-20px_rgba(0,109,166,0.55)] hover:border-[#00A9FF]/50 hover:!bg-[#dcf2ff] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+              className="min-h-11 min-w-0 flex-1 !rounded-[12px] border border-[#cceafa] !bg-white px-4 py-2.5 text-[14px] font-bold !text-[#006da6] shadow-[0_12px_26px_-20px_rgba(0,109,166,0.38)] hover:border-[#9edcff] hover:!bg-[#f7fcff] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
             >
               View Live Examples
             </ActionLink>

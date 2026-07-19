@@ -719,7 +719,7 @@ export const legalCopy = {
   ],
   terms: [
     "Purchasing OneLink covers the selected plan only and is subject to final delivery scope, content submission, and any agreed revisions or add-ons.",
-    "Checkout is processed through Razorpay. Platform access is prepaid for the selected 3, 6, or 12-month duration, with GST shown before payment.",
+    "Checkout is processed through Razorpay. Platform access is prepaid for the selected 1, 3, 6, or 12-month duration, with GST shown before payment.",
     "This page is a product website scaffold. Replace these placeholder legal notes with reviewed legal language before taking live production payments.",
   ],
 };

@@ -11,9 +11,10 @@ import { cn, formatCurrencyDetailed } from "@/lib/utils";
 const internalPlans = pricingPlans.filter((plan) => ["essential", "signature", "elite"].includes(plan.id));
 
 const durationLabels: Record<string, string> = {
+  "1-month": "1 Month",
   "3-month": "3 Months",
   "6-month": "6 Months",
-  "12-month": "1 Year",
+  "12-month": "12 Months",
 };
 
 const planTones: Record<string, { mark: "business" | "signature" | "essential"; selected: string; chip: string }> = {
@@ -41,14 +42,14 @@ function formatBillingCurrency(amount: number) {
 export function InternalBillingCalculator() {
   const [clientName, setClientName] = useState("");
   const [selectedPlanId, setSelectedPlanId] = useState("signature");
-  const [selectedCareId, setSelectedCareId] = useState("12-month");
+  const [selectedCareId, setSelectedCareId] = useState("6-month");
   const [discountMode, setDiscountMode] = useState<InternalDiscountMode>("percentage");
   const [discountValues, setDiscountValues] = useState<Record<InternalDiscountMode, number>>({ percentage: 0, fixed: 0 });
   const [includeGst, setIncludeGst] = useState(true);
   const [copyStatus, setCopyStatus] = useState("Copy estimate");
 
   const selectedPlan = internalPlans.find((plan) => plan.id === selectedPlanId) ?? internalPlans[1];
-  const selectedCare = selectedPlan.maintenanceOptions.find((option) => option.id === selectedCareId) ?? selectedPlan.maintenanceOptions[2];
+  const selectedCare = selectedPlan.maintenanceOptions.find((option) => option.id === selectedCareId) ?? selectedPlan.maintenanceOptions.find((option) => option.id === "6-month") ?? selectedPlan.maintenanceOptions[0];
   const quote = useMemo(() => calculateInternalQuote({
     setupAmount: selectedPlan.setupAmount,
     careAmount: selectedCare.price,
@@ -61,7 +62,7 @@ export function InternalBillingCalculator() {
       client: clientName.trim(),
       plan: selectedPlan.id,
       care: selectedCare.id,
-      description: `Professional setup and ${durationLabels[selectedCare.id] ?? selectedCare.label} Platform Care`,
+      description: `One-time design & development fee and ${durationLabels[selectedCare.id] ?? selectedCare.label} Platform Care`,
       setup: String(quote.setupAmount),
       careAmount: String(quote.careAmount),
       discountMode,
@@ -81,7 +82,7 @@ export function InternalBillingCalculator() {
       "OneLink Estimate",
       clientName.trim() ? `Client: ${clientName.trim()}` : null,
       `Plan: ${selectedPlan.name}`,
-      `Professional setup: ${formatBillingCurrency(quote.setupAmount)}`,
+      `Design & development fee: ${formatBillingCurrency(quote.setupAmount)}`,
       `Platform Care (${durationLabels[selectedCare.id] ?? selectedCare.label}): ${formatBillingCurrency(quote.careAmount)}`,
       `Subtotal: ${formatBillingCurrency(quote.subtotal)}`,
       quote.discountAmount > 0 ? `Discount: -${formatBillingCurrency(quote.discountAmount)}` : null,
@@ -150,7 +151,7 @@ export function InternalBillingCalculator() {
           </BillingSection>
 
           <BillingSection step="02" title="Choose Platform Care" description="Hosting, support and eligible updates.">
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {selectedPlan.maintenanceOptions.map((option) => {
                 const selected = option.id === selectedCare.id;
                 return (
@@ -210,7 +211,7 @@ export function InternalBillingCalculator() {
               </div>
 
               <div className="mt-6 space-y-3.5 text-[13px] font-medium">
-                <SummaryRow label="Professional setup" value={formatBillingCurrency(quote.setupAmount)} />
+                <SummaryRow label="Design & development fee" value={formatBillingCurrency(quote.setupAmount)} />
                 <SummaryRow label={`Care · ${durationLabels[selectedCare.id] ?? selectedCare.label}`} value={formatBillingCurrency(quote.careAmount)} />
                 <div className="border-t border-white/12 pt-3.5"><SummaryRow label="Subtotal" value={formatBillingCurrency(quote.subtotal)} strong /></div>
                 <SummaryRow label={discountMode === "percentage" ? `Discount · ${quote.normalizedDiscount}%` : "Fixed discount"} value={quote.discountAmount > 0 ? `− ${formatBillingCurrency(quote.discountAmount)}` : formatBillingCurrency(0)} accent={quote.discountAmount > 0} />

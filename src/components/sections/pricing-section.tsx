@@ -99,7 +99,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
       )}
     >
       {isSignature ? (
-        <span className="absolute left-1/2 top-0 z-20 inline-flex -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-white/65 bg-[linear-gradient(100deg,#04182f_0%,#087cbc_52%,#00A9FF_100%)] px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_12px_24px_-12px_rgba(3,80,122,0.95)]">
+        <span className="absolute left-1/2 top-0 z-20 inline-flex -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-white bg-[linear-gradient(100deg,#063653_0%,#087cbc_52%,#00A9FF_100%)] px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_10px_22px_-11px_rgba(3,80,122,0.85)] ring-1 ring-[#087cbc]/25">
           Most Popular
         </span>
       ) : null}
@@ -120,7 +120,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
         </p>
 
         <div className="mt-5 rounded-[14px] border border-[#e5edf3] bg-[#fbfdff] px-4 py-3.5">
-          <p className="text-[9px] font-bold uppercase tracking-[0.09em] text-[#64748B]">
+          <p className="inline-flex rounded-full border border-[#d9e9f2] bg-white px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.07em] text-[#526173] shadow-sm">
             One-time design &amp; development fee
           </p>
           <p className="mt-1 flex items-baseline gap-2 font-bold leading-none tracking-tight text-[#111821] tabular-nums">
@@ -144,7 +144,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
                   onClick={() => setSelectedCare(row.id)}
                   aria-pressed={selectedCare === row.id}
                   className={cn(
-                    "relative flex min-h-[70px] min-w-0 flex-col items-center justify-center rounded-[11px] border px-1.5 py-2 text-center transition duration-200",
+                    "relative flex min-h-[82px] min-w-0 flex-col items-center justify-center rounded-[12px] border px-2 py-2.5 text-center transition duration-200",
                     row.id === "6-month"
                       ? isSignature
                         ? "border-white/80 bg-white text-[#087cbc] shadow-[0_10px_24px_-16px_rgba(2,15,29,0.65)]"
@@ -163,10 +163,10 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
                       Best Value
                     </span>
                   ) : null}
-                  <span className={cn("text-[10px] font-extrabold uppercase tracking-[0.045em] sm:text-[11px]", row.id === "6-month" ? "text-[#526173]" : isSignature ? "text-white/82" : "text-[#526173]")}>
+                  <span className={cn("text-[11px] font-extrabold uppercase tracking-[0.04em]", row.id === "6-month" ? "text-[#526173]" : isSignature ? "text-white/88" : "text-[#526173]")}>
                     {row.label}
                   </span>
-                  <span className={cn("mt-1.5 text-[16px] font-extrabold leading-none tabular-nums sm:text-[17px]", row.id === "6-month" ? "text-[#087cbc]" : isSignature ? "text-white" : "text-[#263548]")}>
+                  <span className={cn("mt-2 text-[18px] font-extrabold leading-none tabular-nums", row.id === "6-month" ? "text-[#087cbc]" : isSignature ? "text-white" : "text-[#263548]")}>
                     {formatPricingCurrency(option?.price ?? 0)}
                   </span>
                 </button>
@@ -178,18 +178,14 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
             onClick={() => setSelectedCare("1-month")}
             aria-pressed={selectedCare === "1-month"}
             className={cn(
-              "mt-3 flex min-h-11 w-full items-center justify-between gap-3 rounded-[11px] border px-3 py-2 text-left text-[11px] transition",
+              "mt-3 flex min-h-12 w-full items-center justify-between gap-3 rounded-[11px] border bg-white px-3.5 py-2.5 text-left text-[12px] font-bold transition",
               selectedCare === "1-month"
-                ? isSignature
-                  ? "border-white/70 bg-white font-bold text-[#087cbc]"
-                  : "border-[#00A9FF]/40 bg-[#edf8ff] font-bold text-[#087cbc]"
-                : isSignature
-                  ? "border-white/22 bg-white/[0.08] font-medium text-white/82 hover:bg-white/[0.13]"
-                  : "border-[#e5eaf0] bg-[#fafcfd] font-medium text-[#64748B] hover:border-[#c8d5df] hover:text-[#263548]",
+                ? "border-[#00A9FF]/60 text-[#087cbc] ring-1 ring-[#00A9FF]/15"
+                : "border-[#dfe7ed] text-[#334155] hover:border-[#9edcff] hover:text-[#087cbc]",
             )}
           >
-            <span>Try for 1 month</span>
-            <span className="shrink-0 font-extrabold tabular-nums">{formatPricingCurrency(trialOption?.price ?? 0)}</span>
+            <span className="font-extrabold">Try for 1 month</span>
+            <span className="shrink-0 text-[14px] font-extrabold tabular-nums text-[#111821]">{formatPricingCurrency(trialOption?.price ?? 0)}</span>
           </button>
         </div>
 
@@ -199,9 +195,9 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
           </p>
           <div className={cn("mt-2 divide-y", isSignature ? "divide-white/16" : "divide-[#edf1f4]")}>
             {plan.features.slice(0, 5).map((feature) => (
-              <div key={feature.text} className={cn("flex items-start gap-2.5 py-2.5 text-[13px] font-medium leading-snug tracking-tight", isSignature ? "text-white/88" : "text-[#334155]")}>
-                <span className={cn("mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full", isSignature ? "bg-white/16 text-white" : "bg-[#edf8ff] text-[#087cbc]")}>
-                  <Icon name="check" className="h-2.5 w-2.5" />
+              <div key={feature.text} className={cn("flex items-start gap-3 py-3 text-[14px] font-semibold leading-snug tracking-tight", isSignature ? "text-white/92" : "text-[#334155]")}>
+                <span className={cn("mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full", isSignature ? "bg-white/18 text-white" : "bg-[#edf8ff] text-[#087cbc]")}>
+                  <Icon name="check" className="h-3 w-3" />
                 </span>
                 {feature.text}
               </div>

@@ -11,17 +11,11 @@ import { PricingBrandMark } from "@/components/ui/brand-mark";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { cn, formatCurrency } from "@/lib/utils";
 
-const platformRows = [
-  { id: "3-month", label: "3 Months" },
-  { id: "6-month", label: "6 Months" },
-  { id: "12-month", label: "1 Year" },
+const primaryCareRows = [
+  { id: "3-month", label: "3 Months", highlight: "Flexible Start" },
+  { id: "6-month", label: "6 Months", highlight: "Best Value" },
+  { id: "12-month", label: "12 Months", highlight: "Best Savings" },
 ];
-
-const savingsByPlan: Record<string, Record<string, string>> = {
-  essential: { "3-month": "Standard", "6-month": "Save 12%", "12-month": "Best Value · Save 22%" },
-  signature: { "3-month": "Standard", "6-month": "Save 11%", "12-month": "Best Value · Save 20%" },
-  elite: { "3-month": "Standard", "6-month": "Save 6%", "12-month": "Best Value · Save 17%" },
-};
 
 function formatPricingCurrency(amount: number) {
   return formatCurrency(amount).replaceAll(",", "");
@@ -90,7 +84,7 @@ export function PricingSection() {
 function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean }) {
   const isElite = plan.id === "elite";
   const tone = getPlanTone(plan);
-  const [selectedCare, setSelectedCare] = useState("12-month");
+  const [selectedCare, setSelectedCare] = useState("6-month");
 
   return (
     <article
@@ -130,22 +124,28 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
               <span className="pb-1 text-[14px] font-semibold text-[#94A3B8] line-through">{formatCurrency(plan.originalAmount)}</span>
             ) : null}
           </div>
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#526173]">
+            One-time implementation charge
+          </p>
           <p className="mt-0 text-[36px] font-bold leading-none tracking-tight text-[#111821] tabular-nums sm:text-[40px]">
             {formatPricingCurrency(plan.setupAmount)}
           </p>
           <div className="mt-2.5">
-            <span className={cn("rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em]", isSignature ? "border-[#ccecff] bg-white text-[#087cbc] shadow-sm" : tone.gstPill)}>
-              One-Time Professional Setup + GST
+            <span className={cn("inline-flex max-w-full rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase leading-tight tracking-[0.025em]", isSignature ? "border-[#ccecff] bg-white text-[#087cbc] shadow-sm" : tone.gstPill)}>
+              Professional Design &amp; Development Fee · GST Extra
             </span>
           </div>
+          <p className="mt-2 text-[10px] font-medium leading-[1.55] text-[#64748B]">
+            Covers custom design, development, content setup, integrations, testing and launch.
+          </p>
         </div>
 
         <div className="mt-6">
           <p className={cn("text-[11px] font-bold uppercase tracking-[0.13em] sm:text-[12px]", isSignature ? "text-white/90" : "text-[#526173]")}>
             Choose Your Care Plan
           </p>
-          <div className="mt-3 grid w-full min-w-0 grid-cols-3 gap-3">
-            {platformRows.map((row) => {
+          <div className="mt-3 grid w-full min-w-0 grid-cols-3 gap-2">
+            {primaryCareRows.map((row) => {
               const option = plan.maintenanceOptions.find((item) => item.id === row.id);
 
               return (
@@ -155,34 +155,72 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
                   onClick={() => setSelectedCare(row.id)}
                   aria-pressed={selectedCare === row.id}
                   className={cn(
-                    "relative mt-2 flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-[14px] border px-1.5 pb-3 pt-5 text-center transition duration-200",
-                    selectedCare === row.id ? tone.selectorActive : isSignature ? "border-white/16 bg-white/[0.08] text-white/80" : "border-[#e2e8f0] bg-white/70 text-[#64748B]",
+                    "relative flex min-h-[104px] min-w-0 flex-col items-center justify-center rounded-[14px] border px-1.5 pb-3 pt-5 text-center transition duration-200",
+                    selectedCare === row.id
+                      ? tone.selectorActive
+                      : row.id === "6-month"
+                        ? isSignature
+                          ? "border-white/45 bg-white/[0.14] text-white shadow-[0_12px_26px_-18px_rgba(2,15,29,0.7)] ring-1 ring-white/20"
+                          : "border-[#00A9FF]/45 bg-[#f0faff] text-[#087cbc] shadow-[0_12px_28px_-20px_rgba(0,169,255,0.55)] ring-1 ring-[#00A9FF]/15"
+                        : isSignature
+                          ? "border-white/16 bg-white/[0.07] text-white/80 hover:bg-white/[0.11]"
+                          : "border-[#e2e8f0] bg-white/70 text-[#64748B] hover:border-[#b9dff3] hover:bg-white",
                   )}
                 >
                   <span
                     className={cn(
-                      "absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border bg-white px-1.5 py-0.5 text-[7px] font-bold uppercase leading-none tracking-[0.025em] shadow-sm sm:px-2 sm:text-[8px]",
-                      selectedCare === row.id
-                        ? "border-[#00A9FF] text-[#087cbc]"
-                        : isSignature
-                          ? "border-white/55 text-[#087cbc]"
-                          : row.id === "12-month"
-                            ? "border-[#9edcff] text-[#087cbc]"
-                            : "border-[#dce7ef] text-[#526173]",
+                      "absolute left-1/2 top-2 inline-flex -translate-x-1/2 whitespace-nowrap rounded-full border px-1.5 py-1 text-[8px] font-extrabold uppercase leading-none tracking-[0.025em] sm:px-2 sm:text-[8px]",
+                      row.id === "6-month"
+                        ? "border-[#00A9FF] bg-[#00A9FF] text-white shadow-[0_6px_14px_-8px_rgba(0,126,191,0.9)]"
+                        : selectedCare === row.id
+                          ? "border-[#00A9FF]/35 bg-[#eaf8ff] text-[#087cbc]"
+                          : isSignature
+                            ? "border-white/40 bg-white text-[#087cbc]"
+                            : "border-[#dce7ef] bg-white text-[#526173]",
                     )}
                   >
-                    {savingsByPlan[plan.id]?.[row.id]}
+                    {row.highlight}
                   </span>
-                  <span className={cn("text-[10px] font-extrabold uppercase tracking-[0.08em] sm:text-[11px]", selectedCare === row.id ? (isSignature ? "text-[#087cbc]" : "text-[#111821]") : (isSignature ? "text-white/75" : "text-[#526173]"))}>
+                  <span className={cn("mt-5 text-[10px] font-extrabold uppercase tracking-[0.045em] sm:text-[11px]", selectedCare === row.id ? (isSignature ? "text-[#087cbc]" : "text-[#111821]") : (isSignature ? "text-white/75" : "text-[#526173]"))}>
                     {row.label}
                   </span>
-                  <span className={cn("text-[16px] font-extrabold leading-none tabular-nums sm:text-[17px]", selectedCare === row.id ? tone.value : (isSignature ? "text-white" : "text-[#263548]"))}>
+                  <span className={cn("mt-1.5 text-[17px] font-extrabold leading-none tabular-nums sm:text-[18px]", selectedCare === row.id ? tone.value : (isSignature ? "text-white" : "text-[#263548]"))}>
                     {formatPricingCurrency(option?.price ?? 0)}
                   </span>
                 </button>
               );
             })}
           </div>
+          {(() => {
+            const trialOption = plan.maintenanceOptions.find((item) => item.id === "1-month");
+            return (
+              <button
+                type="button"
+                onClick={() => setSelectedCare("1-month")}
+                aria-pressed={selectedCare === "1-month"}
+                className={cn(
+                  "mt-2.5 flex min-h-14 w-full items-center justify-between gap-3 rounded-[13px] border px-3.5 py-2.5 text-left transition duration-200",
+                  selectedCare === "1-month"
+                    ? tone.selectorActive
+                    : isSignature
+                      ? "border-white/16 bg-white/[0.07] text-white hover:bg-white/[0.11]"
+                      : "border-[#e2e8f0] bg-white/55 text-[#526173] hover:border-[#b9dff3] hover:bg-white",
+                )}
+              >
+                <span className="min-w-0">
+                  <span className={cn("block text-[10px] font-semibold", selectedCare === "1-month" && isSignature ? "text-[#087cbc]" : isSignature ? "text-white/68" : "text-[#64748B]")}>
+                    Want to try OneLink first?
+                  </span>
+                  <span className={cn("mt-0.5 block text-[11px] font-extrabold uppercase tracking-[0.07em]", selectedCare === "1-month" && isSignature ? "text-[#111821]" : isSignature ? "text-white" : "text-[#263548]")}>
+                    1 Month · Try OneLink
+                  </span>
+                </span>
+                <span className={cn("shrink-0 text-[18px] font-extrabold tabular-nums", selectedCare === "1-month" ? tone.value : isSignature ? "text-white" : "text-[#263548]")}>
+                  {formatPricingCurrency(trialOption?.price ?? 0)}
+                </span>
+              </button>
+            );
+          })()}
         </div>
 
         <div className={cn("mt-6 flex min-h-0 flex-1 flex-col rounded-[20px] border p-4", tone.featureWrap)}>
@@ -216,7 +254,7 @@ function PricingTermsNotice({ className }: { className?: string }) {
   return (
     <div className={cn("mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-[18px] border border-[#00A9FF]/14 bg-white/82 px-5 py-4 text-center shadow-[0_16px_36px_-30px_rgba(15,23,42,0.32)] sm:flex-row sm:text-left", className)}>
       <p className="text-[13px] font-semibold leading-6 text-[#526173] sm:text-[14px]">
-        Setup is charged once. Platform Care renews based on your selected plan.{" "}
+        Setup is charged once. Platform Care renews based on your selected plan. GST Extra.{" "}
         <Link href="/terms" className="font-bold text-[#087cbc] underline decoration-[#00A9FF]/45 underline-offset-4 hover:text-[#005f91]">
           Terms &amp; Conditions apply.
         </Link>

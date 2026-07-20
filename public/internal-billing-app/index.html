@@ -38,6 +38,13 @@
                 <!-- Invoice Meta -->
                 <div class="form-section">
                     <h3>1. Invoice Details</h3>
+                    <div class="form-group">
+                        <label>Billing Type</label>
+                        <select id="billing-type">
+                            <option value="non-gst" selected>Non-GST Bill</option>
+                            <option value="gst">GST Tax Invoice</option>
+                        </select>
+                    </div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Invoice Number</label>
@@ -82,13 +89,23 @@
                         <label>Client Email (Optional)</label>
                         <input type="email" id="client-email" placeholder="client@example.com">
                     </div>
-                    <div class="form-group">
-                        <label>Client GSTIN (Optional)</label>
-                        <input type="text" id="client-gstin" placeholder="GSTIN">
+                    <div class="form-group gst-only-field">
+                        <label>Client GSTIN <span class="field-hint">Optional; needed for GST credit</span></label>
+                        <input type="text" id="client-gstin" placeholder="e.g. 01ABCDE1234F1Z5" maxlength="15">
                     </div>
                     <div class="form-group">
                         <label>Client Address (Optional)</label>
                         <textarea id="client-address" rows="2" placeholder="Full Address"></textarea>
+                    </div>
+                    <div class="form-grid gst-only-field">
+                        <div class="form-group">
+                            <label>Billing State</label>
+                            <input type="text" id="client-state" placeholder="e.g. Jammu &amp; Kashmir">
+                        </div>
+                        <div class="form-group">
+                            <label>Place of Supply</label>
+                            <input type="text" id="place-of-supply" placeholder="State / state code">
+                        </div>
                     </div>
                 </div>
 
@@ -129,9 +146,23 @@
                         </div>
                       </div>
                     </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Design &amp; Development Discount (%)</label>
+                            <input type="number" id="setup-discount-percent" value="0" min="0" max="100" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Platform Care Discount (%)</label>
+                            <input type="number" id="care-discount-percent" value="0" min="0" max="100" step="0.01">
+                        </div>
+                    </div>
                     <div class="form-group compact-last">
                         <label>Short Description (Optional)</label>
                         <textarea id="plan-desc" rows="2" placeholder="Brief details about the package..."></textarea>
+                    </div>
+                    <div class="form-group gst-only-field compact-last">
+                        <label>SAC Code (Optional)</label>
+                        <input type="text" id="sac-code" placeholder="Enter SAC code">
                     </div>
                 </div>
 
@@ -144,6 +175,10 @@
                             <option value="full">Full Payment</option>
                             <option value="advance">50% Advance + 50% Balance</option>
                         </select>
+                    </div>
+                    <div class="form-group partially-paid-field compact-last">
+                        <label>Amount Already Paid (₹)</label>
+                        <input type="number" id="amount-paid" value="0" min="0" step="0.01">
                     </div>
                 </div>
 
@@ -163,9 +198,9 @@
                             <input type="number" id="discount-amount" value="0">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group gst-only-field">
                         <label>GST Percentage (%)</label>
-                        <input type="number" id="gst-percent" value="18">
+                        <input type="number" id="gst-percent" value="18" readonly>
                     </div>
                     <div class="form-group" style="margin-top: 1rem;">
                         <label>Invoice Note (Optional)</label>
@@ -190,11 +225,11 @@
                             <div class="inv-brand-info">
                                 <h1 class="inv-brand-name">One<span class="inv-brand-highlight">Link</span></h1>
                                 <p class="inv-tagline">Digital Smart Business Page</p>
-                                <p class="inv-company">Digital business billing</p>
+                                <p class="inv-company" id="display-company-line">Digital business billing</p>
                             </div>
                         </div>
                         <div class="inv-meta">
-                            <h2 class="inv-title">BILL</h2>
+                            <h2 class="inv-title" id="display-invoice-title">BILL</h2>
                             <div class="inv-meta-grid">
                                 <div class="meta-label">Invoice No:</div><div class="meta-value" id="display-inv-no">INV-2026-001</div>
                                 <div class="meta-label">Date:</div><div class="meta-value" id="display-inv-date"></div>
@@ -206,10 +241,13 @@
 
                     <!-- Addresses -->
                     <div class="inv-addresses">
-                        <div class="inv-address-box" style="display:none;">
-                            <h3>Billed By:</h3>
-                            <p class="strong">OneLink</p>
-                            <p>Digital Smart Business Page</p>
+                        <div class="inv-address-box supplier-box" id="supplier-block" style="display:none;">
+                            <h3>Billed From / Supplier</h3>
+                            <p class="strong">KRIYON GROUP PRIVATE LIMITED</p>
+                            <p><strong>GSTIN:</strong> 01AAMCK2092B1Z0</p>
+                            <p><strong>CIN:</strong> U74909JK2025PTC017984</p>
+                            <p><strong>Business Type:</strong> Private Limited Company</p>
+                            <p class="supplier-address">Room No. 2, First Floor, Tawi Enclave, Vill Nandini, Gol Gujral, Jammu, Jammu &amp; Kashmir — 180002, India</p>
                         </div>
                         <div class="inv-address-box right">
                             <h3>Billed To:</h3>
@@ -218,6 +256,8 @@
                             <p id="display-client-contact"></p>
                             <p id="display-client-gstin-container" style="display:none;"><strong>GSTIN:</strong> <span id="display-client-gstin"></span></p>
                             <p id="display-client-address"></p>
+                            <p id="display-client-state-container" style="display:none;"><strong>Billing State:</strong> <span id="display-client-state"></span></p>
+                            <p id="display-place-supply-container" style="display:none;"><strong>Place of Supply:</strong> <span id="display-place-supply"></span></p>
                         </div>
                     </div>
 
@@ -231,16 +271,25 @@
                         <div class="product-item">
                             <div class="product-details">
                                 <h4 class="product-title">OneLink Digital Smart Business Page</h4>
-                                <p class="product-subtitle"><span id="display-plan-name" class="strong"></span></p>
+                                <p class="product-subtitle"><strong>Plan:</strong> <span id="display-plan-name" class="strong"></span></p>
                                 <p class="product-desc" id="display-plan-desc"></p>
                                 <p class="product-billing-mode" id="display-billing-mode"></p>
+                                <p class="product-sac" id="display-sac-container" style="display:none;"><strong>SAC:</strong> <span id="display-sac"></span></p>
 
                                 <div id="display-price-breakdown" class="split-breakdown">
                                     <div class="split-row">
                                         <span>One-time design &amp; development fee</span> <span id="display-setup-amount"></span>
                                     </div>
+                                    <div class="split-row split-discount" id="display-setup-discount-row" style="display:none;">
+                                        <span>Less design &amp; development discount (<span id="display-setup-discount-percent">0</span>%)</span>
+                                        <span>- ₹<span id="display-setup-discount-amount">0</span></span>
+                                    </div>
                                     <div class="split-row">
                                         <span id="display-care-label">Platform Care</span> <span id="display-care-amount"></span>
+                                    </div>
+                                    <div class="split-row split-discount" id="display-care-discount-row" style="display:none;">
+                                        <span>Less Platform Care discount (<span id="display-care-discount-percent">0</span>%)</span>
+                                        <span>- ₹<span id="display-care-discount-amount">0</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -260,16 +309,24 @@
 
                         <div class="inv-totals">
                             <div class="total-row" id="row-discount" style="display:none;">
-                                <span>Discount:</span>
+                                <span>Total Discounts:</span>
                                 <span>- ₹<span id="display-discount">0</span></span>
                             </div>
                             <div class="total-row">
                                 <span>Taxable Amount:</span>
                                 <span>₹<span id="display-taxable">0</span></span>
                             </div>
-                            <div class="total-row" id="row-gst">
-                                <span>GST (<span id="display-gst-percent">18</span>%):</span>
-                                <span>₹<span id="display-gst-amount">0</span></span>
+                            <div class="total-row" id="row-cgst" style="display:none;">
+                                <span>CGST (<span id="display-cgst-percent">9</span>%):</span>
+                                <span>₹<span id="display-cgst-amount">0</span></span>
+                            </div>
+                            <div class="total-row" id="row-sgst" style="display:none;">
+                                <span>SGST (<span id="display-sgst-percent">9</span>%):</span>
+                                <span>₹<span id="display-sgst-amount">0</span></span>
+                            </div>
+                            <div class="total-row" id="row-igst" style="display:none;">
+                                <span>IGST (<span id="display-igst-percent">18</span>%):</span>
+                                <span>₹<span id="display-igst-amount">0</span></span>
                             </div>
                             <div class="total-row grand-total">
                                 <span>Grand Total:</span>
@@ -295,10 +352,15 @@
                         Note: Plan renews at ₹<span id="display-renewal-amount"></span>/year from Year 2 onwards.
                     </div>
 
+                    <div class="care-renewal-note" id="display-care-renewal-note">
+                        <strong>Platform Care Renewal</strong>
+                        <p id="display-care-renewal-text"></p>
+                    </div>
+
                     <!-- Footer -->
                     <div class="inv-footer">
-                        <p>By proceeding with this bill, you agree to the applicable service terms.</p>
-                        <p>This is a computer generated invoice and does not require a physical signature.</p>
+                        <p id="display-footer-terms">By proceeding with this bill, you agree to the applicable service terms.</p>
+                        <p id="display-footer-note">This is a computer generated invoice and does not require a physical signature.</p>
                     </div>
 
                 </div>

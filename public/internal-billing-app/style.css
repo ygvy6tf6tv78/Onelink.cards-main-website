@@ -153,6 +153,15 @@ body {
     color: var(--text-main);
 }
 
+.field-hint {
+    display: block;
+    margin-top: 0.1rem;
+    color: #64748B;
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="number"],
@@ -250,6 +259,7 @@ body {
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 /* Premium Watermark */
@@ -334,6 +344,7 @@ body {
     margin: 0 0 1rem 0;
     text-transform: uppercase;
     letter-spacing: 0.15em;
+    white-space: nowrap;
 }
 
 .inv-meta-grid {
@@ -399,6 +410,148 @@ body {
     font-size: 1.1rem;
     color: #111827;
     margin-bottom: 0.4rem;
+}
+
+.supplier-address {
+    margin-top: 0.2rem;
+}
+
+.product-sac {
+    margin-bottom: 0.45rem;
+    color: #374151;
+    font-size: 0.8rem;
+}
+
+/* GST tax invoices include more statutory information, so their rhythm is
+   intentionally tighter while preserving the same OneLink visual system. */
+.invoice-page.gst-invoice {
+    padding: 12mm 13mm;
+}
+
+.gst-invoice .inv-header {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.gst-invoice .inv-logo {
+    width: 58px;
+}
+
+.gst-invoice .inv-brand-wrapper {
+    gap: 0.85rem;
+}
+
+.gst-invoice .inv-brand-info h1 {
+    font-size: 1.75rem;
+}
+
+.gst-invoice .inv-tagline {
+    font-size: 0.78rem;
+}
+
+.gst-invoice .inv-company {
+    max-width: 285px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.gst-invoice .inv-title {
+    margin-bottom: 0.65rem;
+    font-size: 1.35rem;
+    letter-spacing: 0.09em;
+}
+
+.gst-invoice .inv-meta-grid {
+    margin-bottom: 0.45rem;
+    font-size: 0.8rem;
+}
+
+.gst-invoice .inv-addresses {
+    margin-bottom: 1rem;
+    padding: 0.85rem 0;
+    font-size: 0.73rem;
+    line-height: 1.46;
+}
+
+.gst-invoice .inv-address-box {
+    width: 48%;
+}
+
+.gst-invoice .inv-address-box h3 {
+    margin-bottom: 0.3rem;
+    font-size: 0.69rem;
+}
+
+.gst-invoice .inv-address-box .strong {
+    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+}
+
+.gst-invoice .inv-product-section {
+    margin-bottom: 0.9rem;
+}
+
+.gst-invoice .product-header {
+    margin-bottom: 0.8rem;
+}
+
+.gst-invoice .product-item {
+    padding-bottom: 0.8rem;
+}
+
+.gst-invoice .product-title {
+    font-size: 1rem;
+}
+
+.gst-invoice .product-subtitle,
+.gst-invoice .product-desc {
+    margin-bottom: 0.35rem;
+    font-size: 0.8rem;
+}
+
+.gst-invoice .product-billing-mode,
+.gst-invoice .product-sac,
+.gst-invoice .split-breakdown {
+    font-size: 0.75rem;
+}
+
+.gst-invoice .split-breakdown {
+    margin-top: 0.45rem;
+}
+
+.gst-invoice .inv-totals-wrapper {
+    margin-top: 0.85rem;
+}
+
+.gst-invoice .total-row {
+    padding: 0.3rem 0;
+    font-size: 0.82rem;
+}
+
+.gst-invoice .total-row.grand-total {
+    margin-top: 0.35rem;
+    padding: 0.55rem 0 0.35rem;
+    font-size: 1.08rem;
+}
+
+.gst-invoice .payment-structure-box {
+    margin-top: 0.45rem;
+    padding-top: 0.45rem;
+}
+
+.gst-invoice .inv-amount-words {
+    font-size: 0.8rem;
+}
+
+.gst-invoice .renewal-note {
+    margin-top: 0.85rem;
+    font-size: 0.75rem;
+}
+
+.gst-invoice .inv-footer {
+    padding-top: 0.5rem;
+    padding-bottom: 0;
+    font-size: 0.66rem;
 }
 
 .inv-product-section {
@@ -479,6 +632,11 @@ body {
 }
 .split-row:last-child {
     margin-bottom: 0;
+}
+
+.split-discount {
+    color: #087CBC;
+    font-weight: 600;
 }
 
 .product-amounts {
@@ -562,6 +720,64 @@ body {
     font-style: italic;
 }
 
+.care-renewal-note {
+    margin-top: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #CFEAF8;
+    border-left: 3px solid #00A9FF;
+    border-radius: 8px;
+    background: #F6FCFF;
+    color: #334155;
+    font-size: 0.76rem;
+    line-height: 1.5;
+}
+
+.care-renewal-note strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: #0F172A;
+    font-size: 0.78rem;
+}
+
+.non-gst-invoice .care-renewal-note {
+    margin-top: 0.8rem;
+    padding: 0.6rem 0.8rem;
+}
+
+.invoice-page.non-gst-invoice {
+    padding: 13mm;
+}
+
+.non-gst-invoice .inv-header {
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.9rem;
+}
+
+.non-gst-invoice .inv-addresses {
+    margin-bottom: 1.1rem;
+    padding: 0.8rem 0;
+}
+
+.non-gst-invoice .inv-product-section {
+    margin-bottom: 1.2rem;
+}
+
+.non-gst-invoice .product-header {
+    margin-bottom: 0.7rem;
+}
+
+.non-gst-invoice .product-item {
+    padding-bottom: 1rem;
+}
+
+.non-gst-invoice .inv-totals-wrapper {
+    margin-top: 1rem;
+}
+
+.non-gst-invoice .renewal-note {
+    margin-top: 0.8rem;
+}
+
 .inv-footer {
     margin-top: auto; /* Naturally pushes footer to bottom without overlapping */
     text-align: center;
@@ -580,6 +796,10 @@ body {
    PRINT STYLES
    ================================================== */
 @media print {
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
     body {
         background: white;
     }
@@ -600,7 +820,8 @@ body {
         min-height: auto;
     }
     .invoice-page {
-        padding: 0; /* Let the printer handle margins, or keep 20mm if printing borderless */
+        width: 210mm;
+        height: 297mm;
     }
     /* Hide the footer on screen if we want, but usually it's fine. */
 }

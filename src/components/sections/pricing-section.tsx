@@ -217,6 +217,18 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
           label={plan.ctaLabel}
           className={cn("mt-5 h-12 w-full rounded-[12px] text-[14px] font-bold transition-all active:scale-[0.98]", tone.button)}
         />
+        {isSignature ? (
+          <Link
+            href="/portfolio"
+            className="group mt-2.5 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[12px] border border-white/70 bg-white text-[12px] font-extrabold text-[#087cbc] shadow-[0_16px_34px_-24px_rgba(2,50,79,0.75)] transition hover:-translate-y-0.5 hover:bg-[#f3faff]"
+          >
+            View OneLink in Action
+            <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M3.5 8h9" />
+              <path d="M8.5 3l4.5 5-4.5 5" />
+            </svg>
+          </Link>
+        ) : null}
       </div>
     </article>
   );

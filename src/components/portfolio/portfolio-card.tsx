@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { PortfolioItem } from "@/content/portfolio";
 
 export function PortfolioCard({ item }: { item: PortfolioItem }) {
@@ -27,27 +28,35 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
           {item.title}
         </h3>
         <p className="mt-2 max-w-[42ch] text-[14px] font-normal leading-[1.6] text-[#64748b]">{item.description}</p>
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-2.5 inline-flex items-center gap-2 text-[14px] font-semibold text-[var(--foreground)] transition hover:text-[var(--accent-strong)]"
-        >
-          View Live
-          <svg
-            className="h-4 w-4"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
+        <div className="mt-4 grid grid-cols-2 gap-2.5">
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[13px] bg-[linear-gradient(135deg,#07517d_0%,#087cbc_100%)] px-4 text-[13px] font-bold text-white shadow-[0_16px_34px_-22px_rgba(0,91,141,0.72)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-22px_rgba(0,91,141,0.8)]"
           >
-            <path d="M3.5 8h9" />
-            <path d="M8.5 3l4.5 5-4.5 5" />
-          </svg>
-        </a>
+            View Live
+            <svg
+              className="h-4 w-4"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3.5 8h9" />
+              <path d="M8.5 3l4.5 5-4.5 5" />
+            </svg>
+          </a>
+          <Link
+            href="/book"
+            className="inline-flex min-h-11 items-center justify-center rounded-[13px] border border-[#00A9FF]/28 bg-white px-4 text-[13px] font-bold text-[#087cbc] shadow-[0_14px_30px_-24px_rgba(0,126,191,0.5)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/60 hover:bg-[#f2faff]"
+          >
+            Book Now
+          </Link>
+        </div>
       </div>
     </article>
   );

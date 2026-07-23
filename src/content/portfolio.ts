@@ -1,12 +1,15 @@
 import type { StaticImageData } from "next/image";
 import mangoImage from "../../Portfolio/mango.png";
 import burgerBazaarImage from "../../Portfolio/burger-bazaar.png";
+import vastukarImage from "../../Portfolio/vastukar.png";
+import smileHealthClinicImage from "../../Portfolio/smile-health-clinic.png";
 import honeyFreshImage from "../../Portfolio/honeyfreshnfrozen.png";
 import caRamitImage from "../../Portfolio/carammit.png";
 import meraHalwaiImage from "../../Portfolio/merahalwai.png";
 import honeyMoneyImage from "../../Portfolio/honeymoneyfishcompany.png";
 import jayEssImage from "../../Portfolio/jayess.png";
 import sonnetCafeMockup from "../../onelink_mockups/sonnet-cafe.png";
+import hotelMetropolisMockup from "../../onelink_mockups/hotel-metropolis.png";
 import poshakEHoorMockup from "../../onelink_mockups/poshak-e-hoor.png";
 import newVisionMockup from "../../onelink_mockups/new-vision.png";
 import linguaVibeMockup from "../../onelink_mockups/lingua-vibe.png";
@@ -39,6 +42,33 @@ export const portfolioItems: PortfolioItem[] = [
     description: "A clear digital experience for services, patient enquiries, location and contact actions.",
     href: "https://newvision.onelink.cards/",
     image: newVisionMockup,
+  },
+  {
+    id: "smile-health-clinic",
+    title: "Smile Health Clinic",
+    category: "Clinics & Doctors",
+    label: "Clinic",
+    description: "A patient-friendly clinic profile for services, appointments, location and direct healthcare enquiries.",
+    href: "https://smilehealthclinic.onelink.cards/",
+    image: smileHealthClinicImage,
+  },
+  {
+    id: "metropolis-hotel",
+    title: "Hotel Metropolis",
+    category: "Hotels",
+    label: "Hotel",
+    description: "A hospitality-focused experience for rooms, amenities, bookings, location and direct guest enquiries.",
+    href: "https://metropolis.onelink.cards/",
+    image: hotelMetropolisMockup,
+  },
+  {
+    id: "vastukar",
+    title: "Vastukar",
+    category: "Architects",
+    label: "Architect",
+    description: "An architecture-focused profile for services, project discovery, consultations and direct client enquiries.",
+    href: "https://vastukar.onelink.cards/",
+    image: vastukarImage,
   },
   {
     id: "burger-bazaar",

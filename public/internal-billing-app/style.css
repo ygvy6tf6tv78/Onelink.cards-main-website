@@ -543,9 +543,10 @@ body {
     font-size: 0.8rem;
 }
 
-.gst-invoice .renewal-note {
-    margin-top: 0.85rem;
-    font-size: 0.75rem;
+.gst-invoice .scope-note {
+    margin-top: 0.65rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.68rem;
 }
 
 .gst-invoice .inv-footer {
@@ -713,11 +714,27 @@ body {
 .p-paid { font-weight: 600; color: #111827; }
 .p-due { font-weight: 700; color: #111827; }
 
-.renewal-note {
-    margin-top: 1.5rem; /* Reduced to avoid pushing footer out of bounds */
-    font-size: 0.85rem;
-    color: #4B5563;
-    font-style: italic;
+.scope-note {
+    margin-top: 0.85rem;
+    padding: 0.62rem 0.8rem;
+    border: 1px solid #E2E8F0;
+    border-left: 3px solid #64748B;
+    border-radius: 8px;
+    background: #F8FAFC;
+    color: #475569;
+    font-size: 0.72rem;
+    line-height: 1.45;
+}
+
+.scope-note strong {
+    display: block;
+    margin-bottom: 0.16rem;
+    color: #0F172A;
+    font-size: 0.75rem;
+}
+
+.scope-note p {
+    margin: 0;
 }
 
 .care-renewal-note {
@@ -774,7 +791,7 @@ body {
     margin-top: 1rem;
 }
 
-.non-gst-invoice .renewal-note {
+.non-gst-invoice .scope-note {
     margin-top: 0.8rem;
 }
 

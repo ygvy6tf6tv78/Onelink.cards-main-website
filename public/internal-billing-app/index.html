@@ -203,8 +203,8 @@
                         <input type="number" id="gst-percent" value="18" readonly>
                     </div>
                     <div class="form-group" style="margin-top: 1rem;">
-                        <label>Invoice Note (Optional)</label>
-                        <textarea id="invoice-note" rows="2" placeholder="e.g. Plan renews at ₹2,499/year from Year 2 onwards."></textarea>
+                        <label>Customer Scope Note <span class="field-hint">Editable</span></label>
+                        <textarea id="invoice-note" rows="3" placeholder="Add the exact scope or customer note shown on the invoice.">This invoice covers only the OneLink Digital Smart Business Page, selected plan features and Platform Care stated above. Any service, integration, deliverable or commitment not expressly listed in this invoice is outside scope and requires separate written approval and pricing.</textarea>
                     </div>
                 </div>
 
@@ -348,8 +348,9 @@
                         </div>
                     </div>
 
-                    <div class="renewal-note" id="display-renewal-note" style="display:none;">
-                        Note: Plan renews at ₹<span id="display-renewal-amount"></span>/year from Year 2 onwards.
+                    <div class="scope-note" id="display-scope-note">
+                        <strong>Scope Note</strong>
+                        <p id="display-scope-note-text"></p>
                     </div>
 
                     <div class="care-renewal-note" id="display-care-renewal-note">

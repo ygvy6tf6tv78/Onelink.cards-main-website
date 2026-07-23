@@ -15,12 +15,14 @@ type CategoryFilter = {
 const categoryFilters: CategoryFilter[] = [
   { id: "all", label: "All Work", ids: null },
   { id: "restaurants", label: "Restaurants", ids: ["burger-bazaar", "mango", "sonnet-cafe"] },
+  { id: "architects", label: "Architects", ids: ["vastukar"] },
+  { id: "clinics", label: "Clinics & Doctors", ids: ["new-vision", "smile-health-clinic"] },
+  { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"] },
   { id: "retail", label: "Retail Shops", ids: ["poshak-e-hoor"] },
   { id: "startups", label: "Startups", ids: ["mera-halwai"] },
   { id: "cas", label: "CAs", ids: ["ca-ramit"] },
   { id: "professional", label: "Professional Services", ids: ["ca-ramit", "jay-ess"] },
   { id: "products", label: "Products", ids: ["honey-fresh", "honey-money"] },
-  { id: "clinics", label: "Clinics & Doctors", ids: ["new-vision"] },
   { id: "education", label: "Education", ids: ["lingua-vibe"] },
   { id: "custom", label: "Custom", ids: [] },
 ] as const;
@@ -38,17 +40,17 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
 
   return (
     <>
-      <div className="mt-8 flex flex-wrap gap-2">
+      <div className="thin-scrollbar -mx-5 mt-8 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
         {categoryFilters.map((filter) => (
           <button
             key={filter.id}
             type="button"
             onClick={() => setActiveFilter(filter.id)}
             className={cn(
-              "rounded-full border px-4 py-2 text-[12px] font-bold uppercase tracking-[0.12em] transition",
+              "inline-flex min-h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-full border px-4 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition sm:min-h-9 sm:tracking-[0.12em]",
               activeFilter === filter.id
                 ? "border-[#00A9FF] bg-[#00A9FF] text-white shadow-[0_16px_32px_-18px_rgba(0,169,255,0.55)]"
-                : "border-black/8 bg-white/80 text-[#475569] hover:border-[#00A9FF]/30 hover:text-[#0369A1]",
+                : "border-black/8 bg-white text-[#475569] shadow-[0_10px_28px_-24px_rgba(15,23,42,0.45)] hover:border-[#00A9FF]/30 hover:text-[#0369A1]",
             )}
           >
             {filter.label}

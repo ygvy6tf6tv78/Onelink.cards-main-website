@@ -108,7 +108,8 @@ const disp = {
     labelPaid: document.getElementById('label-paid'),
     paidAmt: document.getElementById('display-paid-amount'),
     balance: document.getElementById('display-balance-due'),
-    renewalNote: document.getElementById('display-renewal-note'),
+    scopeNote: document.getElementById('display-scope-note'),
+    scopeNoteText: document.getElementById('display-scope-note-text'),
     careRenewalText: document.getElementById('display-care-renewal-text'),
     amountWords: document.getElementById('display-amount-words'),
     footerTerms: document.getElementById('display-footer-terms'),
@@ -313,8 +314,8 @@ function renderInvoice() {
     disp.paidAmt.textContent = money(paidAmount);
     disp.balance.textContent = money(roundTo2(total - paidAmount));
 
-    disp.renewalNote.style.display = els.invoiceNote.value.trim() ? 'block' : 'none';
-    disp.renewalNote.textContent = els.invoiceNote.value.trim();
+    disp.scopeNote.style.display = els.invoiceNote.value.trim() ? 'block' : 'none';
+    disp.scopeNoteText.textContent = els.invoiceNote.value.trim();
     disp.careRenewalText.textContent = `${careLabels[els.care.value]} Platform Care is included in this invoice. After this period ends, Platform Care must be renewed to continue ongoing support, updates and maintenance at the then-applicable plan price. Design & Development is a one-time fee and does not renew.`;
     disp.footerTerms.textContent = isGst
         ? 'By proceeding with this invoice, you agree to our Terms & Conditions. For details, visit kriyon.com/legal'

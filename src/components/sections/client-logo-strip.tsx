@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 
 const trustStats = [
-  { value: 26, suffix: "+", label: "Businesses onboarded" },
+  { value: 20, suffix: "+", label: "OneLinks made" },
   { value: 15, suffix: "+", label: "Business categories" },
   { value: 50, suffix: "+", label: "Customer actions enabled" },
 ];

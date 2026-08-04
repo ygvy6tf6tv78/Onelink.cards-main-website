@@ -169,12 +169,12 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
                   onClick={() => setSelectedCare(row.id)}
                   aria-pressed={selectedCare === row.id}
                   className={cn(
-                    "relative mt-2 flex min-h-[68px] min-w-0 flex-col items-center justify-start rounded-[12px] border px-1.5 pb-2 pt-[21px] text-center transition duration-200",
+                    "relative mt-2 flex min-h-[78px] min-w-0 flex-col items-center justify-center rounded-[12px] border px-1.5 pb-3 pt-5 text-center transition duration-200",
                     selectedCare === row.id ? tone.selectorActive : isSignature ? "border-white/16 bg-white/[0.08] text-white/80" : "border-[#e2e8f0] bg-white/70 text-[#64748B]",
                   )}
                 >
                   <span className={cn(
-                    "absolute left-1/2 top-0 z-10 inline-flex min-h-7 min-w-[68px] -translate-x-1/2 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-full border bg-white px-2 py-2 text-[9px] font-extrabold leading-none tracking-[-0.015em] text-[#075b88] shadow-[0_5px_12px_-7px_rgba(3,80,122,0.62)] tabular-nums sm:min-w-[74px] sm:text-[10px]",
+                    "absolute left-1/2 top-0 z-10 inline-flex min-h-6 min-w-[68px] -translate-x-1/2 -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-full border bg-white px-2 py-1.5 text-[9px] font-extrabold leading-none tracking-[-0.015em] text-[#075b88] shadow-[0_5px_12px_-7px_rgba(3,80,122,0.62)] tabular-nums sm:min-w-[74px] sm:text-[10px]",
                     selectedCare === row.id
                       ? "border-[#00A9FF]"
                       : "border-[#cfe5f1]",

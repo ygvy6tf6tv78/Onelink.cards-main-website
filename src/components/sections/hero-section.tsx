@@ -5,6 +5,7 @@ import { ActionLink } from "@/components/ui/action-link";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { siteConfig } from "@/content/site";
 import { Icon } from "@/components/icons";
+import styles from "./hero-section.module.css";
 
 const heroIntegrations = [
   { label: "Google Reviews", image: "/integration-logos/google-reviews.png", imageClass: "h-7 w-auto max-w-[78px]" },
@@ -23,7 +24,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24 bg-gradient-to-b from-transparent via-[#f5f9fc]/65 to-[#f5f9fc] lg:hidden"
         aria-hidden
       />
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 md:gap-7 md:pb-10 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:px-8 lg:pb-14 lg:pt-[134px] xl:gap-16 xl:pb-24 xl:pt-[160px]">
+      <div className={`${styles.heroGrid} relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 md:gap-7 md:pb-10 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-[160px]`}>
         <div className="flex min-w-0 flex-col items-start justify-center text-left">
           <HeroEntrance delay={0.03} x={-18} y={8}>
             <SectionBadge label="One smart business page" className="mt-8 sm:mt-4" />
@@ -104,7 +105,7 @@ export function HeroSection() {
           </div>
           </HeroEntrance>
         </div>
-        <HeroEntrance delay={0.14} x={28} y={16} className="relative min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-[94%] lg:justify-self-end lg:pt-1 xl:w-auto">
+        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} relative min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">

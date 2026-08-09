@@ -1,0 +1,14 @@
+/* Keep the original desktop composition intact and compact only touch-first iPads. */
+@media (hover: none) and (pointer: coarse) and (min-width: 1024px) and (max-width: 1366px) {
+  .heroGrid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2.5rem;
+    padding-top: 8.375rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .heroVisual {
+    width: 94%;
+    justify-self: end;
+  }
+}

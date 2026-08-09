@@ -60,7 +60,7 @@ export function DemoShowcaseSection() {
             </div>
           </div>
 
-          <div className="mt-7 flex flex-wrap justify-center gap-2 sm:mt-8 sm:gap-2.5">
+          <div className="mt-7 flex flex-wrap justify-center gap-2 sm:mt-8 sm:gap-2.5 md:mx-auto md:grid md:max-w-4xl md:grid-cols-4 lg:max-w-5xl xl:flex xl:max-w-none">
             {categories.map(categoryButton)}
             <Link
               href="/portfolio"
@@ -76,9 +76,9 @@ export function DemoShowcaseSection() {
         </Reveal>
 
         {visibleItems.length > 0 ? (
-          <div key={activeCategory} className="mt-10 grid gap-x-6 gap-y-9 md:grid-cols-2 xl:grid-cols-3">
+          <div key={activeCategory} className="mt-10 grid gap-x-5 gap-y-9 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 xl:gap-x-6">
             {visibleItems.map((item, index) => (
-              <Reveal key={item.id} delay={index * 0.07} x={index % 2 === 0 ? -30 : 30} y={16} className="relative z-10">
+              <Reveal key={item.id} delay={index * 0.07} x={index % 2 === 0 ? -30 : 30} y={16} className="relative z-10 md:last:col-span-2 md:last:mx-auto md:last:w-[calc(50%-10px)] lg:last:col-span-1 lg:last:mx-0 lg:last:w-auto">
                 <PortfolioCard item={item} />
               </Reveal>
             ))}

@@ -40,7 +40,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
 
   return (
     <>
-      <div className="thin-scrollbar -mx-5 mt-8 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
+      <div className="thin-scrollbar -mx-5 mt-8 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0 md:grid md:grid-cols-4 md:overflow-visible md:pb-0 xl:flex xl:flex-wrap">
         {categoryFilters.map((filter) => (
           <button
             key={filter.id}
@@ -59,7 +59,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
       </div>
 
       {visibleItems.length > 0 ? (
-        <div className="mt-12 grid gap-x-7 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-7">
           {visibleItems.map((item, index) => (
             <Reveal key={item.id} delay={index * 0.04}>
               <PortfolioCard item={item} />

@@ -13,7 +13,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
             src={item.image}
             alt={`${item.title} OneLink portfolio preview`}
             quality={92}
-            sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+            sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
             className="h-auto w-full rounded-[20px] object-contain transition duration-500 ease-out group-hover:scale-[1.02] sm:rounded-[23px]"
           />
           </div>

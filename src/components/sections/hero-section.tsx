@@ -23,7 +23,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24 bg-gradient-to-b from-transparent via-[#f5f9fc]/65 to-[#f5f9fc] lg:hidden"
         aria-hidden
       />
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-[160px]">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 md:gap-7 md:pb-10 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:px-8 lg:pb-14 lg:pt-[134px] xl:gap-16 xl:pb-24 xl:pt-[160px]">
         <div className="flex min-w-0 flex-col items-start justify-center text-left">
           <HeroEntrance delay={0.03} x={-18} y={8}>
             <SectionBadge label="One smart business page" className="mt-8 sm:mt-4" />
@@ -34,7 +34,7 @@ export function HeroSection() {
             </a>
           </HeroEntrance>
           <HeroEntrance delay={0.17} x={-24} y={10}>
-            <h1 className="font-display mt-5 max-w-none text-[40px] font-[780] leading-[1.02] tracking-[-0.05em] sm:mt-6 sm:text-[50px] lg:text-[52px] xl:text-[56px]">
+            <h1 className="font-display mt-5 max-w-none text-[40px] font-[780] leading-[1.02] tracking-[-0.05em] sm:mt-6 sm:text-[50px] md:text-[46px] lg:text-[48px] xl:text-[56px]">
               <span className="block whitespace-nowrap text-[var(--foreground)]">Stop sharing links.</span>
               <span className="mt-1 block whitespace-nowrap text-[var(--accent)]">Share OneLink.</span>
             </h1>
@@ -104,7 +104,7 @@ export function HeroSection() {
           </div>
           </HeroEntrance>
         </div>
-        <HeroEntrance delay={0.14} x={28} y={16} className="relative min-w-0 overflow-visible pt-2 pb-2 sm:pb-0 sm:pt-0 lg:pt-1">
+        <HeroEntrance delay={0.14} x={28} y={16} className="relative min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-[94%] lg:justify-self-end lg:pt-1 xl:w-auto">
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">

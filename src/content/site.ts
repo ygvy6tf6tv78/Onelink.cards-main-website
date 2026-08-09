@@ -167,7 +167,7 @@ export const siteConfig = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "Portfolio", href: "/#work" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Pricing", href: "/#pricing" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Support", href: "/#faqs" },

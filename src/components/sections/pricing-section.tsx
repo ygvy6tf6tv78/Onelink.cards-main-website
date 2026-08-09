@@ -333,7 +333,8 @@ function PricingPackageBuilder() {
       </div>
 
       {isOpen ? (
-        <div id="pricing-package-builder" className="mt-5 overflow-hidden rounded-[22px] border border-[#a9dcf3] bg-white shadow-[0_28px_64px_-40px_rgba(0,90,140,0.5)]">
+        <div id="pricing-package-builder" className="relative mt-5 overflow-hidden rounded-[22px] border border-[#a9dcf3] bg-white shadow-[0_28px_64px_-40px_rgba(0,90,140,0.5)]">
+          <div className="pointer-events-none absolute inset-x-8 top-0 z-10 h-px bg-[linear-gradient(90deg,transparent,#00a9ff,transparent)] opacity-75" />
           <div className="grid gap-0 lg:grid-cols-[1fr_1fr_1.12fr]">
             <div className="border-b border-[#e3edf3] p-5 sm:p-7 lg:border-b-0 lg:border-r">
               <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[#087cbc]">Step 1</p>

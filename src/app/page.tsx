@@ -25,7 +25,7 @@ const structuredData = [
     url: "https://www.onelink.cards/",
     logo: {
       "@type": "ImageObject",
-      url: "https://www.onelink.cards/Group%201000008683.png",
+      url: "https://www.onelink.cards/onelink-primary-logo.png",
     },
     description: "OneLink is a premium mobile-first smart business page and customer-action platform.",
     parentOrganization: {

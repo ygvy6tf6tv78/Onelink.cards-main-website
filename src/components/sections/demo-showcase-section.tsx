@@ -6,6 +6,8 @@ import { portfolioItems } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
+import { Icon } from "@/components/icons";
+import type { IconName } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const featuredIds = ["burger-bazaar", "new-vision", "vastukar"];
@@ -24,6 +26,16 @@ const categories = [
   "Education",
 ];
 
+const categoryIcons: Record<string, IconName> = {
+  All: "spark",
+  Restaurants: "menu",
+  Architects: "building",
+  "Clinics & Doctors": "form",
+  Hotels: "building",
+  "Retail Shops": "wallet",
+  Education: "chart",
+};
+
 export function DemoShowcaseSection() {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -37,12 +49,13 @@ export function DemoShowcaseSection() {
       type="button"
       onClick={() => setActiveCategory(category)}
       className={cn(
-        "inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-full border px-3.5 py-2 text-[11px] font-bold tracking-[-0.01em] transition-all sm:min-h-10 sm:px-5 sm:text-[13px]",
+        "group inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-2 text-[11px] font-bold tracking-[-0.01em] transition-all duration-300 sm:min-h-10 sm:gap-2 sm:px-5 sm:text-[13px]",
         activeCategory === category
-          ? "border-[#0f172a] bg-[#0f172a] text-white shadow-[0_12px_28px_-18px_rgba(15,23,42,0.75)]"
-          : "border-[#dbeaf3] bg-white text-[#475569] shadow-[0_10px_26px_-24px_rgba(15,23,42,0.5)] hover:border-[#00A9FF]/35 hover:text-[#0077b5]",
+          ? "border-[#237fd9] bg-[linear-gradient(135deg,#09223E_0%,#064083_54%,#0077FF_100%)] text-white shadow-[0_14px_30px_-17px_rgba(0,70,160,0.72)]"
+          : "border-[#d5e4f1] bg-white text-[#475569] shadow-[0_10px_26px_-24px_rgba(15,23,42,0.5)] hover:-translate-y-0.5 hover:border-[#78b7ec] hover:text-[#064083]",
       )}
     >
+      <Icon name={categoryIcons[category]} className={cn("h-3.5 w-3.5 transition-transform group-hover:scale-110", activeCategory === category ? "text-white" : "text-[#0077d4]")} />
       {category}
     </button>
   );
@@ -60,7 +73,7 @@ export function DemoShowcaseSection() {
             </div>
           </div>
 
-          <div className="mt-7 flex flex-wrap justify-center gap-2 sm:mt-8 sm:gap-2.5 md:mx-auto md:grid md:max-w-4xl md:grid-cols-4 lg:max-w-5xl xl:flex xl:max-w-none">
+          <div className="mx-auto mt-7 flex max-w-5xl flex-wrap justify-center gap-2 sm:mt-8 sm:gap-2.5 md:grid md:grid-cols-4 xl:flex xl:max-w-none">
             {categories.map(categoryButton)}
             <Link
               href="/portfolio"

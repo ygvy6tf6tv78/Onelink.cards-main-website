@@ -4,27 +4,30 @@ import { useMemo, useState } from "react";
 import type { PortfolioItem } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
+import { Icon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import type { IconName } from "@/content/site";
 
 type CategoryFilter = {
   id: string;
   label: string;
   ids: string[] | null;
+  icon: IconName;
 };
 
 const categoryFilters: CategoryFilter[] = [
-  { id: "all", label: "All Work", ids: null },
-  { id: "restaurants", label: "Restaurants", ids: ["burger-bazaar", "mango", "sonnet-cafe"] },
-  { id: "architects", label: "Architects", ids: ["vastukar"] },
-  { id: "clinics", label: "Clinics & Doctors", ids: ["new-vision", "smile-health-clinic"] },
-  { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"] },
-  { id: "retail", label: "Retail Shops", ids: ["poshak-e-hoor"] },
-  { id: "startups", label: "Startups", ids: ["mera-halwai"] },
-  { id: "cas", label: "CAs", ids: ["ca-ramit"] },
-  { id: "professional", label: "Professional Services", ids: ["ca-ramit", "jay-ess"] },
-  { id: "products", label: "Products", ids: ["honey-fresh", "honey-money"] },
-  { id: "education", label: "Education", ids: ["lingua-vibe"] },
-  { id: "custom", label: "Custom", ids: [] },
+  { id: "all", label: "All Work", ids: null, icon: "spark" },
+  { id: "restaurants", label: "Restaurants", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
+  { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
+  { id: "clinics", label: "Clinics & Doctors", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
+  { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"], icon: "building" },
+  { id: "retail", label: "Retail Shops", ids: ["poshak-e-hoor"], icon: "wallet" },
+  { id: "startups", label: "Startups", ids: ["mera-halwai"], icon: "bolt" },
+  { id: "cas", label: "CAs", ids: ["ca-ramit"], icon: "invoice" },
+  { id: "professional", label: "Professional Services", ids: ["ca-ramit", "jay-ess"], icon: "form" },
+  { id: "products", label: "Products", ids: ["honey-fresh", "honey-money"], icon: "gallery" },
+  { id: "education", label: "Education", ids: ["lingua-vibe"], icon: "chart" },
+  { id: "custom", label: "Custom", ids: [], icon: "spark" },
 ] as const;
 
 export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
@@ -47,12 +50,13 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
             type="button"
             onClick={() => setActiveFilter(filter.id)}
             className={cn(
-              "inline-flex min-h-10 shrink-0 items-center justify-center whitespace-nowrap rounded-full border px-4 py-2 text-[12px] font-bold uppercase tracking-[0.1em] transition sm:min-h-9 sm:tracking-[0.12em]",
+              "group inline-flex min-h-10 shrink-0 snap-start items-center justify-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.075em] transition-all duration-300 sm:min-h-10 sm:text-[12px] sm:tracking-[0.1em]",
               activeFilter === filter.id
-                ? "border-[#00A9FF] bg-[#00A9FF] text-white shadow-[0_16px_32px_-18px_rgba(0,169,255,0.55)]"
-                : "border-black/8 bg-white text-[#475569] shadow-[0_10px_28px_-24px_rgba(15,23,42,0.45)] hover:border-[#00A9FF]/30 hover:text-[#0369A1]",
+                ? "border-[#237fd9] bg-[linear-gradient(135deg,#09223E_0%,#064083_54%,#0077FF_100%)] text-white shadow-[0_16px_34px_-18px_rgba(0,70,160,0.7)]"
+                : "border-[#d5e4f1] bg-white text-[#475569] shadow-[0_10px_28px_-24px_rgba(15,23,42,0.45)] hover:-translate-y-0.5 hover:border-[#78b7ec] hover:text-[#064083]",
             )}
           >
+            <Icon name={filter.icon} className={cn("h-3.5 w-3.5 transition-transform group-hover:scale-110", activeFilter === filter.id ? "text-white" : "text-[#0077d4]")} />
             {filter.label}
           </button>
         ))}

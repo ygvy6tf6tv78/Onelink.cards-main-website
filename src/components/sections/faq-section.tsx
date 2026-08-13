@@ -114,7 +114,7 @@ export function FaqSection() {
                       <div className="px-5 pb-5 pt-0 sm:px-6">
                         <p className="max-w-[65ch] text-[14px] font-normal leading-[1.72] text-[#64748b] sm:text-[15px]">{faq.answer}</p>
                         <div className="mt-4 flex items-center gap-2 border-t border-[#e8f0f5] pt-4 text-[11px] font-bold uppercase tracking-[0.09em] text-[#00A9FF]">
-                          <Image src="/component-13.svg" alt="" width={14} height={16} className="h-3.5 w-auto" aria-hidden="true" />
+                          <Image src="/onelink-logomark.png" alt="" width={3492} height={4652} className="h-3.5 w-auto object-contain" aria-hidden="true" />
                           Answered by OneLink Team
                         </div>
                       </div>

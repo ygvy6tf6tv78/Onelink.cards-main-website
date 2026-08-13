@@ -11,7 +11,6 @@ import { cn, formatCurrencyDetailed } from "@/lib/utils";
 const internalPlans = pricingPlans.filter((plan) => ["essential", "signature", "elite"].includes(plan.id));
 
 const durationLabels: Record<string, string> = {
-  "1-month": "1 Month",
   "3-month": "3 Months",
   "6-month": "6 Months",
   "12-month": "12 Months",

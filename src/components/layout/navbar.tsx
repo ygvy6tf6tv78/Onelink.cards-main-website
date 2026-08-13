@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { navItems, siteConfig } from "@/content/site";
-import { BrandMark } from "@/components/ui/brand-mark";
+import { Wordmark } from "@/components/ui/brand-mark";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@/components/icons";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(
     "Hello OneLink, I want to discuss OneLink for my business.",
   )}`;
@@ -24,33 +25,34 @@ export function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-4 z-[100] sm:top-6">
+    <header className="fixed inset-x-0 top-3 z-[100] sm:top-4">
       <motion.div
         initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white/70 bg-white/92 shadow-[0_12px_34px_rgba(15,23,42,0.11)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/76",
+          "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white/70 bg-white/94 shadow-[0_12px_34px_rgba(15,23,42,0.11)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/82",
           isMenuOpen ? "rounded-[22px]" : "rounded-[18px] sm:rounded-[22px]",
         )}
       >
-        <div className="grid min-h-[64px] grid-cols-[1fr_auto] items-center gap-3 px-5 py-2 sm:min-h-[72px] sm:px-6 lg:grid-cols-[minmax(180px,1fr)_auto_minmax(280px,1fr)] lg:gap-8">
-          <Link href="/" className="group flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3">
-            <BrandMark
-              className="h-10 w-10 shrink-0 rounded-[14px] bg-[#f7fbff] transition-all group-hover:scale-105 sm:h-12 sm:w-12 sm:rounded-[16px]"
-              imageClassName="w-[26px] sm:w-[31px]"
-            />
-            <div className="min-w-0">
-              <p className="font-display whitespace-nowrap text-[1.15rem] font-extrabold tracking-[-0.045em] text-[#111827] sm:text-[1.35rem]">
-                OneLink
-              </p>
-              <p className="hidden text-[11px] font-semibold uppercase tracking-[0.12em] text-[#9ca3af] lg:block">Smart Business Page</p>
-            </div>
+        <div className="grid min-h-[60px] grid-cols-[1fr_auto] items-center gap-3 px-4 py-2 sm:min-h-[66px] sm:px-6 lg:grid-cols-[minmax(180px,1fr)_auto_minmax(280px,1fr)] lg:gap-8">
+          <Link href="/" aria-label="OneLink home" className="group flex min-w-0 shrink-0 flex-col items-start justify-center">
+            <Wordmark priority className="!h-auto !w-[106px] transition-transform duration-300 group-hover:scale-[1.025] sm:!w-[124px]" />
+            <span className="mt-0.5 pl-[2px] text-[7px] font-extrabold uppercase leading-none tracking-[0.18em] text-[#718096] sm:text-[8px]">
+              Smart Business Pages
+            </span>
           </Link>
 
           <div className="hidden items-center justify-center lg:flex">
-            <nav className="flex items-center gap-8 text-[14px] font-semibold text-[#111827] xl:gap-11 xl:text-[15px]">
+            <nav className="flex items-center gap-8 text-[13px] font-semibold text-[#263548] xl:gap-11 xl:text-[14px]">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -69,17 +71,17 @@ export function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="Chat with OneLink on WhatsApp"
-              className="flex h-11 w-11 items-center justify-center gap-2 rounded-[14px] border border-black/8 bg-white text-[#25D366] shadow-[0_10px_24px_rgba(14,30,37,0.05)] transition hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:bg-[#f6fff9] lg:h-10 lg:w-auto lg:px-3"
+              className="flex h-10 w-10 items-center justify-center gap-2 rounded-[12px] border border-black/8 bg-white text-[#25D366] shadow-[0_10px_24px_rgba(14,30,37,0.05)] transition hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:bg-[#f6fff9] lg:w-auto lg:px-3"
             >
               <Icon name="whatsapp" className="h-5 w-5 lg:h-[18px] lg:w-[18px]" />
               <span className="hidden text-[13px] font-semibold text-[#111827] lg:inline">WhatsApp</span>
             </a>
             <Link
               href="/#pricing"
-              className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[#00A9FF] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_8px_20px_-6px_rgba(0,169,255,0.4)] transition hover:-translate-y-0.5 hover:bg-[#0089FF] lg:inline-flex"
+              className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_10px_24px_-8px_rgba(0,80,170,0.48)] transition hover:-translate-y-0.5 hover:brightness-110 lg:inline-flex"
             >
               <span>Get OneLink</span>
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-[#00A9FF]">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#00A9FF]">
                 <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M3.5 8h9" />
                   <path d="M8.5 3l4.5 5-4.5 5" />
@@ -88,7 +90,7 @@ export function Navbar() {
             </Link>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="group flex h-11 w-11 items-center justify-center rounded-[14px] border border-black/8 bg-white text-[#151515] shadow-sm transition-all active:scale-95 lg:hidden"
+              className="group flex h-10 w-10 items-center justify-center rounded-[12px] border border-black/8 bg-white text-[#151515] shadow-sm transition-all active:scale-95 lg:hidden"
               aria-label="Toggle Menu"
             >
               <div className="relative flex h-5 w-5 flex-col items-center justify-center">
@@ -163,6 +165,23 @@ export function Navbar() {
           )}
         </AnimatePresence>
       </motion.div>
+      <Link
+        href="/#pricing"
+        aria-label="View Limited Independence Day Offer pricing"
+        className={cn(
+          "mx-auto mt-2 flex h-7 w-[calc(100%-48px)] max-w-[760px] items-center overflow-hidden rounded-full border border-white/80 bg-[linear-gradient(90deg,#ff9933_0%,#fff7e8_48%,#ffffff_52%,#eaf8ea_64%,#138808_100%)] text-[#09223E] shadow-[0_12px_28px_-18px_rgba(9,34,62,0.52)] transition-all duration-300 sm:h-8",
+          isScrolled && "pointer-events-none -translate-y-2 opacity-0",
+        )}
+      >
+        <span className="one-marquee-left special-pricing-marquee flex w-max items-center whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.13em] sm:text-[9px]">
+          {[0, 1, 2, 3].map((item) => (
+            <span key={item} className="inline-flex items-center gap-3 pr-8">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#09223E] shadow-[0_0_8px_rgba(9,34,62,0.28)]" />
+              Limited Independence Day Offer
+            </span>
+          ))}
+        </span>
+      </Link>
     </header>
   );
 }

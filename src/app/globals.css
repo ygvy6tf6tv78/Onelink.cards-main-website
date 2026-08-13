@@ -306,6 +306,11 @@ button {
   animation: border-shine-rotate 3.4s linear infinite;
 }
 
+.offer-shine-thin::before {
+  padding: 1px;
+  animation-duration: 4.8s;
+}
+
 .accent-dot::before {
   content: "";
   width: 0.45rem;
@@ -330,6 +335,10 @@ button {
 
 .one-marquee-left {
   animation: one-marquee-left 120s linear infinite;
+}
+
+.special-pricing-marquee {
+  animation-duration: 36s;
 }
 
 .one-marquee-right {

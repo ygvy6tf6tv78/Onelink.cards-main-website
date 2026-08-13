@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { SectionBadge } from "@/components/ui/section-badge";
@@ -13,6 +14,7 @@ export function ContactSection() {
           <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(140deg,#04182f_0%,#073b67_48%,#075986_100%)] px-6 py-12 text-center shadow-[0_30px_78px_-46px_rgba(3,31,58,0.68)] sm:px-10 sm:py-14">
             <div className="pointer-events-none absolute -left-16 -top-20 h-52 w-52 rounded-full bg-[#00A9FF]/18 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -right-12 h-56 w-56 rounded-full bg-[#00A9FF]/18 blur-3xl" />
+            <Image src="/onelink-logomark.png" alt="" width={3492} height={4652} className="pointer-events-none absolute -bottom-20 -right-4 h-[250px] w-auto rotate-[-8deg] object-contain opacity-[0.045] sm:right-8 sm:h-[320px]" aria-hidden="true" />
             <div className="relative"><SectionBadge label="Ready to Launch" className="!border-white !bg-white !text-[#00A9FF] shadow-[0_14px_30px_-20px_rgba(0,0,0,0.55)]" /></div>
             <h2 className="font-display type-section-title relative mx-auto mt-4 max-w-2xl text-white">
               Ready to launch your OneLink?

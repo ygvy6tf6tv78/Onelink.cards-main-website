@@ -23,7 +23,7 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
       sessionStorage.setItem("splashPlayed", "true");
       document.body.style.overflow = "unset";
       window.setTimeout(() => onComplete?.(), 80);
-    }, 820);
+    }, 2000);
 
     return () => {
       window.clearTimeout(timer);
@@ -53,7 +53,7 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
                   className="h-full w-full origin-left rounded-full bg-[linear-gradient(90deg,#087cbc_0%,#00A9FF_60%,#55c5ff_100%)] shadow-[0_0_12px_rgba(0,169,255,0.3)]"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
+                  transition={{ duration: 1.75, ease: [0.33, 1, 0.68, 1] }}
                 />
               </div>
             </div>

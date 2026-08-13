@@ -32,7 +32,7 @@ export function QrExperienceSection() {
           <div id="qr-examples" className="mx-auto mt-9 grid w-full max-w-4xl scroll-mt-28 gap-5 md:grid-cols-2">
             {qrCards.map((card, index) => (
               <Reveal key={card.src} delay={index * 0.07} x={index === 0 ? -30 : 30} y={14}>
-                <div className="group overflow-hidden rounded-[11px] border border-slate-900/[0.08] bg-white p-1 shadow-[0_16px_42px_-34px_rgba(15,23,42,0.32)] transition duration-300 hover:-translate-y-0.5 hover:border-[#00A9FF]/20">
+                <div className="group overflow-hidden rounded-[22px] border border-[#dceaf2] bg-white p-1.5 shadow-[0_22px_52px_-38px_rgba(15,23,42,0.34)] transition duration-300 hover:-translate-y-0.5 hover:border-[#00A9FF]/25 hover:shadow-[0_26px_58px_-38px_rgba(0,126,191,0.28)]">
                   <Image
                     src={card.src}
                     alt={card.alt}
@@ -40,9 +40,9 @@ export function QrExperienceSection() {
                     height={4041}
                     unoptimized
                     sizes="(min-width: 1024px) 400px, 92vw"
-                    className="h-auto w-full rounded-[8px]"
+                    className="h-auto w-full rounded-[17px]"
                   />
-                  <p className="px-3 py-2 text-center text-[11px] font-semibold text-[#526173]">{card.label}</p>
+                  <p className="px-3 py-3 text-center text-[11px] font-bold text-[#526173]">{card.label}</p>
                 </div>
               </Reveal>
             ))}

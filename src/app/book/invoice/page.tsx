@@ -10,6 +10,7 @@ import {
 } from "@/lib/booking";
 import { formatCurrency } from "@/lib/utils";
 import { Icon } from "@/components/icons";
+import { BrandMark } from "@/components/ui/brand-mark";
 
 export default function InvoicePage() {
   const router = useRouter();
@@ -63,7 +64,7 @@ export default function InvoicePage() {
               {/* Header */}
               <div className="flex flex-col sm:flex-row justify-between items-start gap-8">
                  <div className="space-y-6">
-                    <Icon name="logo" className="h-9 w-auto text-[#111827]" />
+                    <BrandMark className="h-10 w-10 rounded-[12px]" imageClassName="h-[29px] w-auto" />
                     <div className="space-y-1">
                        <h1 className="text-[28px] font-extrabold text-[#111827] tracking-tight">Invoice</h1>
                        <p className="text-[13px] font-bold text-[#64748B]">#{invoice.invoiceNumber}</p>

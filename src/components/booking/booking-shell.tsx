@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BookingProgress, type BookingStep } from "@/components/booking/booking-progress";
-import { BrandMark } from "@/components/ui/brand-mark";
+import { Wordmark } from "@/components/ui/brand-mark";
 import { cn } from "@/lib/utils";
 
 type BookingShellProps = {
@@ -34,19 +34,8 @@ export function BookingShell({
       <header className="sticky top-0 z-40 border-b border-[#e8eaed] bg-white">
         <div className="mx-auto flex max-w-[1320px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-8">
-            <Link href="/" className="group flex items-center gap-3">
-              <BrandMark
-                className="h-12 w-12 rounded-[16px] bg-[#f7fbff] transition-all group-hover:scale-105"
-                imageClassName="w-[31px]"
-              />
-              <div className="min-w-0">
-                <p className="font-display truncate text-[1.25rem] font-black tracking-[-0.04em] text-[#111827]">
-                  OneLink
-                </p>
-                <p className="hidden text-[10px] font-bold uppercase tracking-[0.18em] text-[#00A9FF]/60 sm:block">
-                  Smart Business Page
-                </p>
-              </div>
+            <Link href="/" aria-label="OneLink home" className="group flex items-center">
+              <Wordmark priority className="!h-auto !w-[142px] transition-transform duration-300 group-hover:scale-[1.025] sm:!w-[158px]" />
             </Link>
           </div>
 

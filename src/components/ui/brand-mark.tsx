@@ -32,11 +32,11 @@ export function BrandMark({
       )}
     >
       <Image
-        src="/Group 1000008682.png"
+        src="/onelink-logomark.png"
         alt={alt}
-        width={30}
-        height={35}
-        className={cn("h-auto w-[28px]", imageClassName)}
+        width={3492}
+        height={4652}
+        className={cn("h-[30px] w-auto object-contain", imageClassName)}
       />
     </div>
   );
@@ -54,13 +54,6 @@ export function PricingBrandMark({
         ? "border-[#ead7ad] bg-[linear-gradient(180deg,#fffaf0_0%,#f8edd3_100%)] shadow-[0_16px_30px_-22px_rgba(171,125,36,0.28)]"
         : "border-[#dce9f5] bg-[linear-gradient(180deg,#fbfdff_0%,#f4f8fc_100%)] shadow-[0_14px_28px_-22px_rgba(15,23,42,0.16)]";
 
-  const imageFilter =
-    tone === "business"
-      ? "grayscale(1) brightness(0.82) contrast(1.14)"
-      : tone === "signature"
-        ? "sepia(1) saturate(2.6) hue-rotate(344deg) brightness(0.96) contrast(1.02)"
-        : "none";
-
   return (
     <div
       className={cn(
@@ -71,12 +64,11 @@ export function PricingBrandMark({
       aria-hidden="true"
     >
       <Image
-        src="/component-13.svg"
+        src="/onelink-logomark.png"
         alt=""
-        width={24}
-        height={28}
-        className={cn("h-auto w-[22px]", imageClassName)}
-        style={{ filter: imageFilter }}
+        width={3492}
+        height={4652}
+        className={cn("h-[27px] w-auto object-contain", imageClassName)}
       />
     </div>
   );
@@ -89,10 +81,10 @@ export function Wordmark({
 }: WordmarkProps) {
   return (
     <Image
-      src="/Group%201000008683.png"
+      src="/onelink-primary-logo.png"
       alt={alt}
-      width={2048}
-      height={476}
+      width={10895}
+      height={2720}
       priority={priority}
       className={cn("h-9 w-auto object-contain", className)}
     />

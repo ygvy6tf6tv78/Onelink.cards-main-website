@@ -13,6 +13,7 @@ type RevealProps = {
   y?: number;
   amount?: number;
   margin?: NonNullable<Parameters<typeof useInView>[1]>["margin"];
+  alwaysShow?: boolean;
 };
 
 export function Reveal({
@@ -23,11 +24,12 @@ export function Reveal({
   y = 18,
   amount = 0.16,
   margin = "0px 0px -6% 0px",
+  alwaysShow = false,
 }: RevealProps) {
   const splashComplete = useSplashComplete();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount, margin });
-  const show = splashComplete && inView;
+  const show = alwaysShow || (splashComplete && inView);
 
   return (
     <motion.div

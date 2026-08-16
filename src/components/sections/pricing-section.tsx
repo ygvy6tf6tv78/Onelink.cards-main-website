@@ -700,6 +700,7 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
   const [selectedCareId, setSelectedCareId] = useState("12-month");
   const [includeGst, setIncludeGst] = useState(false);
   const [discountMode, setDiscountMode] = useState<"percentage" | "fixed">("percentage");
+  const [discountSelection, setDiscountSelection] = useState("custom");
   const [discountInput, setDiscountInput] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const plans = pricingPlans.filter((plan): plan is Plan & { id: TopPlanId } =>
@@ -734,14 +735,19 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
   }, [isOpen]);
 
   const applyDiscount = () => {
+    if (discountSelection !== "custom") {
+      setDiscountMode("percentage");
+      setAppliedDiscount(Number(discountSelection));
+      return;
+    }
     const parsed = Number(discountInput);
     setDiscountMode("fixed");
     setAppliedDiscount(Number.isFinite(parsed) ? Math.max(parsed, 0) : 0);
   };
-  const applyPercentageDiscount = (percentage: number) => {
-    setDiscountMode("percentage");
+  const resetDiscount = () => {
+    setDiscountSelection("custom");
     setDiscountInput("");
-    setAppliedDiscount(percentage);
+    setAppliedDiscount(0);
   };
   const getStartedHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent([
     "Hello OneLink, I want to build my OneLink package.",
@@ -876,7 +882,7 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
                       includeGst === value ? "bg-[linear-gradient(135deg,#09223E,#0077FF)] text-white shadow-sm ring-1 ring-[#064083]" : "text-[#607286] hover:bg-[#f3f7fc]",
                     )}
                   >
-                    {value ? "With GST" : "Without GST"}
+                    {value ? "Including GST" : "Without GST"}
                   </button>
                 ))}
               </div>
@@ -889,36 +895,42 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
               <div className="mt-4 rounded-[13px] border border-[#c9dced] bg-white p-2.5 shadow-[0_12px_28px_-24px_rgba(9,34,62,0.45)]">
                 <div className="flex items-center justify-between gap-3 px-1 pb-2">
                   <p className="text-[10px] font-extrabold uppercase tracking-[0.09em] text-[#526173]">Add customer discount</p>
-                  {discountAmount > 0 ? <button type="button" onClick={() => { setAppliedDiscount(0); setDiscountInput(""); }} className="text-[10px] font-extrabold text-[#d14f36] hover:underline">Remove</button> : null}
                 </div>
-                <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2">
+                <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-2">
                   <label className="relative min-w-0">
-                    <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[13px] font-extrabold text-[#087cbc]">₹</span>
-                    <span className="sr-only">Discount amount in rupees</span>
-                    <input type="number" min="0" max={subtotal} step="1" value={discountInput} onChange={(event) => setDiscountInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") applyDiscount(); }} placeholder="Custom discount amount" className="h-10 w-full rounded-[9px] border border-[#d6e3ed] bg-[#fbfdff] pl-7 pr-3 text-[13px] font-bold text-[#263446] outline-none transition placeholder:font-semibold placeholder:text-[#9aa8b7] focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12" />
+                    <span className="sr-only">Choose discount</span>
+                    <select
+                      value={discountSelection}
+                      onChange={(event) => {
+                        setDiscountSelection(event.target.value);
+                        setAppliedDiscount(0);
+                        if (event.target.value !== "custom") setDiscountInput("");
+                      }}
+                      className="h-10 w-full appearance-none rounded-[9px] border border-[#d6e3ed] bg-[#f7fbff] px-3 pr-8 text-[11px] font-extrabold text-[#334155] outline-none transition focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12"
+                    >
+                      <option value="custom">Custom ₹</option>
+                      <option value="10">10% Discount</option>
+                      <option value="15">15% Discount</option>
+                      <option value="20">20% Discount</option>
+                      <option value="25">25% Discount</option>
+                    </select>
+                    <svg className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#718096]" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
                   </label>
-                  <button type="button" onClick={applyDiscount} className="rounded-[9px] bg-[#09223E] px-3 text-[11px] font-extrabold text-white transition hover:bg-[#064083]">Apply</button>
+                  {discountSelection === "custom" ? (
+                    <label className="relative min-w-0">
+                      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[13px] font-extrabold text-[#087cbc]">₹</span>
+                      <span className="sr-only">Discount amount in rupees</span>
+                      <input type="number" min="0" max={subtotal} step="1" value={discountInput} onChange={(event) => setDiscountInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") applyDiscount(); }} placeholder="Enter amount" className="h-10 w-full rounded-[9px] border border-[#d6e3ed] bg-[#fbfdff] pl-7 pr-3 text-[12px] font-bold text-[#263446] outline-none transition placeholder:font-semibold placeholder:text-[#9aa8b7] focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12" />
+                    </label>
+                  ) : (
+                    <div className="flex h-10 items-center rounded-[9px] border border-[#c8e0f1] bg-[#edf7ff] px-3 text-[11px] font-extrabold text-[#087cbc]">
+                      {discountSelection}% will be applied
+                    </div>
+                  )}
                 </div>
-                <div className="mt-2 grid grid-cols-4 gap-1.5">
-                  {[10, 15, 20, 25].map((percentage) => {
-                    const isActive = discountMode === "percentage" && appliedDiscount === percentage;
-                    return (
-                      <button
-                        key={percentage}
-                        type="button"
-                        onClick={() => applyPercentageDiscount(percentage)}
-                        aria-pressed={isActive}
-                        className={cn(
-                          "min-h-9 rounded-[8px] border text-[11px] font-extrabold transition",
-                          isActive
-                            ? "border-[#0077FF] bg-[linear-gradient(135deg,#064083,#0077FF)] text-white shadow-sm"
-                            : "border-[#d6e3ed] bg-[#f7fbff] text-[#526173] hover:border-[#8dcaf1] hover:text-[#087cbc]",
-                        )}
-                      >
-                        {percentage}%
-                      </button>
-                    );
-                  })}
+                <div className="mt-2 grid grid-cols-2 gap-2">
+                  <button type="button" onClick={applyDiscount} className="h-9 rounded-[9px] bg-[#09223E] px-3 text-[11px] font-extrabold text-white transition hover:bg-[#064083]">Apply Discount</button>
+                  <button type="button" onClick={resetDiscount} disabled={discountAmount === 0 && discountInput === "" && discountSelection === "custom"} className="h-9 rounded-[9px] border border-[#cad9e5] bg-white px-3 text-[11px] font-extrabold text-[#526173] transition hover:border-[#e09b8b] hover:text-[#c44932] disabled:cursor-not-allowed disabled:opacity-45">Reset</button>
                 </div>
               </div>
               <div className="mt-4 flex items-end justify-between gap-3 border-t border-[#bcdceb] pt-4">

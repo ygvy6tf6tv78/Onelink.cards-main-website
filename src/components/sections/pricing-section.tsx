@@ -823,7 +823,7 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
                     >
                       <span className="text-[13px] font-extrabold">{plan.name}</span>
                       <span className={cn("text-right text-[10px] font-bold uppercase leading-tight tracking-[0.04em]", isSelected ? "text-[#087cbc]" : "text-[#718096]")}>
-                        Starts at<br /><span className="mt-1 inline-block text-[16px] font-extrabold tracking-[-0.02em] tabular-nums">{formatPricingCurrency(pricingPresentation[plan.id].firstPurchase["3-month"])}</span>
+                        One-time setup<br /><span className="mt-1 inline-block text-[16px] font-extrabold tracking-[-0.02em] tabular-nums">{formatPricingCurrency(plan.setupAmount)}</span>
                       </span>
                     </button>
                   );
@@ -851,7 +851,7 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
                       )}
                     >
                       <span className="text-[12px] font-extrabold uppercase tracking-[0.035em]">{row.label}</span>
-                      <span className="text-right text-[15px] font-extrabold tabular-nums">{formatPricingCurrency(pricingPresentation[selectedPlanId].firstPurchase[row.id])}<small className="ml-1 text-[8px] font-bold text-[#718096]">+ GST</small></span>
+                      <span className="text-right text-[15px] font-extrabold tabular-nums">{formatPricingCurrency(selectedPlan?.maintenanceOptions.find((option) => option.id === row.id)?.price ?? 0)}<small className="ml-1 text-[8px] font-bold text-[#718096]">+ GST</small></span>
                     </button>
                   );
                 })}

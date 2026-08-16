@@ -23,17 +23,19 @@ type TopPlanId = "essential" | "signature" | "elite";
 const pricingPresentation: Record<TopPlanId, {
   description: string;
   setupRegular: number;
-  careRegular: Record<string, number>;
+  firstPurchase: Record<string, number>;
+  purchaseIncludes: string;
   features: string[];
 }> = {
   essential: {
     description: "A professional digital presence for your business.",
     setupRegular: 5999,
-    careRegular: {
-      "3-month": 2999,
-      "6-month": 4999,
-      "12-month": 7999,
+    firstPurchase: {
+      "3-month": 6999,
+      "6-month": 8499,
+      "12-month": 10999,
     },
+    purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [
       "Custom OneLink",
       "Business details & content",
@@ -44,11 +46,12 @@ const pricingPresentation: Record<TopPlanId, {
   signature: {
     description: "Turn visitors into enquiries, bookings and customers.",
     setupRegular: 7999,
-    careRegular: {
-      "3-month": 4999,
-      "6-month": 7999,
-      "12-month": 14999,
+    firstPurchase: {
+      "3-month": 9499,
+      "6-month": 11999,
+      "12-month": 16999,
     },
+    purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [
       "Everything in Essential",
       "Menu, services or portfolio",
@@ -59,11 +62,12 @@ const pricingPresentation: Record<TopPlanId, {
   elite: {
     description: "Manage customer actions from one powerful dashboard.",
     setupRegular: 14999,
-    careRegular: {
-      "3-month": 7999,
-      "6-month": 12999,
-      "12-month": 23999,
+    firstPurchase: {
+      "3-month": 16999,
+      "6-month": 20999,
+      "12-month": 28999,
     },
+    purchaseIncludes: "Includes complete OneLink setup, software access, hosting, support & updates.",
     features: [
       "Everything in Signature",
       "Admin dashboard",
@@ -71,6 +75,27 @@ const pricingPresentation: Record<TopPlanId, {
       "Pricing & availability control",
     ],
   },
+};
+
+const pricingMockups: Record<TopPlanId, { src: string; alt: string }> = {
+  essential: {
+    src: "/pricing-mockup-vastukar.png",
+    alt: "Vastukar Architects OneLink mobile preview",
+  },
+  signature: {
+    src: "/pricing-mockup-burger-bazaar.png",
+    alt: "Burger Bazaar OneLink mobile preview",
+  },
+  elite: {
+    src: "/pricing-mockup-new-vision.png",
+    alt: "New Vision Diagnostics OneLink mobile preview",
+  },
+};
+
+const pricingMockupStackOrder: Record<TopPlanId, TopPlanId[]> = {
+  essential: ["elite", "signature", "essential"],
+  signature: ["essential", "elite", "signature"],
+  elite: ["signature", "essential", "elite"],
 };
 
 function formatPricingCurrency(amount: number) {
@@ -103,6 +128,7 @@ export function PricingSection({
   showLaunchOffer = true,
   dedicatedPage = false,
 }: PricingSectionProps) {
+  const [dedicatedSelectedPlanId, setDedicatedSelectedPlanId] = useState<TopPlanId>("signature");
   const topPlans = pricingPlans.filter((plan) => plan.id !== "enterprise");
   const enterprisePlan = pricingPlans.find((plan) => plan.id === "enterprise");
   const enterpriseHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss an Enterprise setup.")}`;
@@ -111,20 +137,20 @@ export function PricingSection({
       id="pricing"
       className={cn(
         "relative scroll-mt-28 overflow-hidden bg-[radial-gradient(circle_at_50%_32%,rgba(0,119,255,0.14),transparent_34%),linear-gradient(180deg,#fbfdff_0%,#edf5ff_54%,#f8fbfd_100%)] px-5 sm:px-6 lg:px-8",
-        dedicatedPage ? "py-9 sm:py-11 lg:py-12" : "py-12 sm:py-14 lg:py-16",
+        dedicatedPage ? "py-5 sm:py-6 lg:py-7" : "py-12 sm:py-14 lg:py-16",
       )}
     >
       <div className="pointer-events-none absolute -left-24 top-[26%] h-72 w-72 rounded-full bg-[#00A9FF]/[0.055] blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute -right-28 top-[52%] h-80 w-80 rounded-full bg-[#087cbc]/[0.05] blur-3xl" aria-hidden />
       <div className="relative mx-auto max-w-7xl">
-        <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-8 sm:mb-10" : "mb-10 sm:mb-12")}>
+        <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-5 sm:mb-6" : "mb-10 sm:mb-12")}>
           <Reveal x={-28} y={14} alwaysShow={staticReveal}>
-            <SectionBadge label="Pricing" className="-mt-2" />
-            <h2 className="section-title-gradient font-display mt-4 text-[32px] font-bold leading-[1.08] tracking-[-0.045em] sm:text-[36px] lg:text-[42px]">
+            <SectionBadge label="Pricing" className={cn("-mt-2", dedicatedPage && "md:hidden")} />
+            <h2 className={cn("section-title-gradient font-display font-bold leading-[1.08] tracking-[-0.045em]", dedicatedPage ? "mt-3 text-[28px] sm:text-[31px] md:mt-0 lg:text-[34px]" : "mt-4 text-[32px] sm:text-[36px] lg:text-[42px]")}>
               Choose the Right OneLink
             </h2>
-            <p className="mt-3 text-[17px] font-semibold leading-relaxed tracking-[-0.015em] text-[#526173] sm:text-[19px]">
-              Pay once for setup. Choose the care period that fits your business.
+            <p className={cn("font-semibold leading-relaxed tracking-[-0.015em] text-[#526173]", dedicatedPage ? "mt-2 text-[14px] sm:text-[15px] lg:text-[16px]" : "mt-3 text-[17px] sm:text-[19px]")}>
+              Pay the one-time design fee once, then choose 3, 6 or 12 months of Platform Care.
             </p>
             {showLaunchOffer ? (
               <div className="border-shine offer-shine-thin relative mx-auto mt-4 flex w-fit max-w-full items-center gap-2 overflow-hidden rounded-full border border-[#d9ad42]/45 bg-[linear-gradient(135deg,#0b2745_0%,#064083_58%,#0869c5_100%)] px-3 py-1.5 text-left text-white shadow-[0_12px_26px_-20px_rgba(4,56,125,0.62)] sm:px-4 sm:py-2">
@@ -132,48 +158,35 @@ export function PricingSection({
                   <Icon name="spark" className="h-[15px] w-[15px]" />
                 </span>
                 <p className="text-[9px] font-extrabold leading-tight tracking-[0.015em] sm:text-[11px]">
-                  Chandigarh Launch Offer <span className="text-[#ffdf82]">— Get 10% Off Your OneLink</span>
+                  Simple First-Purchase Pricing <span className="text-[#ffdf82]">— Lower renewal plans from your next term</span>
                 </p>
               </div>
-            ) : null}
-            {dedicatedPage ? (
-              <>
-                <div className="mx-auto mt-5 grid max-w-[760px] grid-cols-3 overflow-hidden rounded-[16px] border border-[#cfe1f2] bg-white/88 p-1.5 text-left shadow-[0_18px_40px_-32px_rgba(9,34,62,0.38)]">
-                  {[
-                    ["1", "Choose plan"],
-                    ["2", "Select care"],
-                    ["3", "See final total"],
-                  ].map(([step, label], index) => (
-                    <div key={step} className={cn("flex min-w-0 flex-col items-center justify-center gap-1 px-1.5 py-2.5 sm:flex-row sm:gap-3 sm:px-4", index > 0 && "border-l border-[#e2ebf3]")}>
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#edf7ff] text-[10px] font-extrabold text-[#087cbc] sm:h-7 sm:w-7 sm:text-[11px]">{step}</span>
-                      <span className="text-center text-[9px] font-extrabold uppercase leading-tight tracking-[0.035em] text-[#334155] sm:text-left sm:text-[12px]">{label}</span>
-                    </div>
-                  ))}
-                </div>
-                <ChandigarhOfferButton plans={topPlans} />
-              </>
             ) : null}
           </Reveal>
         </div>
 
-        <div className="relative mx-auto max-w-7xl">
-          <div className="relative mx-auto grid w-full max-w-[42rem] grid-cols-1 items-stretch gap-6 lg:max-w-none lg:grid-cols-3 lg:items-stretch lg:gap-7">
-          {topPlans.map((plan, index) => {
-            const isSignature = plan.id === "signature";
-            return (
-              <Reveal key={plan.id} delay={index * 0.05} x={index === 0 ? -30 : index === 2 ? 30 : 0} y={18} alwaysShow={staticReveal} className={cn("flex h-full transition-transform", isSignature ? "lg:z-10" : "lg:pt-7")}>
-                <PricingCard plan={plan} isSignature={isSignature} dedicatedPage={dedicatedPage} />
-              </Reveal>
-            );
-          })}
-          </div>
+        <div className={cn("relative mx-auto", dedicatedPage ? "max-w-[1180px]" : "max-w-7xl")}>
+          {dedicatedPage ? (
+            <DedicatedPricingSelector plans={topPlans} selectedPlanId={dedicatedSelectedPlanId} onPlanChange={setDedicatedSelectedPlanId} />
+          ) : (
+            <div className="relative mx-auto grid w-full max-w-[42rem] grid-cols-1 items-stretch gap-6 lg:max-w-none lg:grid-cols-3 lg:gap-7">
+              {topPlans.map((plan, index) => {
+                const isSignature = plan.id === "signature";
+                return (
+                  <Reveal key={plan.id} delay={index * 0.05} x={index === 0 ? -30 : index === 2 ? 30 : 0} y={18} alwaysShow={staticReveal} className={cn("flex h-full transition-transform", isSignature ? "lg:z-10" : "lg:pt-7")}>
+                    <PricingCard plan={plan} isSignature={isSignature} />
+                  </Reveal>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <Reveal delay={0.14} y={14} alwaysShow={staticReveal}>
-          <PricingPackageBuilder />
+          <PricingPackageBuilder key={dedicatedPage ? dedicatedSelectedPlanId : "homepage"} initialPlanId={dedicatedPage ? dedicatedSelectedPlanId : undefined} />
         </Reveal>
 
-        {enterprisePlan ? (
+        {enterprisePlan && !dedicatedPage ? (
           <>
             <Reveal delay={0.16} x={28} y={14} alwaysShow={staticReveal}>
               <EnterprisePanel href={enterpriseHref} plan={enterprisePlan} />
@@ -189,7 +202,7 @@ export function PricingSection({
   );
 }
 
-function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
+export function ChandigarhOfferButton({ plans, offerMode, onOfferToggle }: { plans: Plan[]; offerMode: boolean; onOfferToggle: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPlanId, setSelectedPlanId] = useState<TopPlanId>("signature");
   const [selectedCareId, setSelectedCareId] = useState("12-month");
@@ -227,7 +240,8 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
     <>
       <button
         type="button"
-        onClick={() => setIsOpen(true)}
+        onClick={onOfferToggle}
+        aria-pressed={offerMode}
         className="border-shine offer-shine-thin group relative mx-auto mt-4 flex w-full max-w-[760px] items-center justify-between gap-3 overflow-hidden rounded-[15px] border border-[#d9b75a]/55 bg-[linear-gradient(110deg,#081c31_0%,#0a2d50_58%,#0c4778_100%)] px-3.5 py-3 text-left text-white shadow-[0_16px_34px_-24px_rgba(7,42,78,0.72)] transition duration-300 hover:-translate-y-0.5 hover:border-[#e4c66d]/80 hover:shadow-[0_20px_38px_-24px_rgba(7,42,78,0.8)] sm:px-4 sm:py-3.5"
       >
         <span className="flex min-w-0 items-center gap-3">
@@ -248,12 +262,12 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
             />
           </span>
           <span className="min-w-0">
-            <span className="block text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#e4c66d] sm:text-[10px]">Chandigarh Launch Week</span>
-            <span className="mt-0.5 block text-[12px] font-bold tracking-[-0.01em] text-white sm:text-[14px]">View 24-Hour Setup Offer</span>
+            <span className="block text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#e4c66d] sm:text-[10px]">{offerMode ? "24-Hour Offer Applied" : "Chandigarh Launch Week"}</span>
+            <span className="mt-0.5 block text-[12px] font-bold tracking-[-0.01em] text-white sm:text-[14px]">{offerMode ? "Show Standard Pricing" : "View 24-Hour Setup Offer"}</span>
           </span>
         </span>
         <span className="relative flex shrink-0 items-center gap-2">
-          <span className="rounded-full border border-[#d9b75a]/35 bg-[#d9b75a]/10 px-2.5 py-1.5 text-[8px] font-extrabold uppercase tracking-[0.07em] text-[#eed88f] sm:px-3 sm:text-[9px]">24H Offer</span>
+          <span className="rounded-full border border-[#d9b75a]/35 bg-[#d9b75a]/10 px-2.5 py-1.5 text-[8px] font-extrabold uppercase tracking-[0.07em] text-[#eed88f] sm:px-3 sm:text-[9px]">{offerMode ? "Active" : "24H Offer"}</span>
           <span className="hidden text-base text-[#eed88f] transition-transform group-hover:translate-x-0.5 sm:block">→</span>
         </span>
       </button>
@@ -288,7 +302,7 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
                       onClick={() => setSelectedPlanId(plan.id as TopPlanId)}
                       aria-pressed={isSelected}
                       className={cn(
-                        "min-h-11 rounded-[12px] px-2 text-[11px] font-extrabold transition sm:min-h-12 sm:text-[14px] lg:text-[15px]",
+                        "min-h-10 rounded-[11px] px-2 text-[11px] font-extrabold transition sm:min-h-11 sm:text-[13px] lg:text-[14px]",
                         isSelected
                           ? "bg-white text-[#064083] shadow-[0_8px_20px_-14px_rgba(9,34,62,0.55)] ring-1 ring-[#bed8ef]"
                           : "text-[#718096] hover:text-[#334155]",
@@ -315,6 +329,7 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
                   const rowTotal = rowSetup + rowCare;
                   const rowRegularTotal = (selectedPlan?.setupAmount ?? 0) + rowCare;
                   const rowSetupDiscount = (selectedPlan?.setupAmount ?? 0) - rowSetup;
+                  const rowSetupDiscountPercent = Math.round((rowSetupDiscount / Math.max(selectedPlan?.setupAmount ?? 1, 1)) * 100);
                   const isSelected = selectedCareId === row.id;
                   const isBestValue = row.id === "12-month";
                   const isPopular = row.id === "6-month";
@@ -334,31 +349,34 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
                       <div className="flex min-h-8 items-center justify-between gap-2">
                         <p className="text-[15px] font-extrabold uppercase tracking-[0.04em] text-[#263446] sm:text-[17px]">{row.label}</p>
                         {isBestValue || isPopular ? (
-                          <span className={cn("rounded-full border px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.055em] shadow-sm", isBestValue ? "border-[#bfe4fb] bg-[#e9f7ff] text-[#087cbc]" : "border-[#d9dfff] bg-[#f1f3ff] text-[#3855a5]")}>
+                          <span className={cn("rounded-full border px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.055em]", isBestValue ? "border-[#ead59d] bg-[#fff8df] text-[#8a6200]" : "border-[#6db8ff] bg-[linear-gradient(135deg,#09223E_0%,#0077FF_100%)] text-white shadow-[0_8px_18px_-10px_rgba(0,82,180,0.8)]")}>
                             {isBestValue ? "Best Value" : "Most Popular"}
                           </span>
                         ) : null}
                       </div>
 
                       <div className="mt-3 rounded-[16px] border border-[#e2ebf2] bg-[#f4f8fb] px-4 py-3.5 sm:px-5">
-                        <p className="text-[11px] font-extrabold uppercase tracking-[0.09em] text-[#526173]">One-Time Setup</p>
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="text-[11px] font-extrabold uppercase tracking-[0.09em] text-[#526173]">One-Time Setup</p>
+                          <span className="rounded-full border border-[#bfe4d3] bg-[#ecf9f2] px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.06em] text-[#147a47]">{rowSetupDiscountPercent}% off setup</span>
+                        </div>
                         <div className="mt-2.5 grid grid-cols-[1fr_auto_1.15fr] items-end gap-2">
                           <span className="flex min-w-0 flex-col items-start gap-1.5">
-                            <span className="rounded-full border border-[#f4caca] bg-[#fff0f0] px-2 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#a63d3d]">Before</span>
-                            <span className="text-[18px] font-extrabold leading-none text-[#c34b4b] sm:text-[20px]">{formatPricingCurrency(selectedPlan?.setupAmount ?? 0)}</span>
+                            <span className="rounded-full border border-[#d9e2ea] bg-[#f4f7fa] px-2 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#607084]">Before</span>
+                            <span className="text-[18px] font-extrabold leading-none text-[#526173] sm:text-[20px]">{formatPricingCurrency(selectedPlan?.setupAmount ?? 0)}</span>
                           </span>
                           <span className="pb-0.5 text-[18px] font-bold text-[#9aa7b5]">→</span>
                           <span className="flex min-w-0 flex-col items-start gap-1.5">
-                            <span className="border-shine offer-shine-thin relative w-fit rounded-full border border-[#ddb647]/70 bg-[linear-gradient(135deg,#fff9df_0%,#ffe9a6_100%)] px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#8b5b00] shadow-[0_5px_14px_-8px_rgba(169,112,0,0.8)]">24H Offer</span>
-                            <span className="bg-[linear-gradient(135deg,#064083_0%,#0077FF_100%)] bg-clip-text text-[28px] font-extrabold leading-none tracking-[-0.04em] text-transparent drop-shadow-[0_5px_12px_rgba(0,119,255,0.14)] sm:text-[32px]">{formatPricingCurrency(rowSetup)}</span>
+                            <span className="w-fit rounded-full border border-[#e2c66d] bg-[#fff6d4] px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#815600]">24H Setup</span>
+                            <span className="bg-[linear-gradient(135deg,#064083_0%,#0077FF_100%)] bg-clip-text text-[28px] font-extrabold leading-none tracking-[-0.04em] text-transparent sm:text-[32px]">{formatPricingCurrency(rowSetup)}</span>
                           </span>
                         </div>
-                        <p className="mt-2.5 w-fit rounded-full border border-[#cceac9] bg-[#eaf8e9] px-2.5 py-1 text-[10px] font-extrabold text-[#138808] sm:text-[11px]">You save {formatPricingCurrency(rowSetupDiscount)} on setup</p>
+                        <p className="mt-2.5 text-[10px] font-bold text-[#138808] sm:text-[11px]">You save {formatPricingCurrency(rowSetupDiscount)} on setup</p>
                       </div>
 
                       <div className="mt-3 border-t border-[#e4edf3] pt-3">
                         <p className="text-[10px] font-extrabold uppercase tracking-[0.07em] text-[#526173]">{row.label} Platform Care</p>
-                        <p className="mt-1 text-[10px] font-semibold text-[#8795a5] sm:text-[11px]">Renews after every {row.label.toLowerCase()}</p>
+                        <p className="mt-1 text-[10px] font-semibold text-[#8795a5] sm:text-[11px]">Renews every {row.label.toLowerCase()}</p>
                         <p className="mt-1.5 text-[23px] font-extrabold tracking-[-0.025em] text-[#263446] sm:text-[26px]">{formatPricingCurrency(rowCare)}</p>
                       </div>
 
@@ -366,14 +384,14 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
                         <p className="text-[11px] font-extrabold uppercase tracking-[0.09em] text-[#526173]">Final Total</p>
                         <div className="mt-2 grid grid-cols-[1fr_auto_1.2fr] items-end gap-2">
                           <span className="flex flex-col items-start gap-1.5">
-                            <span className="rounded-full border border-[#f4caca] bg-[#fff0f0] px-2 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#a63d3d]">Before</span>
-                            <span className="text-[18px] font-extrabold leading-none text-[#c34b4b] sm:text-[20px]">{formatPricingCurrency(rowRegularTotal)}</span>
+                            <span className="rounded-full border border-[#d9e2ea] bg-[#f4f7fa] px-2 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#607084]">Before</span>
+                            <span className="text-[18px] font-extrabold leading-none text-[#526173] sm:text-[20px]">{formatPricingCurrency(rowRegularTotal)}</span>
                           </span>
                           <span className="pb-0.5 text-[18px] font-bold text-[#9aa7b5]">→</span>
                           <span className="flex flex-col items-start gap-1.5">
-                            <span className="border-shine offer-shine-thin relative w-fit rounded-full border border-[#ddb647]/70 bg-[linear-gradient(135deg,#fff9df_0%,#ffe9a6_100%)] px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#8b5b00] shadow-[0_5px_14px_-8px_rgba(169,112,0,0.8)]">24H Offer</span>
+                            <span className="w-fit rounded-full border border-[#e2c66d] bg-[#fff6d4] px-2.5 py-1 text-[8px] font-extrabold uppercase tracking-[0.08em] text-[#815600]">24H Offer</span>
                             <span className="flex items-end gap-1.5">
-                              <span className="bg-[linear-gradient(135deg,#09223E_0%,#0077FF_100%)] bg-clip-text text-[29px] font-extrabold leading-none tracking-[-0.04em] text-transparent drop-shadow-[0_5px_12px_rgba(0,119,255,0.12)] sm:text-[34px]">{formatPricingCurrency(rowTotal)}</span>
+                              <span className="bg-[linear-gradient(135deg,#09223E_0%,#0077FF_100%)] bg-clip-text text-[29px] font-extrabold leading-none tracking-[-0.04em] text-transparent sm:text-[34px]">{formatPricingCurrency(rowTotal)}</span>
                               <span className="pb-0.5 text-[8px] font-bold text-[#718096]">+ GST</span>
                             </span>
                           </span>
@@ -387,7 +405,7 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
             </div>
 
             <div className="border-t border-[#cfe0ec] bg-white/96 px-4 py-4 shadow-[0_-14px_36px_-30px_rgba(9,34,62,0.55)] backdrop-blur-xl sm:px-8 sm:py-5 lg:px-10">
-              <a href={claimHref} target="_blank" rel="noreferrer" className="border-shine border-shine-blue group relative mx-auto flex h-13 w-full max-w-[720px] items-center justify-center overflow-hidden rounded-[14px] border border-[#4db6ff]/70 bg-[linear-gradient(135deg,#09223E_0%,#064083_52%,#0077FF_100%)] px-5 text-[13px] font-extrabold text-white shadow-[0_16px_32px_-18px_rgba(0,65,150,0.82)] transition hover:-translate-y-0.5 hover:brightness-110 sm:h-14 sm:text-[16px]">
+              <a href={claimHref} target="_blank" rel="noreferrer" className="group relative mx-auto flex h-13 w-full max-w-[720px] items-center justify-center overflow-hidden rounded-[14px] border border-[#4db6ff]/70 bg-[linear-gradient(135deg,#09223E_0%,#064083_52%,#0077FF_100%)] px-5 text-[13px] font-extrabold text-white shadow-[0_16px_32px_-18px_rgba(0,65,150,0.82)] transition hover:-translate-y-0.5 hover:brightness-110 sm:h-14 sm:text-[16px]">
                 Claim Within 24 Hours
               </a>
               <p className="mt-2.5 text-center text-[10px] font-bold text-[#718096] sm:text-[11px]">Your launch price is reserved for 24 hours after your demo.</p>
@@ -400,7 +418,148 @@ function ChandigarhOfferButton({ plans }: { plans: Plan[] }) {
   );
 }
 
-function PricingCard({ plan, isSignature, dedicatedPage = false }: { plan: Plan; isSignature?: boolean; dedicatedPage?: boolean }) {
+function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { plans: Plan[]; selectedPlanId: TopPlanId; onPlanChange: (planId: TopPlanId) => void }) {
+  const selectedPlan = plans.find((plan) => plan.id === selectedPlanId) ?? plans[1];
+
+  return (
+    <div>
+      <div className="mx-auto mb-4 grid w-full max-w-[590px] grid-cols-3 rounded-[14px] border border-[#c9deef] bg-white/90 p-1 shadow-[0_16px_36px_-30px_rgba(9,34,62,0.5)] backdrop-blur sm:mb-5">
+        {plans.map((plan) => {
+          const isSelected = selectedPlanId === plan.id;
+          return (
+            <button
+              key={plan.id}
+              type="button"
+              onClick={() => onPlanChange(plan.id as TopPlanId)}
+              aria-pressed={isSelected}
+              aria-controls="selected-pricing-plan"
+              className={cn(
+                "relative min-h-10 rounded-[10px] px-2 text-[10px] font-extrabold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2 sm:min-h-11 sm:text-[12px]",
+                isSelected
+                  ? "bg-[linear-gradient(135deg,#09223E_0%,#064083_55%,#0077FF_100%)] text-white shadow-[0_14px_28px_-18px_rgba(0,65,150,0.8)]"
+                  : "text-[#607084] hover:bg-[#edf7ff] hover:text-[#087cbc]",
+              )}
+            >
+              {plan.name}
+              {plan.id === "signature" ? <span className={cn("ml-1 text-[9px]", isSelected ? "text-[#ffdd79]" : "text-[#087cbc]")}>★</span> : null}
+            </button>
+          );
+        })}
+      </div>
+      <div id="selected-pricing-plan" key={selectedPlan?.id}>
+        {selectedPlan ? <DedicatedPricingPlan plan={selectedPlan} isSignature={selectedPlan.id === "signature"} /> : null}
+      </div>
+    </div>
+  );
+}
+
+function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSignature?: boolean }) {
+  const tone = getPlanTone(plan);
+  const [selectedCare, setSelectedCare] = useState("6-month");
+  const presentation = pricingPresentation[plan.id as TopPlanId];
+  const mockupStack = pricingMockupStackOrder[plan.id as TopPlanId].map((id) => pricingMockups[id]);
+  const selectedOption = plan.maintenanceOptions.find((option) => option.id === selectedCare) ?? plan.maintenanceOptions[0];
+  const firstPayment = presentation?.firstPurchase[selectedCare] ?? plan.setupAmount + (selectedOption?.price ?? 0);
+
+  if (!presentation) return null;
+
+  return (
+    <article className={cn(
+      "relative w-full overflow-hidden rounded-[22px] border p-4 shadow-[0_28px_70px_-48px_rgba(9,34,62,0.48)] sm:p-5",
+      isSignature
+        ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E_0%,#064083_52%,#0077FF_100%)] text-white shadow-[0_34px_82px_-45px_rgba(0,67,155,0.82)]"
+        : plan.id === "essential"
+          ? "border-[#86bde3] bg-[linear-gradient(145deg,#e8f5ff_0%,#dceefa_100%)] text-[#111821]"
+          : "border-[#93c3e5] bg-[linear-gradient(145deg,#edf7ff_0%,#dfedf8_100%)] text-[#111821]",
+    )}>
+      {isSignature ? (
+        <span className="absolute right-4 top-4 rounded-full border border-white/25 bg-white/12 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[0.1em] text-white shadow-sm sm:right-5 sm:top-5">Recommended</span>
+      ) : null}
+
+      <header className={cn("max-w-2xl", isSignature && "pr-24")}>
+        <p className={cn("text-[9px] font-extrabold uppercase tracking-[0.17em]", isSignature ? "text-[#bfe5ff]" : tone.label)}>{plan.badge}</p>
+        <div className="mt-1.5 flex items-center gap-2.5">
+          <PricingBrandMark tone={tone.markTone} className="h-9 w-9 rounded-[11px] [&_img]:w-5" />
+          <h3 className={cn("text-[23px] font-extrabold tracking-[-0.035em] sm:text-[25px]", isSignature ? "text-white" : "text-[#111821]")}>{plan.name}</h3>
+        </div>
+        <p className={cn("mt-1.5 text-[11px] font-semibold leading-relaxed sm:text-[12px]", isSignature ? "text-white/76" : "text-[#526173]")}>{presentation.description}</p>
+      </header>
+
+      <div className="mt-4 grid gap-4 md:grid-cols-[0.85fr_1.18fr_0.97fr] md:items-start md:gap-5">
+        <section className={cn("rounded-[17px] border p-4 sm:p-5", isSignature ? "border-white/25 bg-white/[0.1]" : "border-[#a9cee8] bg-[#f4faff] shadow-[0_16px_34px_-26px_rgba(9,34,62,0.42)]")}>
+          <p className={cn("text-[9px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>One-Time Design &amp; Development</p>
+          <div className="mt-3 flex flex-wrap items-end gap-2.5">
+            <span className={cn("text-[38px] font-extrabold leading-none tracking-[-0.045em] tabular-nums sm:text-[43px]", isSignature ? "text-white" : "text-[#09223E]")}>{formatPricingCurrency(plan.setupAmount)}</span>
+            <span className={cn("mb-0.5 rounded-full border px-2 py-1 text-[8px] font-extrabold uppercase", isSignature ? "border-white/25 bg-white/10 text-white/85" : "border-[#bde7fb] bg-[#eef9ff] text-[#087cbc]")}>+ GST</span>
+          </div>
+          <p className={cn("mt-3 border-t pt-3 text-[10px] font-bold leading-relaxed", isSignature ? "border-white/15 text-white/72" : "border-[#cfe2ef] text-[#526173]")}>Custom design, development and complete setup.</p>
+        </section>
+
+        <section className={cn("rounded-[17px] border p-4 sm:p-5", isSignature ? "border-white/20 bg-white/[0.065]" : "border-[#a9cee8] bg-[#f4faff]")}>
+          <p className={cn("text-[11px] font-extrabold uppercase tracking-[0.13em]", isSignature ? "text-white" : "text-[#334155]")}>Choose Platform Care</p>
+          <p className={cn("mt-1 text-[10px] font-semibold", isSignature ? "text-white/65" : "text-[#718096]")}>Hosting, support &amp; updates included.</p>
+          <div className="mt-3 grid grid-cols-3 gap-2.5">
+            {primaryCareRows.map((row) => {
+              const option = plan.maintenanceOptions.find((item) => item.id === row.id);
+              const isSelected = selectedCare === row.id;
+              const badge = (isSignature && row.id === "6-month") ? "Most Popular" : (plan.id === "elite" && row.id === "12-month") ? "Best Value" : null;
+              return (
+                <button
+                  key={row.id}
+                  type="button"
+                  onClick={() => setSelectedCare(row.id)}
+                  aria-pressed={isSelected}
+                  className={cn(
+                    "relative flex min-h-[88px] min-w-0 flex-col items-center justify-center rounded-[13px] border px-1.5 py-2.5 text-center transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2",
+                    isSelected
+                      ? "border-[#00A9FF] bg-white text-[#111821] shadow-[0_14px_28px_-20px_rgba(0,91,167,0.7)] ring-1 ring-[#00A9FF]/20"
+                      : isSignature ? "border-white/20 bg-white/[0.07] text-white hover:bg-white/[0.12]" : "border-[#dce8ef] bg-white text-[#334155] hover:border-[#9fd6f4]",
+                  )}
+                >
+                  {badge ? <span className={cn("mb-1 rounded-full px-1.5 py-0.5 text-[6.5px] font-extrabold uppercase tracking-[0.03em]", isSelected ? "bg-[#eaf6ff] text-[#087cbc]" : "bg-white/12 text-white/80")}>{badge}</span> : null}
+                  <span className="text-[9px] font-extrabold uppercase tracking-[0.05em] sm:text-[10px]">{row.label}</span>
+                  <span className={cn("mt-1.5 text-[18px] font-extrabold leading-none tabular-nums sm:text-[21px]", isSelected ? "text-[#087cbc]" : isSignature ? "text-white" : "text-[#263446]")}>{formatPricingCurrency(option?.price ?? 0)}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className={cn("mt-3 rounded-[15px] border p-4", isSignature ? "border-white/45 bg-white text-[#111821]" : "border-[#9fc8e5] bg-[#e7f4fd] shadow-[0_14px_30px_-26px_rgba(9,34,62,0.42)]")}>
+            <p className="text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#087cbc]">First Purchase Total</p>
+            <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
+              <span className="text-[9.5px] font-bold text-[#607084]">Setup + {selectedOption?.label} Care</span>
+              <span className="flex items-end gap-2"><strong className="text-[32px] font-extrabold leading-none tracking-[-0.045em] text-[#064083] tabular-nums sm:text-[37px]">{formatPricingCurrency(firstPayment)}</strong><small className="pb-0.5 text-[8px] font-extrabold uppercase text-[#087cbc]">+ GST</small></span>
+            </div>
+          </div>
+        </section>
+
+        <aside className={cn("relative min-h-[390px] overflow-hidden rounded-[17px] border md:min-h-[390px]", isSignature ? "border-white/25 bg-[radial-gradient(circle_at_50%_72%,rgba(0,169,255,0.34),transparent_62%),rgba(255,255,255,0.08)]" : "border-[#9fc8e5] bg-[radial-gradient(circle_at_50%_72%,rgba(0,169,255,0.24),transparent_62%),#e7f4fd]")}>
+          <div className="absolute inset-0 overflow-hidden">
+            {mockupStack.map((item, index) => (
+              <Image
+                key={item.src}
+                src={item.src}
+                alt={item.alt}
+                width={700}
+                height={1400}
+                className={cn(
+                  "absolute top-4 h-[390px] w-auto max-w-none object-contain object-top drop-shadow-[0_22px_24px_rgba(9,34,62,0.26)] transition-transform duration-500 sm:h-[420px] md:h-[440px]",
+                  index === 0 && "left-[8%] z-10 -rotate-[5deg] scale-[0.76] opacity-65",
+                  index === 1 && "right-[8%] z-20 rotate-[5deg] scale-[0.82] opacity-82",
+                  index === 2 && "left-1/2 z-30 -translate-x-1/2 scale-100",
+                )}
+                priority={isSignature && index === 2}
+              />
+            ))}
+          </div>
+          <div className={cn("pointer-events-none absolute inset-x-0 bottom-0 z-40 h-16 bg-gradient-to-t to-transparent", isSignature ? "from-[#09223E]" : "from-[#e7f4fd]")} />
+        </aside>
+      </div>
+    </article>
+  );
+}
+
+function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean }) {
   const isElite = plan.id === "elite";
   const tone = getPlanTone(plan);
   const [selectedCare, setSelectedCare] = useState("6-month");
@@ -446,10 +605,8 @@ function PricingCard({ plan, isSignature, dedicatedPage = false }: { plan: Plan;
           {presentation.description}
         </p>
 
-        <div className={cn("mt-4 rounded-[17px] border p-4 shadow-[0_16px_34px_-30px_rgba(15,23,42,0.28)] sm:p-[18px]", isSignature ? "border-white/55 bg-white" : "border-[#d8e8f1] bg-[linear-gradient(145deg,#ffffff_0%,#f7fbfe_100%)]")}>
-          <p className="text-[9px] font-extrabold uppercase tracking-[0.1em] text-[#087cbc] sm:text-[10px]">
-            One-time design &amp; development
-          </p>
+        <div className={cn("mt-4 rounded-[17px] border p-4 shadow-[0_16px_34px_-30px_rgba(15,23,42,0.28)] sm:p-[18px]", isSignature ? "border-white/55 bg-white" : "border-[#d8e8f1] bg-[linear-gradient(145deg,#ffffff_0%,#f4f9fd_100%)]")}>
+          <p className="text-[9px] font-extrabold uppercase tracking-[0.1em] text-[#087cbc] sm:text-[10px]">One-Time Design &amp; Development</p>
           <div className="mt-2.5 flex items-center gap-2 text-[#66758a]">
             <span className="text-[9px] font-extrabold uppercase tracking-[0.09em]">Regular</span>
             <span className="relative text-[17px] font-black leading-none tabular-nums after:absolute after:left-[-3px] after:right-[-3px] after:top-1/2 after:h-0.5 after:-rotate-[4deg] after:rounded-full after:bg-[#d49721] after:content-[''] sm:text-[18px]">{formatPricingCurrency(presentation.setupRegular)}</span>
@@ -462,12 +619,8 @@ function PricingCard({ plan, isSignature, dedicatedPage = false }: { plan: Plan;
         </div>
 
         <div className="mt-4">
-          <p className={cn("text-[12px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-white" : "text-[#334155]")}>
-            Choose Platform Care
-          </p>
-          <p className={cn("mt-1 text-[10px] font-semibold leading-relaxed", isSignature ? "text-white/68" : "text-[#718096]")}>
-            Hosting, support &amp; updates included.
-          </p>
+          <p className={cn("text-[12px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-white" : "text-[#334155]")}>Choose Platform Care</p>
+          <p className={cn("mt-1 text-[10px] font-semibold", isSignature ? "text-white/68" : "text-[#718096]")}>Hosting, support &amp; updates included.</p>
           <div className="mt-3 grid w-full min-w-0 grid-cols-3 gap-2 sm:gap-2.5">
             {primaryCareRows.map((row) => {
               const option = plan.maintenanceOptions.find((item) => item.id === row.id);
@@ -481,7 +634,7 @@ function PricingCard({ plan, isSignature, dedicatedPage = false }: { plan: Plan;
                   aria-pressed={selectedCare === row.id}
                   className={cn(
                     "relative flex min-w-0 flex-col items-center justify-center rounded-[13px] border px-1.5 text-center transition duration-200",
-                    dedicatedPage ? "min-h-[76px] py-3 sm:min-h-[82px]" : "min-h-[72px] py-2.5 sm:min-h-[78px]",
+                    "min-h-[76px] py-2.5 sm:min-h-[82px]",
                     isSelected
                       ? isSignature
                         ? "border-white bg-white text-[#111821] shadow-[0_10px_24px_-16px_rgba(3,61,96,0.55)] ring-1 ring-white/35"
@@ -504,9 +657,7 @@ function PricingCard({ plan, isSignature, dedicatedPage = false }: { plan: Plan;
         </div>
 
         <div className={cn("mt-4 flex min-h-0 flex-1 flex-col rounded-[17px] border p-4", tone.featureWrap)}>
-          <p className={cn("text-[10px] font-extrabold uppercase tracking-[0.13em]", isSignature ? "text-[#087cbc]" : "text-[#526173]")}>
-            What&apos;s included
-          </p>
+          <p className={cn("text-[10px] font-extrabold uppercase tracking-[0.13em]", isSignature ? "text-[#087cbc]" : "text-[#526173]")}>What&apos;s included</p>
           <div className="mt-2 divide-y divide-[#e4edf3]">
             {presentation.features.map((feature) => (
               <div key={feature} className="flex items-start gap-2.5 px-0.5 py-2.5 text-[12.5px] font-semibold leading-snug tracking-[-0.01em] text-[#354559] sm:text-[13px]">
@@ -542,10 +693,10 @@ function PricingCard({ plan, isSignature, dedicatedPage = false }: { plan: Plan;
   );
 }
 
-function PricingPackageBuilder() {
+function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId }) {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPlanId, setSelectedPlanId] = useState<TopPlanId>("signature");
+  const [selectedPlanId, setSelectedPlanId] = useState<TopPlanId>(initialPlanId ?? "signature");
   const [selectedCareId, setSelectedCareId] = useState("12-month");
   const [includeGst, setIncludeGst] = useState(false);
   const [discountMode, setDiscountMode] = useState<"percentage" | "fixed">("percentage");
@@ -557,9 +708,8 @@ function PricingPackageBuilder() {
   const selectedPlan = plans.find((plan) => plan.id === selectedPlanId) ?? plans[1];
   const selectedCare = selectedPlan?.maintenanceOptions.find((option) => option.id === selectedCareId)
     ?? selectedPlan?.maintenanceOptions[0];
-  const setupAmount = selectedPlan?.setupAmount ?? 0;
   const careAmount = selectedCare?.price ?? 0;
-  const subtotal = setupAmount + careAmount;
+  const subtotal = pricingPresentation[selectedPlanId].firstPurchase[selectedCareId] ?? 0;
   const discountAmount = discountMode === "percentage"
     ? Math.round(subtotal * (Math.min(Math.max(appliedDiscount, 0), 100) / 100))
     : Math.min(Math.max(appliedDiscount, 0), subtotal);
@@ -585,14 +735,20 @@ function PricingPackageBuilder() {
 
   const applyDiscount = () => {
     const parsed = Number(discountInput);
+    setDiscountMode("fixed");
     setAppliedDiscount(Number.isFinite(parsed) ? Math.max(parsed, 0) : 0);
+  };
+  const applyPercentageDiscount = (percentage: number) => {
+    setDiscountMode("percentage");
+    setDiscountInput("");
+    setAppliedDiscount(percentage);
   };
   const getStartedHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent([
     "Hello OneLink, I want to build my OneLink package.",
     `Plan: ${selectedPlan?.name ?? "Signature"}`,
-    `Platform Care: ${selectedCare?.label ?? "12 Months"}`,
-    `Setup: ${formatCurrency(setupAmount)}`,
-    `Platform Care: ${formatCurrency(careAmount)}`,
+    `Duration: ${selectedCare?.label ?? "12 Months"}`,
+    `First Purchase: ${formatCurrency(subtotal)} + GST`,
+    `Future Renewal: ${formatCurrency(careAmount)} + GST`,
     discountAmount > 0 ? `Discount applied: -${formatCurrency(discountAmount)}` : null,
     `GST preference: ${includeGst ? "With GST" : "Without GST"}`,
     `Estimated Total: ${formatCurrency(total)}${includeGst ? " (including GST)" : " (GST excluded)"}`,
@@ -667,7 +823,7 @@ function PricingPackageBuilder() {
                     >
                       <span className="text-[13px] font-extrabold">{plan.name}</span>
                       <span className={cn("text-right text-[10px] font-bold uppercase leading-tight tracking-[0.04em]", isSelected ? "text-[#087cbc]" : "text-[#718096]")}>
-                        Setup<br /><span className="mt-1 inline-block text-[16px] font-extrabold tracking-[-0.02em] tabular-nums">{formatPricingCurrency(plan.setupAmount)}</span>
+                        Starts at<br /><span className="mt-1 inline-block text-[16px] font-extrabold tracking-[-0.02em] tabular-nums">{formatPricingCurrency(pricingPresentation[plan.id].firstPurchase["3-month"])}</span>
                       </span>
                     </button>
                   );
@@ -677,10 +833,9 @@ function PricingPackageBuilder() {
 
             <div className="border-b border-[#dfeaf4] p-5 sm:p-7 lg:border-b-0 lg:border-r">
               <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-[#087cbc]">Step 2</p>
-              <h3 className="mt-1.5 text-[19px] font-extrabold tracking-[-0.025em] text-[#111821]">Choose Platform Care</h3>
+              <h3 className="mt-1.5 text-[19px] font-extrabold tracking-[-0.025em] text-[#111821]">Choose Duration</h3>
               <div className="mt-4 grid grid-cols-1 gap-2.5">
                 {primaryCareRows.map((row) => {
-                  const option = selectedPlan?.maintenanceOptions.find((item) => item.id === row.id);
                   const isSelected = selectedCareId === row.id;
                   return (
                     <button
@@ -696,7 +851,7 @@ function PricingPackageBuilder() {
                       )}
                     >
                       <span className="text-[12px] font-extrabold uppercase tracking-[0.035em]">{row.label}</span>
-                      <span className="text-[15px] font-extrabold tabular-nums">{formatPricingCurrency(option?.price ?? 0)}</span>
+                      <span className="text-right text-[15px] font-extrabold tabular-nums">{formatPricingCurrency(pricingPresentation[selectedPlanId].firstPurchase[row.id])}<small className="ml-1 text-[8px] font-bold text-[#718096]">+ GST</small></span>
                     </button>
                   );
                 })}
@@ -726,9 +881,8 @@ function PricingPackageBuilder() {
                 ))}
               </div>
               <dl className="mt-4 space-y-2 text-[12px] font-semibold text-[#526173] sm:text-[13px]">
-                <div className="flex items-center justify-between gap-4"><dt>Setup</dt><dd className="font-bold tabular-nums text-[#263446]">{formatPricingCurrency(setupAmount)}</dd></div>
-                <div className="flex items-center justify-between gap-4"><dt>{selectedCare?.label} Platform Care</dt><dd className="font-bold tabular-nums text-[#263446]">{formatPricingCurrency(careAmount)}</dd></div>
-                <div className="flex items-center justify-between gap-4 border-t border-[#cfdfE9] pt-2"><dt>Subtotal</dt><dd className="font-bold tabular-nums text-[#263446]">{formatPricingCurrency(subtotal)}</dd></div>
+                <div className="flex items-center justify-between gap-4"><dt>First purchase package</dt><dd className="font-bold tabular-nums text-[#263446]">{formatPricingCurrency(subtotal)}</dd></div>
+                <div className="flex items-center justify-between gap-4"><dt>Future renewal ({selectedCare?.label})</dt><dd className="font-bold tabular-nums text-[#263446]">{formatPricingCurrency(careAmount)}</dd></div>
                 {discountAmount > 0 ? <div className="flex items-center justify-between gap-4 text-[#138808]"><dt>Discount applied</dt><dd className="font-extrabold tabular-nums">−{formatPricingCurrency(discountAmount)}</dd></div> : null}
                 {includeGst ? <div className="flex items-center justify-between gap-4"><dt>GST (18%)</dt><dd className="font-bold tabular-nums text-[#263446]">{formatPricingCurrency(gst)}</dd></div> : null}
               </dl>
@@ -737,17 +891,34 @@ function PricingPackageBuilder() {
                   <p className="text-[10px] font-extrabold uppercase tracking-[0.09em] text-[#526173]">Add customer discount</p>
                   {discountAmount > 0 ? <button type="button" onClick={() => { setAppliedDiscount(0); setDiscountInput(""); }} className="text-[10px] font-extrabold text-[#d14f36] hover:underline">Remove</button> : null}
                 </div>
-                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] gap-2">
-                  <div className="grid grid-cols-2 rounded-[9px] bg-[#eef4f9] p-1">
-                    {(["percentage", "fixed"] as const).map((mode) => (
-                      <button key={mode} type="button" onClick={() => { setDiscountMode(mode); setAppliedDiscount(0); }} className={cn("min-h-9 rounded-[7px] px-2.5 text-[11px] font-extrabold transition", discountMode === mode ? "bg-white text-[#064083] shadow-sm" : "text-[#718096]")}>{mode === "percentage" ? "%" : "₹"}</button>
-                    ))}
-                  </div>
+                <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2">
                   <label className="relative min-w-0">
-                    <span className="sr-only">Discount value</span>
-                    <input type="number" min="0" max={discountMode === "percentage" ? 100 : subtotal} step="1" value={discountInput} onChange={(event) => setDiscountInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") applyDiscount(); }} placeholder={discountMode === "percentage" ? "Discount %" : "Amount"} className="h-full w-full rounded-[9px] border border-[#d6e3ed] bg-[#fbfdff] px-3 text-[13px] font-bold text-[#263446] outline-none transition placeholder:font-semibold placeholder:text-[#9aa8b7] focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12" />
+                    <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[13px] font-extrabold text-[#087cbc]">₹</span>
+                    <span className="sr-only">Discount amount in rupees</span>
+                    <input type="number" min="0" max={subtotal} step="1" value={discountInput} onChange={(event) => setDiscountInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") applyDiscount(); }} placeholder="Custom discount amount" className="h-10 w-full rounded-[9px] border border-[#d6e3ed] bg-[#fbfdff] pl-7 pr-3 text-[13px] font-bold text-[#263446] outline-none transition placeholder:font-semibold placeholder:text-[#9aa8b7] focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12" />
                   </label>
                   <button type="button" onClick={applyDiscount} className="rounded-[9px] bg-[#09223E] px-3 text-[11px] font-extrabold text-white transition hover:bg-[#064083]">Apply</button>
+                </div>
+                <div className="mt-2 grid grid-cols-4 gap-1.5">
+                  {[10, 15, 20, 25].map((percentage) => {
+                    const isActive = discountMode === "percentage" && appliedDiscount === percentage;
+                    return (
+                      <button
+                        key={percentage}
+                        type="button"
+                        onClick={() => applyPercentageDiscount(percentage)}
+                        aria-pressed={isActive}
+                        className={cn(
+                          "min-h-9 rounded-[8px] border text-[11px] font-extrabold transition",
+                          isActive
+                            ? "border-[#0077FF] bg-[linear-gradient(135deg,#064083,#0077FF)] text-white shadow-sm"
+                            : "border-[#d6e3ed] bg-[#f7fbff] text-[#526173] hover:border-[#8dcaf1] hover:text-[#087cbc]",
+                        )}
+                      >
+                        {percentage}%
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
               <div className="mt-4 flex items-end justify-between gap-3 border-t border-[#bcdceb] pt-4">

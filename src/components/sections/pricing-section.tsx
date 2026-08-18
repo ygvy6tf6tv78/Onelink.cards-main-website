@@ -47,9 +47,9 @@ const pricingPresentation: Record<TopPlanId, {
     description: "Turn visitors into enquiries, bookings and customers.",
     setupRegular: 7999,
     firstPurchase: {
-      "3-month": 7998,
-      "6-month": 9998,
-      "12-month": 13998,
+      "3-month": 9498,
+      "6-month": 11498,
+      "12-month": 15498,
     },
     purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [

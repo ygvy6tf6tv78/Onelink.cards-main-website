@@ -527,9 +527,9 @@ export const pricingPlans: Plan[] = [
     badge: "Most Popular",
     highlight: true,
     ctaLabel: "Get Signature",
-    setupAmount: 4999,
+    setupAmount: 6499,
     hostingAmount: 4999,
-    orderAmount: 9998,
+    orderAmount: 11498,
     monthlyEquivalent: 1000,
     maintenanceOptions: [
       { id: "3-month", label: "3 Months", price: 2999 },

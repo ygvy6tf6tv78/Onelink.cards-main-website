@@ -31,9 +31,9 @@ const pricingPresentation: Record<TopPlanId, {
     description: "A professional digital presence for your business.",
     setupRegular: 5999,
     firstPurchase: {
-      "3-month": 6999,
-      "6-month": 8499,
-      "12-month": 10999,
+      "3-month": 7499,
+      "6-month": 8999,
+      "12-month": 11499,
     },
     purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [
@@ -48,8 +48,8 @@ const pricingPresentation: Record<TopPlanId, {
     setupRegular: 7999,
     firstPurchase: {
       "3-month": 9499,
-      "6-month": 11999,
-      "12-month": 16999,
+      "6-month": 11499,
+      "12-month": 15499,
     },
     purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [
@@ -63,9 +63,9 @@ const pricingPresentation: Record<TopPlanId, {
     description: "Manage customer actions from one powerful dashboard.",
     setupRegular: 14999,
     firstPurchase: {
-      "3-month": 16999,
-      "6-month": 20999,
-      "12-month": 28999,
+      "3-month": 14999,
+      "6-month": 18499,
+      "12-month": 24499,
     },
     purchaseIncludes: "Includes complete OneLink setup, software access, hosting, support & updates.",
     features: [
@@ -699,9 +699,7 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
   const [selectedPlanId, setSelectedPlanId] = useState<TopPlanId>(initialPlanId ?? "signature");
   const [selectedCareId, setSelectedCareId] = useState("12-month");
   const [includeGst, setIncludeGst] = useState(false);
-  const [discountMode, setDiscountMode] = useState<"percentage" | "fixed">("percentage");
-  const [discountSelection, setDiscountSelection] = useState("custom");
-  const [discountInput, setDiscountInput] = useState("");
+  const [discountSelection, setDiscountSelection] = useState("10");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const plans = pricingPlans.filter((plan): plan is Plan & { id: TopPlanId } =>
     ["essential", "signature", "elite"].includes(plan.id),
@@ -711,9 +709,7 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
     ?? selectedPlan?.maintenanceOptions[0];
   const careAmount = selectedCare?.price ?? 0;
   const subtotal = pricingPresentation[selectedPlanId].firstPurchase[selectedCareId] ?? 0;
-  const discountAmount = discountMode === "percentage"
-    ? Math.round(subtotal * (Math.min(Math.max(appliedDiscount, 0), 100) / 100))
-    : Math.min(Math.max(appliedDiscount, 0), subtotal);
+  const discountAmount = Math.round(subtotal * (Math.min(Math.max(appliedDiscount, 0), 100) / 100));
   const discountedSubtotal = subtotal - discountAmount;
   const gst = Math.round(discountedSubtotal * 0.18);
   const total = includeGst ? discountedSubtotal + gst : discountedSubtotal;
@@ -735,18 +731,9 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
   }, [isOpen]);
 
   const applyDiscount = () => {
-    if (discountSelection !== "custom") {
-      setDiscountMode("percentage");
-      setAppliedDiscount(Number(discountSelection));
-      return;
-    }
-    const parsed = Number(discountInput);
-    setDiscountMode("fixed");
-    setAppliedDiscount(Number.isFinite(parsed) ? Math.max(parsed, 0) : 0);
+    setAppliedDiscount(Number(discountSelection));
   };
   const resetDiscount = () => {
-    setDiscountSelection("custom");
-    setDiscountInput("");
     setAppliedDiscount(0);
   };
   const getStartedHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent([
@@ -904,33 +891,22 @@ function PricingPackageBuilder({ initialPlanId }: { initialPlanId?: TopPlanId })
                       onChange={(event) => {
                         setDiscountSelection(event.target.value);
                         setAppliedDiscount(0);
-                        if (event.target.value !== "custom") setDiscountInput("");
                       }}
                       className="h-10 w-full appearance-none rounded-[9px] border border-[#d6e3ed] bg-[#f7fbff] px-3 pr-8 text-[11px] font-extrabold text-[#334155] outline-none transition focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12"
                     >
-                      <option value="custom">Custom ₹</option>
                       <option value="10">10% Discount</option>
                       <option value="15">15% Discount</option>
                       <option value="20">20% Discount</option>
-                      <option value="25">25% Discount</option>
                     </select>
                     <svg className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#718096]" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
                   </label>
-                  {discountSelection === "custom" ? (
-                    <label className="relative min-w-0">
-                      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[13px] font-extrabold text-[#087cbc]">₹</span>
-                      <span className="sr-only">Discount amount in rupees</span>
-                      <input type="number" min="0" max={subtotal} step="1" value={discountInput} onChange={(event) => setDiscountInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") applyDiscount(); }} placeholder="Enter amount" className="h-10 w-full rounded-[9px] border border-[#d6e3ed] bg-[#fbfdff] pl-7 pr-3 text-[12px] font-bold text-[#263446] outline-none transition placeholder:font-semibold placeholder:text-[#9aa8b7] focus:border-[#0077FF] focus:ring-2 focus:ring-[#0077FF]/12" />
-                    </label>
-                  ) : (
-                    <div className="flex h-10 items-center rounded-[9px] border border-[#c8e0f1] bg-[#edf7ff] px-3 text-[11px] font-extrabold text-[#087cbc]">
-                      {discountSelection}% will be applied
-                    </div>
-                  )}
+                  <div className="flex h-10 items-center rounded-[9px] border border-[#c8e0f1] bg-[#edf7ff] px-3 text-[11px] font-extrabold text-[#087cbc]">
+                    {discountSelection}% will be applied
+                  </div>
                 </div>
                 <div className="mt-2 grid grid-cols-2 gap-2">
                   <button type="button" onClick={applyDiscount} className="h-9 rounded-[9px] bg-[#09223E] px-3 text-[11px] font-extrabold text-white transition hover:bg-[#064083]">Apply Discount</button>
-                  <button type="button" onClick={resetDiscount} disabled={discountAmount === 0 && discountInput === "" && discountSelection === "custom"} className="h-9 rounded-[9px] border border-[#cad9e5] bg-white px-3 text-[11px] font-extrabold text-[#526173] transition hover:border-[#e09b8b] hover:text-[#c44932] disabled:cursor-not-allowed disabled:opacity-45">Reset</button>
+                  <button type="button" onClick={resetDiscount} disabled={discountAmount === 0} className="h-9 rounded-[9px] border border-[#cad9e5] bg-white px-3 text-[11px] font-extrabold text-[#526173] transition hover:border-[#e09b8b] hover:text-[#c44932] disabled:cursor-not-allowed disabled:opacity-45">Reset</button>
                 </div>
               </div>
               <div className="mt-4 flex items-end justify-between gap-3 border-t border-[#bcdceb] pt-4">

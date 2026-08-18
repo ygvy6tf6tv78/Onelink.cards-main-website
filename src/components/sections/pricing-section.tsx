@@ -31,9 +31,9 @@ const pricingPresentation: Record<TopPlanId, {
     description: "A professional digital presence for your business.",
     setupRegular: 5999,
     firstPurchase: {
-      "3-month": 7499,
-      "6-month": 8999,
-      "12-month": 11499,
+      "3-month": 7498,
+      "6-month": 8998,
+      "12-month": 11498,
     },
     purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [
@@ -47,9 +47,9 @@ const pricingPresentation: Record<TopPlanId, {
     description: "Turn visitors into enquiries, bookings and customers.",
     setupRegular: 7999,
     firstPurchase: {
-      "3-month": 9499,
-      "6-month": 11499,
-      "12-month": 15499,
+      "3-month": 7998,
+      "6-month": 9998,
+      "12-month": 13998,
     },
     purchaseIncludes: "Includes complete OneLink design, development, hosting, support & updates.",
     features: [
@@ -63,9 +63,9 @@ const pricingPresentation: Record<TopPlanId, {
     description: "Manage customer actions from one powerful dashboard.",
     setupRegular: 14999,
     firstPurchase: {
-      "3-month": 14999,
-      "6-month": 18499,
-      "12-month": 24499,
+      "3-month": 14998,
+      "6-month": 18498,
+      "12-month": 24498,
     },
     purchaseIncludes: "Includes complete OneLink setup, software access, hosting, support & updates.",
     features: [

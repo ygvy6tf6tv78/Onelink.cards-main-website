@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { navItems, siteConfig } from "@/content/site";
 import { Wordmark } from "@/components/ui/brand-mark";
 import { useState, useEffect } from "react";
@@ -10,7 +9,6 @@ import { Icon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(
@@ -167,25 +165,6 @@ export function Navbar() {
           )}
         </AnimatePresence>
       </motion.div>
-      {pathname !== "/pricing" ? (
-        <Link
-          href="/#pricing"
-          aria-label="View Limited Independence Day Offer pricing"
-          className={cn(
-            "mx-auto mt-2 flex h-7 w-[calc(100%-48px)] max-w-[760px] items-center overflow-hidden rounded-full border border-white/80 bg-[linear-gradient(90deg,#ff9933_0%,#fff7e8_48%,#ffffff_52%,#eaf8ea_64%,#138808_100%)] text-[#09223E] shadow-[0_12px_28px_-18px_rgba(9,34,62,0.52)] transition-all duration-300 sm:h-8",
-            isScrolled && "pointer-events-none -translate-y-2 opacity-0",
-          )}
-        >
-          <span className="one-marquee-left special-pricing-marquee flex w-max items-center whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.13em] sm:text-[9px]">
-            {[0, 1, 2, 3].map((item) => (
-              <span key={item} className="inline-flex items-center gap-3 pr-8">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#09223E] shadow-[0_0_8px_rgba(9,34,62,0.28)]" />
-                Limited Independence Day Offer
-              </span>
-            ))}
-          </span>
-        </Link>
-      ) : null}
     </header>
   );
 }

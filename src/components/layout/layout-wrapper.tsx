@@ -18,7 +18,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
   const pathname = usePathname();
   const [splashComplete, setSplashComplete] = useState(pathname !== "/");
   const handleSplashComplete = useCallback(() => setSplashComplete(true), []);
-  
+
   // Hide main navbar and footer on booking, payment, and legal routes
   const isExcluded = 
     pathname?.startsWith("/book") || 
@@ -27,7 +27,8 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
     pathname?.startsWith("/privacy") || 
     pathname?.startsWith("/refund") || 
     pathname?.startsWith("/shipping") ||
-    pathname?.startsWith("/--12");
+    pathname?.startsWith("/--12") ||
+    pathname?.startsWith("/quickbill");
 
   if (isExcluded) {
     return (

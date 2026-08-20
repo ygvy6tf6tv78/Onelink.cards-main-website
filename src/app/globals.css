@@ -186,6 +186,28 @@ button {
   pointer-events: none;
 }
 
+.qb-primary,
+.qb-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.7rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.qb-primary {
+  background: #4aa839;
+  color: #fff;
+  box-shadow: 0 12px 22px -12px rgba(54, 135, 42, 0.55);
+}
+
+.qb-primary:hover { background: #378a2e; transform: translateY(-1px); }
+.qb-secondary { border: 1px solid #e2e8f0; color: #475569; background: #fff; }
+.qb-secondary:hover { border-color: #cae7c3; color: #378a2e; background: #f3faef; }
+
 .surface-card {
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.92);

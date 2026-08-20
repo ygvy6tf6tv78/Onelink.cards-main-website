@@ -171,7 +171,7 @@ export function PricingSection({
           </Reveal>
         </div>
 
-        <div className={cn("relative mx-auto", dedicatedPage ? "max-w-[1320px]" : "max-w-7xl")}>
+        <div className={cn("relative mx-auto", dedicatedPage ? "max-w-[1200px]" : "max-w-7xl")}>
           {dedicatedPage ? (
             <DedicatedPricingSelector plans={topPlans} selectedPlanId={dedicatedSelectedPlanId} onPlanChange={setDedicatedSelectedPlanId} />
           ) : (
@@ -190,8 +190,12 @@ export function PricingSection({
 
         <Reveal delay={0.14} y={14} alwaysShow={staticReveal}><PricingPackageBuilder key={dedicatedPage ? "dedicated" : "homepage"} /></Reveal>
 
-        <Reveal delay={0.16} y={14} alwaysShow={staticReveal}><QuickBillPricingPromo /></Reveal>
-        <Reveal delay={0.18} y={14} alwaysShow={staticReveal}><QuickBillPackageBuilder /></Reveal>
+        {dedicatedPage ? (
+          <>
+            <Reveal delay={0.16} y={14} alwaysShow={staticReveal}><QuickBillPricingPromo /></Reveal>
+            <Reveal delay={0.18} y={14} alwaysShow={staticReveal}><QuickBillPackageBuilder /></Reveal>
+          </>
+        ) : null}
 
         {enterprisePlan && !dedicatedPage ? (
           <>
@@ -532,7 +536,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
 
   return (
     <article className={cn(
-      "relative w-full overflow-hidden rounded-[22px] border p-4 shadow-[0_28px_70px_-48px_rgba(9,34,62,0.28)] sm:p-5",
+      "relative w-full overflow-hidden rounded-[20px] border p-3.5 shadow-[0_24px_60px_-44px_rgba(9,34,62,0.28)] sm:p-4",
       isSignature
         ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E_0%,#064083_52%,#0077FF_100%)] text-white shadow-[0_34px_82px_-45px_rgba(0,67,155,0.82)]"
         : plan.id === "essential"
@@ -547,23 +551,23 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
         <p className={cn("text-[9px] font-extrabold uppercase tracking-[0.17em]", isSignature ? "text-[#bfe5ff]" : tone.label)}>{plan.badge}</p>
         <div className="mt-1.5 flex items-center gap-2.5">
           <PricingBrandMark tone={tone.markTone} className="h-9 w-9 rounded-[11px] [&_img]:w-5" />
-          <h3 className={cn("text-[23px] font-extrabold tracking-[-0.035em] sm:text-[25px]", isSignature ? "text-white" : "text-[#111821]")}>{plan.name}</h3>
+          <h3 className={cn("text-[21px] font-extrabold tracking-[-0.035em] sm:text-[23px]", isSignature ? "text-white" : "text-[#111821]")}>{plan.name}</h3>
         </div>
-        <h4 className={cn("mt-2 text-[20px] font-extrabold leading-tight tracking-[-0.025em] sm:text-[24px]", isSignature ? "text-white" : "text-[#111821]")}>{planCopy.title}</h4>
+        <h4 className={cn("mt-1.5 text-[19px] font-extrabold leading-tight tracking-[-0.025em] sm:text-[22px]", isSignature ? "text-white" : "text-[#111821]")}>{planCopy.title}</h4>
         <div className={cn("mt-3 rounded-[12px] border px-3 py-3", isSignature ? "border-white/20 bg-white/10" : "border-[#d4e4ef] bg-white/75")}><p className={cn("text-[10px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>Recommended for</p><p className={cn("mt-1 text-[14px] font-semibold leading-relaxed", isSignature ? "text-white/88" : "text-[#526173]")}>{planCopy.recommended}</p></div>
       </header>
 
       <div className="mt-4 grid gap-3 md:grid-cols-[0.82fr_1.22fr_1.16fr] md:items-stretch md:gap-3">
-        <section className={cn("rounded-[17px] border p-4 sm:p-5", isSignature ? "border-white/25 bg-white/[0.1]" : "border-[#a9cee8] bg-[#f4faff] shadow-[0_16px_34px_-26px_rgba(9,34,62,0.42)]")}>
+        <section className={cn("rounded-[16px] border p-3.5 sm:p-4", isSignature ? "border-white/25 bg-white/[0.1]" : "border-[#a9cee8] bg-[#f4faff] shadow-[0_16px_34px_-26px_rgba(9,34,62,0.42)]")}>
           <p className={cn("text-[10px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>One-Time Setup</p>
           <div className="mt-3 flex flex-wrap items-end gap-2.5">
-            <span className={cn("text-[46px] font-extrabold leading-none tracking-[-0.045em] tabular-nums sm:text-[54px]", isSignature ? "text-white" : "text-[#09223E]")}>{formatPricingCurrency(setupAmount)}</span>
+            <span className={cn("text-[41px] font-extrabold leading-none tracking-[-0.045em] tabular-nums sm:text-[48px]", isSignature ? "text-white" : "text-[#09223E]")}>{formatPricingCurrency(setupAmount)}</span>
             <span className={cn("mb-0.5 rounded-full border px-2 py-1 text-[8px] font-extrabold uppercase", isSignature ? "border-white/25 bg-white/10 text-white/85" : "border-[#bde7fb] bg-[#eef9ff] text-[#087cbc]")}>+ GST</span>
           </div>
           <p className={cn("mt-3 border-t pt-3 text-[10px] font-bold leading-relaxed", isSignature ? "border-white/15 text-white/72" : "border-[#cfe2ef] text-[#526173]")}>Custom design, development and complete setup.</p>
         </section>
 
-        <section className={cn("rounded-[17px] border p-4 sm:p-5", isSignature ? "border-white/20 bg-white/[0.065]" : "border-[#a9cee8] bg-[#f4faff]")}>
+        <section className={cn("rounded-[16px] border p-3.5 sm:p-4", isSignature ? "border-white/20 bg-white/[0.065]" : "border-[#a9cee8] bg-[#f4faff]")}>
           <p className={cn("text-[11px] font-extrabold uppercase tracking-[0.13em]", isSignature ? "text-white" : "text-[#334155]")}>Choose Platform Care</p>
           <p className={cn("mt-1 text-[10px] font-semibold", isSignature ? "text-white/65" : "text-[#718096]")}>Hosting, support &amp; updates included.</p>
           <div className="mt-3 grid grid-cols-3 gap-2.5">
@@ -578,7 +582,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
                   onClick={() => setSelectedCare(row.id)}
                   aria-pressed={isSelected}
                   className={cn(
-                    "relative flex min-h-[88px] min-w-0 flex-col items-center justify-center rounded-[13px] border px-1.5 py-2.5 text-center transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2",
+                    "relative flex min-h-[78px] min-w-0 flex-col items-center justify-center rounded-[12px] border px-1.5 py-2 text-center transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2",
                     isSelected
                       ? "border-[#00A9FF] bg-white text-[#111821] shadow-[0_14px_28px_-20px_rgba(0,91,167,0.7)] ring-1 ring-[#00A9FF]/20"
                       : isSignature ? "border-white/20 bg-white/[0.07] text-white hover:bg-white/[0.12]" : "border-[#dce8ef] bg-white text-[#334155] hover:border-[#9fd6f4]",
@@ -592,11 +596,11 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
             })}
           </div>
 
-          <div className={cn("mt-3 rounded-[15px] border p-4", isSignature ? "border-white/45 bg-white text-[#111821]" : "border-[#9fc8e5] bg-[#e7f4fd] shadow-[0_14px_30px_-26px_rgba(9,34,62,0.42)]")}>
+          <div className={cn("mt-3 rounded-[14px] border p-3.5", isSignature ? "border-white/45 bg-white text-[#111821]" : "border-[#9fc8e5] bg-[#e7f4fd] shadow-[0_14px_30px_-26px_rgba(9,34,62,0.42)]")}>
             <p className="text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#087cbc]">First Purchase Total</p>
             <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
               <span className="text-[9.5px] font-bold text-[#607084]">Setup + {selectedOption?.label} Care</span>
-              <span className="flex items-end gap-2"><strong className="text-[32px] font-extrabold leading-none tracking-[-0.045em] text-[#064083] tabular-nums sm:text-[37px]">{formatPricingCurrency(firstPayment)}</strong><small className="pb-0.5 text-[8px] font-extrabold uppercase text-[#087cbc]">+ GST</small></span>
+              <span className="flex items-end gap-2"><strong className="text-[29px] font-extrabold leading-none tracking-[-0.045em] text-[#064083] tabular-nums sm:text-[34px]">{formatPricingCurrency(firstPayment)}</strong><small className="pb-0.5 text-[8px] font-extrabold uppercase text-[#087cbc]">+ GST</small></span>
             </div>
           </div>
         </section>

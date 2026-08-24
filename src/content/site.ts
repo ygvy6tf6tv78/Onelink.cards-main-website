@@ -498,9 +498,9 @@ export const pricingPlans: Plan[] = [
     description: "Professional digital presence for your business.",
     badge: "Easy Start",
     ctaLabel: "Get Essential",
-    setupAmount: 5499,
+    setupAmount: 3999,
     hostingAmount: 3499,
-    orderAmount: 8998,
+    orderAmount: 7498,
     monthlyEquivalent: 583,
     maintenanceOptions: [
       { id: "3-month", label: "3 Months", price: 1999 },

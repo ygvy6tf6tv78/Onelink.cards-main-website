@@ -43,21 +43,21 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
 
   return (
     <>
-      <div className="thin-scrollbar -mx-5 mt-8 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0 md:grid md:grid-cols-4 md:overflow-visible md:pb-0 xl:flex xl:flex-wrap">
+      <div className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5 md:mt-8 md:grid-cols-4 xl:grid-cols-4">
         {categoryFilters.map((filter) => (
           <button
             key={filter.id}
             type="button"
             onClick={() => setActiveFilter(filter.id)}
             className={cn(
-              "group inline-flex min-h-10 shrink-0 snap-start items-center justify-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.075em] transition-all duration-300 sm:min-h-10 sm:text-[12px] sm:tracking-[0.1em]",
+              "group inline-flex min-h-11 min-w-0 items-center justify-center gap-1.5 rounded-[12px] border px-2 py-2 text-center text-[9px] font-extrabold uppercase leading-tight tracking-[0.055em] transition-all duration-300 sm:min-h-10 sm:gap-2 sm:rounded-full sm:px-3 sm:text-[10px] sm:tracking-[0.08em] md:px-4 md:text-[11px]",
               activeFilter === filter.id
                 ? "border-[#237fd9] bg-[linear-gradient(135deg,#09223E_0%,#064083_54%,#0077FF_100%)] text-white shadow-[0_16px_34px_-18px_rgba(0,70,160,0.7)]"
                 : "border-[#d5e4f1] bg-white text-[#475569] shadow-[0_10px_28px_-24px_rgba(15,23,42,0.45)] hover:-translate-y-0.5 hover:border-[#78b7ec] hover:text-[#064083]",
             )}
           >
-            <Icon name={filter.icon} className={cn("h-3.5 w-3.5 transition-transform group-hover:scale-110", activeFilter === filter.id ? "text-white" : "text-[#0077d4]")} />
-            {filter.label}
+            <Icon name={filter.icon} className={cn("h-3 w-3 shrink-0 transition-transform group-hover:scale-110 sm:h-3.5 sm:w-3.5", activeFilter === filter.id ? "text-white" : "text-[#0077d4]")} />
+            <span className="min-w-0">{filter.label}</span>
           </button>
         ))}
       </div>

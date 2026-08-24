@@ -521,10 +521,11 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
 function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSignature?: boolean }) {
   const tone = getPlanTone(plan);
   const [selectedCare, setSelectedCare] = useState("6-month");
+  const [isUpdateInfoOpen, setIsUpdateInfoOpen] = useState(false);
   const presentation = pricingPresentation[plan.id as TopPlanId];
   const setupAmount = ({ essential: 3999, signature: 6499, elite: 10499 } as Record<TopPlanId, number>)[plan.id as TopPlanId];
   const planCopy = {
-    essential: { title: "Show Your Business", recommended: "Businesses that only need a premium digital presence and easy customer access.", features: ["Premium Custom OneLink", "Free OneLink URL", "Digital QR Code", "Call, WhatsApp, Location & Reviews", "Gallery", "Services / Menu / Price List", "Social & Payment Links", "2 Managed Update Requests / Month"] },
+    essential: { title: "Show Your Business", recommended: "Businesses that only need a premium digital presence and easy customer access.", features: ["Premium Custom OneLink", "Free OneLink URL", "Digital QR Code", "Call, WhatsApp, Location & Reviews", "Gallery", "Services / Menu / Price List", "Social & Payment Links", "3 Managed Update Requests / Month"] },
     signature: { title: "Convert More Customers", recommended: "Businesses that want enquiries, bookings, orders and customer leads.", features: ["Everything in Essential", "Admin Panel", "Self-manage images, services & pricing", "Appointment / Booking Requests", "Order / Takeaway Requests", "Enquiry & Lead Capture", "Customer contact data", "WhatsApp/manual booking management", "100 Personalized QR Visiting Cards", "QR Sticker Design Pack"] },
     elite: { title: "Automate Your Business", recommended: "Businesses that want bookings and customer operations to run automatically.", features: ["Everything in Signature", "Advanced Booking System", "Live Slot Availability", "Automatic Slot Blocking", "Auto Confirmations & Reminders", "Customer Database", "Booking / Order History", "Advanced Analytics", "Automation Workflows", "QuickBill Included", "100 Personalized QR Visiting Cards"] },
   }[plan.id as TopPlanId];
@@ -632,6 +633,24 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
         <ul className="mt-3 grid gap-2.5 text-[13px] font-semibold leading-relaxed sm:grid-cols-2">
           {planCopy.features.map((feature) => <li key={feature} className={cn("flex items-start gap-2", isSignature ? "text-white/85" : "text-[#526173]")}><span className={cn("mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full text-[9px]", isSignature ? "bg-white/15 text-[#bfe5ff]" : "bg-[#eaf6ff] text-[#087cbc]")}>✓</span>{feature}</li>)}
         </ul>
+        {plan.id === "essential" ? (
+          <div className={cn("mt-4 border-t pt-3", isSignature ? "border-white/15" : "border-[#d6e5ee]")}>
+            <button
+              type="button"
+              onClick={() => setIsUpdateInfoOpen((open) => !open)}
+              aria-expanded={isUpdateInfoOpen}
+              className={cn("flex w-full items-center justify-between gap-3 rounded-[11px] border px-3 py-2.5 text-left text-[11px] font-extrabold transition", isSignature ? "border-white/25 bg-white/10 text-white hover:bg-white/15" : "border-[#b8dced] bg-[#eef8ff] text-[#087cbc] hover:border-[#72c5eb]")}
+            >
+              <span>Managed update details</span>
+              <span className={cn("text-base leading-none transition-transform", isUpdateInfoOpen && "rotate-45")}>+</span>
+            </button>
+            {isUpdateInfoOpen ? (
+              <p className={cn("mt-2.5 rounded-[10px] px-3 py-2.5 text-[11px] font-semibold leading-relaxed", isSignature ? "bg-white/10 text-white/80" : "bg-white text-[#526173]")}>
+                3 update requests are included each month. Additional update pack: <strong>₹199 + GST</strong> for up to <strong>3–5 content changes</strong>.
+              </p>
+            ) : null}
+          </div>
+        ) : null}
       </section>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-current/10 pt-4">
         <Link href="/pricing/compare" className={cn("inline-flex min-h-10 items-center justify-center rounded-[11px] border px-4 text-[12px] font-extrabold transition hover:-translate-y-0.5", isSignature ? "border-white/50 bg-white text-[#064083]" : "border-[#9fc8e5] bg-white text-[#087cbc]")}>Compare all features <span className="ml-1.5" aria-hidden="true">→</span></Link>

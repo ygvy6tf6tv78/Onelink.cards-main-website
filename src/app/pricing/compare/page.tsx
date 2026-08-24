@@ -11,7 +11,7 @@ const rows = [
   ["Gallery, Menu, Services & Products", "✓", "✓", "✓"],
   ["Call, WhatsApp, Location, Reviews & Payments", "✓", "✓", "✓"],
   ["Digital QR Code", "✓", "✓", "✓"],
-  ["Content Management", "2 Managed Updates / Month", "Self-Manage via Admin", "Self-Manage via Admin"],
+  ["Content Management", "3 Managed Updates / Month", "Self-Manage via Admin", "Self-Manage via Admin"],
   ["Bookings, Orders & Enquiries", "—", "Manual / WhatsApp Based", "Automated"],
   ["Customer Lead Capture", "—", "✓", "✓"],
   ["Live Availability & Slot Management", "—", "—", "✓"],

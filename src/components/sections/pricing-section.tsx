@@ -522,7 +522,8 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
   const tone = getPlanTone(plan);
   const [selectedCare, setSelectedCare] = useState("6-month");
   const presentation = pricingPresentation[plan.id as TopPlanId];
-  const setupAmount = ({ essential: 3999, signature: 6499, elite: 10499 } as Record<TopPlanId, number>)[plan.id as TopPlanId];
+  // Keep the dedicated pricing page in sync with the homepage and checkout.
+  const setupAmount = plan.setupAmount;
   const planCopy = {
     essential: { title: "Show Your Business", recommended: "Businesses that only need a premium digital presence and easy customer access.", features: ["Premium Custom OneLink", "Free OneLink URL", "Digital QR Code", "Call, WhatsApp, Location & Reviews", "Gallery", "Services / Menu / Price List", "Social & Payment Links", "2 Managed Update Requests / Month"] },
     signature: { title: "Convert More Customers", recommended: "Businesses that want enquiries, bookings, orders and customer leads.", features: ["Everything in Essential", "Admin Panel", "Self-manage images, services & pricing", "Appointment / Booking Requests", "Order / Takeaway Requests", "Enquiry & Lead Capture", "Customer contact data", "WhatsApp/manual booking management", "100 Personalized QR Visiting Cards", "QR Sticker Design Pack"] },

@@ -20,7 +20,14 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
         </div>
       </a>
 
-      <div className="pt-4">
+      <div className="relative isolate overflow-hidden pt-4">
+        <Image
+          src={item.image}
+          alt=""
+          aria-hidden="true"
+          sizes="120px"
+          className="pointer-events-none absolute -bottom-9 -right-5 -z-10 h-32 w-24 rotate-[7deg] object-contain opacity-[0.07] sm:h-36 sm:w-28"
+        />
         <p className="inline-flex items-center gap-1.5 rounded-full border border-[#cfe6f7] bg-[#f3faff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.09em] text-[#0876bb]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#19a8ee]" />
           {item.label ?? item.category}

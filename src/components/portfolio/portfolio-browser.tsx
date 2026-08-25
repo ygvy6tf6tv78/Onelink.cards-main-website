@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import type { PortfolioItem } from "@/content/portfolio";
+import { portfolioItems, type PortfolioItem } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
 import { Icon } from "@/components/icons";
@@ -20,15 +21,15 @@ const categoryFilters: CategoryFilter[] = [
   { id: "all", label: "All Work", ids: null, icon: "spark" },
   { id: "restaurants", label: "Restaurants", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
   { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
-  { id: "clinics", label: "Clinics & Doctors", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
+  { id: "clinics", label: "Clinics", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
   { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"], icon: "building" },
   { id: "retail", label: "Retail Shops", ids: ["poshak-e-hoor"], icon: "wallet" },
   { id: "startups", label: "Startups", ids: ["mera-halwai"], icon: "bolt" },
-  { id: "cas", label: "CAs", ids: ["ca-ramit"], icon: "invoice" },
-  { id: "professional", label: "Professional Services", ids: ["ca-ramit", "jay-ess"], icon: "form" },
-  { id: "products", label: "Products", ids: ["honey-fresh", "honey-money"], icon: "gallery" },
+  { id: "cas", label: "Accountants", ids: ["ca-ramit"], icon: "invoice" },
+  { id: "professional", label: "Business Services", ids: ["ca-ramit", "jay-ess"], icon: "form" },
+  { id: "products", label: "Product Brands", ids: ["honey-fresh", "honey-money"], icon: "gallery" },
   { id: "education", label: "Education", ids: ["lingua-vibe"], icon: "chart" },
-  { id: "custom", label: "Custom", ids: [], icon: "spark" },
+  { id: "custom", label: "Other Business", ids: [], icon: "spark" },
 ] as const;
 
 export function PortfolioCategoryPicker() {
@@ -44,27 +45,39 @@ export function PortfolioCategoryPicker() {
 
   return (
     <div className="mt-4 border-t border-white/15 pt-3">
-      <div className="flex flex-wrap gap-1.5">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         {categoryFilters.filter((filter) => filter.id !== "all").map((filter) => (
-          <button
-            key={filter.id}
-            type="button"
-            onClick={() => chooseFilter(filter.id)}
-            className={cn(
-              "inline-flex min-h-9 items-center gap-2 rounded-full border px-2.5 py-1.5 text-left text-[12px] font-extrabold transition sm:text-[13px]",
-              activeFilter === filter.id
-                ? "border-white bg-white text-[#075a9f] shadow-[0_8px_20px_-13px_rgba(0,0,0,0.75)]"
-                : "border-white/80 bg-white text-[#23425e] hover:-translate-y-0.5 hover:bg-[#f4fbff]",
-            )}
-          >
-            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#e8f5ff] text-[#087bd0]">
-              <Icon name={filter.icon} className="h-[18px] w-[18px]" />
-            </span>
-            <span>{filter.label}</span>
-          </button>
+          <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} onChoose={chooseFilter} />
         ))}
       </div>
     </div>
+  );
+}
+
+function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; active: boolean; onChoose: (id: string) => void }) {
+  const preview = filter.ids?.length ? portfolioItems.find((item) => filter.ids?.includes(item.id)) : undefined;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onChoose(filter.id)}
+      className={cn(
+        "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[12px] font-extrabold transition sm:text-[13px]",
+        filter.id === "custom" && "col-span-2 sm:col-span-1",
+        active
+          ? "border-white bg-white text-[#075a9f] shadow-[0_8px_20px_-13px_rgba(0,0,0,0.75)]"
+          : "border-white/80 bg-[linear-gradient(135deg,#ffffff_0%,#edf8ff_100%)] text-[#23425e] shadow-[0_8px_20px_-16px_rgba(0,0,0,0.65)] hover:-translate-y-0.5 hover:bg-[#f4fbff]",
+      )}
+    >
+      <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e8f5ff] text-[#087bd0] ring-1 ring-[#c7e7fb]">
+        {preview ? (
+          <Image src={preview.image} alt="" fill sizes="28px" className="object-cover" />
+        ) : (
+          <Icon name={filter.icon} className="h-[18px] w-[18px]" />
+        )}
+      </span>
+      <span>{filter.label}</span>
+    </button>
   );
 }
 

@@ -13,7 +13,7 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
       setIsVisible(false);
       document.body.style.overflow = "unset";
       window.setTimeout(() => onComplete?.(), 80);
-    }, 3500);
+    }, 1600);
 
     return () => {
       window.clearTimeout(timer);
@@ -43,7 +43,7 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
                   className="h-full w-full origin-left rounded-full bg-[linear-gradient(90deg,#087cbc_0%,#00A9FF_60%,#55c5ff_100%)] shadow-[0_0_12px_rgba(0,169,255,0.3)]"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ duration: 3.25, ease: [0.33, 1, 0.68, 1] }}
+                  transition={{ duration: 1.4, ease: [0.33, 1, 0.68, 1] }}
                 />
               </div>
             </div>

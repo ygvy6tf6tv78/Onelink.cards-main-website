@@ -21,7 +21,8 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
       </a>
 
       <div className="pt-4">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.09em] text-[var(--accent-strong)]">
+        <p className="inline-flex items-center gap-1.5 rounded-full border border-[#cfe6f7] bg-[#f3faff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.09em] text-[#0876bb]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#19a8ee]" />
           {item.label ?? item.category}
         </p>
         <h3 className="font-display type-card-title mt-1.5 text-[var(--foreground)]">

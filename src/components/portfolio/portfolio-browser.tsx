@@ -31,18 +31,50 @@ const categoryFilters: CategoryFilter[] = [
   { id: "custom", label: "Custom", ids: [], icon: "spark" },
 ] as const;
 
-export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
+export function PortfolioCategoryPicker() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const requestedFilter = searchParams.get("category");
+  const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter ? requestedFilter : "all";
+
+  const chooseFilter = (filterId: string) => {
+    const query = filterId === "all" ? "" : `?category=${filterId}`;
+    router.replace(`/portfolio${query}`, { scroll: false });
+  };
+
+  return (
+    <div className="mt-4 border-t border-white/15 pt-3">
+      <div className="flex flex-wrap gap-1.5">
+        {categoryFilters.filter((filter) => filter.id !== "all").map((filter) => (
+          <button
+            key={filter.id}
+            type="button"
+            onClick={() => chooseFilter(filter.id)}
+            className={cn(
+              "inline-flex min-h-9 items-center gap-2 rounded-full border px-2.5 py-1.5 text-left text-[12px] font-extrabold transition sm:text-[13px]",
+              activeFilter === filter.id
+                ? "border-white bg-white text-[#075a9f] shadow-[0_8px_20px_-13px_rgba(0,0,0,0.75)]"
+                : "border-white/80 bg-white text-[#23425e] hover:-translate-y-0.5 hover:bg-[#f4fbff]",
+            )}
+          >
+            <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#e8f5ff] text-[#087bd0]">
+              <Icon name={filter.icon} className="h-[18px] w-[18px]" />
+            </span>
+            <span>{filter.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
   const searchParams = useSearchParams();
   const requestedFilter = searchParams.get("category");
   const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter
     ? requestedFilter
     : "all";
 
-  const chooseFilter = (filterId: string) => {
-    const query = filterId === "all" ? "" : `?category=${filterId}`;
-    router.replace(`/portfolio${query}`, { scroll: false });
-  };
 
   const visibleItems = useMemo(() => {
     const filter = categoryFilters.find((item) => item.id === activeFilter);
@@ -54,27 +86,8 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
 
   return (
     <>
-      <div className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5 md:mt-8 md:grid-cols-4 xl:grid-cols-4">
-        {categoryFilters.map((filter) => (
-          <button
-            key={filter.id}
-            type="button"
-            onClick={() => chooseFilter(filter.id)}
-            className={cn(
-              "group inline-flex min-h-11 min-w-0 items-center justify-center gap-1.5 rounded-[12px] border px-2 py-2 text-center text-[9px] font-extrabold uppercase leading-tight tracking-[0.055em] transition-all duration-300 sm:min-h-10 sm:gap-2 sm:rounded-full sm:px-3 sm:text-[10px] sm:tracking-[0.08em] md:px-4 md:text-[11px]",
-              activeFilter === filter.id
-                ? "border-[#237fd9] bg-[linear-gradient(135deg,#09223E_0%,#064083_54%,#0077FF_100%)] text-white shadow-[0_16px_34px_-18px_rgba(0,70,160,0.7)]"
-                : "border-[#d5e4f1] bg-white text-[#475569] shadow-[0_10px_28px_-24px_rgba(15,23,42,0.45)] hover:-translate-y-0.5 hover:border-[#78b7ec] hover:text-[#064083]",
-            )}
-          >
-            <Icon name={filter.icon} className={cn("h-3 w-3 shrink-0 transition-transform group-hover:scale-110 sm:h-3.5 sm:w-3.5", activeFilter === filter.id ? "text-white" : "text-[#0077d4]")} />
-            <span className="min-w-0">{filter.label}</span>
-          </button>
-        ))}
-      </div>
-
       {visibleItems.length > 0 ? (
-        <div className="mt-12 grid gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-7">
+        <div id="portfolio-browser" className="mt-8 scroll-mt-28 grid gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-7">
           {visibleItems.map((item, index) => (
             <Reveal key={item.id} delay={index * 0.04}>
               <PortfolioCard item={item} />
@@ -82,7 +95,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
           ))}
         </div>
       ) : (
-        <div className="mt-12 rounded-[28px] border border-dashed border-[#bfdbfe] bg-white/70 px-6 py-10 text-left shadow-[0_24px_70px_-46px_rgba(15,23,42,0.22)]">
+        <div id="portfolio-browser" className="mt-8 scroll-mt-28 rounded-[28px] border border-dashed border-[#bfdbfe] bg-white/70 px-6 py-10 text-left shadow-[0_24px_70px_-46px_rgba(15,23,42,0.22)]">
           {activeFilter === "custom" ? (
             <>
               <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-[#0369A1]">Custom setup</p>

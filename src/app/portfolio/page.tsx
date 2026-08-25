@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import { Suspense } from "react";
 import { portfolioItems } from "@/content/portfolio";
-import { PortfolioBrowser } from "@/components/portfolio/portfolio-browser";
+import { PortfolioBrowser, PortfolioCategoryPicker } from "@/components/portfolio/portfolio-browser";
 import { Reveal } from "@/components/ui/reveal";
 
 export const metadata: Metadata = {
@@ -14,27 +14,34 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <div className="relative isolate overflow-x-clip">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[560px] bg-[radial-gradient(circle_at_20%_0%,rgba(0,169,255,0.14),transparent_44%),linear-gradient(180deg,#edf6ff_0%,#f5f9fc_72%,transparent_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[780px] bg-[radial-gradient(circle_at_14%_5%,rgba(0,169,255,0.22),transparent_40%),radial-gradient(circle_at_82%_18%,rgba(0,108,222,0.13),transparent_35%),linear-gradient(180deg,#edf7ff_0%,#f5f9fc_72%,transparent_100%)]" />
       <main className="page-shell relative">
         <div className="mx-auto max-w-7xl px-4 pb-20 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pb-28 lg:pt-32">
           <Reveal>
-            <div className="max-w-4xl text-left">
-              <Link
-                href="/"
-                className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/8 bg-white/80 px-4 py-2 text-[13px] font-semibold text-[var(--muted-strong)] shadow-[0_12px_30px_-24px_rgba(15,23,42,0.22)] transition hover:text-[var(--accent-strong)]"
-              >
-                <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 12L6 8l4-4" />
-                </svg>
-                Back to home
-              </Link>
-              <h1 className="font-display type-section-title mt-2 w-full text-[var(--foreground)]">
-                Real OneLinks for real businesses.
-              </h1>
-              <p className="type-section-copy mt-4 max-w-2xl text-[var(--muted-strong)]">
-                Browse live pages by category and see how calls, WhatsApp, payments, reviews and location fit into one clean link.
-              </p>
-            </div>
+            <section className="relative isolate overflow-hidden rounded-[24px] border border-[#0b5caa]/20 bg-[linear-gradient(135deg,#062446_0%,#063b78_52%,#0878d6_100%)] px-5 py-5 shadow-[0_26px_64px_-40px_rgba(0,69,145,0.58)] sm:px-8 sm:py-7 lg:px-9 lg:py-8">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#48c7ff]/40 blur-3xl motion-safe:animate-pulse" />
+              <div className="pointer-events-none absolute -bottom-24 left-[24%] h-56 w-72 rounded-full bg-[#0077ff]/35 blur-3xl motion-safe:animate-pulse" />
+              <Image
+                src="/onelink-logomark.png"
+                alt=""
+                width={700}
+                height={700}
+                priority
+                className="pointer-events-none absolute -right-8 -bottom-48 w-[280px] rotate-[-14deg] opacity-[0.08] blur-[1px] sm:-right-2 sm:-bottom-56 sm:w-[360px] lg:w-[400px]"
+              />
+              <div className="relative max-w-3xl text-left">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-[#b8e5ff]">Live OneLink experiences</p>
+                <h1 className="font-display mt-2 text-[28px] font-bold leading-[1.05] tracking-[-0.045em] text-white sm:text-[36px] lg:text-[40px]">
+                  Select a category.
+                </h1>
+                <p className="mt-2 max-w-xl text-[13px] font-medium leading-relaxed text-[#d7ecfb] sm:text-[14px]">
+                  View live OneLink pages by business type.
+                </p>
+                <Suspense fallback={<div className="mt-5 h-8" />}>
+                  <PortfolioCategoryPicker />
+                </Suspense>
+              </div>
+            </section>
           </Reveal>
 
           <Suspense fallback={<div className="mt-8 h-48 rounded-[24px] border border-[#d5e4f1] bg-white/70" />}>

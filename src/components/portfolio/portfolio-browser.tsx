@@ -19,7 +19,7 @@ type CategoryFilter = {
 
 const categoryFilters: CategoryFilter[] = [
   { id: "all", label: "All Work", ids: null, icon: "spark" },
-  { id: "restaurants", label: "Restaurants", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
+  { id: "restaurants", label: "Restaurants & Cafés", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
   { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
   { id: "clinics", label: "Clinics", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
   { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"], icon: "building" },
@@ -66,10 +66,10 @@ function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; a
       type="button"
       onClick={() => onChoose(filter.id)}
       className={cn(
-        "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[12px] font-extrabold transition sm:text-[13px]",
+        "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[13px] font-extrabold uppercase tracking-[0.035em] transition sm:text-[14px]",
         active
           ? "border-white bg-white text-[#075a9f] shadow-[0_8px_20px_-13px_rgba(0,0,0,0.75)]"
-          : "border-white/80 bg-[linear-gradient(135deg,#ffffff_0%,#edf8ff_100%)] text-[#23425e] shadow-[0_8px_20px_-16px_rgba(0,0,0,0.65)] hover:-translate-y-0.5 hover:bg-[#f4fbff]",
+          : "border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff]",
       )}
     >
       <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e8f5ff] text-[#087bd0] ring-1 ring-[#c7e7fb]">

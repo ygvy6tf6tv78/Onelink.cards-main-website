@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { PortfolioItem } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
@@ -31,7 +32,17 @@ const categoryFilters: CategoryFilter[] = [
 ] as const;
 
 export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const requestedFilter = searchParams.get("category");
+  const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter
+    ? requestedFilter
+    : "all";
+
+  const chooseFilter = (filterId: string) => {
+    const query = filterId === "all" ? "" : `?category=${filterId}`;
+    router.replace(`/portfolio${query}`, { scroll: false });
+  };
 
   const visibleItems = useMemo(() => {
     const filter = categoryFilters.find((item) => item.id === activeFilter);
@@ -48,7 +59,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
           <button
             key={filter.id}
             type="button"
-            onClick={() => setActiveFilter(filter.id)}
+            onClick={() => chooseFilter(filter.id)}
             className={cn(
               "group inline-flex min-h-11 min-w-0 items-center justify-center gap-1.5 rounded-[12px] border px-2 py-2 text-center text-[9px] font-extrabold uppercase leading-tight tracking-[0.055em] transition-all duration-300 sm:min-h-10 sm:gap-2 sm:rounded-full sm:px-3 sm:text-[10px] sm:tracking-[0.08em] md:px-4 md:text-[11px]",
               activeFilter === filter.id

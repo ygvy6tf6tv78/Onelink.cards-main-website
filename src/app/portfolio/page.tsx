@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { portfolioItems } from "@/content/portfolio";
 import { PortfolioBrowser } from "@/components/portfolio/portfolio-browser";
 import { Reveal } from "@/components/ui/reveal";
@@ -36,7 +37,9 @@ export default function PortfolioPage() {
             </div>
           </Reveal>
 
-          <PortfolioBrowser items={portfolioItems} />
+          <Suspense fallback={<div className="mt-8 h-48 rounded-[24px] border border-[#d5e4f1] bg-white/70" />}>
+            <PortfolioBrowser items={portfolioItems} />
+          </Suspense>
         </div>
       </main>
     </div>

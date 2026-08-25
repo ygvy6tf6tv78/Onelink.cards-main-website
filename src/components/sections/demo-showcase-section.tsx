@@ -38,6 +38,7 @@ const categoryIcons: Record<string, IconName> = {
 
 export function DemoShowcaseSection() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [isCategoryPickerOpen, setIsCategoryPickerOpen] = useState(false);
 
   const visibleItems = activeCategory === "All"
     ? featuredItems
@@ -75,17 +76,45 @@ export function DemoShowcaseSection() {
 
           <div className="mx-auto mt-7 flex max-w-5xl flex-wrap justify-center gap-2 sm:mt-8 sm:gap-2.5 md:grid md:grid-cols-4 xl:flex xl:max-w-none">
             {categories.map(categoryButton)}
-            <Link
-              href="/portfolio"
+            <button
+              type="button"
+              onClick={() => setIsCategoryPickerOpen((isOpen) => !isOpen)}
+              aria-expanded={isCategoryPickerOpen}
               className="inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-[#00A9FF]/35 bg-[#f3faff] px-4 py-2 text-[11px] font-extrabold text-[#0077b5] shadow-[0_12px_26px_-20px_rgba(0,169,255,0.7)] transition hover:border-[#00A9FF] hover:bg-white sm:min-h-10 sm:px-5 sm:text-[13px]"
             >
-              View More
-              <svg className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M3.5 8h9" />
-                <path d="M8.5 3l4.5 5-4.5 5" />
+              Browse categories
+              <svg className={cn("h-3.5 w-3.5 transition-transform", isCategoryPickerOpen && "rotate-180")} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m3.5 5.5 4.5 4 4.5-4" />
               </svg>
-            </Link>
+            </button>
           </div>
+
+          {isCategoryPickerOpen && (
+            <div className="mx-auto mt-4 max-w-4xl rounded-[18px] border border-[#d5e8f7] bg-[#f8fcff] p-3 shadow-[0_20px_46px_-34px_rgba(0,93,168,0.45)] sm:p-4">
+              <p className="px-1 text-center text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#53708c] sm:text-[11px]">Choose an experience category</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {[
+                  ["restaurants", "Restaurants"],
+                  ["architects", "Architects"],
+                  ["clinics", "Clinics & Doctors"],
+                  ["hotels", "Hotels"],
+                  ["retail", "Retail Shops"],
+                  ["education", "Education"],
+                ].map(([id, label]) => (
+                  <Link
+                    key={id}
+                    href={`/portfolio?category=${id}`}
+                    className="rounded-[11px] border border-[#dbe9f5] bg-white px-3 py-2.5 text-center text-[11px] font-bold text-[#31506f] transition hover:border-[#58a9e8] hover:bg-[#eff8ff] hover:text-[#006cb4] sm:text-[12px]"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+              <Link href="/portfolio" className="mt-3 flex items-center justify-center text-[11px] font-extrabold text-[#0077b5] hover:text-[#005c9a] sm:text-[12px]">
+                View all experiences →
+              </Link>
+            </div>
+          )}
         </Reveal>
 
         {visibleItems.length > 0 ? (

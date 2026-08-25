@@ -46,7 +46,7 @@ export function PortfolioCategoryPicker() {
   return (
     <div className="mt-4 border-t border-white/15 pt-3">
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-        {categoryFilters.filter((filter) => filter.id !== "all").map((filter) => (
+        {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} onChoose={chooseFilter} />
         ))}
       </div>
@@ -56,6 +56,10 @@ export function PortfolioCategoryPicker() {
 
 function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; active: boolean; onChoose: (id: string) => void }) {
   const preview = filter.ids?.length ? portfolioItems.find((item) => filter.ids?.includes(item.id)) : undefined;
+  const stackedPreviews = filter.id === "custom" ? ["burger-bazaar", "vastukar", "new-vision"]
+    .map((id) => portfolioItems.find((item) => item.id === id))
+    .filter((item): item is PortfolioItem => Boolean(item))
+    : [];
 
   return (
     <button
@@ -63,14 +67,31 @@ function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; a
       onClick={() => onChoose(filter.id)}
       className={cn(
         "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[12px] font-extrabold transition sm:text-[13px]",
-        filter.id === "custom" && "col-span-2 sm:col-span-1",
         active
           ? "border-white bg-white text-[#075a9f] shadow-[0_8px_20px_-13px_rgba(0,0,0,0.75)]"
           : "border-white/80 bg-[linear-gradient(135deg,#ffffff_0%,#edf8ff_100%)] text-[#23425e] shadow-[0_8px_20px_-16px_rgba(0,0,0,0.65)] hover:-translate-y-0.5 hover:bg-[#f4fbff]",
       )}
     >
       <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e8f5ff] text-[#087bd0] ring-1 ring-[#c7e7fb]">
-        {preview ? (
+        {stackedPreviews.length ? (
+          <span className="relative h-7 w-7 shrink-0">
+            {stackedPreviews.map((item, index) => (
+              <Image
+                key={item.id}
+                src={item.image}
+                alt=""
+                fill
+                sizes="28px"
+                className={cn(
+                  "rounded-full border border-white object-cover shadow-sm",
+                  index === 0 && "-translate-x-1.5 rotate-[-10deg] opacity-75",
+                  index === 1 && "translate-x-1.5 rotate-[9deg] opacity-85",
+                  index === 2 && "z-10",
+                )}
+              />
+            ))}
+          </span>
+        ) : preview ? (
           <Image src={preview.image} alt="" fill sizes="28px" className="object-cover" />
         ) : (
           <Icon name={filter.icon} className="h-[18px] w-[18px]" />

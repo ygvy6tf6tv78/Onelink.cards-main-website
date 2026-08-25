@@ -29,17 +29,22 @@ export default function PortfolioPage() {
                 priority
                 className="pointer-events-none absolute -right-8 -bottom-48 w-[280px] rotate-[-14deg] opacity-[0.08] blur-[1px] sm:-right-2 sm:-bottom-56 sm:w-[360px] lg:w-[400px]"
               />
-              <div className="relative max-w-3xl text-left">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-[#b8e5ff]">Live OneLink experiences</p>
+              <div className="relative max-w-3xl text-left lg:pr-20">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-[#b8e5ff]">Choose a business type</p>
                 <h1 className="font-display mt-2 text-[28px] font-bold leading-[1.05] tracking-[-0.045em] text-white sm:text-[36px] lg:text-[40px]">
-                  Select a category.
+                  Explore live OneLinks.
                 </h1>
                 <p className="mt-2 max-w-xl text-[13px] font-medium leading-relaxed text-[#d7ecfb] sm:text-[14px]">
-                  View live OneLink pages by business type.
+                  Pick a category to see real business experiences.
                 </p>
                 <Suspense fallback={<div className="mt-5 h-8" />}>
                   <PortfolioCategoryPicker />
                 </Suspense>
+              </div>
+              <div className="pointer-events-none absolute bottom-0 right-3 hidden h-[270px] w-[320px] items-end justify-center lg:flex" aria-hidden="true">
+                <Image src="/pricing-mockup-vastukar.png" alt="" width={230} height={430} className="absolute bottom-[-40px] left-3 w-[135px] -rotate-[13deg] opacity-35 drop-shadow-[0_18px_20px_rgba(0,0,0,0.32)]" />
+                <Image src="/pricing-mockup-new-vision.png" alt="" width={230} height={430} className="absolute bottom-[-46px] right-2 w-[135px] rotate-[13deg] opacity-35 drop-shadow-[0_18px_20px_rgba(0,0,0,0.32)]" />
+                <Image src="/pricing-mockup-burger-bazaar.png" alt="" width={250} height={460} className="relative bottom-[-25px] z-10 w-[158px] drop-shadow-[0_22px_24px_rgba(0,0,0,0.42)]" />
               </div>
             </section>
           </Reveal>

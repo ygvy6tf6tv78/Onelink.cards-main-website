@@ -8,6 +8,8 @@ import caRamitImage from "../../Portfolio/carammit.png";
 import meraHalwaiImage from "../../Portfolio/merahalwai.png";
 import honeyMoneyImage from "../../Portfolio/honeymoneyfishcompany.png";
 import jayEssImage from "../../Portfolio/jayess.png";
+import darziesCoutureImage from "../../Portfolio/darzies-couture.png";
+import velouraImage from "../../Portfolio/veloura.png";
 import sonnetCafeMockup from "../../onelink_mockups/sonnet-cafe.png";
 import hotelMetropolisMockup from "../../onelink_mockups/hotel-metropolis.png";
 import poshakEHoorMockup from "../../onelink_mockups/poshak-e-hoor.png";
@@ -96,6 +98,24 @@ export const portfolioItems: PortfolioItem[] = [
     description: "A visual retail showcase connecting collections, store information and customer enquiries.",
     href: "https://poshak-e-hoor.onelink.cards/",
     image: poshakEHoorMockup,
+  },
+  {
+    id: "darzies-couture",
+    title: "Darzie’s Couture",
+    category: "Retail Shops",
+    label: "Bridal Couture",
+    description: "A premium fashion showcase for bridal couture, occasion wear, collections and direct customer enquiries.",
+    href: "https://darziescouture.onelink.cards/",
+    image: darziesCoutureImage,
+  },
+  {
+    id: "veloura",
+    title: "Veloura",
+    category: "Salons & Beauty",
+    label: "Salon & Beauty",
+    description: "A polished beauty experience for services, appointments, business details and direct customer enquiries.",
+    href: "https://veloura.onelink.cards/",
+    image: velouraImage,
   },
   {
     id: "ca-ramit",

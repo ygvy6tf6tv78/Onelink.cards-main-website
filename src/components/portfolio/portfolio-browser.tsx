@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { portfolioItems, type PortfolioItem } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
@@ -17,19 +18,39 @@ type CategoryFilter = {
   icon: IconName;
 };
 
+const allWorkOrder = [
+  "burger-bazaar",
+  "new-vision",
+  "vastukar",
+  "darzies-couture",
+  "poshak-e-hoor",
+  "veloura",
+  "mango",
+  "jay-ess",
+  "sonnet-cafe",
+  "smile-health-clinic",
+  "metropolis-hotel",
+  "ca-ramit",
+  "honey-fresh",
+  "honey-money",
+  "mera-halwai",
+  "lingua-vibe",
+] as const;
+
 const categoryFilters: CategoryFilter[] = [
   { id: "all", label: "All Work", ids: null, icon: "spark" },
-  { id: "restaurants", label: "Restaurants & Cafés", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
-  { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
-  { id: "clinics", label: "Clinics", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
-  { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"], icon: "building" },
-  { id: "retail", label: "Retail Shops", ids: ["poshak-e-hoor"], icon: "wallet" },
+  { id: "restaurants", label: "Food & Cafés", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
+  { id: "architects", label: "Architects & Interiors", ids: ["vastukar"], icon: "building" },
+  { id: "clinics", label: "Clinics & Healthcare", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
+  { id: "retail", label: "Fashion & Boutiques", ids: ["darzies-couture", "poshak-e-hoor"], icon: "wallet" },
+  { id: "salons", label: "Salons & Beauty", ids: ["veloura"], icon: "spark" },
+  { id: "hotels", label: "Hotels & Stays", ids: ["metropolis-hotel"], icon: "building" },
   { id: "startups", label: "Startups", ids: ["mera-halwai"], icon: "bolt" },
-  { id: "cas", label: "Accountants", ids: ["ca-ramit"], icon: "invoice" },
+  { id: "cas", label: "Finance & Accounting", ids: ["ca-ramit"], icon: "invoice" },
   { id: "professional", label: "Business Services", ids: ["ca-ramit", "jay-ess"], icon: "form" },
   { id: "products", label: "Product Brands", ids: ["honey-fresh", "honey-money"], icon: "gallery" },
-  { id: "education", label: "Education", ids: ["lingua-vibe"], icon: "chart" },
-  { id: "custom", label: "Other Business", ids: [], icon: "spark" },
+  { id: "education", label: "Education & Training", ids: ["lingua-vibe"], icon: "chart" },
+  { id: "custom", label: "Other Businesses", ids: [], icon: "spark" },
 ] as const;
 
 export function PortfolioCategoryPicker() {
@@ -49,6 +70,15 @@ export function PortfolioCategoryPicker() {
         {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} onChoose={chooseFilter} />
         ))}
+        <Link
+          href="/#contact"
+          className="inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] px-2.5 py-1.5 text-left text-[13px] font-extrabold uppercase tracking-[0.035em] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] transition hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff] sm:text-[14px]"
+        >
+          <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e8f5ff] text-[#087bd0] ring-1 ring-[#c7e7fb]">
+            <Icon name="calendar" className="h-[18px] w-[18px]" />
+          </span>
+          <span className="min-w-0 leading-[1.15]">Book a Demo</span>
+        </Link>
       </div>
     </div>
   );
@@ -97,7 +127,7 @@ function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; a
           <Icon name={filter.icon} className="h-[18px] w-[18px]" />
         )}
       </span>
-      <span>{filter.label}</span>
+      <span className="min-w-0 leading-[1.15]">{filter.label}</span>
     </button>
   );
 }
@@ -112,10 +142,16 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
 
   const visibleItems = useMemo(() => {
     const filter = categoryFilters.find((item) => item.id === activeFilter);
-    if (!filter || filter.ids === null) return items;
+    if (!filter || filter.ids === null) {
+      return allWorkOrder
+        .map((id) => items.find((item) => item.id === id))
+        .filter((item): item is PortfolioItem => Boolean(item));
+    }
     const ids = filter.ids;
     if (ids.length === 0) return [];
-    return items.filter((item) => ids.includes(item.id));
+    return ids
+      .map((id) => items.find((item) => item.id === id))
+      .filter((item): item is PortfolioItem => Boolean(item));
   }, [activeFilter, items]);
 
   return (

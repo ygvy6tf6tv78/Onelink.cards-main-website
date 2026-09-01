@@ -40,16 +40,16 @@ const allWorkOrder = [
 const categoryFilters: CategoryFilter[] = [
   { id: "all", label: "All Work", ids: null, icon: "spark" },
   { id: "restaurants", label: "Food & Cafés", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
-  { id: "architects", label: "Architects & Interiors", ids: ["vastukar"], icon: "building" },
-  { id: "clinics", label: "Clinics & Healthcare", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
-  { id: "retail", label: "Fashion & Boutiques", ids: ["darzies-couture", "poshak-e-hoor"], icon: "wallet" },
+  { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
+  { id: "clinics", label: "Clinics", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
+  { id: "retail", label: "Fashion", ids: ["darzies-couture", "poshak-e-hoor"], icon: "wallet" },
   { id: "salons", label: "Salons & Beauty", ids: ["veloura"], icon: "spark" },
-  { id: "hotels", label: "Hotels & Stays", ids: ["metropolis-hotel"], icon: "building" },
+  { id: "hotels", label: "Hotels", ids: ["metropolis-hotel"], icon: "building" },
   { id: "startups", label: "Startups", ids: ["mera-halwai"], icon: "bolt" },
-  { id: "cas", label: "Finance & Accounting", ids: ["ca-ramit"], icon: "invoice" },
+  { id: "cas", label: "Finance", ids: ["ca-ramit"], icon: "invoice" },
   { id: "professional", label: "Business Services", ids: ["ca-ramit", "jay-ess"], icon: "form" },
   { id: "products", label: "Product Brands", ids: ["honey-fresh", "honey-money"], icon: "gallery" },
-  { id: "education", label: "Education & Training", ids: ["lingua-vibe"], icon: "chart" },
+  { id: "education", label: "Education", ids: ["lingua-vibe"], icon: "chart" },
   { id: "custom", label: "Other Businesses", ids: [], icon: "spark" },
 ] as const;
 
@@ -65,7 +65,7 @@ export function PortfolioCategoryPicker() {
   };
 
   return (
-    <div className="mt-4 border-t border-white/15 pt-3">
+    <div className="mt-2 border-t border-white/15 pt-2">
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} onChoose={chooseFilter} />

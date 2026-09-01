@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { portfolioItems, type PortfolioItem } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
@@ -54,21 +54,15 @@ const categoryFilters: CategoryFilter[] = [
 ] as const;
 
 export function PortfolioCategoryPicker() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const requestedFilter = searchParams.get("category");
   const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter ? requestedFilter : "all";
 
-  const chooseFilter = (filterId: string) => {
-    const query = filterId === "all" ? "" : `?category=${filterId}`;
-    router.replace(`/portfolio${query}`, { scroll: false });
-  };
-
   return (
-    <div className="mt-2 border-t border-white/15 pt-2">
+    <div className="mt-2 border-t border-white/15 pt-2 lg:w-[820px]">
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
         {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
-          <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} onChoose={chooseFilter} />
+          <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}
         <Link
           href="/#contact"
@@ -84,7 +78,7 @@ export function PortfolioCategoryPicker() {
   );
 }
 
-function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; active: boolean; onChoose: (id: string) => void }) {
+function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boolean }) {
   const preview = filter.ids?.length ? portfolioItems.find((item) => filter.ids?.includes(item.id)) : undefined;
   const stackedPreviews = filter.id === "custom" ? ["burger-bazaar", "vastukar", "new-vision"]
     .map((id) => portfolioItems.find((item) => item.id === id))
@@ -92,9 +86,9 @@ function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; a
     : [];
 
   return (
-    <button
-      type="button"
-      onClick={() => onChoose(filter.id)}
+    <Link
+      href={filter.id === "all" ? "/portfolio" : `/portfolio?category=${filter.id}`}
+      aria-current={active ? "page" : undefined}
       className={cn(
         "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[13px] font-extrabold uppercase tracking-[0.035em] transition sm:text-[14px]",
         active
@@ -127,8 +121,8 @@ function CategoryBadge({ filter, active, onChoose }: { filter: CategoryFilter; a
           <Icon name={filter.icon} className="h-[18px] w-[18px]" />
         )}
       </span>
-      <span className="min-w-0 leading-[1.15]">{filter.label}</span>
-    </button>
+      <span className="min-w-0 leading-[1.15] lg:whitespace-nowrap">{filter.label}</span>
+    </Link>
   );
 }
 

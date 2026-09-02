@@ -37,7 +37,7 @@ export function FaqSection() {
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
-                <div key={faq.question} className={cn("border-b border-[#dce7ee] transition-colors last:border-b-0", isOpen && "bg-[linear-gradient(90deg,rgba(240,249,255,0.72),rgba(255,255,255,0))]")}>
+                <div key={faq.question} className="border-b border-[#dce7ee] last:border-b-0">
                   <button onClick={() => setOpenIndex(isOpen ? null : index)} className="flex w-full items-center justify-between gap-6 py-5 text-left sm:py-6" aria-expanded={isOpen}>
                     <span className={cn("font-display text-[17px] font-bold leading-[1.35] transition-colors sm:text-[20px]", isOpen ? "text-[#111827]" : "text-[#263548]")}>{faq.question}</span>
                     <span className={cn("relative grid h-10 w-10 shrink-0 place-items-center rounded-[13px] bg-[linear-gradient(145deg,#07518d,#12a7ed)] text-white shadow-[0_12px_26px_-16px_rgba(0,100,170,0.72)] transition sm:h-11 sm:w-11", isOpen && "rotate-180")} aria-hidden="true">

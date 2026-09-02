@@ -128,18 +128,18 @@ export function HeroSection() {
           </div>
           </HeroEntrance>
           <HeroEntrance delay={0.34} y={8} className="w-full sm:hidden">
-            <div className="mt-5 w-full">
-              <p className="text-left text-[11px] font-bold leading-5 text-[#435267]">
+            <div className="mt-6 w-full border-t border-[#d8e2ea] pt-5">
+              <p className="text-left text-[12px] font-extrabold leading-5 text-[#435267]">
                 Connect with the tools your customers already use.
               </p>
-              <div className="mt-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <div className="flex min-w-max items-center justify-start gap-5 pr-3">
-                  <div className="flex h-8 items-center justify-center">
-                    <Icon name="whatsapp" className="h-7 w-7 text-[#25D366]" />
+              <div className="mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex min-w-max items-center justify-start gap-5 pr-4">
+                  <div className="flex h-9 items-center justify-center">
+                    <Icon name="whatsapp" className="h-8 w-8 text-[#25D366]" />
                     <span className="sr-only">WhatsApp</span>
                   </div>
                   {heroIntegrations.map((item) => (
-                    <div key={item.label} className="flex h-8 items-center justify-center">
+                    <div key={item.label} className="flex h-9 items-center justify-center">
                       <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain`} />
                     </div>
                   ))}

@@ -7,6 +7,8 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 import burgerBazaarMockup from "../../../onelink_mockups/hero-burger-bazaar.png";
 import vastukarMockup from "../../../onelink_mockups/hero-vastukar.png";
+import velouraMockup from "../../../onelink_mockups/hero-veloura-salon.png";
+import newVisionMockup from "../../../onelink_mockups/hero-new-vision.png";
 
 const trustStats = [
   { value: 24, suffix: "+", label: "OneLinks made" },
@@ -18,6 +20,8 @@ export function ClientLogoStrip() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftMockupRef = useRef<HTMLDivElement>(null);
   const rightMockupRef = useRef<HTMLDivElement>(null);
+  const leftAccentMockupRef = useRef<HTMLDivElement>(null);
+  const rightAccentMockupRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
 
   useEffect(() => {
@@ -27,8 +31,10 @@ export function ClientLogoStrip() {
       const section = sectionRef.current;
       if (!section) return;
       const offset = Math.max(-180, Math.min(180, section.getBoundingClientRect().top - window.innerHeight * 0.5));
-      if (leftMockupRef.current) leftMockupRef.current.style.transform = `translate3d(0, ${offset * -0.16}px, 0) rotate(13deg)`;
-      if (rightMockupRef.current) rightMockupRef.current.style.transform = `translate3d(0, ${offset * 0.12}px, 0) rotate(-13deg)`;
+      if (leftMockupRef.current) leftMockupRef.current.style.transform = `translate3d(0, ${offset * -0.16}px, 0) rotate(18deg)`;
+      if (rightMockupRef.current) rightMockupRef.current.style.transform = `translate3d(0, ${offset * 0.12}px, 0) rotate(-18deg)`;
+      if (leftAccentMockupRef.current) leftAccentMockupRef.current.style.transform = `translate3d(0, ${offset * 0.09}px, 0) rotate(-11deg)`;
+      if (rightAccentMockupRef.current) rightAccentMockupRef.current.style.transform = `translate3d(0, ${offset * -0.08}px, 0) rotate(11deg)`;
     };
     const requestUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(updateMockups);
@@ -45,11 +51,17 @@ export function ClientLogoStrip() {
 
   return (
     <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
-      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[65px] top-7 hidden w-[142px] origin-center opacity-[0.22] will-change-transform lg:block">
-        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="142px" aria-hidden="true" />
+      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[86px] top-1 hidden w-[175px] origin-center opacity-[0.24] will-change-transform lg:block">
+        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="175px" aria-hidden="true" />
       </div>
-      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[68px] top-14 hidden w-[142px] origin-center opacity-[0.2] will-change-transform lg:block">
-        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="142px" aria-hidden="true" />
+      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[88px] top-9 hidden w-[175px] origin-center opacity-[0.22] will-change-transform lg:block">
+        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="175px" aria-hidden="true" />
+      </div>
+      <div ref={leftAccentMockupRef} className="pointer-events-none absolute -left-[42px] bottom-0 hidden w-[102px] origin-center opacity-[0.13] will-change-transform lg:block">
+        <Image src={velouraMockup} alt="" className="h-auto w-full object-contain" sizes="102px" aria-hidden="true" />
+      </div>
+      <div ref={rightAccentMockupRef} className="pointer-events-none absolute -right-[44px] bottom-3 hidden w-[102px] origin-center opacity-[0.13] will-change-transform lg:block">
+        <Image src={newVisionMockup} alt="" className="h-auto w-full object-contain" sizes="102px" aria-hidden="true" />
       </div>
       <Reveal>
         <div className="relative z-10 mx-auto max-w-7xl">

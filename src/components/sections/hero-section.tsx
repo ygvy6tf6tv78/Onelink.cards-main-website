@@ -59,13 +59,14 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.12} x={-24} y={10}>
             <h1 className="font-display mt-4 max-w-none text-[clamp(35px,10.25vw,40px)] font-[720] leading-[1.01] tracking-[-0.055em] sm:mt-7 sm:text-[50px] md:text-[48px] lg:text-[52px] xl:text-[60px]">
-              <span className="section-title-gradient block whitespace-nowrap">Stop sharing links.</span>
+              <span className="block whitespace-nowrap lg:hidden"><span className="text-[#07111f]">Stop sharing </span><span className="text-[#00A9FF]">links.</span></span>
+              <span className="section-title-gradient hidden whitespace-nowrap lg:block">Stop sharing links.</span>
               <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] lg:text-white lg:[text-shadow:0_3px_0_rgba(61,91,121,0.34),0_9px_20px_rgba(0,48,105,0.34),0_18px_38px_rgba(0,55,120,0.22)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.2} x={-22} y={10}>
             <p className="mt-4 max-w-[52ch] text-pretty text-[15px] font-medium leading-[1.72] text-[#475970] sm:mt-6 sm:text-[16px] sm:leading-[1.7] sm:text-[#27364a]">
-              Bring your business, services, products and customer actions into one beautifully designed experience with one smart link and custom QR code.
+              Bring your services, products, bookings, payments, reviews and customer actions together in one seamless place. Make it easier for customers to connect with your business and easier for you to manage everything.
             </p>
           </HeroEntrance>
           <HeroEntrance delay={0.29} x={-20} y={10} className="min-w-0 w-full">

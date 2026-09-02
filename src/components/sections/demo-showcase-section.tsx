@@ -27,9 +27,9 @@ export function DemoShowcaseSection() {
           <div className="text-center">
             <div className="mx-auto max-w-7xl">
               <SectionBadge label="Portfolio" />
-              <h2 className="section-title-gradient font-display mx-auto mt-4 max-w-none text-[clamp(1.3rem,6.4vw,1.625rem)] font-bold leading-[1.12] tracking-[-0.05em] sm:text-[36px] lg:text-[42px]">
-                <span className="block whitespace-nowrap">Built for real businesses.</span>
-                <span className="block whitespace-nowrap">Designed around every brand.</span>
+              <h2 className="section-title-gradient font-display mx-auto mt-4 max-w-[24ch] text-balance text-[clamp(1.85rem,8.5vw,2.15rem)] font-bold leading-[1.08] tracking-[-0.045em] sm:text-[36px] lg:max-w-none lg:text-[42px]">
+                <span className="block">Built for real businesses.</span>
+                <span className="block">Designed around every brand.</span>
               </h2>
               <div className="mx-auto mt-5 flex max-w-[720px] flex-wrap items-center justify-center gap-2 px-1 lg:max-w-none lg:flex-nowrap lg:gap-2.5">
                 {portfolioCategories.map((category) => {

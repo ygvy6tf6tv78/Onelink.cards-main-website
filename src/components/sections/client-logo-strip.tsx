@@ -7,8 +7,6 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 import burgerBazaarMockup from "../../../onelink_mockups/hero-burger-bazaar.png";
 import vastukarMockup from "../../../onelink_mockups/hero-vastukar.png";
-import velouraMockup from "../../../onelink_mockups/hero-veloura-salon.png";
-import newVisionMockup from "../../../onelink_mockups/hero-new-vision.png";
 
 const trustStats = [
   { value: 24, suffix: "+", label: "OneLinks made" },
@@ -20,8 +18,6 @@ export function ClientLogoStrip() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftMockupRef = useRef<HTMLDivElement>(null);
   const rightMockupRef = useRef<HTMLDivElement>(null);
-  const leftAccentMockupRef = useRef<HTMLDivElement>(null);
-  const rightAccentMockupRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
 
   useEffect(() => {
@@ -33,8 +29,6 @@ export function ClientLogoStrip() {
       const offset = Math.max(-180, Math.min(180, section.getBoundingClientRect().top - window.innerHeight * 0.5));
       if (leftMockupRef.current) leftMockupRef.current.style.transform = `translate3d(0, ${offset * -0.16}px, 0) rotate(18deg)`;
       if (rightMockupRef.current) rightMockupRef.current.style.transform = `translate3d(0, ${offset * 0.12}px, 0) rotate(-18deg)`;
-      if (leftAccentMockupRef.current) leftAccentMockupRef.current.style.transform = `translate3d(0, ${offset * 0.09}px, 0) rotate(-11deg)`;
-      if (rightAccentMockupRef.current) rightAccentMockupRef.current.style.transform = `translate3d(0, ${offset * -0.08}px, 0) rotate(11deg)`;
     };
     const requestUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(updateMockups);
@@ -51,17 +45,11 @@ export function ClientLogoStrip() {
 
   return (
     <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
-      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[104px] -top-5 z-[1] hidden w-[205px] origin-center opacity-[0.32] will-change-transform lg:block">
+      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[104px] top-10 z-[1] hidden w-[205px] origin-center opacity-[0.38] will-change-transform lg:block">
         <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.2)]" sizes="205px" aria-hidden="true" />
       </div>
-      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[106px] top-1 z-[1] hidden w-[205px] origin-center opacity-[0.3] will-change-transform lg:block">
+      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[106px] top-14 z-[1] hidden w-[205px] origin-center opacity-[0.36] will-change-transform lg:block">
         <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.2)]" sizes="205px" aria-hidden="true" />
-      </div>
-      <div ref={leftAccentMockupRef} className="pointer-events-none absolute -left-[53px] top-16 z-0 hidden w-[112px] origin-center opacity-[0.19] will-change-transform lg:block">
-        <Image src={velouraMockup} alt="" className="h-auto w-full object-contain" sizes="112px" aria-hidden="true" />
-      </div>
-      <div ref={rightAccentMockupRef} className="pointer-events-none absolute -right-[55px] top-20 z-0 hidden w-[112px] origin-center opacity-[0.18] will-change-transform lg:block">
-        <Image src={newVisionMockup} alt="" className="h-auto w-full object-contain" sizes="112px" aria-hidden="true" />
       </div>
       <Reveal>
         <div className="relative z-10 mx-auto max-w-7xl">

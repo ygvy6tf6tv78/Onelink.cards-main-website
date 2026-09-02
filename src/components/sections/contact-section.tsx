@@ -15,7 +15,7 @@ export function ContactSection() {
     >
       <div className="mx-auto max-w-7xl">
         <Reveal x={-22} y={16}>
-          <div className="relative overflow-hidden rounded-[30px] border border-white/12 bg-[linear-gradient(135deg,#03182e_0%,#06416f_52%,#087db8_100%)] px-6 py-10 shadow-[0_34px_84px_-46px_rgba(3,31,58,0.72)] sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+          <div className="relative overflow-hidden rounded-[30px] border border-white/12 bg-[linear-gradient(135deg,#03182e_0%,#006eb2_55%,#00A9FF_100%)] px-6 py-10 shadow-[0_34px_84px_-46px_rgba(0,113,188,0.64)] sm:px-10 sm:py-12 lg:px-14 lg:py-14">
             <div className="pointer-events-none absolute -left-16 -top-20 h-52 w-52 rounded-full bg-[#00A9FF]/18 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -right-12 h-56 w-56 rounded-full bg-[#00A9FF]/18 blur-3xl" />
             <Image src="/onelink-logomark.png" alt="" width={3492} height={4652} className="pointer-events-none absolute -bottom-20 -right-4 h-[250px] w-auto rotate-[-8deg] object-contain opacity-[0.045] sm:right-8 sm:h-[320px]" aria-hidden="true" />

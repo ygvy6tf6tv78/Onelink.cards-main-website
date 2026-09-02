@@ -22,8 +22,8 @@ export function TrustSection() {
           {trustHighlights.map((signal, index) => (
             <Reveal key={signal.title} delay={index * 0.05} y={12}>
               <article className="group relative flex h-full min-h-[196px] flex-col items-start overflow-hidden rounded-[24px] border border-[#dce8f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(244,250,255,0.9))] p-6 text-left shadow-[0_22px_54px_-42px_rgba(15,68,105,0.32)] transition duration-300 hover:-translate-y-1 hover:border-[#9fd1ed] hover:shadow-[0_30px_64px_-42px_rgba(15,68,105,0.44)] sm:p-7">
-                <span className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#07518d,#12a7ed)] opacity-0 transition group-hover:opacity-100" />
-                <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[linear-gradient(145deg,#e7f6ff,#ffffff)] text-[#087cbc] ring-1 ring-[#c9e7f7] transition group-hover:bg-[linear-gradient(145deg,#07518d,#12a7ed)] group-hover:text-white group-hover:ring-transparent">
+                <span className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0077FF,#00A9FF)] opacity-0 transition group-hover:opacity-100" />
+                <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[linear-gradient(145deg,#e7f6ff,#ffffff)] text-[#008fd9] ring-1 ring-[#c9e7f7] transition group-hover:bg-[linear-gradient(145deg,#0077FF,#00A9FF)] group-hover:text-white group-hover:ring-transparent">
                   <Icon name={trustIcons[index] ?? "check"} className="h-[18px] w-[18px]" />
                 </span>
                 <h3 className="font-display mt-5 text-[19px] font-bold leading-tight text-[#111827]">{signal.title}</h3>

@@ -50,7 +50,7 @@ export function QrExperienceSection() {
           </div>
           <Reveal delay={0.16} y={10}>
             <div className="mt-8 flex justify-center">
-              <Link href="/#contact" className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(135deg,#064585,#087aba)] px-7 text-[14px] font-bold text-white shadow-[0_16px_32px_-20px_rgba(0,91,150,0.62)] transition hover:-translate-y-0.5 hover:brightness-110">Get Your OneLink <span aria-hidden>↗</span></Link>
+              <Link href="/#contact" className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(135deg,#00A9FF,#0077FF)] px-7 text-[14px] font-bold text-white shadow-[0_16px_32px_-20px_rgba(0,135,225,0.62)] transition hover:-translate-y-0.5 hover:brightness-110">Get Your OneLink <span aria-hidden>↗</span></Link>
             </div>
           </Reveal>
       </div>

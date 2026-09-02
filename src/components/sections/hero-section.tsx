@@ -36,7 +36,7 @@ export function HeroSection() {
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_35%,rgba(0,169,255,0.1),transparent_42%),linear-gradient(180deg,#ffffff_0%,#f7fbff_72%,#ffffff_100%)] sm:hidden" aria-hidden />
       <div className="pointer-events-none absolute left-1/2 top-0 z-[1] h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0.06)_42%,transparent_72%)] blur-2xl" aria-hidden />
-      <div className={`${styles.heroGrid} relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 md:gap-7 md:pb-10 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-[160px]`}>
+      <div className={`${styles.heroGrid} relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-6 px-4 pb-3 pt-[5.85rem] sm:px-6 sm:gap-7 sm:pb-5 sm:pt-36 md:gap-6 md:pb-4 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-6 lg:pt-[160px]`}>
         <div className="flex min-w-0 flex-col items-start justify-center text-left">
           <HeroEntrance delay={0.03} x={-18} y={8}>
             <div className="mt-2 flex items-center gap-3 sm:mt-4">
@@ -59,8 +59,8 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.12} x={-24} y={10}>
             <h1 className="font-display mt-6 max-w-none text-[clamp(35px,10.25vw,40px)] font-[720] leading-[1.01] tracking-[-0.055em] sm:mt-7 sm:text-[50px] md:text-[48px] lg:text-[52px] xl:text-[60px]">
-              <span className="block whitespace-nowrap text-[#07111f] drop-shadow-[0_2px_12px_rgba(255,255,255,0.28)]">Stop sharing links.</span>
-              <span className="mt-1 block whitespace-nowrap text-[#09a5f7] drop-shadow-[0_3px_14px_rgba(255,255,255,0.2)] sm:bg-[linear-gradient(100deg,#073b88_0%,#0b63ce_70%,#0750a8_100%)] sm:bg-clip-text sm:text-transparent">Share OneLink.</span>
+              <span className="block whitespace-nowrap text-[#07111f] [text-shadow:0_3px_0_rgba(255,255,255,0.76),0_10px_24px_rgba(8,82,145,0.16)] sm:text-white sm:[text-shadow:0_3px_0_rgba(61,91,121,0.3),0_12px_30px_rgba(255,255,255,0.24)]">Stop sharing links.</span>
+              <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] sm:[text-shadow:0_3px_0_rgba(255,255,255,0.34),0_12px_30px_rgba(0,78,160,0.2)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.2} x={-22} y={10}>
@@ -70,14 +70,14 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.29} x={-20} y={10} className="min-w-0 w-full">
           <div className="mt-7 grid w-full grid-cols-2 gap-2.5 sm:hidden">
-            <ActionLink href="#pricing" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0879f8_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,70,160,0.68)] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="#pricing" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,135,225,0.7)] [&_svg]:h-4 [&_svg]:w-4">
               Get Your OneLink
             </ActionLink>
             <ActionLink href={whatsappHref} variant="whatsapp" className="h-12 min-w-0 !rounded-[15px] px-3 text-[13px] font-bold shadow-[0_16px_30px_-20px_rgba(37,211,102,0.45)]">
               <Icon name="whatsapp" className="h-5 w-5" />
               WhatsApp
             </ActionLink>
-            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 h-12 min-w-0 !rounded-[15px] border border-[#d9e2ea] !bg-white px-3 text-[14px] font-extrabold !text-[#064083] shadow-[0_12px_28px_-24px_rgba(9,34,62,0.3)] hover:border-[#8fc4e8] hover:!bg-[#f8fcff] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="/portfolio" variant="secondary" withArrow className="col-span-2 h-12 min-w-0 !rounded-[15px] border border-[#d9e2ea] !bg-white px-3 text-[14px] font-extrabold !text-[#064083] shadow-[0_12px_28px_-24px_rgba(9,34,62,0.3)] hover:border-[#8fc4e8] hover:!bg-[#f8fcff] [&_svg]:h-4 [&_svg]:w-4">
               View Live Examples
             </ActionLink>
             <div className="col-span-2 mt-3 w-full border-t border-[#d8e2ea] pt-5">
@@ -104,12 +104,12 @@ export function HeroSection() {
                 href="/#contact"
                 variant="primary"
                 withArrow
-                className="h-12 min-w-0 flex-1 !rounded-[15px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-5 text-[13px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,70,160,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+                className="h-12 min-w-0 flex-1 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-5 text-[13px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,135,225,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
               >
                 Book a Free Demo
               </ActionLink>
             <ActionLink
-              href="#work"
+              href="/portfolio"
               variant="secondary"
               withArrow
               className="h-12 min-w-0 flex-1 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-5 text-[13px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"

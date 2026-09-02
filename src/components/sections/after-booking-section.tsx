@@ -22,11 +22,9 @@ export function AfterBookingSection() {
         </Reveal>
 
         <div className="relative mt-10 grid gap-4 md:grid-cols-3 lg:gap-5">
-          <div className="pointer-events-none absolute left-[12%] right-[12%] top-10 hidden h-px bg-[linear-gradient(90deg,transparent,#7ecdf4_18%,#168ed1_50%,#7ecdf4_82%,transparent)] md:block" aria-hidden="true" />
           {journeySteps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.08} y={14} x={index === 0 ? -14 : index === 2 ? 14 : 0}>
               <article className="group relative flex h-full min-h-[232px] flex-col overflow-hidden rounded-[24px] border border-[#cfe3f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.97),rgba(235,247,255,0.88))] p-6 text-left shadow-[0_24px_58px_-42px_rgba(9,67,105,0.34)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#72bfe8] hover:shadow-[0_30px_66px_-40px_rgba(9,67,105,0.46)] sm:p-7">
-                <span className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0c5a9d,#16a6ef)] opacity-80" />
                 <Image src={step.image} alt="" width={1192} height={2504} className="pointer-events-none absolute -bottom-14 -right-3 h-[190px] w-auto rotate-[6deg] object-contain opacity-[0.075] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-[3deg] group-hover:opacity-[0.12]" aria-hidden="true" />
                 <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-[#00A9FF]/12 blur-3xl" />
                 <div className="flex items-center justify-between gap-4">
@@ -35,14 +33,13 @@ export function AfterBookingSection() {
                 </div>
                 <h3 className="font-display relative mt-6 text-[21px] font-bold leading-tight text-[#111827]">{step.title}</h3>
                 <p className="relative mt-3 max-w-[36ch] text-[14px] font-medium leading-[1.68] text-[#64748b]">{step.description}</p>
-                <div className="relative mt-auto pt-6"><span className="block h-1 w-12 rounded-full bg-[linear-gradient(90deg,#00A9FF,#087cbc)] transition-all duration-300 group-hover:w-20" /></div>
               </article>
             </Reveal>
           ))}
         </div>
         <Reveal delay={0.18} y={10}>
           <div className="mt-8 flex justify-center">
-            <Link href="/#contact" className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(135deg,#064585,#087aba)] px-7 text-[14px] font-bold text-white shadow-[0_16px_32px_-20px_rgba(0,91,150,0.62)] transition hover:-translate-y-0.5 hover:brightness-110">Get Started <span aria-hidden>↗</span></Link>
+            <Link href="/#contact" className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(135deg,#00A9FF,#0077FF)] px-7 text-[14px] font-bold text-white shadow-[0_16px_32px_-20px_rgba(0,135,225,0.62)] transition hover:-translate-y-0.5 hover:brightness-110">Get Started <span aria-hidden>↗</span></Link>
           </div>
         </Reveal>
       </div>

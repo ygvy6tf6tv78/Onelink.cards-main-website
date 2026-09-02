@@ -19,7 +19,7 @@ export function FloatingWhatsApp() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.97 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-[68px] right-0 w-[238px] overflow-hidden rounded-[16px] border border-slate-900/[0.08] bg-white p-3 shadow-[0_22px_64px_-20px_rgba(15,23,42,0.32)]"
+            className="absolute bottom-[72px] right-0 w-[238px] overflow-hidden rounded-[16px] border border-slate-900/[0.08] bg-white p-3 shadow-[0_22px_64px_-20px_rgba(15,23,42,0.32)]"
           >
             <p className="px-2 pb-2 pt-1 text-[12px] font-bold uppercase tracking-[0.08em] text-[#64748b]">Contact OneLink</p>
             <a href={whatsappHref} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-[11px] px-3 py-3 text-[14px] font-semibold text-[#0f172a] hover:bg-[#effcf4]">

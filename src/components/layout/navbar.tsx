@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +15,7 @@ export function Navbar() {
     "Hello OneLink, I want to discuss OneLink for my business.",
   )}`;
   const callHref = `tel:+${siteConfig.contact.whatsappNumber}`;
+  const instagramHref = "https://www.instagram.com/onelinkcards";
 
   // Close menu on resize to desktop
   useEffect(() => {
@@ -58,28 +60,23 @@ export function Navbar() {
           </div>
 
           <div className="flex shrink-0 items-center justify-end gap-2">
+            <a href={whatsappHref} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" className="grid h-10 w-10 place-items-center rounded-full border border-[#25D366]/20 bg-white text-[#25D366] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f4fff8] lg:hidden">
+              <Icon name="whatsapp" className="h-5 w-5" />
+            </a>
+            <a href={instagramHref} target="_blank" rel="noreferrer" aria-label="Follow OneLink on Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-[#e1306c]/30 bg-[linear-gradient(145deg,#ffffff_35%,#fff1f7_100%)] text-[#e1306c] shadow-[0_10px_24px_-16px_rgba(225,48,108,0.75)] transition hover:-translate-y-0.5 hover:border-[#e1306c]/55 hover:shadow-[0_14px_28px_-16px_rgba(225,48,108,0.9)] lg:h-11 lg:w-11">
+              <Image src="/integration-logos/instagram.png" alt="" width={24} height={24} className="h-5 w-5 object-contain" />
+            </a>
             <a
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
-              aria-label="Chat with OneLink on WhatsApp"
-              className="flex h-10 w-10 items-center justify-center gap-2 rounded-[12px] border border-black/8 bg-white text-[#25D366] shadow-[0_10px_24px_rgba(14,30,37,0.05)] transition hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:bg-[#f6fff9] lg:w-auto lg:px-3"
-            >
-              <Icon name="whatsapp" className="h-5 w-5 lg:h-[18px] lg:w-[18px]" />
-              <span className="hidden text-[13px] font-semibold text-[#111827] lg:inline">WhatsApp</span>
-            </a>
-            <Link
-              href="/#contact"
-              className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_10px_24px_-8px_rgba(0,80,170,0.48)] transition hover:-translate-y-0.5 hover:brightness-110 lg:inline-flex"
+              className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_10px_24px_-8px_rgba(0,135,225,0.5)] transition hover:-translate-y-0.5 hover:brightness-110 lg:inline-flex"
             >
               <span>Book Demo</span>
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#00A9FF]">
-                <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M3.5 8h9" />
-                  <path d="M8.5 3l4.5 5-4.5 5" />
-                </svg>
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#25D366]">
+                <Icon name="whatsapp" className="h-[17px] w-[17px]" />
               </span>
-            </Link>
+            </a>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="group flex h-10 w-10 items-center justify-center rounded-[12px] border border-black/8 bg-white text-[#151515] shadow-sm transition-all active:scale-95 lg:hidden"
@@ -124,28 +121,21 @@ export function Navbar() {
                     <Icon name="chevron-right" className="h-4 w-4 text-[#9ca3af]" />
                   </Link>
                 ))}
-                <Link
-                  href="/#contact"
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
                   onClick={() => setIsMenuOpen(false)}
-                  className="mt-2 flex min-h-12 items-center justify-center rounded-[12px] bg-[#00A9FF] px-4 py-3 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(0,169,255,0.7)]"
+                  className="mt-2 flex min-h-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-4 py-3 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(0,135,225,0.62)]"
                 >
                   Book a Free Demo
-                </Link>
+                </a>
                 <div className="mt-2 border-t border-black/5 p-2 pt-4">
                   <p className="mb-3 text-[12px] font-bold uppercase tracking-widest text-[#9ca3af]">Talk to our team</p>
                   <div className="flex items-center gap-2">
                     <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[12px] border border-black/6 bg-white px-3.5 py-3 shadow-sm"
-                    >
-                      <Icon name="whatsapp" className="h-5 w-5 text-[#25D366]" />
-                      <span className="text-[14px] font-bold text-[#151515]">WhatsApp</span>
-                    </a>
-                    <a
                       href={callHref}
-                      className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[12px] border border-black/6 bg-white px-3.5 py-3 shadow-sm"
+                      className="flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-black/6 bg-white px-3.5 py-3 shadow-sm"
                     >
                       <Icon name="phone" className="h-5 w-5 text-[#111827]" />
                       <span className="text-[14px] font-bold text-[#151515]">Call Now</span>

@@ -5,11 +5,6 @@ import { portfolioItems } from "@/content/portfolio";
 import { PortfolioBrowser, PortfolioCategoryPicker } from "@/components/portfolio/portfolio-browser";
 import { Reveal } from "@/components/ui/reveal";
 
-const portfolioHeroImages = ["vastukar", "new-vision", "burger-bazaar"].flatMap((id) => {
-  const item = portfolioItems.find((portfolioItem) => portfolioItem.id === id);
-  return item ? [item.image] : [];
-});
-
 export const metadata: Metadata = {
   title: "Portfolio — OneLink",
   description: "Real OneLink pages live for restaurants, consultants, retail, and more.",
@@ -42,18 +37,9 @@ export default function PortfolioPage() {
                 <p className="mt-2 max-w-xl text-[13px] font-medium leading-relaxed text-[#d7ecfb] sm:text-[14px]">
                   Pick a category to see real business experiences.
                 </p>
-                <div className="mt-4 flex -space-x-2 lg:hidden" aria-hidden="true">
-                  {portfolioHeroImages.map((image, index) => <span key={index} className="relative h-10 w-10 overflow-hidden rounded-[12px] border-2 border-white/90 bg-white shadow-lg"><Image src={image} alt="" fill sizes="40px" className="object-cover object-top" /></span>)}
-                </div>
                 <Suspense fallback={<div className="mt-5 h-8" />}>
                   <PortfolioCategoryPicker />
                 </Suspense>
-              </div>
-              <div className="pointer-events-none absolute bottom-0 right-3 hidden h-[270px] w-[330px] items-end justify-center lg:flex" aria-hidden="true">
-                <div className="absolute bottom-4 h-40 w-64 rounded-full bg-[#55c7ff]/18 blur-3xl" />
-                {portfolioHeroImages[0] ? <Image src={portfolioHeroImages[0]} alt="" className="absolute bottom-[-42px] left-3 w-[118px] -rotate-[11deg] opacity-70 drop-shadow-[0_18px_22px_rgba(0,0,0,0.3)]" /> : null}
-                {portfolioHeroImages[1] ? <Image src={portfolioHeroImages[1]} alt="" className="absolute bottom-[-42px] right-3 w-[118px] rotate-[11deg] opacity-70 drop-shadow-[0_18px_22px_rgba(0,0,0,0.3)]" /> : null}
-                {portfolioHeroImages[2] ? <Image src={portfolioHeroImages[2]} alt="" className="relative bottom-[-25px] z-10 w-[154px] drop-shadow-[0_25px_28px_rgba(0,0,0,0.4)]" /> : null}
               </div>
             </section>
           </Reveal>

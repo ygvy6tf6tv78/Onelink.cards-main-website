@@ -72,29 +72,30 @@ export function PortfolioCategoryPicker() {
   const searchParams = useSearchParams();
   const requestedFilter = searchParams.get("category");
   const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter ? requestedFilter : "all";
-  const orderedMobileFilters = [...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]];
+  const orderedFilters = [...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]];
 
   return (
-    <div className="mt-5 border-t border-white/15 pt-4 lg:w-[820px]">
-      <div className="grid grid-cols-2 gap-2 lg:hidden">
-        {orderedMobileFilters.map((filter) => (
+    <div className="mt-3 border-t border-white/15 pt-3 lg:w-[820px]">
+      <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+        {orderedFilters.map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}
         <MakeOneLinkBadge />
       </div>
-      <div className="hidden grid-cols-4 gap-2 lg:grid">
-        {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
-          <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
-        ))}
-        <MakeOneLinkBadge />
-      </div>
+      <a
+        href="#portfolio-browser"
+        className="mx-auto mt-3 flex w-fit flex-col items-center gap-0.5 text-[10px] font-extrabold uppercase tracking-[0.13em] text-white/80 transition hover:text-white sm:text-[11px]"
+      >
+        <span>Scroll down to view</span>
+        <span aria-hidden="true" className="text-base leading-none motion-safe:animate-bounce">↓</span>
+      </a>
     </div>
   );
 }
 
 function MakeOneLinkBadge() {
   return (
-    <Link href="/#contact" className="inline-flex min-h-10 w-full items-center justify-start gap-2 rounded-[12px] border border-[#8fd0f2] bg-[linear-gradient(135deg,#fafdff_0%,#dff3ff_100%)] px-2.5 py-1.5 text-left text-[13px] font-extrabold tracking-[-0.01em] text-[#075b9b] shadow-[0_10px_22px_-16px_rgba(0,76,137,0.5)] transition hover:-translate-y-0.5 hover:border-[#40aae2] sm:text-[14px] lg:min-h-10 lg:rounded-[13px] lg:text-[15px] lg:font-black">
+    <Link href="/#contact" className="inline-flex min-h-10 w-full items-center justify-start gap-2 rounded-[12px] border border-[#8fd0f2] bg-[linear-gradient(135deg,#fafdff_0%,#dff3ff_100%)] px-2.5 py-1.5 text-left text-[13px] font-extrabold tracking-[-0.01em] text-[#075b9b] shadow-[0_10px_22px_-16px_rgba(0,76,137,0.5)] transition hover:-translate-y-0.5 hover:border-[#40aae2] sm:text-[14px] lg:rounded-[13px] lg:text-[15px] lg:font-black">
       <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-[#bde3f8]">
         <Image src="/onelink-logomark.png" alt="" width={14} height={19} className="h-4 w-auto" />
       </span>
@@ -110,16 +111,16 @@ function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boo
       href={filter.id === "all" ? "/portfolio" : `/portfolio?category=${filter.id}`}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-10 w-full items-center justify-start gap-2 rounded-[12px] border px-2.5 py-1.5 text-left text-[13px] font-extrabold tracking-[-0.01em] transition sm:text-[14px] lg:min-h-10 lg:gap-2 lg:rounded-[13px] lg:px-2.5 lg:text-[15px] lg:font-black lg:tracking-[-0.01em]",
+        "inline-flex min-h-10 w-full items-center justify-start gap-2 rounded-[12px] border px-2.5 py-1.5 text-left text-[13px] font-extrabold tracking-[-0.01em] transition sm:text-[14px] lg:rounded-[13px] lg:text-[15px] lg:font-black",
         active
           ? "border-[#48b8f5] bg-[linear-gradient(135deg,#0753a2_0%,#087dd1_100%)] text-white shadow-[0_12px_28px_-15px_rgba(0,35,90,0.85)]"
           : "border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff]",
       )}
     >
       <span className={cn("relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
-        {previewImage ? <Image src={previewImage} alt="" fill sizes="32px" className="object-cover object-top" aria-hidden="true" /> : <Icon name={filter.icon} className="h-4 w-4" />}
+        {previewImage ? <Image src={previewImage} alt="" fill sizes="28px" className="object-cover object-top" aria-hidden="true" /> : <Icon name={filter.icon} className="h-4 w-4" />}
       </span>
-      <span className="min-w-0 leading-[1.15] whitespace-nowrap">{filter.label}</span>
+      <span className="min-w-0 whitespace-nowrap leading-[1.1]">{filter.label}</span>
     </Link>
   );
 }
@@ -149,7 +150,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
   return (
     <>
       {visibleItems.length > 0 ? (
-        <div id="portfolio-browser" className="mt-8 scroll-mt-28 grid gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-7">
+        <div id="portfolio-browser" className="mt-5 scroll-mt-28 grid gap-x-5 gap-y-10 md:grid-cols-2 lg:mt-6 lg:grid-cols-3 xl:gap-x-7">
           {visibleItems.map((item, index) => (
             <Reveal key={`${activeFilter}-${item.id}`} delay={index * 0.025} alwaysShow>
               <PortfolioCard item={item} />
@@ -157,7 +158,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
           ))}
         </div>
       ) : (
-        <div id="portfolio-browser" className="mt-8 scroll-mt-28 rounded-[28px] border border-dashed border-[#bfdbfe] bg-white/70 px-6 py-10 text-left shadow-[0_24px_70px_-46px_rgba(15,23,42,0.22)]">
+        <div id="portfolio-browser" className="mt-5 scroll-mt-28 rounded-[28px] border border-dashed border-[#bfdbfe] bg-white/70 px-6 py-10 text-left shadow-[0_24px_70px_-46px_rgba(15,23,42,0.22)] lg:mt-6">
           {activeFilter === "custom" ? (
             <>
               <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-[#0369A1]">Custom setup</p>

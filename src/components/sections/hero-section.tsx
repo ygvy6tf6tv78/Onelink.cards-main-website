@@ -3,7 +3,6 @@ import { HeroMockupShowcase } from "@/components/hero-mockup-showcase";
 import { HeroEntrance } from "@/components/ui/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { SectionBadge } from "@/components/ui/section-badge";
-import { siteConfig } from "@/content/site";
 import { Icon } from "@/components/icons";
 import { HeroCloudBackground } from "@/components/hero-cloud-background";
 import styles from "./hero-section.module.css";
@@ -17,8 +16,6 @@ const heroIntegrations = [
 ] as const;
 
 export function HeroSection() {
-  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
-
   return (
     <section id="home" className="section-shell relative overflow-x-clip overflow-y-visible bg-[#6fc2f1]">
       <HeroCloudBackground />
@@ -37,34 +34,30 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.17} x={-24} y={10}>
             <h1 className="font-display mt-5 max-w-none text-[clamp(35px,10.25vw,40px)] font-[780] leading-[1.02] tracking-[-0.05em] sm:mt-6 sm:text-[50px] md:text-[46px] lg:text-[48px] xl:text-[56px]">
-              <span className="block whitespace-nowrap text-[#07111f]">Stop sharing links.</span>
-              <span className="mt-1 block whitespace-nowrap text-white drop-shadow-[0_4px_18px_rgba(0,73,130,0.24)]">Share OneLink.</span>
+              <span className="block whitespace-nowrap text-[#07111f] drop-shadow-[0_2px_12px_rgba(255,255,255,0.28)]">Stop sharing links.</span>
+              <span className="mt-1 block whitespace-nowrap bg-[linear-gradient(100deg,#073b88_0%,#0b63ce_70%,#0750a8_100%)] bg-clip-text text-transparent drop-shadow-[0_3px_14px_rgba(255,255,255,0.2)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.25} x={-22} y={10}>
-            <p className="mt-4 max-w-[58ch] text-pretty text-[15px] font-semibold leading-[1.7] text-[#172334] sm:mt-5">
+            <p className="mt-4 max-w-[58ch] text-pretty text-[15px] font-semibold leading-[1.7] text-[#1c2a3a] sm:mt-5">
               Bring your business, services, products and customer actions into one beautifully designed experience with one smart link and custom QR code.
             </p>
           </HeroEntrance>
           <HeroEntrance delay={0.33} x={-20} y={10} className="min-w-0 w-full">
           <div className="mt-6 grid w-full grid-cols-2 gap-2.5 sm:hidden">
-            <ActionLink href="/book" variant="blue" withArrow className="min-h-12 min-w-0 !rounded-[16px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,70,160,0.68)] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="/book" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-3 text-[12px] font-bold shadow-[0_16px_30px_-18px_rgba(0,70,160,0.68)] [&_svg]:h-4 [&_svg]:w-4">
               Book Free Demo
             </ActionLink>
-            <ActionLink href={whatsappHref} variant="whatsapp" className="min-h-12 min-w-0 !rounded-[16px] px-3 text-[14px] font-bold">
-              <Icon name="whatsapp" className="h-5 w-5" />
-              WhatsApp
-            </ActionLink>
-            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[16px] border border-white/45 !bg-[#075b9e]/80 px-4 text-[14px] font-bold !text-white shadow-[0_14px_30px_-20px_rgba(9,34,62,0.45)] backdrop-blur-md hover:border-white/70 hover:!bg-[#064f8a] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="#work" variant="secondary" withArrow className="h-12 min-w-0 !rounded-[15px] border border-white/75 !bg-white/82 px-3 text-[12px] font-bold !text-[#064083] shadow-[0_14px_30px_-22px_rgba(9,34,62,0.35)] backdrop-blur-md hover:border-white hover:!bg-white [&_svg]:h-4 [&_svg]:w-4">
               View Live Examples
             </ActionLink>
           </div>
-          <div className="mt-7 hidden w-full max-w-lg flex-row flex-nowrap items-stretch gap-3 sm:flex">
+          <div className="mt-7 hidden w-full max-w-[470px] flex-row flex-nowrap items-stretch gap-3 sm:flex">
               <ActionLink
                 href="/book"
                 variant="primary"
                 withArrow
-                className="min-h-12 min-w-0 flex-1 !rounded-[16px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-4 py-2.5 text-[14px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,70,160,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+                className="h-12 min-w-0 flex-1 !rounded-[15px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-5 text-[13px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,70,160,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
               >
                 Book a Free Demo
               </ActionLink>
@@ -72,7 +65,7 @@ export function HeroSection() {
               href="#work"
               variant="secondary"
               withArrow
-              className="min-h-12 min-w-0 flex-1 !rounded-[16px] border border-white/45 !bg-[#075b9e]/80 px-4 py-2.5 text-[14px] font-bold !text-white shadow-[0_14px_30px_-20px_rgba(9,34,62,0.45)] backdrop-blur-md hover:border-white/70 hover:!bg-[#064f8a] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+              className="h-12 min-w-0 flex-1 !rounded-[15px] border border-white/75 !bg-white/82 px-5 text-[13px] font-bold !text-[#064083] shadow-[0_14px_30px_-22px_rgba(9,34,62,0.35)] backdrop-blur-md hover:border-white hover:!bg-white sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
             >
               View Live Examples
             </ActionLink>
@@ -106,7 +99,7 @@ export function HeroSection() {
           </div>
           </HeroEntrance>
         </div>
-        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} relative min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
+        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} relative z-20 min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">

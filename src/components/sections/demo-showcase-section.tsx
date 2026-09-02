@@ -32,20 +32,20 @@ export function DemoShowcaseSection() {
               <h2 className="section-title-gradient font-display mx-auto mt-4 max-w-[24ch] text-balance text-[30px] font-bold leading-[1.08] tracking-[-0.04em] sm:text-[36px] lg:text-[42px]">
                 Built for real businesses. Designed around every brand.
               </h2>
-              <div className="mx-auto mt-6 flex max-w-full flex-nowrap justify-start gap-1.5 overflow-x-auto px-1 pb-2 [scrollbar-width:none] sm:justify-center [&::-webkit-scrollbar]:hidden">
+              <div className="mx-auto mt-6 grid max-w-full grid-cols-4 gap-1.5 px-1 sm:flex sm:flex-nowrap sm:justify-center">
                 {portfolioCategories.map((category) => (
                   <Link
                     key={category.id}
                     href={`/portfolio?category=${category.id}`}
-                    className="group inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full border border-[#b9dcf3] bg-[#eef8ff] px-3 py-2 text-[11px] font-bold text-[#285373] shadow-[0_10px_24px_-20px_rgba(0,105,175,0.36)] transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-[#e3f4ff] hover:text-[#087cbc] lg:px-3.5 lg:text-[12px]"
+                    className="group inline-flex min-h-10 min-w-0 items-center justify-center gap-1 rounded-[12px] border border-[#b9dcf3] bg-[#eef8ff] px-1.5 py-1.5 text-center text-[9px] font-bold leading-[1.05] text-[#285373] shadow-[0_10px_24px_-20px_rgba(0,105,175,0.36)] transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-[#e3f4ff] hover:text-[#087cbc] sm:min-h-9 sm:shrink-0 sm:gap-1.5 sm:rounded-full sm:px-3 sm:py-2 sm:text-[11px] lg:px-3.5 lg:text-[12px]"
                   >
-                    <Icon name={category.icon} className="h-3.5 w-3.5 text-[#159bdc] transition-transform group-hover:scale-110" />
-                    {category.label}
+                    <Icon name={category.icon} className="hidden h-3.5 w-3.5 shrink-0 text-[#159bdc] transition-transform group-hover:scale-110 min-[390px]:block" />
+                    <span>{category.label}</span>
                   </Link>
                 ))}
                 <Link
                   href="/portfolio"
-                  className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full border border-[#087cbc] bg-[linear-gradient(135deg,#064083,#087cbc)] px-4 py-2 text-[11px] font-extrabold text-white shadow-[0_12px_26px_-18px_rgba(9,82,140,0.62)] transition hover:-translate-y-0.5 hover:brightness-110 lg:text-[12px]"
+                  className="inline-flex min-h-10 min-w-0 items-center justify-center gap-1 rounded-[12px] border border-[#087cbc] bg-[linear-gradient(135deg,#064083,#087cbc)] px-1.5 py-1.5 text-[9px] font-extrabold text-white shadow-[0_12px_26px_-18px_rgba(9,82,140,0.62)] transition hover:-translate-y-0.5 hover:brightness-110 sm:min-h-9 sm:shrink-0 sm:gap-1.5 sm:rounded-full sm:px-4 sm:py-2 sm:text-[11px] lg:text-[12px]"
                 >
                   View All
                   <Icon name="chevron-right" className="h-3.5 w-3.5" />
@@ -65,23 +65,13 @@ export function DemoShowcaseSection() {
           </div>
 
         <Reveal delay={0.12} x={24} y={10}>
-          <div className="mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-3 rounded-[20px] border border-white/80 bg-white/65 p-3 shadow-[0_24px_60px_-42px_rgba(15,55,90,0.4)] backdrop-blur-md sm:flex-row">
+          <div className="mt-10 flex justify-center">
             <Link
               href="/book"
-              className="group inline-flex h-12 w-[min(100%,310px)] items-center justify-center gap-2.5 rounded-[13px] bg-[linear-gradient(135deg,#09223E_0%,#064083_52%,#0077FF_100%)] px-7 text-[13px] font-extrabold text-white shadow-[0_18px_40px_-20px_rgba(0,91,190,0.7)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+              className="group inline-flex h-12 w-[min(100%,280px)] items-center justify-center gap-2.5 rounded-[13px] bg-[linear-gradient(135deg,#09223E_0%,#064083_52%,#0077FF_100%)] px-7 text-[13px] font-extrabold text-white shadow-[0_18px_40px_-20px_rgba(0,91,190,0.7)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
             >
               Book a Free Demo
               <Icon name="calendar" className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/portfolio"
-              className="group inline-flex h-12 w-[min(100%,310px)] items-center justify-center gap-2.5 rounded-[13px] border border-[#00A9FF]/30 bg-white px-7 text-[13px] font-extrabold text-[#087cbc] shadow-[0_18px_40px_-24px_rgba(0,126,191,0.6)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/60 hover:bg-[#f3faff] sm:w-auto"
-            >
-              View All Portfolio
-              <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M3.5 8h9" />
-                <path d="M8.5 3l4.5 5-4.5 5" />
-              </svg>
             </Link>
           </div>
         </Reveal>

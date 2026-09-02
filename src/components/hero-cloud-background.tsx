@@ -6,6 +6,11 @@ import { useEffect, useRef } from "react";
 
 const cloudLayers = [
   {
+    src: "/hero-clouds/cloud-left.jpeg",
+    className: "-left-[10%] top-[5%] w-[46%] opacity-35 mix-blend-screen sm:-left-[6%] sm:w-[36%]",
+    speed: 0.08,
+  },
+  {
     src: "/hero-clouds/cloud-right.jpeg",
     className: "-right-[12%] top-[2%] w-[47%] opacity-32 mix-blend-screen sm:-right-[7%] sm:w-[36%]",
     speed: 0.12,
@@ -17,7 +22,7 @@ const cloudLayers = [
   },
   {
     src: "/hero-clouds/cloud-bottom.jpeg",
-    className: "-bottom-[8%] left-0 h-[54%] w-full object-cover object-bottom opacity-88 mix-blend-screen",
+    className: "-bottom-[8%] left-0 h-[54%] w-full object-cover object-bottom opacity-88 mix-blend-screen [mask-image:linear-gradient(to_bottom,transparent_0%,black_30%)]",
     speed: 0.06,
   },
 ] as const;
@@ -60,8 +65,7 @@ export function HeroCloudBackground() {
 
   return (
     <div ref={rootRef} className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-      <img src="/hero-clouds/sky-background.jpeg" alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.38)_0%,rgba(255,255,255,0.18)_42%,rgba(74,172,232,0.03)_100%)]" />
+      <img src="/hero-clouds/sky-background.jpeg" alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-100" />
       {cloudLayers.map((cloud) => (
         <img
           key={cloud.src}
@@ -71,7 +75,7 @@ export function HeroCloudBackground() {
           className={`absolute will-change-transform ${cloud.className}`}
         />
       ))}
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-white/55 to-white" />
+      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent via-white/72 to-white" />
     </div>
   );
 }

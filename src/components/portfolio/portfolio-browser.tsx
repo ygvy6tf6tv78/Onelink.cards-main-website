@@ -92,11 +92,11 @@ function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boo
       className={cn(
         "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[13px] font-extrabold uppercase tracking-[0.035em] transition sm:text-[14px]",
         active
-          ? "border-white bg-white text-[#075a9f] shadow-[0_8px_20px_-13px_rgba(0,0,0,0.75)]"
+          ? "border-[#48b8f5] bg-[linear-gradient(135deg,#0753a2_0%,#087dd1_100%)] text-white shadow-[0_12px_28px_-15px_rgba(0,35,90,0.85)]"
           : "border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff]",
       )}
     >
-      <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e8f5ff] text-[#087bd0] ring-1 ring-[#c7e7fb]">
+      <span className={cn("relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
         {stackedPreviews.length ? (
           <span className="relative h-7 w-7 shrink-0">
             {stackedPreviews.map((item, index) => (
@@ -153,7 +153,7 @@ export function PortfolioBrowser({ items }: { items: PortfolioItem[] }) {
       {visibleItems.length > 0 ? (
         <div id="portfolio-browser" className="mt-8 scroll-mt-28 grid gap-x-5 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-7">
           {visibleItems.map((item, index) => (
-            <Reveal key={item.id} delay={index * 0.04}>
+            <Reveal key={`${activeFilter}-${item.id}`} delay={index * 0.025} alwaysShow>
               <PortfolioCard item={item} />
             </Reveal>
           ))}

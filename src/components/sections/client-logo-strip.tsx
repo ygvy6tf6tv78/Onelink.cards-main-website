@@ -65,7 +65,7 @@ export function ClientLogoStrip() {
             </div>
             <dl className="mx-auto grid max-w-[340px] grid-cols-2 gap-x-1 gap-y-6 sm:max-w-4xl sm:grid-cols-3 sm:gap-0">
               {trustStats.map((stat, index) => (
-                <div key={stat.label} className={`${index === 2 ? "col-span-2" : ""} text-center ${index > 0 ? "sm:border-l sm:border-slate-900/[0.09] sm:px-5" : "sm:px-5"}`}>
+                <div key={stat.label} className={`${index === 2 ? "col-span-2 sm:col-span-1" : ""} text-center ${index > 0 ? "sm:border-l sm:border-slate-900/[0.09] sm:px-5" : "sm:px-5"}`}>
                   <dt className="font-display text-[2.7rem] font-extrabold tracking-[-0.055em] text-[#00A9FF] sm:text-[3.45rem] lg:text-[3.7rem]">
                     <CountUp value={stat.value} play={isInView} />{stat.suffix}
                   </dt>

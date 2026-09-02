@@ -29,14 +29,14 @@ export default function PortfolioPage() {
                 priority
                 className="pointer-events-none absolute -right-8 -bottom-48 w-[280px] rotate-[-14deg] opacity-[0.08] blur-[1px] sm:-right-2 sm:-bottom-56 sm:w-[360px] lg:w-[400px]"
               />
-              <div className="pointer-events-none absolute right-6 top-[-68px] hidden h-[315px] w-[340px] lg:block" aria-hidden="true">
+              <div className="pointer-events-none absolute right-6 top-[-20px] hidden h-[330px] w-[340px] lg:block" aria-hidden="true">
                 <Image
                   src="/pricing-mockup-burger-bazaar.png"
                   alt=""
                   width={150}
                   height={315}
                   sizes="150px"
-                  className="absolute left-0 top-14 w-[116px] -rotate-[15deg] opacity-58 drop-shadow-[0_20px_30px_rgba(0,9,24,0.38)]"
+                  className="absolute left-0 top-20 w-[116px] -rotate-[15deg] opacity-58 drop-shadow-[0_20px_30px_rgba(0,9,24,0.38)]"
                 />
                 <Image
                   src="/pricing-mockup-vastukar.png"
@@ -44,7 +44,7 @@ export default function PortfolioPage() {
                   width={150}
                   height={315}
                   sizes="150px"
-                  className="absolute right-0 top-16 w-[118px] rotate-[15deg] opacity-58 drop-shadow-[0_20px_30px_rgba(0,9,24,0.38)]"
+                  className="absolute right-0 top-20 w-[118px] rotate-[15deg] opacity-58 drop-shadow-[0_20px_30px_rgba(0,9,24,0.38)]"
                 />
                 <Image
                   src="/pricing-mockup-new-vision.png"
@@ -52,7 +52,7 @@ export default function PortfolioPage() {
                   width={180}
                   height={378}
                   sizes="180px"
-                  className="absolute left-[89px] top-3 z-10 w-[150px] rotate-[4deg] drop-shadow-[0_28px_40px_rgba(0,9,24,0.52)]"
+                  className="absolute left-[88px] top-2 z-10 w-[152px] drop-shadow-[0_28px_40px_rgba(0,9,24,0.52)]"
                 />
               </div>
               <div className="relative max-w-3xl text-left lg:max-w-[760px] lg:pr-4">

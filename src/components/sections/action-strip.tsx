@@ -17,7 +17,6 @@ export function ActionStrip() {
     const onScroll = () => {
       if (window.scrollY > 32) setHasScrolled(true);
     };
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

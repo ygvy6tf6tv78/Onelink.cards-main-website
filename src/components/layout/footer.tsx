@@ -11,7 +11,7 @@ export function Footer() {
   const emailHref = `mailto:${siteConfig.contact.email}`;
 
   return (
-    <footer className="relative mt-0 scroll-mt-24 overflow-x-clip bg-[#080a0d] px-3 pb-3 pt-14 text-white sm:px-4 sm:pb-4 sm:pt-16">
+    <footer className="relative mt-0 scroll-mt-24 overflow-x-clip bg-[linear-gradient(180deg,#07111b_0%,#03070b_72%,#010305_100%)] px-3 pb-3 pt-14 text-white sm:px-4 sm:pb-4 sm:pt-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(0,169,255,0.13),transparent_58%)]" />
 
       <div className="relative -mx-3 mb-8 overflow-x-clip py-5 sm:-mx-4 sm:mb-10 sm:py-7" aria-label="OneLink capabilities">
@@ -19,7 +19,7 @@ export function Footer() {
         <div className="mt-4 sm:mt-6"><TickerRow items={tickerTwo} direction="right" alternate /></div>
       </div>
 
-      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[28px] border border-white/16 bg-[linear-gradient(140deg,#020b14_0%,#052845_34%,#0077b9_68%,#6fd3ff_100%)] shadow-[0_34px_90px_-46px_rgba(0,40,90,0.76)] sm:rounded-[36px]">
+      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[28px] border border-[#69c7ff]/20 bg-[linear-gradient(140deg,#02070d_0%,#06172a_32%,#07365f_68%,#0a639e_100%)] shadow-[0_34px_90px_-46px_rgba(0,20,54,0.76)] sm:rounded-[36px]">
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00A9FF]/24 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 left-1/4 h-96 w-96 rounded-full bg-[#00A9FF]/12 blur-3xl" />
         <div className="relative px-6 pb-8 pt-10 sm:px-10 sm:pb-10 sm:pt-12 lg:px-14 lg:pb-12 lg:pt-14">

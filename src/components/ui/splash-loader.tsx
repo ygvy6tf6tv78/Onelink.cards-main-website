@@ -23,12 +23,12 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
 
     calculateTarget();
     window.addEventListener("resize", calculateTarget);
-    const flyTimer = window.setTimeout(() => setIsFlying(true), 1900);
-    const revealTimer = window.setTimeout(() => onComplete?.(), 3340);
+    const flyTimer = window.setTimeout(() => setIsFlying(true), 680);
+    const revealTimer = window.setTimeout(() => onComplete?.(), 1480);
     const closeTimer = window.setTimeout(() => {
       setIsVisible(false);
       document.body.style.overflow = "unset";
-    }, 3700);
+    }, 1720);
 
     return () => {
       window.clearTimeout(flyTimer);
@@ -55,8 +55,8 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
                 ? { opacity: 1, scale: 0.48, x: navOffset.x, y: navOffset.y }
                 : { opacity: 1, scale: 1, x: 0, y: 0 }}
               transition={isFlying
-                ? { duration: 1.36, ease: [0.16, 1, 0.3, 1] }
-                : { duration: 1.26, ease: [0.16, 1, 0.3, 1] }}
+                ? { duration: 0.78, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.56, ease: [0.16, 1, 0.3, 1] }}
               className="relative flex flex-col items-center justify-center"
             >
               <div className="relative h-[52px] w-[220px] sm:h-[62px] sm:w-[260px]">

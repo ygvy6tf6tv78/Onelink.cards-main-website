@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
+import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
+import burgerBazaarMockup from "../../../onelink_mockups/hero-burger-bazaar.png";
+import vastukarMockup from "../../../onelink_mockups/hero-vastukar.png";
 
 const trustStats = [
   { value: 24, suffix: "+", label: "OneLinks made" },
@@ -13,12 +16,43 @@ const trustStats = [
 
 export function ClientLogoStrip() {
   const sectionRef = useRef<HTMLElement>(null);
+  const leftMockupRef = useRef<HTMLDivElement>(null);
+  const rightMockupRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
 
+  useEffect(() => {
+    let frame = 0;
+    const updateMockups = () => {
+      frame = 0;
+      const section = sectionRef.current;
+      if (!section) return;
+      const offset = Math.max(-180, Math.min(180, section.getBoundingClientRect().top - window.innerHeight * 0.5));
+      if (leftMockupRef.current) leftMockupRef.current.style.transform = `translate3d(0, ${offset * -0.16}px, 0) rotate(-13deg)`;
+      if (rightMockupRef.current) rightMockupRef.current.style.transform = `translate3d(0, ${offset * 0.12}px, 0) rotate(13deg)`;
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateMockups);
+    };
+    updateMockups();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <section ref={sectionRef} className="bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
+    <section ref={sectionRef} className="relative overflow-hidden bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
+      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[100px] top-2 hidden w-[220px] origin-center opacity-[0.2] will-change-transform lg:block">
+        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="220px" aria-hidden="true" />
+      </div>
+      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[105px] top-16 hidden w-[220px] origin-center opacity-[0.18] will-change-transform lg:block">
+        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="220px" aria-hidden="true" />
+      </div>
       <Reveal>
-        <div className="mx-auto max-w-7xl">
+        <div className="relative z-10 mx-auto max-w-7xl">
           <div className="space-y-9 sm:px-2">
             <div className="text-center">
               <SectionBadge label="Trust" />

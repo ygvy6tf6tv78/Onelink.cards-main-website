@@ -84,7 +84,7 @@ export function PortfolioCategoryPicker() {
       </div>
       <a
         href="#portfolio-browser"
-        className="mx-auto mt-3 flex w-fit flex-col items-center gap-0.5 text-[10px] font-extrabold uppercase tracking-[0.13em] text-white/80 transition hover:text-white sm:text-[11px]"
+        className="mx-auto mt-3 flex w-fit flex-col items-center gap-0.5 text-[10px] font-extrabold uppercase tracking-[0.13em] text-white/80 transition hover:text-white sm:text-[11px] lg:hidden"
       >
         <span>Scroll down to view</span>
         <span aria-hidden="true" className="text-base leading-none motion-safe:animate-bounce">↓</span>

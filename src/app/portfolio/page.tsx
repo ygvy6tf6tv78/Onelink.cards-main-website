@@ -29,6 +29,16 @@ export default function PortfolioPage() {
                 priority
                 className="pointer-events-none absolute -right-8 -bottom-48 w-[280px] rotate-[-14deg] opacity-[0.08] blur-[1px] sm:-right-2 sm:-bottom-56 sm:w-[360px] lg:w-[400px]"
               />
+              <div className="pointer-events-none absolute bottom-[-178px] right-16 hidden h-[365px] w-[174px] rotate-[10deg] lg:block">
+                <Image
+                  src="/pricing-mockup-burger-bazaar.png"
+                  alt=""
+                  fill
+                  sizes="174px"
+                  className="object-contain object-top drop-shadow-[0_24px_36px_rgba(0,9,24,0.48)]"
+                  aria-hidden="true"
+                />
+              </div>
               <div className="relative max-w-3xl text-left lg:pr-20">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-[#b8e5ff]">Choose a business type</p>
                 <h1 className="font-display mt-2 text-[28px] font-bold leading-[1.05] tracking-[-0.045em] text-white sm:text-[36px] lg:text-[40px]">

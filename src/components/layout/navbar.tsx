@@ -53,7 +53,10 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative tracking-[-0.01em] transition after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:rounded-full after:bg-[#00A9FF] after:transition hover:text-[var(--foreground)] hover:after:origin-left hover:after:scale-x-100"
+                  className={cn(
+                    "relative tracking-[-0.01em] transition after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:rounded-full after:bg-[#00A9FF] after:transition hover:text-[var(--foreground)] hover:after:origin-left hover:after:scale-x-100",
+                    (item.label === "Portfolio" || item.label === "Pricing") && "rounded-full border border-[#a8d8f2]/60 bg-white/55 px-3 py-1.5 text-[#165172] shadow-[0_8px_20px_-16px_rgba(0,91,150,0.62)] backdrop-blur-md hover:border-[#6bbce9] hover:bg-white/85",
+                  )}
                 >
                   {item.label}
                 </Link>

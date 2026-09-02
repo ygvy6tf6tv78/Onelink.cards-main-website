@@ -30,7 +30,7 @@ export function HeroSection() {
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
 
   return (
-    <section id="home" className="section-shell relative overflow-x-clip overflow-y-visible bg-white sm:bg-[#6fc2f1]">
+    <section id="home" className="section-shell relative overflow-x-clip overflow-y-visible bg-white sm:bg-[#edf6ff]">
       <div className="hidden sm:block">
         <HeroCloudBackground />
       </div>
@@ -59,7 +59,7 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.12} x={-24} y={10}>
             <h1 className="font-display mt-4 max-w-none text-[clamp(35px,10.25vw,40px)] font-[720] leading-[1.01] tracking-[-0.055em] sm:mt-7 sm:text-[50px] md:text-[48px] lg:text-[52px] xl:text-[60px]">
-              <span className="block whitespace-nowrap text-[#07111f] lg:text-black">Stop sharing links.</span>
+              <span className="block whitespace-nowrap text-[#07111f] lg:text-[#2b394b]">Stop sharing links.</span>
               <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] lg:text-white lg:[text-shadow:0_3px_0_rgba(61,91,121,0.34),0_9px_20px_rgba(0,48,105,0.34),0_18px_38px_rgba(0,55,120,0.22)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>

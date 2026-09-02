@@ -29,7 +29,7 @@ export default function PortfolioPage() {
                 priority
                 className="pointer-events-none absolute -right-8 -bottom-48 w-[280px] rotate-[-14deg] opacity-[0.08] blur-[1px] sm:-right-2 sm:-bottom-56 sm:w-[360px] lg:w-[400px]"
               />
-              <div className="pointer-events-none absolute right-6 top-[-20px] hidden h-[330px] w-[340px] lg:block" aria-hidden="true">
+              <div className="pointer-events-none absolute right-6 top-[28px] hidden h-[330px] w-[340px] lg:block" aria-hidden="true">
                 <Image
                   src="/pricing-mockup-burger-bazaar.png"
                   alt=""

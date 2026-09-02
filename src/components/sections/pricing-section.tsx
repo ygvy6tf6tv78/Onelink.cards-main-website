@@ -109,12 +109,10 @@ function formatPricingCurrency(amount: number) {
 }
 
 const enterpriseHighlights = [
-  "Multi-location setup",
-  "Central brand control",
-  "Branch-specific information",
-  "Custom workflows",
-  "Team and dashboard access",
-  "Custom integrations based on scope",
+  "Premium Bespoke Design",
+  "Multi-Branch & Location Setup",
+  "Advanced Features & Integrations",
+  "Custom Workflows & Priority Support",
 ];
 
 const chandigarhSetupOffers: Record<TopPlanId, Record<string, number>> = {
@@ -136,7 +134,7 @@ export function PricingSection({
   const [dedicatedSelectedPlanId, setDedicatedSelectedPlanId] = useState<TopPlanId>("signature");
   const topPlans = pricingPlans.filter((plan) => plan.id !== "enterprise");
   const enterprisePlan = pricingPlans.find((plan) => plan.id === "enterprise");
-  const enterpriseHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss an Enterprise setup.")}`;
+  const enterpriseHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss a OneLink Premium custom build.")}`;
   return (
     <section
       id="pricing"
@@ -1102,9 +1100,9 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#6bcfff,transparent)] opacity-55" />
       <div className="relative grid gap-7 lg:grid-cols-[220px_minmax(0,1fr)_290px] lg:items-center lg:gap-9">
         <div className="lg:order-2">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#7dd3fc]/25 bg-white/[0.08] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.11em] text-[#b9e7ff]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#55c5ff] shadow-[0_0_10px_rgba(85,197,255,0.9)]" />
-            Built for scale
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#ead7a4]/45 bg-[#d8b86a]/12 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.11em] text-[#f4dfad]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#e4c77f] shadow-[0_0_10px_rgba(228,199,127,0.72)]" />
+            Premium Custom Build
           </span>
           <div className="mt-4 flex items-center gap-3.5">
             <PricingBrandMark
@@ -1112,12 +1110,12 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
               className="h-11 w-11 rounded-[13px] border-white/20 [&_img]:w-6"
             />
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#9bddff]">OneLink Enterprise</p>
-              <h3 className="font-display mt-1 text-[1.55rem] font-bold leading-[1.12] tracking-[-0.04em] text-white sm:text-[1.85rem]">One brand. Every location connected.</h3>
+              <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#9bddff]">OneLink Premium</p>
+              <h3 className="font-display mt-1 text-[1.55rem] font-bold leading-[1.12] tracking-[-0.04em] text-white sm:text-[1.85rem]">Built for brands that need more.</h3>
             </div>
           </div>
           <p className="mt-3 max-w-2xl text-[14px] font-normal leading-[1.65] text-white/68 sm:text-[15px]">
-            For chains, franchises and multi-location brands that need central control with branch-level customer journeys.
+            For established businesses, agencies and multi-location brands needing premium design, advanced functionality and custom setup.
           </p>
           <div className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
             {enterpriseHighlights.slice(0, 4).map((highlight) => (
@@ -1133,7 +1131,7 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
           <div className="pointer-events-none absolute bottom-3 h-28 w-48 rounded-full bg-[#00A9FF]/12 blur-3xl" />
           <Image
             src="/enterprise-showcase.png"
-            alt="Two customized OneLink enterprise mobile experiences"
+            alt="Two customized OneLink Premium mobile experiences"
             width={1284}
             height={1800}
             quality={92}
@@ -1143,17 +1141,17 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
         </div>
 
         <div className="rounded-[18px] border border-white/70 bg-white p-5 text-[#111821] shadow-[0_22px_48px_-28px_rgba(0,0,0,0.55)] sm:p-6 lg:order-3">
-          <p className="text-[10px] font-extrabold uppercase tracking-[0.13em] text-[#087cbc]">Custom enterprise setup</p>
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.13em] text-[#087cbc]">Premium OneLink</p>
           <p className="mt-2.5 text-[11px] font-bold uppercase tracking-[0.09em] text-[#718096]">Starting from</p>
           <div className="mt-1.5 flex items-center gap-2.5">
             <p className="font-display text-[2rem] font-bold leading-none tracking-[-0.04em] text-[#111821] tabular-nums sm:text-[2.2rem]">
-              {formatPricingCurrency(plan.setupAmount)}
+              {formatCurrency(plan.setupAmount)}
             </p>
             <span className="rounded-full bg-[#edf8ff] px-2 py-1 text-[9px] font-extrabold uppercase tracking-[0.06em] text-[#087cbc]">+ GST</span>
           </div>
-          <p className="mt-3 text-[12px] font-medium leading-relaxed text-[#64748b]">Custom scope, integrations and rollout planning built around your business.</p>
+          <p className="mt-3 text-[12px] font-medium leading-relaxed text-[#64748b]">Custom-built around your business requirements.</p>
           <a href={href} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-[#087cbc] px-4 text-[15px] font-bold text-white shadow-[0_14px_28px_-15px_rgba(0,126,191,0.58)] transition hover:-translate-y-0.5 hover:bg-[#006fa8]">
-            Contact Sales
+            Discuss Your Requirements
             <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 8h9" /><path d="M8.5 3l4.5 5-4.5 5" /></svg>
           </a>
         </div>

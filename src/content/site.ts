@@ -579,16 +579,16 @@ export const pricingPlans: Plan[] = [
   },
   {
     id: "enterprise",
-    name: "Enterprise",
+    name: "OneLink Premium",
     audience:
       "Custom solutions",
-    description: "Custom solutions for chains, branches and larger businesses.",
-    badge: "Custom Solution",
-    ctaLabel: "Request Proposal",
-    setupAmount: 24999,
+    description: "Premium custom builds for established and multi-location brands.",
+    badge: "Premium Custom Build",
+    ctaLabel: "Discuss Your Requirements",
+    setupAmount: 18999,
     hostingAmount: 0,
-    orderAmount: 24999,
-    originalAmount: 34999,
+    orderAmount: 18999,
+    originalAmount: 24999,
     monthlyEquivalent: 0,
     maintenanceOptions: [
       { id: "3-month", label: "3 Months", price: 0 },

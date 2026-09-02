@@ -25,17 +25,10 @@ export function ContactSection() {
                 <h2 className="font-display mt-4 max-w-2xl text-[32px] font-bold leading-[1.08] text-white sm:text-[40px] lg:text-[46px]">Ready to launch your OneLink?</h2>
                 <p className="mt-4 max-w-2xl text-[14px] font-medium leading-[1.7] text-white/72 sm:text-[16px]">Bring your business into one professionally designed page and give customers a faster way to call, book, order, pay or visit.</p>
               </div>
-              <div className="flex flex-col justify-center gap-3 sm:flex-row lg:flex-col">
+              <div className="flex justify-center lg:justify-end">
                 <ActionLink href={whatsappHref} variant="blue" className="h-12 min-w-[210px] rounded-full bg-white px-6 text-[14px] font-bold !text-[#075a91] shadow-[0_18px_34px_-20px_rgba(0,0,0,0.48)] hover:!bg-[#f4fbff]">
                   <Icon name="whatsapp" className="h-4.5 w-4.5 text-[#25D366]" />
                   Start on WhatsApp
-                </ActionLink>
-                <ActionLink href="/portfolio" variant="secondary" className="h-12 min-w-[210px] rounded-full border-white/30 bg-white/10 px-6 text-[14px] font-bold !text-white backdrop-blur hover:bg-white/16">
-                  View Portfolio
-                </ActionLink>
-                <ActionLink href={siteConfig.social.instagram} variant="secondary" className="h-12 min-w-[210px] rounded-full border-white/30 bg-white/92 px-6 text-[14px] font-bold !text-[#c72570] shadow-[0_16px_32px_-22px_rgba(0,0,0,0.45)] hover:!bg-white">
-                  <Image src="/integration-logos/instagram.png" alt="" width={22} height={22} className="h-5 w-5 object-contain" />
-                  Follow us on Instagram
                 </ActionLink>
               </div>
             </div>

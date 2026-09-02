@@ -51,34 +51,34 @@ export function ClientLogoStrip() {
 
   return (
     <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
-      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[86px] top-1 hidden w-[175px] origin-center opacity-[0.24] will-change-transform lg:block">
-        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="175px" aria-hidden="true" />
+      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[104px] -top-5 z-[1] hidden w-[205px] origin-center opacity-[0.32] will-change-transform lg:block">
+        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.2)]" sizes="205px" aria-hidden="true" />
       </div>
-      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[88px] top-9 hidden w-[175px] origin-center opacity-[0.22] will-change-transform lg:block">
-        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="175px" aria-hidden="true" />
+      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[106px] top-1 z-[1] hidden w-[205px] origin-center opacity-[0.3] will-change-transform lg:block">
+        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.2)]" sizes="205px" aria-hidden="true" />
       </div>
-      <div ref={leftAccentMockupRef} className="pointer-events-none absolute -left-[42px] bottom-0 hidden w-[102px] origin-center opacity-[0.13] will-change-transform lg:block">
-        <Image src={velouraMockup} alt="" className="h-auto w-full object-contain" sizes="102px" aria-hidden="true" />
+      <div ref={leftAccentMockupRef} className="pointer-events-none absolute -left-[53px] top-16 z-0 hidden w-[112px] origin-center opacity-[0.19] will-change-transform lg:block">
+        <Image src={velouraMockup} alt="" className="h-auto w-full object-contain" sizes="112px" aria-hidden="true" />
       </div>
-      <div ref={rightAccentMockupRef} className="pointer-events-none absolute -right-[44px] bottom-3 hidden w-[102px] origin-center opacity-[0.13] will-change-transform lg:block">
-        <Image src={newVisionMockup} alt="" className="h-auto w-full object-contain" sizes="102px" aria-hidden="true" />
+      <div ref={rightAccentMockupRef} className="pointer-events-none absolute -right-[55px] top-20 z-0 hidden w-[112px] origin-center opacity-[0.18] will-change-transform lg:block">
+        <Image src={newVisionMockup} alt="" className="h-auto w-full object-contain" sizes="112px" aria-hidden="true" />
       </div>
       <Reveal>
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="space-y-9 sm:px-2">
             <div className="text-center">
               <SectionBadge label="Trust" />
-              <h2 id="client-trust-title" className="section-title-gradient font-display mt-4 text-[2rem] font-bold tracking-[-0.04em] sm:text-[2.45rem] lg:text-[2.75rem]">
+              <h2 id="client-trust-title" className="section-title-gradient font-display mt-4 whitespace-nowrap text-[clamp(1.25rem,6.1vw,1.7rem)] font-bold tracking-[-0.05em] sm:text-[2.45rem] lg:text-[2.75rem]">
                 Trusted by growing businesses
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-[14px] font-medium leading-relaxed text-[#607286] sm:text-[15px]">
                 Choose the right OneLink for your business.
               </p>
             </div>
-            <dl className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-3 sm:gap-0">
+            <dl className="mx-auto grid max-w-[340px] grid-cols-2 gap-x-1 gap-y-6 sm:max-w-4xl sm:grid-cols-3 sm:gap-0">
               {trustStats.map((stat, index) => (
-                <div key={stat.label} className={index > 0 ? "text-center sm:border-l sm:border-slate-900/[0.09] sm:px-5" : "text-center sm:px-5"}>
-                  <dt className="font-display text-[3rem] font-extrabold tracking-[-0.055em] text-[#00A9FF] sm:text-[3.45rem] lg:text-[3.7rem]">
+                <div key={stat.label} className={`${index === 2 ? "col-span-2" : ""} text-center ${index > 0 ? "sm:border-l sm:border-slate-900/[0.09] sm:px-5" : "sm:px-5"}`}>
+                  <dt className="font-display text-[2.7rem] font-extrabold tracking-[-0.055em] text-[#00A9FF] sm:text-[3.45rem] lg:text-[3.7rem]">
                     <CountUp value={stat.value} play={isInView} />{stat.suffix}
                   </dt>
                   <dd className="mt-1.5 text-[11px] font-semibold uppercase leading-snug tracking-[0.08em] text-[#526173] sm:text-[12px]">{stat.label}</dd>

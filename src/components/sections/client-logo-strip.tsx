@@ -44,12 +44,12 @@ export function ClientLogoStrip() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
-      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[100px] top-2 hidden w-[220px] origin-center opacity-[0.2] will-change-transform lg:block">
-        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="220px" aria-hidden="true" />
+    <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
+      <div ref={leftMockupRef} className="pointer-events-none absolute -left-[65px] top-7 hidden w-[142px] origin-center opacity-[0.22] will-change-transform lg:block">
+        <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="142px" aria-hidden="true" />
       </div>
-      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[105px] top-16 hidden w-[220px] origin-center opacity-[0.18] will-change-transform lg:block">
-        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="220px" aria-hidden="true" />
+      <div ref={rightMockupRef} className="pointer-events-none absolute -right-[68px] top-14 hidden w-[142px] origin-center opacity-[0.2] will-change-transform lg:block">
+        <Image src={vastukarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.18)]" sizes="142px" aria-hidden="true" />
       </div>
       <Reveal>
         <div className="relative z-10 mx-auto max-w-7xl">
@@ -59,6 +59,9 @@ export function ClientLogoStrip() {
               <h2 id="client-trust-title" className="section-title-gradient font-display mt-4 text-[2rem] font-bold tracking-[-0.04em] sm:text-[2.45rem] lg:text-[2.75rem]">
                 Trusted by growing businesses
               </h2>
+              <p className="mx-auto mt-3 max-w-xl text-[14px] font-medium leading-relaxed text-[#607286] sm:text-[15px]">
+                Choose the right OneLink for your business.
+              </p>
             </div>
             <dl className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-3 sm:gap-0">
               {trustStats.map((stat, index) => (

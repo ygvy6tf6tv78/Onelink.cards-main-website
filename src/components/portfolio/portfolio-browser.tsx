@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -38,7 +38,7 @@ const allWorkOrder = [
 ] as const;
 
 const categoryFilters: CategoryFilter[] = [
-  { id: "all", label: "All Work", ids: null, icon: "spark" },
+  { id: "all", label: "All Work", ids: null, icon: "gallery" },
   { id: "restaurants", label: "Food & Cafés", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
   { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
   { id: "clinics", label: "Clinics", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
@@ -52,8 +52,6 @@ const categoryFilters: CategoryFilter[] = [
   { id: "education", label: "Education", ids: ["lingua-vibe"], icon: "chart" },
   { id: "custom", label: "Other Businesses", ids: [], icon: "spark" },
 ] as const;
-
-const mobilePrimaryFilterIds = ["all", "restaurants", "architects", "clinics", "hotels", "retail", "education"];
 
 const categoryPreviewIds: Record<string, string> = {
   restaurants: "burger-bazaar",
@@ -71,30 +69,16 @@ const categoryPreviewIds: Record<string, string> = {
 };
 
 export function PortfolioCategoryPicker() {
-  const [showAllCategories, setShowAllCategories] = useState(false);
   const searchParams = useSearchParams();
   const requestedFilter = searchParams.get("category");
   const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter ? requestedFilter : "all";
-  const showExpandedMobileFilters = showAllCategories || !mobilePrimaryFilterIds.includes(activeFilter);
-  const mobileFilters = showExpandedMobileFilters
-    ? categoryFilters
-    : mobilePrimaryFilterIds.map((id) => categoryFilters.find((filter) => filter.id === id)).filter((filter): filter is CategoryFilter => Boolean(filter));
 
   return (
-    <div className="mt-4 border-t border-white/15 pt-4 lg:w-[820px]">
-      <div className="flex flex-wrap justify-center gap-2 lg:hidden">
-        {mobileFilters.map((filter) => (
+    <div className="mt-5 border-t border-white/15 pt-4 lg:w-[820px]">
+      <div className="grid grid-cols-2 gap-2 lg:hidden">
+        {categoryFilters.map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}
-        <button
-          type="button"
-          onClick={() => setShowAllCategories((shown) => !shown)}
-          className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-[#b9daf0] bg-[#eff8ff] px-4 text-[12px] font-extrabold text-[#0875b8] shadow-[0_10px_22px_-18px_rgba(0,76,137,0.48)] transition hover:-translate-y-0.5 hover:border-[#54afe1]"
-          aria-expanded={showExpandedMobileFilters}
-        >
-          {showExpandedMobileFilters ? "View Less" : "View All Categories"}
-          <Icon name="chevron-right" className={cn("h-3.5 w-3.5 rotate-90 transition", showExpandedMobileFilters && "-rotate-90")} />
-        </button>
       </div>
       <div className="hidden grid-cols-4 gap-2 lg:grid">
         {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
@@ -112,14 +96,14 @@ function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boo
       href={filter.id === "all" ? "/portfolio" : `/portfolio?category=${filter.id}`}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-10 flex-auto items-center justify-center gap-1.5 rounded-full border px-3 py-1.5 text-center text-[12px] font-bold tracking-[-0.01em] transition lg:min-h-11 lg:w-full lg:flex-none lg:justify-start lg:gap-2 lg:rounded-[14px] lg:px-2.5 lg:text-left lg:text-[13px] lg:font-extrabold lg:uppercase lg:tracking-[0.035em]",
+        "inline-flex min-h-12 w-full items-center justify-start gap-2 rounded-[13px] border px-2.5 py-2 text-left text-[11px] font-extrabold tracking-[-0.01em] transition sm:text-[12px] lg:min-h-11 lg:gap-2 lg:rounded-[14px] lg:px-2.5 lg:text-[13px] lg:uppercase lg:tracking-[0.035em]",
         active
           ? "border-[#48b8f5] bg-[linear-gradient(135deg,#0753a2_0%,#087dd1_100%)] text-white shadow-[0_12px_28px_-15px_rgba(0,35,90,0.85)]"
           : "border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff]",
       )}
     >
-      <span className={cn("relative inline-flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 lg:h-8 lg:w-8", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
-        {previewImage ? <Image src={previewImage} alt="" fill sizes="32px" className="object-cover object-top" aria-hidden="true" /> : <Image src="/onelink-logomark.png" alt="" width={20} height={26} className="h-4 w-auto object-contain" aria-hidden="true" />}
+      <span className={cn("relative inline-flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-[8px] ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
+        {previewImage ? <Image src={previewImage} alt="" fill sizes="32px" className="object-cover object-top" aria-hidden="true" /> : <Icon name={filter.icon} className="h-4 w-4" />}
       </span>
       <span className="min-w-0 leading-[1.15] whitespace-nowrap">{filter.label}</span>
     </Link>

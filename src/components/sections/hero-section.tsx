@@ -7,6 +7,7 @@ import { Icon } from "@/components/icons";
 import { HeroCloudBackground } from "@/components/hero-cloud-background";
 import styles from "./hero-section.module.css";
 import Image from "next/image";
+import { portfolioItems } from "@/content/portfolio";
 
 const heroIntegrations = [
   { label: "Google Reviews", image: "/integration-logos/google-reviews.png", imageClass: "h-7 w-auto max-w-[78px]" },
@@ -17,10 +18,13 @@ const heroIntegrations = [
 ] as const;
 
 const trustedBusinesses = [
-  { name: "Burger Bazaar", image: "/pricing-mockup-burger-bazaar.png" },
-  { name: "Vastukar Architects", image: "/pricing-mockup-vastukar.png" },
-  { name: "New Vision Diagnostics", image: "/pricing-mockup-new-vision.png" },
-] as const;
+  { name: "Burger Bazaar", id: "burger-bazaar" },
+  { name: "Vastukar Architects", id: "vastukar" },
+  { name: "New Vision Diagnostics", id: "new-vision" },
+].flatMap((business) => {
+  const portfolio = portfolioItems.find((item) => item.id === business.id);
+  return portfolio ? [{ ...business, image: portfolio.image }] : [];
+});
 
 export function HeroSection() {
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
@@ -41,9 +45,9 @@ export function HeroSection() {
                   <span
                     key={business.name}
                     title={business.name}
-                    className="relative block h-8 w-8 overflow-hidden rounded-full border-2 border-white bg-[#eaf6ff] shadow-[0_6px_18px_-10px_rgba(15,23,42,0.5)] sm:h-9 sm:w-9"
+                    className="relative block h-9 w-9 overflow-hidden rounded-full border-2 border-white bg-[#eaf6ff] shadow-[0_8px_20px_-10px_rgba(15,23,42,0.5)] sm:h-10 sm:w-10"
                   >
-                    <Image src={business.image} alt="" fill sizes="36px" className="object-cover object-top" aria-hidden="true" />
+                    <Image src={business.image} alt="" fill sizes="40px" className="object-cover object-top" aria-hidden="true" />
                   </span>
                 ))}
               </div>
@@ -123,32 +127,32 @@ export function HeroSection() {
             </div>
           </div>
           </HeroEntrance>
+          <HeroEntrance delay={0.34} y={8} className="w-full sm:hidden">
+            <div className="mt-6 w-full">
+              <p className="text-left text-[11px] font-bold leading-5 text-[#435267]">
+                Connect with the tools your customers already use.
+              </p>
+              <div className="mt-2.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex min-w-max items-center justify-start gap-5 pr-3">
+                  <div className="flex h-8 items-center justify-center">
+                    <Icon name="whatsapp" className="h-7 w-7 text-[#25D366]" />
+                    <span className="sr-only">WhatsApp</span>
+                  </div>
+                  {heroIntegrations.map((item) => (
+                    <div key={item.label} className="flex h-8 items-center justify-center">
+                      <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain`} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </HeroEntrance>
         </div>
         <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} relative z-20 min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">
             <HeroMockupShowcase />
-          </div>
-        </HeroEntrance>
-        <HeroEntrance delay={0.2} y={10} className="w-full sm:hidden">
-          <div className="mx-auto -mt-1 w-full max-w-md rounded-[20px] border border-[#d8eaf7] bg-white/92 px-4 py-4 shadow-[0_18px_44px_-32px_rgba(0,75,135,0.34)] backdrop-blur-md">
-            <p className="text-center text-[11px] font-bold leading-5 text-[#435267]">
-              Connect with the tools your customers already use.
-            </p>
-            <div className="mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex min-w-max items-center justify-center gap-5 px-2">
-                <div className="flex h-9 items-center justify-center">
-                  <Icon name="whatsapp" className="h-7 w-7 text-[#25D366]" />
-                  <span className="sr-only">WhatsApp</span>
-                </div>
-                {heroIntegrations.map((item) => (
-                  <div key={item.label} className="flex h-9 items-center justify-center">
-                    <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain`} />
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </HeroEntrance>
       </div>

@@ -21,19 +21,21 @@ export function AfterBookingSection() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3 lg:gap-5">
+        <div className="relative mt-10 grid gap-4 md:grid-cols-3 lg:gap-5">
+          <div className="pointer-events-none absolute left-[12%] right-[12%] top-10 hidden h-px bg-[linear-gradient(90deg,transparent,#7ecdf4_18%,#168ed1_50%,#7ecdf4_82%,transparent)] md:block" aria-hidden="true" />
           {journeySteps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.08} y={14} x={index === 0 ? -14 : index === 2 ? 14 : 0}>
-              <article className="group relative flex h-full min-h-[218px] flex-col overflow-hidden rounded-[24px] border border-[#cfe3f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.94),rgba(235,247,255,0.82))] p-6 text-left shadow-[0_24px_58px_-42px_rgba(9,67,105,0.32)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#8ecbed] hover:shadow-[0_30px_66px_-40px_rgba(9,67,105,0.42)] sm:p-7">
-                <Image src={step.image} alt="" width={1192} height={2504} className="pointer-events-none absolute -bottom-20 -right-6 h-[220px] w-auto rotate-[8deg] object-contain opacity-[0.055] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-[4deg] group-hover:opacity-[0.09]" aria-hidden="true" />
-                <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-[#00A9FF]/10 blur-3xl" />
+              <article className="group relative flex h-full min-h-[232px] flex-col overflow-hidden rounded-[24px] border border-[#cfe3f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.97),rgba(235,247,255,0.88))] p-6 text-left shadow-[0_24px_58px_-42px_rgba(9,67,105,0.34)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#72bfe8] hover:shadow-[0_30px_66px_-40px_rgba(9,67,105,0.46)] sm:p-7">
+                <span className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0c5a9d,#16a6ef)] opacity-80" />
+                <Image src={step.image} alt="" width={1192} height={2504} className="pointer-events-none absolute -bottom-14 -right-3 h-[190px] w-auto rotate-[6deg] object-contain opacity-[0.075] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-[3deg] group-hover:opacity-[0.12]" aria-hidden="true" />
+                <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-[#00A9FF]/12 blur-3xl" />
                 <div className="flex items-center justify-between gap-4">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-[linear-gradient(145deg,#e7f6ff,#ffffff)] text-[12px] font-extrabold text-[#087cbc] ring-1 ring-[#c9e7f7]">{index + 1}</span>
-                  <span className="text-[11px] font-extrabold tracking-[0.16em] text-[#9aabba]">{step.number}</span>
+                  <span className="relative z-10 grid h-11 w-11 place-items-center rounded-[14px] bg-[linear-gradient(145deg,#07538f,#10a4ea)] text-[15px] font-black text-white shadow-[0_12px_24px_-14px_rgba(0,95,160,0.7)]">{index + 1}</span>
+                  <span className="font-display text-[34px] font-bold leading-none tracking-[-0.08em] text-[#c7e7f8]">{step.number}</span>
                 </div>
-                <h3 className="font-display relative mt-6 text-[20px] font-bold leading-tight text-[#111827]">{step.title}</h3>
+                <h3 className="font-display relative mt-6 text-[21px] font-bold leading-tight text-[#111827]">{step.title}</h3>
                 <p className="relative mt-3 max-w-[36ch] text-[14px] font-medium leading-[1.68] text-[#64748b]">{step.description}</p>
-                <div className="mt-auto pt-6"><span className="block h-1 w-12 rounded-full bg-[linear-gradient(90deg,#00A9FF,#087cbc)] transition-all duration-300 group-hover:w-20" /></div>
+                <div className="relative mt-auto pt-6"><span className="block h-1 w-12 rounded-full bg-[linear-gradient(90deg,#00A9FF,#087cbc)] transition-all duration-300 group-hover:w-20" /></div>
               </article>
             </Reveal>
           ))}

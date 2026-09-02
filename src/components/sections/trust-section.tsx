@@ -21,12 +21,13 @@ export function TrustSection() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {trustHighlights.map((signal, index) => (
             <Reveal key={signal.title} delay={index * 0.05} y={12}>
-              <article className="group flex h-full min-h-[190px] flex-col items-start rounded-[24px] border border-[#e6ebf0] bg-white p-6 text-left shadow-[0_20px_50px_-44px_rgba(15,23,42,0.38)] transition duration-300 hover:-translate-y-1 hover:border-[#d7e4ee] hover:shadow-[0_28px_62px_-44px_rgba(15,23,42,0.46)] sm:p-7">
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-[#f0f4ff] text-[#2850ed] transition group-hover:bg-[#2850ed] group-hover:text-white">
+              <article className="group relative flex h-full min-h-[196px] flex-col items-start overflow-hidden rounded-[24px] border border-[#dce8f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(244,250,255,0.9))] p-6 text-left shadow-[0_22px_54px_-42px_rgba(15,68,105,0.32)] transition duration-300 hover:-translate-y-1 hover:border-[#9fd1ed] hover:shadow-[0_30px_64px_-42px_rgba(15,68,105,0.44)] sm:p-7">
+                <span className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#07518d,#12a7ed)] opacity-0 transition group-hover:opacity-100" />
+                <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[linear-gradient(145deg,#e7f6ff,#ffffff)] text-[#087cbc] ring-1 ring-[#c9e7f7] transition group-hover:bg-[linear-gradient(145deg,#07518d,#12a7ed)] group-hover:text-white group-hover:ring-transparent">
                   <Icon name={trustIcons[index] ?? "check"} className="h-[18px] w-[18px]" />
                 </span>
                 <h3 className="font-display mt-5 text-[19px] font-bold leading-tight text-[#111827]">{signal.title}</h3>
-                <p className="mt-2.5 max-w-[42ch] text-[14px] font-medium leading-[1.65] text-[#7d8794]">{signal.description}</p>
+                <p className="mt-2.5 max-w-[42ch] text-[14px] font-medium leading-[1.65] text-[#66778a]">{signal.description}</p>
               </article>
             </Reveal>
           ))}

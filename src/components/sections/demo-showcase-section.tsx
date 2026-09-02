@@ -4,6 +4,7 @@ import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { Icon } from "@/components/icons";
+import Image from "next/image";
 
 const featuredIds = ["burger-bazaar", "new-vision", "vastukar"];
 const featuredItems = featuredIds.flatMap((id) => {
@@ -12,13 +13,13 @@ const featuredItems = featuredIds.flatMap((id) => {
 });
 
 const portfolioCategories = [
-  { id: "restaurants", label: "Food & Cafés", icon: "menu" as const },
-  { id: "architects", label: "Architects", icon: "building" as const },
-  { id: "clinics", label: "Clinics", icon: "form" as const },
-  { id: "retail", label: "Fashion", icon: "wallet" as const },
-  { id: "salons", label: "Salons & Beauty", icon: "spark" as const },
-  { id: "hotels", label: "Hotels", icon: "building" as const },
-  { id: "startups", label: "Startups", icon: "bolt" as const },
+  { id: "restaurants", label: "Food & Cafés", previewId: "burger-bazaar" },
+  { id: "architects", label: "Architects", previewId: "vastukar" },
+  { id: "clinics", label: "Clinics", previewId: "new-vision" },
+  { id: "retail", label: "Fashion", previewId: "darzies-couture" },
+  { id: "salons", label: "Salons & Beauty", previewId: "veloura" },
+  { id: "hotels", label: "Hotels", previewId: "metropolis-hotel" },
+  { id: "startups", label: "Startups", previewId: "mera-halwai" },
 ];
 
 export function DemoShowcaseSection() {
@@ -30,19 +31,23 @@ export function DemoShowcaseSection() {
             <div className="mx-auto max-w-5xl">
               <SectionBadge label="Portfolio" />
               <h2 className="section-title-gradient font-display mx-auto mt-4 max-w-[24ch] text-balance text-[30px] font-bold leading-[1.08] tracking-[-0.04em] sm:text-[36px] lg:text-[42px]">
-                Built for real businesses. Designed around every brand.
+                <span className="block">Built for real businesses.</span>
+                <span className="block">Designed around every brand.</span>
               </h2>
-              <div className="mx-auto mt-6 grid max-w-full grid-cols-4 gap-1.5 px-1 sm:flex sm:flex-nowrap sm:justify-center">
-                {portfolioCategories.map((category) => (
+              <div className="mx-auto mt-6 grid max-w-full grid-cols-2 gap-2 px-1 sm:flex sm:flex-nowrap sm:justify-center">
+                {portfolioCategories.map((category) => {
+                  const preview = portfolioItems.find((item) => item.id === category.previewId)?.image;
+                  return (
                   <Link
                     key={category.id}
                     href={`/portfolio?category=${category.id}`}
-                    className="group inline-flex h-8 min-w-0 items-center justify-center gap-1 rounded-full border border-[#c5ddeb] bg-white/72 px-1.5 text-center text-[8px] font-extrabold leading-[1.02] text-[#285373] shadow-[0_8px_18px_-17px_rgba(0,88,145,0.42)] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-white hover:text-[#087cbc] sm:h-auto sm:min-h-9 sm:shrink-0 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-[11px] lg:px-3.5 lg:text-[12px]"
+                    className="group inline-flex min-h-11 min-w-0 items-center justify-start gap-2 rounded-[14px] border border-[#c5ddeb] bg-white/78 px-2.5 text-left text-[11px] font-extrabold leading-[1.08] text-[#285373] shadow-[0_10px_22px_-18px_rgba(0,88,145,0.42)] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-white hover:text-[#087cbc] sm:min-h-10 sm:shrink-0 sm:rounded-full sm:px-3 sm:text-[11px] lg:px-3.5 lg:text-[12px]"
                   >
-                    <span className="hidden h-5 w-5 shrink-0 place-items-center rounded-full bg-[linear-gradient(145deg,#e5f6ff,#ffffff)] text-[#159bdc] ring-1 ring-[#cce8f7] min-[390px]:grid"><Icon name={category.icon} className="h-3 w-3 transition-transform group-hover:scale-110" /></span>
-                    <span className="max-w-[68px] sm:max-w-none">{category.label}</span>
+                    {preview ? <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-[8px] border border-white bg-[#e7f5ff] shadow-sm"><Image src={preview} alt="" fill sizes="28px" className="object-cover object-top transition-transform duration-300 group-hover:scale-105" /></span> : null}
+                    <span>{category.label}</span>
                   </Link>
-                ))}
+                  );
+                })}
                 <Link
                   href="/portfolio"
                   className="inline-flex h-9 min-w-0 items-center justify-center gap-1 rounded-full border border-[#2497da] bg-[linear-gradient(135deg,#064585,#087aba)] px-2 text-[9px] font-black text-white shadow-[0_12px_24px_-16px_rgba(7,77,139,0.78)] ring-1 ring-[#ccecff] transition hover:-translate-y-0.5 hover:brightness-110 sm:h-auto sm:min-h-10 sm:shrink-0 sm:gap-1.5 sm:px-5 sm:py-2 sm:text-[11px] lg:text-[12px]"

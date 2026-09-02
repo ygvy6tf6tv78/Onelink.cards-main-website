@@ -84,8 +84,8 @@ export default function Home() {
           <ClientLogoStrip />
           <DemoShowcaseSection />
           <PricingSection />
-          <QrExperienceSection />
           <AfterBookingSection />
+          <QrExperienceSection />
           <TrustSection />
           <FaqSection />
           <ContactSection />

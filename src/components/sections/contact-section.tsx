@@ -2,8 +2,12 @@ import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 import { ActionLink } from "@/components/ui/action-link";
 import { SectionBadge } from "@/components/ui/section-badge";
+import { Icon } from "@/components/icons";
+import { siteConfig } from "@/content/site";
 
 export function ContactSection() {
+  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I would like to book a free demo for my business.")}`;
+
   return (
     <section
       id="contact"
@@ -23,11 +27,13 @@ export function ContactSection() {
               Bring your business into one professionally designed page and give customers a faster way to call, book, order, pay or visit.
             </p>
             <div className="relative mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
-              <ActionLink href="#pricing" variant="blue" className="h-11 min-h-11 min-w-[170px] rounded-[12px] px-5 py-0 text-[14px] sm:h-auto sm:min-h-0 sm:py-3">
-                Get OneLink
+              <ActionLink href="/book" variant="blue" className="h-11 min-h-11 min-w-[190px] rounded-[12px] px-5 py-0 text-[14px] sm:h-auto sm:min-h-0 sm:py-3">
+                <Icon name="calendar" className="h-4 w-4" />
+                Book a Free Demo
               </ActionLink>
-              <ActionLink href="#work" variant="secondary" className="h-11 min-h-11 min-w-[170px] rounded-[12px] border-[#c7dfec] bg-white px-5 py-0 text-[14px] sm:h-auto sm:min-h-0 sm:py-3">
-                Explore Live Examples
+              <ActionLink href={whatsappHref} variant="secondary" className="h-11 min-h-11 min-w-[190px] rounded-[12px] border-[#c7dfec] bg-white px-5 py-0 text-[14px] sm:h-auto sm:min-h-0 sm:py-3">
+                <Icon name="whatsapp" className="h-4 w-4 text-[#25D366]" />
+                Chat on WhatsApp
               </ActionLink>
             </div>
           </div>

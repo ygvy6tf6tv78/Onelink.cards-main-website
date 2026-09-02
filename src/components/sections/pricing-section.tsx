@@ -142,7 +142,7 @@ export function PricingSection({
     <section
       id="pricing"
       className={cn(
-        "relative scroll-mt-28 overflow-hidden bg-[radial-gradient(circle_at_50%_32%,rgba(0,119,255,0.14),transparent_34%),linear-gradient(180deg,#fbfdff_0%,#edf5ff_54%,#f8fbfd_100%)] px-5 sm:px-6 lg:px-8",
+        "relative scroll-mt-28 overflow-hidden bg-[radial-gradient(circle_at_50%_32%,rgba(0,119,255,0.12),transparent_34%),linear-gradient(180deg,#edf5ff_0%,#edf5ff_54%,#f8fbfd_100%)] px-5 sm:px-6 lg:px-8",
         dedicatedPage ? "py-5 sm:py-6 lg:py-7" : "py-12 sm:py-14 lg:py-16",
       )}
     >
@@ -774,7 +774,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
         <BuyButton
           planId={plan.id}
           maintenanceId={selectedCare}
-          label={plan.ctaLabel}
+          label={`Choose ${plan.name}`}
           className={cn("mt-4 h-12 w-full rounded-[11px] text-[14px] font-extrabold transition-all active:scale-[0.98]", tone.button)}
         />
         {isSignature ? (

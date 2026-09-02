@@ -5,6 +5,7 @@ import { ActionLink } from "@/components/ui/action-link";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { siteConfig } from "@/content/site";
 import { Icon } from "@/components/icons";
+import { HeroCloudBackground } from "@/components/hero-cloud-background";
 import styles from "./hero-section.module.css";
 
 const heroIntegrations = [
@@ -19,12 +20,9 @@ export function HeroSection() {
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to discuss OneLink for my business.")}`;
 
   return (
-    <section id="home" className="section-shell relative overflow-x-clip overflow-y-visible bg-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,169,255,0.075)_0%,rgba(0,169,255,0.025)_42%,transparent_72%)] blur-2xl" aria-hidden />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24 bg-gradient-to-b from-transparent via-[#f5f9fc]/65 to-[#f5f9fc] lg:hidden"
-        aria-hidden
-      />
+    <section id="home" className="section-shell relative overflow-x-clip overflow-y-visible bg-[#6fc2f1]">
+      <HeroCloudBackground />
+      <div className="pointer-events-none absolute left-1/2 top-0 z-[1] h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0.06)_42%,transparent_72%)] blur-2xl" aria-hidden />
       <div className={`${styles.heroGrid} relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-8 px-4 pb-9 pt-[5.85rem] sm:px-6 sm:gap-10 sm:pb-12 sm:pt-36 md:gap-7 md:pb-10 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-[160px]`}>
         <div className="flex min-w-0 flex-col items-start justify-center text-left">
           <HeroEntrance delay={0.03} x={-18} y={8}>
@@ -33,62 +31,48 @@ export function HeroSection() {
             </div>
           </HeroEntrance>
           <HeroEntrance delay={0.1} x={-18} y={8}>
-            <a href="https://www.kriyongroup.com/" target="_blank" rel="noopener noreferrer" className="mt-3 block text-[12px] font-bold tracking-[0.005em] text-[#526173] hover:text-[#00A9FF] sm:text-[13px]">
+            <a href="https://www.kriyongroup.com/" target="_blank" rel="noopener noreferrer" className="mt-5 block text-[12px] font-bold tracking-[0.005em] text-[#38485a] hover:text-[#006bb3] sm:mt-6 sm:text-[13px]">
               A Creative Technology Venture by Kriyon Group Pvt. Ltd.
             </a>
           </HeroEntrance>
           <HeroEntrance delay={0.17} x={-24} y={10}>
             <h1 className="font-display mt-5 max-w-none text-[clamp(35px,10.25vw,40px)] font-[780] leading-[1.02] tracking-[-0.05em] sm:mt-6 sm:text-[50px] md:text-[46px] lg:text-[48px] xl:text-[56px]">
-              <span className="block whitespace-nowrap text-[var(--foreground)]">Stop sharing links.</span>
-              <span className="mt-1 block whitespace-nowrap text-[var(--accent)]">Share OneLink.</span>
+              <span className="block whitespace-nowrap text-[#07111f]">Stop sharing links.</span>
+              <span className="mt-1 block whitespace-nowrap text-white drop-shadow-[0_4px_18px_rgba(0,73,130,0.24)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.25} x={-22} y={10}>
-            <p className="mt-4 max-w-[58ch] text-pretty text-[15px] font-medium leading-[1.7] text-[#435267] sm:mt-5">
+            <p className="mt-4 max-w-[58ch] text-pretty text-[15px] font-semibold leading-[1.7] text-[#172334] sm:mt-5">
               Bring your business, services, products and customer actions into one beautifully designed experience with one smart link and custom QR code.
             </p>
-            <div className="mt-4 hidden flex-wrap gap-x-6 gap-y-2.5 text-[11px] font-extrabold uppercase tracking-[0.065em] text-[#526173] sm:flex">
-              {[
-                { label: 'Custom designed', icon: 'spark' as const },
-                { label: 'Mobile first', icon: 'phone' as const },
-                { label: 'QR included', icon: 'qr' as const },
-              ].map((item) => (
-                <span key={item.label} className="group inline-flex min-h-7 items-center gap-2 transition-transform duration-300 hover:-translate-y-0.5">
-                  <span className="grid h-6 w-6 place-items-center text-[#006fe6] drop-shadow-[0_5px_8px_rgba(0,91,190,0.2)] transition-transform duration-300 group-hover:scale-110">
-                    <Icon name={item.icon} className="h-[18px] w-[18px]" />
-                  </span>
-                  {item.label}
-                </span>
-              ))}
-            </div>
           </HeroEntrance>
           <HeroEntrance delay={0.33} x={-20} y={10} className="min-w-0 w-full">
           <div className="mt-6 grid w-full grid-cols-2 gap-2.5 sm:hidden">
-            <ActionLink href="#pricing" variant="blue" withArrow className="min-h-12 min-w-0 !rounded-[16px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,70,160,0.68)] [&_svg]:h-4 [&_svg]:w-4">
-              Get Your OneLink
+            <ActionLink href="/book" variant="blue" withArrow className="min-h-12 min-w-0 !rounded-[16px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,70,160,0.68)] [&_svg]:h-4 [&_svg]:w-4">
+              Book Free Demo
             </ActionLink>
             <ActionLink href={whatsappHref} variant="whatsapp" className="min-h-12 min-w-0 !rounded-[16px] px-3 text-[14px] font-bold">
               <Icon name="whatsapp" className="h-5 w-5" />
               WhatsApp
             </ActionLink>
-            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[16px] border border-[#c8dcf0] !bg-white px-4 text-[14px] font-bold !text-[#064083] shadow-[0_14px_30px_-24px_rgba(9,34,62,0.38)] hover:border-[#7db6ed] hover:!bg-[#f7fbff] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 min-h-12 !rounded-[16px] border border-white/45 !bg-[#075b9e]/80 px-4 text-[14px] font-bold !text-white shadow-[0_14px_30px_-20px_rgba(9,34,62,0.45)] backdrop-blur-md hover:border-white/70 hover:!bg-[#064f8a] [&_svg]:h-4 [&_svg]:w-4">
               View Live Examples
             </ActionLink>
           </div>
           <div className="mt-7 hidden w-full max-w-lg flex-row flex-nowrap items-stretch gap-3 sm:flex">
               <ActionLink
-                href="#pricing"
+                href="/book"
                 variant="primary"
                 withArrow
                 className="min-h-12 min-w-0 flex-1 !rounded-[16px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-4 py-2.5 text-[14px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,70,160,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
               >
-                Get OneLink
+                Book a Free Demo
               </ActionLink>
             <ActionLink
               href="#work"
               variant="secondary"
               withArrow
-              className="min-h-12 min-w-0 flex-1 !rounded-[16px] border border-[#c8dcf0] !bg-white px-4 py-2.5 text-[14px] font-bold !text-[#064083] shadow-[0_14px_30px_-24px_rgba(9,34,62,0.38)] hover:border-[#7db6ed] hover:!bg-[#f7fbff] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+              className="min-h-12 min-w-0 flex-1 !rounded-[16px] border border-white/45 !bg-[#075b9e]/80 px-4 py-2.5 text-[14px] font-bold !text-white shadow-[0_14px_30px_-20px_rgba(9,34,62,0.45)] backdrop-blur-md hover:border-white/70 hover:!bg-[#064f8a] sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
             >
               View Live Examples
             </ActionLink>

@@ -41,10 +41,11 @@ export default function PortfolioPage() {
                   <PortfolioCategoryPicker />
                 </Suspense>
               </div>
-              <div className="pointer-events-none absolute bottom-0 right-3 hidden h-[270px] w-[320px] items-end justify-center lg:flex" aria-hidden="true">
-                <Image src="/pricing-mockup-vastukar.png" alt="" width={230} height={430} className="absolute bottom-[-40px] left-3 w-[135px] -rotate-[13deg] opacity-35 drop-shadow-[0_18px_20px_rgba(0,0,0,0.32)]" />
-                <Image src="/pricing-mockup-new-vision.png" alt="" width={230} height={430} className="absolute bottom-[-46px] right-2 w-[135px] rotate-[13deg] opacity-35 drop-shadow-[0_18px_20px_rgba(0,0,0,0.32)]" />
-                <Image src="/pricing-mockup-burger-bazaar.png" alt="" width={250} height={460} className="relative bottom-[-25px] z-10 w-[158px] drop-shadow-[0_22px_24px_rgba(0,0,0,0.42)]" />
+              <div className="pointer-events-none absolute bottom-0 right-3 hidden h-[270px] w-[330px] items-end justify-center lg:flex" aria-hidden="true">
+                <div className="absolute bottom-4 h-40 w-64 rounded-full bg-[#55c7ff]/18 blur-3xl" />
+                <Image src="/pricing-mockup-vastukar.png" alt="" width={238} height={500} className="absolute bottom-[-42px] left-3 w-[118px] -rotate-[11deg] opacity-60 drop-shadow-[0_18px_22px_rgba(0,0,0,0.3)]" />
+                <Image src="/pricing-mockup-new-vision.png" alt="" width={238} height={500} className="absolute bottom-[-42px] right-3 w-[118px] rotate-[11deg] opacity-60 drop-shadow-[0_18px_22px_rgba(0,0,0,0.3)]" />
+                <Image src="/pricing-mockup-burger-bazaar.png" alt="" width={250} height={525} className="relative bottom-[-25px] z-10 w-[154px] drop-shadow-[0_25px_28px_rgba(0,0,0,0.4)]" />
               </div>
             </section>
           </Reveal>

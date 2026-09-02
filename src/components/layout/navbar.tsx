@@ -77,10 +77,10 @@ export function Navbar() {
               <span className="hidden text-[13px] font-semibold text-[#111827] lg:inline">WhatsApp</span>
             </a>
             <Link
-              href="/#pricing"
+              href="/book"
               className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_10px_24px_-8px_rgba(0,80,170,0.48)] transition hover:-translate-y-0.5 hover:brightness-110 lg:inline-flex"
             >
-              <span>Get OneLink</span>
+              <span>Book Demo</span>
               <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#00A9FF]">
                 <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M3.5 8h9" />
@@ -133,11 +133,11 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="/#pricing"
+                  href="/book"
                   onClick={() => setIsMenuOpen(false)}
                   className="mt-2 flex min-h-12 items-center justify-center rounded-[12px] bg-[#00A9FF] px-4 py-3 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(0,169,255,0.7)]"
                 >
-                  Get OneLink
+                  Book a Free Demo
                 </Link>
                 <div className="mt-2 border-t border-black/5 p-2 pt-4">
                   <p className="mb-3 text-[12px] font-bold uppercase tracking-widest text-[#9ca3af]">Talk to our team</p>

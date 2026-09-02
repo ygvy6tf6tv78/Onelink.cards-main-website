@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 
 const trustStats = [
-  { value: 20, suffix: "+", label: "OneLinks made" },
+  { value: 24, suffix: "+", label: "OneLinks made" },
   { value: 15, suffix: "+", label: "Business categories" },
   { value: 50, suffix: "+", label: "Customer actions enabled" },
 ];
@@ -16,7 +16,7 @@ export function ClientLogoStrip() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
 
   return (
-    <section ref={sectionRef} className="bg-white px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16" aria-labelledby="client-trust-title">
+    <section ref={sectionRef} className="bg-transparent px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16" aria-labelledby="client-trust-title">
       <Reveal>
         <div className="mx-auto max-w-7xl">
           <div className="space-y-9 sm:px-2">

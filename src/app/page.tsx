@@ -76,8 +76,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
-      <div className="relative isolate overflow-x-clip bg-[linear-gradient(180deg,#edf6ff_0%,#f5f9fc_18%,#f6f9fc_48%,#f4f8fc_100%)]">
+      <div className="relative isolate overflow-x-clip bg-[linear-gradient(180deg,#edf6ff_0%,#f8fbfd_18%,#f2f8fd_38%,#f8fafc_58%,#eef6fd_78%,#f8fafc_100%)]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[780px] bg-[radial-gradient(circle_at_50%_0%,rgba(0,169,255,0.22),transparent_56%),radial-gradient(circle_at_12%_8%,rgba(0,169,255,0.12),transparent_28%),linear-gradient(180deg,#edf6ff_0%,#f5f9fc_44%,rgba(245,249,252,0)_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-[1350px] h-[1900px] bg-[radial-gradient(circle_at_8%_25%,rgba(0,169,255,0.09),transparent_30%),radial-gradient(circle_at_92%_70%,rgba(56,189,248,0.1),transparent_32%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-[3300px] h-[2200px] bg-[radial-gradient(circle_at_82%_20%,rgba(0,119,255,0.09),transparent_31%),radial-gradient(circle_at_14%_76%,rgba(14,165,233,0.08),transparent_28%)]" />
         <main className="page-shell">
           <HeroSection />
           <ActionStrip />

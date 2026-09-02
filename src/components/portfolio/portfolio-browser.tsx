@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
-import Image from "next/image";
+import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { portfolioItems, type PortfolioItem } from "@/content/portfolio";
 import { PortfolioCard } from "@/components/portfolio/portfolio-card";
@@ -53,75 +53,75 @@ const categoryFilters: CategoryFilter[] = [
   { id: "custom", label: "Other Businesses", ids: [], icon: "spark" },
 ] as const;
 
+const mobilePrimaryFilterIds = ["all", "restaurants", "architects", "clinics", "hotels", "retail", "education"];
+
+const categoryPreviewIds: Record<string, string> = {
+  restaurants: "burger-bazaar",
+  architects: "vastukar",
+  clinics: "new-vision",
+  retail: "darzies-couture",
+  salons: "veloura",
+  hotels: "metropolis-hotel",
+  startups: "mera-halwai",
+  cas: "ca-ramit",
+  professional: "jay-ess",
+  products: "honey-fresh",
+  education: "lingua-vibe",
+  custom: "honey-money",
+};
+
 export function PortfolioCategoryPicker() {
+  const [showAllCategories, setShowAllCategories] = useState(false);
   const searchParams = useSearchParams();
   const requestedFilter = searchParams.get("category");
   const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter ? requestedFilter : "all";
+  const showExpandedMobileFilters = showAllCategories || !mobilePrimaryFilterIds.includes(activeFilter);
+  const mobileFilters = showExpandedMobileFilters
+    ? categoryFilters
+    : mobilePrimaryFilterIds.map((id) => categoryFilters.find((filter) => filter.id === id)).filter((filter): filter is CategoryFilter => Boolean(filter));
 
   return (
-    <div className="mt-2 border-t border-white/15 pt-2 lg:w-[820px]">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-4 border-t border-white/15 pt-4 lg:w-[820px]">
+      <div className="flex flex-wrap justify-center gap-2 lg:hidden">
+        {mobileFilters.map((filter) => (
+          <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
+        ))}
+        <button
+          type="button"
+          onClick={() => setShowAllCategories((shown) => !shown)}
+          className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-[#b9daf0] bg-[#eff8ff] px-4 text-[12px] font-extrabold text-[#0875b8] shadow-[0_10px_22px_-18px_rgba(0,76,137,0.48)] transition hover:-translate-y-0.5 hover:border-[#54afe1]"
+          aria-expanded={showExpandedMobileFilters}
+        >
+          {showExpandedMobileFilters ? "View Less" : "View All Categories"}
+          <Icon name="chevron-right" className={cn("h-3.5 w-3.5 rotate-90 transition", showExpandedMobileFilters && "-rotate-90")} />
+        </button>
+      </div>
+      <div className="hidden grid-cols-4 gap-2 lg:grid">
         {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}
-        <Link
-          href="/#contact"
-          className="inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] px-2.5 py-1.5 text-left text-[13px] font-extrabold uppercase tracking-[0.035em] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] transition hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff] sm:text-[14px]"
-        >
-          <span className="relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#e8f5ff] text-[#087bd0] ring-1 ring-[#c7e7fb]">
-            <Icon name="calendar" className="h-[18px] w-[18px]" />
-          </span>
-          <span className="min-w-0 leading-[1.15]">Book a Demo</span>
-        </Link>
       </div>
     </div>
   );
 }
 
 function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boolean }) {
-  const preview = filter.ids?.length ? portfolioItems.find((item) => filter.ids?.includes(item.id)) : undefined;
-  const stackedPreviews = filter.id === "custom" ? ["burger-bazaar", "vastukar", "new-vision"]
-    .map((id) => portfolioItems.find((item) => item.id === id))
-    .filter((item): item is PortfolioItem => Boolean(item))
-    : [];
-
+  const previewImage = portfolioItems.find((item) => item.id === categoryPreviewIds[filter.id])?.image;
   return (
     <Link
       href={filter.id === "all" ? "/portfolio" : `/portfolio?category=${filter.id}`}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-11 w-full items-center gap-2 rounded-[14px] border px-2.5 py-1.5 text-left text-[13px] font-extrabold uppercase tracking-[0.035em] transition sm:text-[14px]",
+        "inline-flex min-h-10 flex-auto items-center justify-center gap-1.5 rounded-full border px-3 py-1.5 text-center text-[12px] font-bold tracking-[-0.01em] transition lg:min-h-11 lg:w-full lg:flex-none lg:justify-start lg:gap-2 lg:rounded-[14px] lg:px-2.5 lg:text-left lg:text-[13px] lg:font-extrabold lg:uppercase lg:tracking-[0.035em]",
         active
           ? "border-[#48b8f5] bg-[linear-gradient(135deg,#0753a2_0%,#087dd1_100%)] text-white shadow-[0_12px_28px_-15px_rgba(0,35,90,0.85)]"
           : "border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff]",
       )}
     >
-      <span className={cn("relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
-        {stackedPreviews.length ? (
-          <span className="relative h-7 w-7 shrink-0">
-            {stackedPreviews.map((item, index) => (
-              <Image
-                key={item.id}
-                src={item.image}
-                alt=""
-                fill
-                sizes="28px"
-                className={cn(
-                  "rounded-full border border-white object-cover shadow-sm",
-                  index === 0 && "-translate-x-1.5 rotate-[-10deg] opacity-75",
-                  index === 1 && "translate-x-1.5 rotate-[9deg] opacity-85",
-                  index === 2 && "z-10",
-                )}
-              />
-            ))}
-          </span>
-        ) : preview ? (
-          <Image src={preview.image} alt="" fill sizes="28px" className="object-cover" />
-        ) : (
-          <Icon name={filter.icon} className="h-[18px] w-[18px]" />
-        )}
+      <span className={cn("relative inline-flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 lg:h-8 lg:w-8", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
+        {previewImage ? <Image src={previewImage} alt="" fill sizes="32px" className="object-cover object-top" aria-hidden="true" /> : <Image src="/onelink-logomark.png" alt="" width={20} height={26} className="h-4 w-auto object-contain" aria-hidden="true" />}
       </span>
-      <span className="min-w-0 leading-[1.15] lg:whitespace-nowrap">{filter.label}</span>
+      <span className="min-w-0 leading-[1.15] whitespace-nowrap">{filter.label}</span>
     </Link>
   );
 }

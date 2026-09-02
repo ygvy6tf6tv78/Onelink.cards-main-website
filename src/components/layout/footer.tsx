@@ -11,7 +11,7 @@ export function Footer() {
   const emailHref = `mailto:${siteConfig.contact.email}`;
 
   return (
-    <footer className="relative mt-14 scroll-mt-24 overflow-x-clip bg-[#080a0d] px-3 pb-3 pt-24 text-white sm:mt-20 sm:px-4 sm:pb-4 sm:pt-28">
+    <footer className="relative mt-0 scroll-mt-24 overflow-x-clip bg-[#080a0d] px-3 pb-3 pt-14 text-white sm:px-4 sm:pb-4 sm:pt-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(0,169,255,0.13),transparent_58%)]" />
 
       <div className="relative -mx-3 mb-8 overflow-x-clip py-5 sm:-mx-4 sm:mb-10 sm:py-7" aria-label="OneLink capabilities">

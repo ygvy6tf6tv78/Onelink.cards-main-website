@@ -131,7 +131,6 @@ type PricingSectionProps = {
 
 export function PricingSection({
   staticReveal = false,
-  showLaunchOffer = true,
   dedicatedPage = false,
 }: PricingSectionProps) {
   const [dedicatedSelectedPlanId, setDedicatedSelectedPlanId] = useState<TopPlanId>("signature");
@@ -142,7 +141,7 @@ export function PricingSection({
     <section
       id="pricing"
       className={cn(
-        "relative scroll-mt-28 overflow-hidden bg-[radial-gradient(circle_at_50%_32%,rgba(0,119,255,0.12),transparent_34%),linear-gradient(180deg,#edf5ff_0%,#edf5ff_54%,#f8fbfd_100%)] px-5 sm:px-6 lg:px-8",
+        "relative scroll-mt-28 overflow-hidden bg-transparent px-5 sm:px-6 lg:px-8",
         dedicatedPage ? "py-5 sm:py-6 lg:py-7" : "py-12 sm:py-14 lg:py-16",
       )}
     >
@@ -158,16 +157,6 @@ export function PricingSection({
             <p className={cn("font-semibold leading-relaxed tracking-[-0.015em] text-[#526173]", dedicatedPage ? "mt-2 text-[14px] sm:text-[15px] lg:text-[16px]" : "mt-3 text-[17px] sm:text-[19px]")}>
               Pay the one-time design fee once, then choose 3, 6 or 12 months of Platform Care.
             </p>
-            {showLaunchOffer ? (
-              <div className="border-shine offer-shine-thin relative mx-auto mt-4 flex w-fit max-w-full items-center gap-2 overflow-hidden rounded-full border border-[#d9ad42]/45 bg-[linear-gradient(135deg,#0b2745_0%,#064083_58%,#0869c5_100%)] px-3 py-1.5 text-left text-white shadow-[0_12px_26px_-20px_rgba(4,56,125,0.62)] sm:px-4 sm:py-2">
-                <span className="grid h-5 w-5 shrink-0 place-items-center text-[#ffd76a] drop-shadow-[0_2px_6px_rgba(255,215,106,0.38)]">
-                  <Icon name="spark" className="h-[15px] w-[15px]" />
-                </span>
-                <p className="text-[9px] font-extrabold leading-tight tracking-[0.015em] sm:text-[11px]">
-                  Simple First-Purchase Pricing <span className="text-[#ffdf82]">— Lower renewal plans from your next term</span>
-                </p>
-              </div>
-            ) : null}
           </Reveal>
         </div>
 
@@ -188,7 +177,7 @@ export function PricingSection({
           )}
         </div>
 
-        <Reveal delay={0.14} y={14} alwaysShow={staticReveal}><PricingPackageBuilder key={dedicatedPage ? "dedicated" : "homepage"} /></Reveal>
+        {false ? <PricingPackageBuilder key="disabled" /> : null}
 
         {dedicatedPage ? (
           <>
@@ -238,7 +227,7 @@ function DedicatedLightPlan({ plan }: { plan: Plan }) {
   const isSignature = plan.id === "signature";
   const recommended = presentation.recommendedFor;
   const features = presentation.features.slice(0, isSignature ? 7 : 6);
-  return <article className={cn("relative flex flex-col rounded-[22px] border p-5 sm:p-6", isSignature ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E,#064083 55%,#0077FF)] text-white shadow-[0_30px_65px_-38px_rgba(0,67,155,.7)]" : "border-[#c9deef] bg-white text-[#111821] shadow-[0_20px_48px_-34px_rgba(9,34,62,.35)]")}>{isSignature ? <span className="absolute -top-3 left-5 rounded-full bg-[#123d9d] px-3 py-1 text-[9px] font-extrabold uppercase tracking-[.1em] text-white shadow-sm">Most Popular</span> : null}<p className={cn("text-[10px] font-extrabold uppercase tracking-[.15em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>{plan.name}</p><h3 className="mt-2 text-2xl font-extrabold tracking-[-.04em]">{plan.id === "essential" ? "Show Your Business" : plan.id === "signature" ? "Convert More Customers" : "Automate Your Business"}</h3><p className={cn("mt-3 text-sm font-semibold leading-6", isSignature ? "text-white/78" : "text-[#526173]")}>{plan.id === "essential" ? "Businesses that need a premium digital presence without bookings or backend software." : recommended}</p><p className={cn("mt-5 text-[10px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>You Get</p><ul className="mt-3 grid flex-1 gap-2.5 text-[12px] font-semibold">{features.map((feature) => <li key={feature} className={cn("flex items-start gap-2", isSignature ? "text-white/88" : "text-[#526173]")}><span className={cn("mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full text-[9px]", isSignature ? "bg-white/15 text-[#bfe5ff]" : "bg-[#eaf6ff] text-[#087cbc]")}>✓</span>{feature}</li>)}</ul><div className={cn("mt-6 border-t pt-4", isSignature ? "border-white/15" : "border-[#e5edf7]")}><p className="text-[10px] font-extrabold uppercase tracking-[.1em] opacity-70">Setup</p><p className="mt-1 text-3xl font-extrabold tracking-[-.05em]">{formatPricingCurrency(plan.setupAmount)} <span className="text-xs">+ GST</span></p><p className={cn("mt-3 text-xs font-bold", isSignature ? "text-white/82" : "text-[#526173]")}>3M ₹{plan.maintenanceOptions[0].price.toLocaleString("en-IN")} • 6M ₹{plan.maintenanceOptions[1].price.toLocaleString("en-IN")} • 12M ₹{plan.maintenanceOptions[2].price.toLocaleString("en-IN")}</p></div><Link href="/book" className={cn("mt-5 inline-flex min-h-11 items-center justify-center rounded-[11px] px-4 text-sm font-extrabold", isSignature ? "bg-white text-[#123d9d]" : "bg-[#09223E] text-white")}>{plan.id === "essential" ? "Get Essential" : plan.id === "signature" ? "Choose Signature" : "Go Elite"}</Link></article>;
+  return <article className={cn("relative flex flex-col rounded-[22px] border p-5 sm:p-6", isSignature ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E,#064083 55%,#0077FF)] text-white shadow-[0_30px_65px_-38px_rgba(0,67,155,.7)]" : "border-[#c9deef] bg-white text-[#111821] shadow-[0_20px_48px_-34px_rgba(9,34,62,.35)]")}>{isSignature ? <span className="absolute -top-3 left-5 rounded-full bg-[#123d9d] px-3 py-1 text-[9px] font-extrabold uppercase tracking-[.1em] text-white shadow-sm">Most Popular</span> : null}<p className={cn("text-[10px] font-extrabold uppercase tracking-[.15em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>{plan.name}</p><h3 className="mt-2 text-2xl font-extrabold tracking-[-.04em]">{plan.id === "essential" ? "Show Your Business" : plan.id === "signature" ? "Convert More Customers" : "Automate Your Business"}</h3><p className={cn("mt-3 text-sm font-semibold leading-6", isSignature ? "text-white/78" : "text-[#526173]")}>{plan.id === "essential" ? "Businesses that need a premium digital presence without bookings or backend software." : recommended}</p><p className={cn("mt-5 text-[10px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>You Get</p><ul className="mt-3 grid flex-1 gap-2.5 text-[12px] font-semibold">{features.map((feature) => <li key={feature} className={cn("flex items-start gap-2", isSignature ? "text-white/88" : "text-[#526173]")}><span className={cn("mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full text-[9px]", isSignature ? "bg-white/15 text-[#bfe5ff]" : "bg-[#eaf6ff] text-[#087cbc]")}>✓</span>{feature}</li>)}</ul><div className={cn("mt-6 border-t pt-4", isSignature ? "border-white/15" : "border-[#e5edf7]")}><p className="text-[10px] font-extrabold uppercase tracking-[.1em] opacity-70">Setup</p><p className="mt-1 text-3xl font-extrabold tracking-[-.05em]">{formatPricingCurrency(plan.setupAmount)} <span className="text-xs">+ GST</span></p><p className={cn("mt-3 text-xs font-bold", isSignature ? "text-white/82" : "text-[#526173]")}>3M ₹{plan.maintenanceOptions[0].price.toLocaleString("en-IN")} • 6M ₹{plan.maintenanceOptions[1].price.toLocaleString("en-IN")} • 12M ₹{plan.maintenanceOptions[2].price.toLocaleString("en-IN")}</p></div><Link href="/#contact" className={cn("mt-5 inline-flex min-h-11 items-center justify-center rounded-[11px] px-4 text-sm font-extrabold", isSignature ? "bg-white text-[#123d9d]" : "bg-[#09223E] text-white")}>{plan.id === "essential" ? "Get Essential" : plan.id === "signature" ? "Choose Signature" : "Go Elite"}</Link></article>;
 }
 
 function QuickBillPricingPromo() {

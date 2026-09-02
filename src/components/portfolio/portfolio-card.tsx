@@ -59,7 +59,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
             </svg>
           </a>
           <Link
-            href="/book"
+            href="/#contact"
             className="inline-flex min-h-11 items-center justify-center rounded-[13px] border border-[#00A9FF]/28 bg-white px-4 text-[13px] font-bold text-[#087cbc] shadow-[0_14px_30px_-24px_rgba(0,126,191,0.5)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/60 hover:bg-[#f2faff]"
           >
             Get This Style

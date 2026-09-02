@@ -32,7 +32,7 @@ export default function PortfolioPage() {
               <div className="relative max-w-3xl text-left lg:pr-20">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-[#b8e5ff]">Choose a business type</p>
                 <h1 className="font-display mt-2 text-[28px] font-bold leading-[1.05] tracking-[-0.045em] text-white sm:text-[36px] lg:text-[40px]">
-                  Explore live OneLinks.
+                  Explore all OneLinks.
                 </h1>
                 <p className="mt-2 max-w-xl text-[13px] font-medium leading-relaxed text-[#d7ecfb] sm:text-[14px]">
                   Pick a category to see real business experiences.

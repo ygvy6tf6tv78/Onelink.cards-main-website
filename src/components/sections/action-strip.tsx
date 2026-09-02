@@ -25,7 +25,7 @@ export function ActionStrip() {
   const show = splashComplete && hasScrolled;
 
   return (
-    <section className="relative h-[184px] overflow-x-clip overflow-y-visible bg-white sm:h-[208px]" aria-label="OneLink categories">
+    <section className="relative h-[184px] overflow-x-clip overflow-y-visible bg-transparent sm:h-[208px]" aria-label="OneLink categories">
       <motion.div
         className="absolute left-[-12vw] top-3 h-[164px] w-[124vw] sm:top-5"
         initial={{ opacity: 0, y: 24, scale: 0.99, filter: "blur(5px)" }}

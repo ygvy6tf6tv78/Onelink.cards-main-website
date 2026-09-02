@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 
@@ -17,7 +18,7 @@ const qrCards = [
 
 export function QrExperienceSection() {
   return (
-    <section id="qr" className="section-shell scroll-mt-28 bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
+    <section id="qr" className="section-shell scroll-mt-28 bg-transparent px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <Reveal delay={0.04} x={-26} y={14}>
           <div className="text-center"><SectionBadge label="Custom QR Included" /></div>
@@ -47,6 +48,11 @@ export function QrExperienceSection() {
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.16} y={10}>
+            <div className="mt-8 flex justify-center">
+              <Link href="/#contact" className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(135deg,#064585,#087aba)] px-7 text-[14px] font-bold text-white shadow-[0_16px_32px_-20px_rgba(0,91,150,0.62)] transition hover:-translate-y-0.5 hover:brightness-110">Get Your OneLink <span aria-hidden>↗</span></Link>
+            </div>
+          </Reveal>
       </div>
     </section>
   );

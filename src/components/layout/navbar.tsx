@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(
     "Hello OneLink, I want to discuss OneLink for my business.",
   )}`;
@@ -25,13 +24,6 @@ export function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 24);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <header className="fixed inset-x-0 top-3 z-[100] sm:top-4">
       <motion.div
@@ -39,7 +31,7 @@ export function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white/70 bg-white/94 shadow-[0_12px_34px_rgba(15,23,42,0.11)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/82",
+          "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white bg-white/97 shadow-[0_12px_34px_rgba(15,23,42,0.12)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/96",
           isMenuOpen ? "rounded-[22px]" : "rounded-[18px] sm:rounded-[22px]",
         )}
       >
@@ -77,7 +69,7 @@ export function Navbar() {
               <span className="hidden text-[13px] font-semibold text-[#111827] lg:inline">WhatsApp</span>
             </a>
             <Link
-              href="/book"
+              href="/#contact"
               className="hidden h-11 items-center gap-3 whitespace-nowrap rounded-full bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] py-1 pl-5 pr-1 text-[14px] font-semibold text-white shadow-[0_10px_24px_-8px_rgba(0,80,170,0.48)] transition hover:-translate-y-0.5 hover:brightness-110 lg:inline-flex"
             >
               <span>Book Demo</span>
@@ -133,7 +125,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="/book"
+                  href="/#contact"
                   onClick={() => setIsMenuOpen(false)}
                   className="mt-2 flex min-h-12 items-center justify-center rounded-[12px] bg-[#00A9FF] px-4 py-3 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(0,169,255,0.7)]"
                 >

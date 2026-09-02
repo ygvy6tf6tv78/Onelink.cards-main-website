@@ -60,7 +60,7 @@ export function HeroSection() {
           <HeroEntrance delay={0.12} x={-24} y={10}>
             <h1 className="font-display mt-6 max-w-none text-[clamp(35px,10.25vw,40px)] font-[720] leading-[1.01] tracking-[-0.055em] sm:mt-7 sm:text-[50px] md:text-[48px] lg:text-[52px] xl:text-[60px]">
               <span className="block whitespace-nowrap text-[#07111f] [text-shadow:0_3px_0_rgba(255,255,255,0.76),0_10px_24px_rgba(8,82,145,0.16)] sm:text-white sm:[text-shadow:0_3px_0_rgba(61,91,121,0.3),0_12px_30px_rgba(255,255,255,0.24)]">Stop sharing links.</span>
-              <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] sm:[text-shadow:0_3px_0_rgba(255,255,255,0.34),0_12px_30px_rgba(0,78,160,0.2)]">Share OneLink.</span>
+              <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] sm:text-[#83d7ff] sm:[text-shadow:0_3px_0_rgba(255,255,255,0.42),0_8px_18px_rgba(0,58,122,0.42),0_18px_38px_rgba(0,70,150,0.28)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.2} x={-22} y={10}>
@@ -90,7 +90,12 @@ export function HeroSection() {
                     <Icon name="whatsapp" className="h-8 w-8 text-[#25D366]" />
                     <span className="sr-only">WhatsApp</span>
                   </div>
-                  {heroIntegrations.map((item) => (
+                  {heroIntegrations.map((item) => item.label === "Instagram" ? (
+                    <a key={item.label} href={siteConfig.social.instagram} target="_blank" rel="noreferrer" className="flex h-9 items-center justify-center gap-1.5 rounded-full pr-2 text-[11px] font-extrabold text-[#d62976]">
+                      <img src={item.image} alt="" className={`${item.imageClass} object-contain`} />
+                      Follow us
+                    </a>
+                  ) : (
                     <div key={item.label} className="flex h-9 items-center justify-center">
                       <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain`} />
                     </div>
@@ -132,13 +137,14 @@ export function HeroSection() {
                   />
                   <span className="sr-only">WhatsApp</span>
                 </div>
-                {heroIntegrations.map((item) => (
+                {heroIntegrations.map((item) => item.label === "Instagram" ? (
+                  <a key={item.label} href={siteConfig.social.instagram} target="_blank" rel="noreferrer" className="group flex h-9 items-center justify-start gap-1.5 rounded-full pr-2 text-[11px] font-extrabold text-[#c72570]">
+                    <img src={item.image} alt="" className={`${item.imageClass} object-contain transition-transform duration-300 ease-out group-hover:scale-105`} />
+                    Follow us
+                  </a>
+                ) : (
                   <div key={item.label} className="group flex h-9 items-center justify-start">
-                    <img
-                      src={item.image}
-                      alt={item.label}
-                      className={`${item.imageClass} object-contain transition-transform duration-300 ease-out group-hover:scale-105`}
-                    />
+                    <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain transition-transform duration-300 ease-out group-hover:scale-105`} />
                   </div>
                 ))}
               </div>

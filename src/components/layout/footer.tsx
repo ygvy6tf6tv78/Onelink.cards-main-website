@@ -19,7 +19,7 @@ export function Footer() {
         <div className="mt-4 sm:mt-6"><TickerRow items={tickerTwo} direction="right" alternate /></div>
       </div>
 
-      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[28px] border border-white/12 bg-[linear-gradient(140deg,#04182f_0%,#006eb2_54%,#00A9FF_100%)] shadow-[0_34px_90px_-46px_rgba(0,0,0,0.72)] sm:rounded-[36px]">
+      <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[28px] border border-white/16 bg-[linear-gradient(140deg,#0077FF_0%,#0098F2_54%,#00A9FF_100%)] shadow-[0_34px_90px_-46px_rgba(0,75,170,0.72)] sm:rounded-[36px]">
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#00A9FF]/24 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 left-1/4 h-96 w-96 rounded-full bg-[#00A9FF]/12 blur-3xl" />
         <div className="relative px-6 pb-8 pt-10 sm:px-10 sm:pb-10 sm:pt-12 lg:px-14 lg:pb-12 lg:pt-14">

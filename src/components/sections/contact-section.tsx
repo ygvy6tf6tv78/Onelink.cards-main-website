@@ -33,6 +33,10 @@ export function ContactSection() {
                 <ActionLink href="/portfolio" variant="secondary" className="h-12 min-w-[210px] rounded-full border-white/30 bg-white/10 px-6 text-[14px] font-bold !text-white backdrop-blur hover:bg-white/16">
                   View Portfolio
                 </ActionLink>
+                <ActionLink href={siteConfig.social.instagram} variant="secondary" className="h-12 min-w-[210px] rounded-full border-white/30 bg-white/92 px-6 text-[14px] font-bold !text-[#c72570] shadow-[0_16px_32px_-22px_rgba(0,0,0,0.45)] hover:!bg-white">
+                  <Image src="/integration-logos/instagram.png" alt="" width={22} height={22} className="h-5 w-5 object-contain" />
+                  Follow us on Instagram
+                </ActionLink>
               </div>
             </div>
           </div>

@@ -47,6 +47,19 @@ export default function PortfolioPage() {
           <Suspense fallback={<div className="mt-8 h-48 rounded-[24px] border border-[#d5e4f1] bg-white/70" />}>
             <PortfolioBrowser items={portfolioItems} />
           </Suspense>
+          <Reveal delay={0.08}>
+            <div className="mt-10 flex justify-center sm:mt-12">
+              <a
+                href="https://www.instagram.com/onelinkcards/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#e1306c]/25 bg-white px-5 text-[13px] font-extrabold text-[#c72570] shadow-[0_16px_34px_-22px_rgba(225,48,108,0.58)] transition hover:-translate-y-0.5 hover:border-[#e1306c]/50 hover:shadow-[0_20px_38px_-22px_rgba(225,48,108,0.72)]"
+              >
+                <Image src="/integration-logos/instagram.png" alt="" width={22} height={22} className="h-5 w-5 object-contain" />
+                Follow us on Instagram
+              </a>
+            </div>
+          </Reveal>
         </div>
       </main>
     </div>

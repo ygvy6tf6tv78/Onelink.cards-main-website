@@ -21,7 +21,7 @@ const portfolioCategories = [
 
 export function DemoShowcaseSection() {
   return (
-    <section id="work" className="section-shell scroll-mt-28 bg-transparent px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-18">
+    <section id="work" className="section-shell scroll-mt-28 bg-transparent px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-7xl">
         <Reveal x={-28} y={14}>
           <div className="text-center">
@@ -31,14 +31,14 @@ export function DemoShowcaseSection() {
                 <span className="block">Built for real businesses.</span>
                 <span className="block">Designed around every brand.</span>
               </h2>
-              <div className="mx-auto mt-6 grid max-w-full grid-cols-2 gap-2 px-1 sm:flex sm:flex-wrap sm:justify-center">
+              <div className="mx-auto mt-5 flex max-w-[620px] flex-wrap items-center justify-center gap-2 px-1">
                 {portfolioCategories.map((category) => {
                   const preview = portfolioItems.find((item) => item.id === category.previewId)?.image;
                   return (
                   <Link
                     key={category.id}
                     href={`/portfolio?category=${category.id}`}
-                    className="group inline-flex min-h-9 min-w-0 items-center justify-start gap-1.5 rounded-full border border-[#b9dbef] bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(235,247,255,0.9))] px-2.5 text-left text-[11px] font-extrabold leading-none text-[#285373] shadow-[0_11px_24px_-18px_rgba(0,112,185,0.55)] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-white hover:text-[#087cbc] sm:shrink-0 sm:px-3 sm:text-[12px] lg:px-3.5 lg:text-[13px]"
+                    className="group inline-flex min-h-9 w-fit items-center justify-start gap-2 rounded-full border border-[#b9dbef] bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(235,247,255,0.94))] px-2.5 pr-3 text-left text-[12px] font-extrabold leading-none text-[#234d6d] shadow-[0_11px_24px_-18px_rgba(0,112,185,0.55)] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-white hover:text-[#008ed9] sm:min-h-10 sm:px-3 sm:pr-3.5 sm:text-[13px] lg:text-[14px]"
                   >
                     {preview ? <span className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full border-2 border-white bg-[#e7f5ff] shadow-[0_6px_14px_-8px_rgba(0,80,140,0.55)]"><Image src={preview} alt="" fill sizes="24px" className="object-cover object-top transition-transform duration-300 group-hover:scale-105" /></span> : null}
                     <span>{category.label}</span>
@@ -47,7 +47,7 @@ export function DemoShowcaseSection() {
                 })}
                 <Link
                   href="/portfolio"
-                  className="inline-flex min-h-9 min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#8bc8e9] bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(225,244,255,0.94))] px-3 text-[11px] font-extrabold text-[#0874b7] shadow-[0_11px_24px_-18px_rgba(0,112,185,0.62)] transition hover:-translate-y-0.5 hover:border-[#329fdb] hover:bg-white sm:shrink-0 sm:px-4 sm:text-[12px] lg:text-[13px]"
+                  className="inline-flex min-h-9 w-fit items-center justify-center gap-1.5 rounded-full border border-[#4eb9ef] bg-[linear-gradient(135deg,#eaf8ff_0%,#cceeff_100%)] px-4 text-[12px] font-black text-[#0077b9] shadow-[0_10px_26px_-12px_rgba(0,169,255,0.76),0_0_0_3px_rgba(0,169,255,0.06)] transition hover:-translate-y-0.5 hover:border-[#00A9FF] hover:bg-[#e4f7ff] sm:min-h-10 sm:px-5 sm:text-[13px] lg:text-[14px]"
                 >
                   View All
                   <Icon name="chevron-right" className="h-3.5 w-3.5" />
@@ -58,7 +58,7 @@ export function DemoShowcaseSection() {
 
         </Reveal>
 
-          <div className="mt-10 grid gap-x-5 gap-y-9 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 xl:gap-x-6">
+          <div className="mt-8 grid gap-x-5 gap-y-9 md:grid-cols-2 lg:mt-9 lg:grid-cols-3 lg:gap-x-5 xl:gap-x-6">
             {featuredItems.map((item, index) => (
               <Reveal key={item.id} delay={index * 0.07} x={index % 2 === 0 ? -30 : 30} y={16} className="relative z-10 md:last:col-span-2 md:last:mx-auto md:last:w-[calc(50%-10px)] lg:last:col-span-1 lg:last:mx-0 lg:last:w-auto">
                 <PortfolioCard item={item} />
@@ -67,7 +67,7 @@ export function DemoShowcaseSection() {
           </div>
 
         <Reveal delay={0.12} x={24} y={10}>
-          <div className="mt-10 flex items-center justify-center">
+          <div className="mt-8 flex items-center justify-center lg:mt-9">
             <Link
               href="/portfolio"
               className="group inline-flex h-12 w-[min(100%,280px)] items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(135deg,#00A9FF,#0077FF)] px-7 text-[13px] font-extrabold text-white shadow-[0_18px_40px_-20px_rgba(0,135,225,0.62)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"

@@ -4,7 +4,6 @@ import { PortfolioCard } from "@/components/portfolio/portfolio-card";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { Icon } from "@/components/icons";
-import Image from "next/image";
 
 const featuredIds = ["burger-bazaar", "new-vision", "vastukar"];
 const featuredItems = featuredIds.flatMap((id) => {
@@ -35,22 +34,18 @@ export function DemoShowcaseSection() {
                 <span className="block">Designed around every brand.</span>
               </h2>
               <div className="mx-auto mt-6 grid max-w-full grid-cols-2 gap-2 px-1 sm:flex sm:flex-nowrap sm:justify-center">
-                {portfolioCategories.map((category) => {
-                  const preview = portfolioItems.find((item) => item.id === category.previewId)?.image;
-                  return (
+                {portfolioCategories.map((category) => (
                   <Link
                     key={category.id}
                     href={`/portfolio?category=${category.id}`}
-                    className="group inline-flex min-h-11 min-w-0 items-center justify-start gap-2 rounded-[14px] border border-[#c5ddeb] bg-white/78 px-2.5 text-left text-[11px] font-extrabold leading-[1.08] text-[#285373] shadow-[0_10px_22px_-18px_rgba(0,88,145,0.42)] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-white hover:text-[#087cbc] sm:min-h-10 sm:shrink-0 sm:rounded-full sm:px-3 sm:text-[11px] lg:px-3.5 lg:text-[12px]"
+                    className="group inline-flex min-h-11 min-w-0 items-center justify-center rounded-full border border-[#b9dbef] bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(235,247,255,0.9))] px-3 text-center text-[12px] font-extrabold leading-[1.08] text-[#285373] shadow-[0_13px_28px_-18px_rgba(0,112,185,0.55)] backdrop-blur transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-white hover:text-[#087cbc] sm:min-h-10 sm:shrink-0 sm:px-4 sm:text-[12px] lg:px-4 lg:text-[13px]"
                   >
-                    {preview ? <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-[8px] border border-white bg-[#e7f5ff] shadow-sm"><Image src={preview} alt="" fill sizes="28px" className="object-cover object-top transition-transform duration-300 group-hover:scale-105" /></span> : null}
                     <span>{category.label}</span>
                   </Link>
-                  );
-                })}
+                ))}
                 <Link
                   href="/portfolio"
-                  className="inline-flex h-9 min-w-0 items-center justify-center gap-1 rounded-full border border-[#2497da] bg-[linear-gradient(135deg,#064585,#087aba)] px-2 text-[9px] font-black text-white shadow-[0_12px_24px_-16px_rgba(7,77,139,0.78)] ring-1 ring-[#ccecff] transition hover:-translate-y-0.5 hover:brightness-110 sm:h-auto sm:min-h-10 sm:shrink-0 sm:gap-1.5 sm:px-5 sm:py-2 sm:text-[11px] lg:text-[12px]"
+                  className="inline-flex min-h-11 min-w-0 items-center justify-center gap-1.5 rounded-full border border-[#8bc8e9] bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(225,244,255,0.94))] px-3 text-[12px] font-extrabold text-[#0874b7] shadow-[0_13px_28px_-18px_rgba(0,112,185,0.62)] transition hover:-translate-y-0.5 hover:border-[#329fdb] hover:bg-white sm:min-h-10 sm:shrink-0 sm:px-5 sm:text-[12px] lg:text-[13px]"
                 >
                   View All
                   <Icon name="chevron-right" className="h-3.5 w-3.5" />

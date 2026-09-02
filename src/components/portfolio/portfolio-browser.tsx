@@ -10,6 +10,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { Icon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import type { IconName } from "@/content/site";
+import { siteConfig } from "@/content/site";
 
 type CategoryFilter = {
   id: string;
@@ -72,11 +73,13 @@ export function PortfolioCategoryPicker() {
   const searchParams = useSearchParams();
   const requestedFilter = searchParams.get("category");
   const activeFilter = categoryFilters.some((filter) => filter.id === requestedFilter) && requestedFilter ? requestedFilter : "all";
+  const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent("Hello OneLink, I want to create a OneLink for my business.")}`;
+  const orderedMobileFilters = [...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]];
 
   return (
     <div className="mt-5 border-t border-white/15 pt-4 lg:w-[820px]">
       <div className="grid grid-cols-2 gap-2 lg:hidden">
-        {categoryFilters.map((filter) => (
+        {orderedMobileFilters.map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}
       </div>
@@ -84,6 +87,16 @@ export function PortfolioCategoryPicker() {
         {[...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]].map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}
+      </div>
+      <div className="mt-3 grid grid-cols-2 gap-2.5">
+        <Link href="/#contact" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/25 bg-white px-3 text-[12px] font-extrabold text-[#075b9b] shadow-[0_14px_30px_-19px_rgba(0,31,76,0.5)] transition hover:-translate-y-0.5 sm:text-[13px]">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-[#e8f6ff] text-[#087bc4]"><Image src="/onelink-logomark.png" alt="" width={14} height={19} className="h-4 w-auto" /></span>
+          Make Your OneLink
+        </Link>
+        <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[#52dd88] bg-[#25D366] px-3 text-[12px] font-extrabold text-white shadow-[0_14px_30px_-19px_rgba(20,142,71,0.58)] transition hover:-translate-y-0.5 hover:brightness-105 sm:text-[13px]">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-white/18"><Icon name="whatsapp" className="h-4 w-4" /></span>
+          WhatsApp
+        </a>
       </div>
     </div>
   );
@@ -96,13 +109,13 @@ function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boo
       href={filter.id === "all" ? "/portfolio" : `/portfolio?category=${filter.id}`}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-12 w-full items-center justify-start gap-2 rounded-[13px] border px-2.5 py-2 text-left text-[11px] font-extrabold tracking-[-0.01em] transition sm:text-[12px] lg:min-h-11 lg:gap-2 lg:rounded-[14px] lg:px-2.5 lg:text-[13px] lg:uppercase lg:tracking-[0.035em]",
+        "inline-flex min-h-10 w-full items-center justify-start gap-2 rounded-[12px] border px-2.5 py-1.5 text-left text-[12px] font-extrabold tracking-[-0.01em] transition sm:text-[13px] lg:min-h-10 lg:gap-2 lg:rounded-[13px] lg:px-2.5 lg:text-[14px] lg:font-black lg:tracking-[-0.01em]",
         active
           ? "border-[#48b8f5] bg-[linear-gradient(135deg,#0753a2_0%,#087dd1_100%)] text-white shadow-[0_12px_28px_-15px_rgba(0,35,90,0.85)]"
           : "border-[#73c6f5] bg-[linear-gradient(135deg,#ffffff_0%,#f0f9ff_58%,#e4f4ff_100%)] text-[#173f64] shadow-[0_8px_20px_-16px_rgba(0,76,137,0.45)] hover:-translate-y-0.5 hover:border-[#299ee4] hover:bg-[#f4fbff]",
       )}
     >
-      <span className={cn("relative inline-flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-[8px] ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
+      <span className={cn("relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
         {previewImage ? <Image src={previewImage} alt="" fill sizes="32px" className="object-cover object-top" aria-hidden="true" /> : <Icon name={filter.icon} className="h-4 w-4" />}
       </span>
       <span className="min-w-0 leading-[1.15] whitespace-nowrap">{filter.label}</span>

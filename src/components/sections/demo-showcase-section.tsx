@@ -31,7 +31,7 @@ export function DemoShowcaseSection() {
                 <span className="block">Built for real businesses.</span>
                 <span className="block">Designed around every brand.</span>
               </h2>
-              <div className="mx-auto mt-5 flex max-w-[620px] flex-wrap items-center justify-center gap-2 px-1">
+              <div className="mx-auto mt-5 flex max-w-[720px] flex-wrap items-center justify-center gap-2 px-1 lg:max-w-none lg:flex-nowrap">
                 {portfolioCategories.map((category) => {
                   const preview = portfolioItems.find((item) => item.id === category.previewId)?.image;
                   return (
@@ -47,7 +47,7 @@ export function DemoShowcaseSection() {
                 })}
                 <Link
                   href="/portfolio"
-                  className="inline-flex min-h-9 w-fit items-center justify-center gap-1.5 rounded-full border border-[#4eb9ef] bg-[linear-gradient(135deg,#eaf8ff_0%,#cceeff_100%)] px-4 text-[12px] font-black text-[#0077b9] shadow-[0_10px_26px_-12px_rgba(0,169,255,0.76),0_0_0_3px_rgba(0,169,255,0.06)] transition hover:-translate-y-0.5 hover:border-[#00A9FF] hover:bg-[#e4f7ff] sm:min-h-10 sm:px-5 sm:text-[13px] lg:text-[14px]"
+                  className="inline-flex min-h-9 w-fit items-center justify-center gap-1.5 rounded-full border border-[#00A9FF] bg-[#00A9FF] px-4 text-[12px] font-black text-white shadow-[0_12px_28px_-14px_rgba(0,169,255,0.72)] transition hover:-translate-y-0.5 hover:bg-[#008fd9] sm:min-h-10 sm:px-5 sm:text-[13px] lg:text-[14px]"
                 >
                   View All
                   <Icon name="chevron-right" className="h-3.5 w-3.5" />

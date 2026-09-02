@@ -111,7 +111,7 @@ export function HeroSection() {
                 withArrow
                 className="h-12 min-w-0 flex-1 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-5 text-[13px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,135,225,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
               >
-                Book a Free Demo
+                See OneLink in Action
               </ActionLink>
             <ActionLink
               href="/portfolio"
@@ -119,7 +119,7 @@ export function HeroSection() {
               withArrow
               className="h-12 min-w-0 flex-1 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-5 text-[13px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
             >
-              View Live Examples
+              View Examples
             </ActionLink>
           </div>
           </HeroEntrance>

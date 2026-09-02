@@ -28,7 +28,7 @@ export function AfterBookingSection() {
                 <Image src={step.image} alt="" width={1192} height={2504} className="pointer-events-none absolute -bottom-14 -right-3 h-[190px] w-auto rotate-[6deg] object-contain opacity-[0.075] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-[3deg] group-hover:opacity-[0.12]" aria-hidden="true" />
                 <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-[#00A9FF]/12 blur-3xl" />
                 <div className="flex items-center justify-between gap-4">
-                  <span className="relative z-10 grid h-11 w-11 place-items-center rounded-[14px] bg-[linear-gradient(145deg,#07538f,#10a4ea)] text-[15px] font-black text-white shadow-[0_12px_24px_-14px_rgba(0,95,160,0.7)]">{index + 1}</span>
+                  <span className="relative z-10 grid h-11 w-11 place-items-center rounded-[14px] bg-[linear-gradient(145deg,#00A9FF,#0077FF)] text-[15px] font-black text-white shadow-[0_12px_24px_-14px_rgba(0,135,225,0.68)]">{index + 1}</span>
                   <span className="font-display text-[34px] font-bold leading-none tracking-[-0.08em] text-[#c7e7f8]">{step.number}</span>
                 </div>
                 <h3 className="font-display relative mt-6 text-[21px] font-bold leading-tight text-[#111827]">{step.title}</h3>

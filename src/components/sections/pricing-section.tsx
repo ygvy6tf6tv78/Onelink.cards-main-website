@@ -11,6 +11,8 @@ import { Reveal } from "@/components/ui/reveal";
 import { PricingBrandMark } from "@/components/ui/brand-mark";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { cn, formatCurrency } from "@/lib/utils";
+import burgerBazaarPremium from "../../../Portfolio/burger-bazaar.png";
+import velouraPremium from "../../../Portfolio/veloura.png";
 
 const primaryCareRows = [
   { id: "3-month", label: "3 Months" },
@@ -660,14 +662,14 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
       className={cn(
         "group relative mx-auto flex h-full w-full max-w-[calc(100vw-40px)] min-w-0 flex-col overflow-hidden rounded-[24px] border bg-white p-4 transition-all duration-300 sm:max-w-none sm:p-5",
         isSignature
-          ? "!overflow-visible border-[#368fff] bg-[linear-gradient(145deg,#09223E_0%,#064083_49%,#0077FF_100%)] shadow-[0_32px_72px_-34px_rgba(0,67,155,0.72)] lg:-translate-y-3"
+          ? "!overflow-visible border-[#49bfff] bg-[linear-gradient(145deg,#00A9FF_0%,#008fe8_52%,#0077FF_100%)] shadow-[0_32px_72px_-34px_rgba(0,135,225,0.72)] lg:-translate-y-3"
           : isElite
             ? "border-[#b9d8f5] shadow-[0_24px_56px_-38px_rgba(9,34,62,0.42)] hover:-translate-y-0.5"
             : "border-[#c2dbf2] shadow-[0_24px_56px_-38px_rgba(9,34,62,0.38)] hover:-translate-y-0.5",
       )}
     >
       {isSignature ? (
-        <span className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-[#76b6ff] bg-[linear-gradient(135deg,#09223E_0%,#064083_52%,#0077FF_100%)] px-5 py-2 text-[10px] font-extrabold uppercase leading-none tracking-[0.11em] text-white shadow-[0_0_0_3px_rgba(0,119,255,0.14),0_14px_28px_-13px_rgba(0,49,112,0.9)]">
+        <span className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-[#76d3ff] bg-[#00A9FF] px-5 py-2 text-[10px] font-extrabold uppercase leading-none tracking-[0.11em] text-white shadow-[0_0_0_3px_rgba(0,169,255,0.14),0_14px_28px_-13px_rgba(0,105,180,0.8)]">
           Most Popular
         </span>
       ) : null}
@@ -1093,7 +1095,7 @@ function PricingTermsNotice({ className }: { className?: string }) {
 
 function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
   return (
-    <div className="border-shine border-shine-blue relative mx-auto mt-12 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#38bdf8]/55 bg-[linear-gradient(135deg,#031525_0%,#064c75_55%,#087cbc_100%)] p-5 text-white shadow-[0_34px_82px_-44px_rgba(0,126,191,0.68)] sm:max-w-7xl sm:p-7 lg:mt-14 lg:p-8">
+    <div className="border-shine border-shine-blue relative mx-auto mt-12 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#38bdf8]/55 bg-[linear-gradient(135deg,#0068c8_0%,#008fe8_55%,#00A9FF_100%)] p-5 text-white shadow-[0_34px_82px_-44px_rgba(0,126,191,0.68)] sm:max-w-7xl sm:p-7 lg:mt-14 lg:p-8">
       <div className="pointer-events-none absolute -right-14 -top-20 h-72 w-72 rounded-full bg-[#00A9FF]/28 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-72 rounded-full bg-[#38bdf8]/10 blur-3xl" />
       <Image src="/onelink-primary-logo.png" alt="" width={10895} height={2720} className="pointer-events-none absolute -bottom-10 -right-24 w-[48%] rotate-[-7deg] opacity-[0.022] brightness-0 invert" aria-hidden="true" />
@@ -1129,15 +1131,12 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
 
         <div className="relative mx-auto flex h-[260px] w-full max-w-[230px] items-end justify-center self-end lg:order-1 lg:h-[310px]">
           <div className="pointer-events-none absolute bottom-3 h-28 w-48 rounded-full bg-[#00A9FF]/12 blur-3xl" />
-          <Image
-            src="/enterprise-showcase.png"
-            alt="Two customized OneLink Premium mobile experiences"
-            width={1284}
-            height={1800}
-            quality={92}
-            sizes="(min-width: 1024px) 240px, 220px"
-            className="relative h-full w-auto object-contain object-bottom drop-shadow-[0_24px_28px_rgba(0,0,0,0.28)]"
-          />
+          <div className="absolute bottom-5 right-0 z-0 w-[72%] rotate-[6deg] overflow-hidden rounded-[18px] border-[3px] border-white/75 bg-white shadow-[0_22px_34px_-18px_rgba(0,26,70,0.66)]">
+            <Image src={velouraPremium} alt="Veloura Salon OneLink Premium preview" quality={90} sizes="170px" className="h-auto w-full object-contain" />
+          </div>
+          <div className="absolute bottom-0 left-0 z-10 w-[88%] -rotate-[5deg] overflow-hidden rounded-[20px] border-[4px] border-white bg-white shadow-[0_26px_40px_-18px_rgba(0,26,70,0.76)]">
+            <Image src={burgerBazaarPremium} alt="Burger Bazaar OneLink Premium preview" quality={92} sizes="210px" className="h-auto w-full object-contain" />
+          </div>
         </div>
 
         <div className="rounded-[18px] border border-white/70 bg-white p-5 text-[#111821] shadow-[0_22px_48px_-28px_rgba(0,0,0,0.55)] sm:p-6 lg:order-3">
@@ -1150,7 +1149,7 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
             <span className="rounded-full bg-[#edf8ff] px-2 py-1 text-[9px] font-extrabold uppercase tracking-[0.06em] text-[#087cbc]">+ GST</span>
           </div>
           <p className="mt-3 text-[12px] font-medium leading-relaxed text-[#64748b]">Custom-built around your business requirements.</p>
-          <a href={href} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-[#087cbc] px-4 text-[15px] font-bold text-white shadow-[0_14px_28px_-15px_rgba(0,126,191,0.58)] transition hover:-translate-y-0.5 hover:bg-[#006fa8]">
+          <a href={href} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-[#00A9FF] px-4 text-[15px] font-bold text-white shadow-[0_14px_28px_-15px_rgba(0,126,191,0.58)] transition hover:-translate-y-0.5 hover:bg-[#008fd9]">
             Discuss Your Requirements
             <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 8h9" /><path d="M8.5 3l4.5 5-4.5 5" /></svg>
           </a>
@@ -1174,7 +1173,7 @@ function getPlanTone(plan: Plan) {
       value: "text-[#087cbc]",
       icon: "bg-[#e7f6ff] text-[#087cbc]",
       featureWrap: "border-white/40 bg-white/[0.97] shadow-[0_18px_42px_-32px_rgba(3,61,96,0.5)]",
-      button: "border border-white/20 bg-[#04182f] text-white hover:bg-[#020f1d] shadow-[0_16px_34px_-14px_rgba(2,15,29,0.62)]",
+      button: "border border-white/25 bg-[#00A9FF] text-white hover:bg-[#008fd9] shadow-[0_16px_34px_-14px_rgba(0,105,180,0.58)]",
     };
   }
 
@@ -1191,7 +1190,7 @@ function getPlanTone(plan: Plan) {
       value: "text-[#0369A1]",
       icon: "bg-[#00A9FF]/10 text-[#00A9FF]",
       featureWrap: "border-[#eff4f8] bg-[linear-gradient(180deg,#fcfeff_0%,#f8fbfe_100%)]",
-      button: "bg-[#111821] text-white hover:bg-black shadow-sm",
+      button: "bg-[#00A9FF] text-white hover:bg-[#008fd9] shadow-[0_12px_26px_-16px_rgba(0,169,255,0.62)]",
     };
   }
 
@@ -1207,6 +1206,6 @@ function getPlanTone(plan: Plan) {
     value: "text-[#087cbc]",
     icon: "bg-[#eef2f5] text-[#5c6774]",
     featureWrap: "border-[#e8edf2] bg-[linear-gradient(180deg,#fcfdff_0%,#f6f8fa_100%)]",
-    button: "bg-[#111821] text-white hover:bg-black shadow-sm",
+    button: "bg-[#00A9FF] text-white hover:bg-[#008fd9] shadow-[0_12px_26px_-16px_rgba(0,169,255,0.62)]",
   };
 }

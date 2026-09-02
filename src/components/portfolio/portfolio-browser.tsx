@@ -38,7 +38,7 @@ const allWorkOrder = [
 ] as const;
 
 const categoryFilters: CategoryFilter[] = [
-  { id: "all", label: "All Work", ids: null, icon: "gallery" },
+  { id: "all", label: "All Work", ids: null, icon: "spark" },
   { id: "restaurants", label: "Food & Cafés", ids: ["burger-bazaar", "mango", "sonnet-cafe"], icon: "menu" },
   { id: "architects", label: "Architects", ids: ["vastukar"], icon: "building" },
   { id: "clinics", label: "Clinics", ids: ["new-vision", "smile-health-clinic"], icon: "form" },
@@ -75,8 +75,8 @@ export function PortfolioCategoryPicker() {
   const orderedFilters = [...categoryFilters.filter((filter) => filter.id !== "all"), categoryFilters[0]];
 
   return (
-    <div className="mt-3 border-t border-white/15 pt-3 lg:w-[820px]">
-      <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+    <div className="mt-2.5 border-t border-white/15 pt-2.5 lg:w-[820px]">
+      <div className="grid grid-cols-2 gap-1.5 lg:grid-cols-4">
         {orderedFilters.map((filter) => (
           <CategoryBadge key={filter.id} filter={filter} active={activeFilter === filter.id} />
         ))}

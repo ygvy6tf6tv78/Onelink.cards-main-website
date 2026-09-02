@@ -41,7 +41,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
             href={item.href}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[13px] bg-[linear-gradient(135deg,#07517d_0%,#087cbc_100%)] px-4 text-[13px] font-bold text-white shadow-[0_16px_34px_-22px_rgba(0,91,141,0.72)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-22px_rgba(0,91,141,0.8)]"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[13px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-4 text-[13px] font-bold text-white shadow-[0_16px_34px_-20px_rgba(0,135,225,0.66)] transition hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_20px_40px_-20px_rgba(0,135,225,0.76)]"
           >
             View Live
             <svg
@@ -60,7 +60,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
           </a>
           <Link
             href="/#contact"
-            className="inline-flex min-h-11 items-center justify-center rounded-[13px] border border-[#00A9FF]/28 bg-white px-4 text-[13px] font-bold text-[#087cbc] shadow-[0_14px_30px_-24px_rgba(0,126,191,0.5)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/60 hover:bg-[#f2faff]"
+            className="inline-flex min-h-11 items-center justify-center rounded-[13px] border border-[#00A9FF]/32 bg-[linear-gradient(135deg,#ffffff_20%,#eaf8ff_100%)] px-4 text-[13px] font-bold text-[#0077b9] shadow-[0_14px_30px_-22px_rgba(0,169,255,0.38)] transition hover:-translate-y-0.5 hover:border-[#00A9FF]/65 hover:bg-[#edf9ff]"
           >
             Get This Style
           </Link>

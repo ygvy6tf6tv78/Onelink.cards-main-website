@@ -59,7 +59,7 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.12} x={-24} y={10}>
             <h1 className="font-display mt-4 max-w-none text-[clamp(35px,10.25vw,40px)] font-[720] leading-[1.01] tracking-[-0.055em] sm:mt-7 sm:text-[50px] md:text-[48px] lg:text-[52px] xl:text-[60px]">
-              <span className="block whitespace-nowrap text-[#07111f] [text-shadow:0_3px_0_rgba(255,255,255,0.76),0_10px_24px_rgba(8,82,145,0.16)] lg:text-[#050b12] lg:[text-shadow:0_3px_0_rgba(255,255,255,0.4),0_9px_20px_rgba(0,48,105,0.34),0_18px_38px_rgba(0,55,120,0.22)]">Stop sharing links.</span>
+              <span className="block whitespace-nowrap text-[#07111f] [text-shadow:0_3px_0_rgba(255,255,255,0.76),0_10px_24px_rgba(8,82,145,0.16)] lg:text-[#00A9FF] lg:[text-shadow:0_3px_0_rgba(255,255,255,0.68),0_9px_20px_rgba(0,48,105,0.34),0_18px_38px_rgba(0,55,120,0.22)]">Stop sharing links.</span>
               <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] lg:text-white lg:[text-shadow:0_3px_0_rgba(61,91,121,0.34),0_9px_20px_rgba(0,48,105,0.34),0_18px_38px_rgba(0,55,120,0.22)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
@@ -77,8 +77,8 @@ export function HeroSection() {
               <Icon name="whatsapp" className="h-5 w-5" />
               WhatsApp
             </ActionLink>
-            <ActionLink href="/portfolio" variant="secondary" withArrow className="col-span-2 h-12 min-w-0 !rounded-[15px] border border-[#d9e2ea] !bg-white px-3 text-[14px] font-extrabold !text-[#064083] shadow-[0_12px_28px_-24px_rgba(9,34,62,0.3)] hover:border-[#8fc4e8] hover:!bg-[#f8fcff] [&_svg]:h-4 [&_svg]:w-4">
-              View Live Examples
+            <ActionLink href="/portfolio" variant="secondary" withArrow className="col-span-2 h-12 min-w-0 !rounded-[15px] border-2 border-[#00A9FF] !bg-white px-3 text-[14px] font-extrabold !text-[#0077b9] shadow-[0_14px_30px_-22px_rgba(0,169,255,0.52)] hover:border-[#008fd9] hover:!bg-[#f2fbff] [&_svg]:h-4 [&_svg]:w-4">
+              See OneLink in Action
             </ActionLink>
             <div className="col-span-2 mt-3 w-full border-t border-[#d8e2ea] pt-5">
               <p className="text-left text-[12px] font-extrabold leading-5 text-[#435267]">
@@ -106,20 +106,20 @@ export function HeroSection() {
           </div>
           <div className="mt-7 hidden w-full max-w-[470px] flex-row flex-nowrap items-stretch gap-3 sm:flex">
               <ActionLink
-                href="/#contact"
+                href="/portfolio"
                 variant="primary"
                 withArrow
-                className="h-12 min-w-0 flex-1 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-5 text-[13px] font-semibold shadow-[0_16px_30px_-16px_rgba(0,135,225,0.62)] hover:brightness-110 sm:w-full sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+                className="h-12 min-w-0 flex-[1.15] !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-4 text-[13px] font-bold shadow-[0_16px_30px_-16px_rgba(0,135,225,0.62)] hover:brightness-110 [&_svg]:h-4 [&_svg]:w-4"
               >
                 See OneLink in Action
               </ActionLink>
             <ActionLink
-              href="/portfolio"
+              href="#pricing"
               variant="secondary"
               withArrow
-              className="h-12 min-w-0 flex-1 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-5 text-[13px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+              className="h-12 min-w-0 flex-1 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-4 text-[13px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white [&_svg]:h-4 [&_svg]:w-4"
             >
-              View Examples
+              Get OneLink
             </ActionLink>
           </div>
           </HeroEntrance>

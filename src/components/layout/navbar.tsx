@@ -8,8 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useSplashComplete } from "@/components/ui/splash-context";
 
 export function Navbar() {
+  const splashComplete = useSplashComplete();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const whatsappHref = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(
     "Hello OneLink, I want to discuss OneLink for my business.",
@@ -27,11 +29,11 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-3 z-[100] sm:top-4">
+    <header className={cn("fixed inset-x-0 top-3 z-[100] sm:top-4", !splashComplete && "pointer-events-none")}>
       <motion.div
         initial={false}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        animate={splashComplete ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -10, scale: 0.985 }}
+        transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white bg-white/97 shadow-[0_12px_34px_rgba(15,23,42,0.12)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/96",
           isMenuOpen ? "rounded-[22px]" : "rounded-[18px] sm:rounded-[22px]",

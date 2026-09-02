@@ -21,7 +21,7 @@ const portfolioCategories = [
 
 export function DemoShowcaseSection() {
   return (
-    <section id="work" className="section-shell scroll-mt-28 bg-transparent px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+    <section id="work" className="section-shell scroll-mt-28 bg-transparent px-4 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8 lg:pb-16 lg:pt-12">
       <div className="mx-auto max-w-7xl">
         <Reveal x={-28} y={14}>
           <div className="text-center">

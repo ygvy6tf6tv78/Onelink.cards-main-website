@@ -16,7 +16,7 @@ export function ClientLogoStrip() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
 
   return (
-    <section ref={sectionRef} className="bg-transparent px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16" aria-labelledby="client-trust-title">
+    <section ref={sectionRef} className="bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
       <Reveal>
         <div className="mx-auto max-w-7xl">
           <div className="space-y-9 sm:px-2">

@@ -75,7 +75,7 @@ export function HeroCloudBackground() {
           className={`absolute will-change-transform ${cloud.className}`}
         />
       ))}
-      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent via-white/72 to-white" />
+      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent via-white/72 to-white sm:via-[#edf6ff]/72 sm:to-[#edf6ff]" />
     </div>
   );
 }

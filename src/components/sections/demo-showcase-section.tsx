@@ -37,15 +37,15 @@ export function DemoShowcaseSection() {
                   <Link
                     key={category.id}
                     href={`/portfolio?category=${category.id}`}
-                    className="group inline-flex min-h-10 min-w-0 items-center justify-center gap-1 rounded-[12px] border border-[#b9dcf3] bg-[#eef8ff] px-1.5 py-1.5 text-center text-[9px] font-bold leading-[1.05] text-[#285373] shadow-[0_10px_24px_-20px_rgba(0,105,175,0.36)] transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-[#e3f4ff] hover:text-[#087cbc] sm:min-h-9 sm:shrink-0 sm:gap-1.5 sm:rounded-full sm:px-3 sm:py-2 sm:text-[11px] lg:px-3.5 lg:text-[12px]"
+                    className="group inline-flex min-h-[52px] min-w-0 items-center justify-center gap-1 rounded-full border border-[#b7d9ef] bg-[linear-gradient(180deg,#f5fbff_0%,#eaf6fd_100%)] px-2 py-2 text-center text-[10px] font-extrabold leading-[1.05] text-[#285373] shadow-[0_10px_26px_-20px_rgba(0,105,175,0.42)] transition hover:-translate-y-0.5 hover:border-[#55afe5] hover:bg-[#e3f4ff] hover:text-[#087cbc] sm:min-h-9 sm:shrink-0 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-[11px] lg:px-3.5 lg:text-[12px]"
                   >
                     <Icon name={category.icon} className="hidden h-3.5 w-3.5 shrink-0 text-[#159bdc] transition-transform group-hover:scale-110 min-[390px]:block" />
-                    <span>{category.label}</span>
+                    <span className="max-w-[72px] sm:max-w-none">{category.label}</span>
                   </Link>
                 ))}
                 <Link
                   href="/portfolio"
-                  className="inline-flex min-h-10 min-w-0 items-center justify-center gap-1 rounded-[12px] border border-[#087cbc] bg-[linear-gradient(135deg,#064083,#087cbc)] px-1.5 py-1.5 text-[9px] font-extrabold text-white shadow-[0_12px_26px_-18px_rgba(9,82,140,0.62)] transition hover:-translate-y-0.5 hover:brightness-110 sm:min-h-9 sm:shrink-0 sm:gap-1.5 sm:rounded-full sm:px-4 sm:py-2 sm:text-[11px] lg:text-[12px]"
+                  className="inline-flex min-h-[54px] min-w-0 scale-[1.035] items-center justify-center gap-1 rounded-full border border-[#3ba6e8] bg-[linear-gradient(135deg,#053b78,#087fc7)] px-2 py-2 text-[10px] font-black text-white shadow-[0_16px_32px_-16px_rgba(7,77,139,0.82)] ring-2 ring-[#d8f1ff] transition hover:-translate-y-0.5 hover:brightness-110 sm:min-h-10 sm:shrink-0 sm:scale-100 sm:gap-1.5 sm:px-5 sm:py-2 sm:text-[11px] lg:text-[12px]"
                 >
                   View All
                   <Icon name="chevron-right" className="h-3.5 w-3.5" />
@@ -65,13 +65,20 @@ export function DemoShowcaseSection() {
           </div>
 
         <Reveal delay={0.12} x={24} y={10}>
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/book"
               className="group inline-flex h-12 w-[min(100%,280px)] items-center justify-center gap-2.5 rounded-[13px] bg-[linear-gradient(135deg,#09223E_0%,#064083_52%,#0077FF_100%)] px-7 text-[13px] font-extrabold text-white shadow-[0_18px_40px_-20px_rgba(0,91,190,0.7)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
             >
               Book a Free Demo
               <Icon name="calendar" className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/portfolio"
+              className="group inline-flex h-12 w-[min(100%,280px)] items-center justify-center gap-2.5 rounded-[13px] border-2 border-[#168fd4] bg-white px-7 text-[13px] font-extrabold text-[#075a9f] shadow-[0_18px_40px_-22px_rgba(0,91,150,0.52)] transition hover:-translate-y-0.5 hover:bg-[#f0f9ff] sm:w-auto"
+            >
+              View All Portfolio
+              <Icon name="chevron-right" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
         </Reveal>

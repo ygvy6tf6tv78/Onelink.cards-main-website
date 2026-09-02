@@ -48,7 +48,7 @@ export function HeroSection() {
             <ActionLink href="/book" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#09223E_0%,#064083_50%,#0077FF_100%)] px-3 text-[12px] font-bold shadow-[0_16px_30px_-18px_rgba(0,70,160,0.68)] [&_svg]:h-4 [&_svg]:w-4">
               Book Free Demo
             </ActionLink>
-            <ActionLink href="#work" variant="secondary" withArrow className="h-12 min-w-0 !rounded-[15px] border border-white/75 !bg-white/82 px-3 text-[12px] font-bold !text-[#064083] shadow-[0_14px_30px_-22px_rgba(9,34,62,0.35)] backdrop-blur-md hover:border-white hover:!bg-white [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="#work" variant="secondary" withArrow className="h-12 min-w-0 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-3 text-[12px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white [&_svg]:h-4 [&_svg]:w-4">
               View Live Examples
             </ActionLink>
           </div>
@@ -65,7 +65,7 @@ export function HeroSection() {
               href="#work"
               variant="secondary"
               withArrow
-              className="h-12 min-w-0 flex-1 !rounded-[15px] border border-white/75 !bg-white/82 px-5 text-[13px] font-bold !text-[#064083] shadow-[0_14px_30px_-22px_rgba(9,34,62,0.35)] backdrop-blur-md hover:border-white hover:!bg-white sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
+              className="h-12 min-w-0 flex-1 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-5 text-[13px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white sm:flex-1 [&_svg]:h-4 [&_svg]:w-4"
             >
               View Live Examples
             </ActionLink>

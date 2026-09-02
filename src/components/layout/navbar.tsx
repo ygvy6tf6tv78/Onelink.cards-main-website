@@ -35,7 +35,7 @@ export function Navbar() {
         animate={splashComplete ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -10, scale: 0.985 }}
         transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white bg-white/97 shadow-[0_12px_34px_rgba(15,23,42,0.12)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/96",
+          "mx-auto w-[calc(100%-24px)] max-w-[1200px] overflow-hidden border border-white/75 bg-white/62 shadow-[0_16px_38px_rgba(15,23,42,0.13),inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-2xl transition-[border-radius,background-color] duration-300 sm:w-[90%] lg:rounded-full lg:bg-white/56",
           isMenuOpen ? "rounded-[22px]" : "rounded-[18px] sm:rounded-[22px]",
         )}
       >
@@ -53,10 +53,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={cn(
-                    "relative tracking-[-0.01em] transition after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:rounded-full after:bg-[#00A9FF] after:transition hover:text-[var(--foreground)] hover:after:origin-left hover:after:scale-x-100",
-                    (item.label === "Portfolio" || item.label === "Pricing") && "rounded-full border border-[#a8d8f2]/60 bg-white/55 px-3 py-1.5 text-[#165172] shadow-[0_8px_20px_-16px_rgba(0,91,150,0.62)] backdrop-blur-md hover:border-[#6bbce9] hover:bg-white/85",
-                  )}
+                  className="relative tracking-[-0.01em] transition after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:rounded-full after:bg-[#00A9FF] after:transition hover:text-[var(--foreground)] hover:after:origin-left hover:after:scale-x-100"
                 >
                   {item.label}
                 </Link>

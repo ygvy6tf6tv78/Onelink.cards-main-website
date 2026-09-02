@@ -25,13 +25,13 @@ export function DemoShowcaseSection() {
       <div className="mx-auto max-w-7xl">
         <Reveal x={-28} y={14}>
           <div className="text-center">
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-7xl">
               <SectionBadge label="Portfolio" />
               <h2 className="section-title-gradient font-display mx-auto mt-4 max-w-[24ch] text-balance text-[30px] font-bold leading-[1.08] tracking-[-0.04em] sm:text-[36px] lg:text-[42px]">
                 <span className="block">Built for real businesses.</span>
                 <span className="block">Designed around every brand.</span>
               </h2>
-              <div className="mx-auto mt-5 flex max-w-[720px] flex-wrap items-center justify-center gap-2 px-1 lg:max-w-none lg:flex-nowrap">
+              <div className="mx-auto mt-5 flex max-w-[720px] flex-wrap items-center justify-center gap-2 px-1 lg:max-w-none lg:flex-nowrap lg:gap-2.5">
                 {portfolioCategories.map((category) => {
                   const preview = portfolioItems.find((item) => item.id === category.previewId)?.image;
                   return (

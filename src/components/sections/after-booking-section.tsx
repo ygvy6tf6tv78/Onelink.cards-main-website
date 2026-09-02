@@ -11,7 +11,7 @@ const journeySteps = [
 
 export function AfterBookingSection() {
   return (
-    <section id="how-it-works" className="section-shell relative scroll-mt-28 overflow-hidden bg-transparent px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-18">
+    <section id="how-it-works" className="section-shell relative scroll-mt-28 overflow-hidden bg-transparent px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-7xl">
         <Reveal y={12}>
           <div className="mx-auto max-w-3xl text-center">
@@ -21,10 +21,10 @@ export function AfterBookingSection() {
           </div>
         </Reveal>
 
-        <div className="relative mt-10 grid gap-4 md:grid-cols-3 lg:gap-5">
+        <div className="relative mt-8 grid gap-4 md:grid-cols-3 lg:mt-9 lg:gap-5">
           {journeySteps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.08} y={14} x={index === 0 ? -14 : index === 2 ? 14 : 0}>
-              <article className="group relative flex h-full min-h-[232px] flex-col overflow-hidden rounded-[24px] border border-[#cfe3f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.97),rgba(235,247,255,0.88))] p-6 text-left shadow-[0_24px_58px_-42px_rgba(9,67,105,0.34)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#72bfe8] hover:shadow-[0_30px_66px_-40px_rgba(9,67,105,0.46)] sm:p-7">
+              <article className="group relative flex h-full min-h-[220px] flex-col overflow-hidden rounded-[24px] border border-[#cfe3f0] bg-[linear-gradient(145deg,rgba(255,255,255,0.98),rgba(239,249,255,0.92))] p-6 text-left shadow-[0_22px_54px_-42px_rgba(0,105,175,0.32)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#72c8f2] hover:shadow-[0_28px_62px_-40px_rgba(0,135,225,0.42)] sm:p-7">
                 <Image src={step.image} alt="" width={1192} height={2504} className="pointer-events-none absolute -bottom-14 -right-3 h-[190px] w-auto rotate-[6deg] object-contain opacity-[0.075] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-[3deg] group-hover:opacity-[0.12]" aria-hidden="true" />
                 <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-[#00A9FF]/12 blur-3xl" />
                 <div className="flex items-center justify-between gap-4">

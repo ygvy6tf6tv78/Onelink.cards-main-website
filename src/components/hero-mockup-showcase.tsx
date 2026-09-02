@@ -41,14 +41,14 @@ export function HeroMockupShowcase() {
       <div className="absolute left-4 top-10 h-20 w-20 rounded-full bg-white/70 blur-2xl sm:left-10 sm:top-12 sm:h-28 sm:w-28" />
 
       <div className="relative flex flex-col items-stretch">
-        <div className="relative flex min-h-[420px] justify-center pb-1 pt-4 sm:min-h-[520px] sm:items-center sm:pb-2 sm:pt-6 lg:min-h-[430px] lg:pb-2 lg:pt-7">
-          <div className="pointer-events-none absolute inset-x-0 top-[64px] z-[3] hidden h-[330px] sm:block lg:top-[48px]" aria-hidden="true">
+        <div className="relative flex min-h-[392px] justify-center pb-1 pt-3 sm:min-h-[520px] sm:items-center sm:pb-2 sm:pt-6 lg:min-h-[430px] lg:pb-2 lg:pt-7">
+          <div className="pointer-events-none absolute -inset-x-5 top-[58px] z-[3] h-[300px] sm:inset-x-0 sm:top-[64px] sm:h-[330px] lg:top-[48px]" aria-hidden="true">
             <motion.div
               key={`previous-${previousSlide.id}`}
               initial={{ opacity: 0, x: 64, rotate: 0, scale: 0.84 }}
               animate={{ opacity: 0.72, x: 0, rotate: -8, scale: 0.9, y: [0, -4, 0] }}
               transition={{ opacity: { duration: 0.55 }, x: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }, rotate: { duration: 0.7 }, scale: { duration: 0.7 }, y: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" } }}
-              className="absolute left-[3%] top-6 w-[124px] origin-bottom-right lg:left-[1%] lg:w-[148px] xl:left-[4%]"
+              className="absolute -left-[3%] top-12 w-[108px] origin-bottom-right opacity-55 sm:left-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:left-[1%] lg:w-[148px] xl:left-[4%]"
             >
               <Image src={previousSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain drop-shadow-[0_24px_40px_rgba(12,45,70,0.24)]" />
             </motion.div>
@@ -58,7 +58,7 @@ export function HeroMockupShowcase() {
               initial={{ opacity: 0, x: -64, rotate: 0, scale: 0.84 }}
               animate={{ opacity: 0.72, x: 0, rotate: 8, scale: 0.9, y: [0, -5, 0] }}
               transition={{ opacity: { duration: 0.55 }, x: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }, rotate: { duration: 0.7 }, scale: { duration: 0.7 }, y: { duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" } }}
-              className="absolute right-[3%] top-6 w-[124px] origin-bottom-left lg:right-[1%] lg:w-[148px] xl:right-[4%]"
+              className="absolute -right-[3%] top-12 w-[108px] origin-bottom-left opacity-55 sm:right-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:right-[1%] lg:w-[148px] xl:right-[4%]"
             >
               <Image src={nextSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain drop-shadow-[0_24px_40px_rgba(12,45,70,0.24)]" />
             </motion.div>
@@ -67,7 +67,7 @@ export function HeroMockupShowcase() {
           </div>
 
           <div className="relative z-10 flex w-full justify-center [perspective:1200px]">
-            <div className="relative w-[216px] sm:w-[270px] lg:w-[296px]">
+            <div className="relative w-[205px] sm:w-[270px] lg:w-[296px]">
               <div className="relative aspect-[419/856] w-full overflow-visible rounded-[2.35rem] sm:rounded-[2.55rem]">
                 <AnimatePresence mode="popLayout" initial={false}>
                     <motion.div

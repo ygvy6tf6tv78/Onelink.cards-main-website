@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { pricingPlans, siteConfig, type Plan } from "@/content/site";
@@ -11,8 +12,8 @@ import { Reveal } from "@/components/ui/reveal";
 import { PricingBrandMark } from "@/components/ui/brand-mark";
 import { SectionBadge } from "@/components/ui/section-badge";
 import { cn, formatCurrency } from "@/lib/utils";
-import burgerBazaarPremium from "../../../Portfolio/burger-bazaar.png";
-import velouraPremium from "../../../Portfolio/veloura.png";
+import burgerBazaarPremium from "../../../onelink_mockups/hero-burger-bazaar.png";
+import velouraPremium from "../../../onelink_mockups/hero-veloura-salon.png";
 
 const primaryCareRows = [
   { id: "3-month", label: "3 Months" },
@@ -116,6 +117,11 @@ const enterpriseHighlights = [
   "Advanced Features & Integrations",
   "Custom Workflows & Priority Support",
 ];
+
+const premiumMockups = [
+  { src: burgerBazaarPremium, alt: "Burger Bazaar OneLink Premium preview" },
+  { src: velouraPremium, alt: "Veloura Salon OneLink Premium preview" },
+] as const;
 
 const chandigarhSetupOffers: Record<TopPlanId, Record<string, number>> = {
   essential: { "3-month": 3000, "6-month": 3500, "12-month": 2000 },
@@ -662,7 +668,7 @@ function PricingCard({ plan, isSignature }: { plan: Plan; isSignature?: boolean 
       className={cn(
         "group relative mx-auto flex h-full w-full max-w-[calc(100vw-40px)] min-w-0 flex-col overflow-hidden rounded-[24px] border bg-white p-4 transition-all duration-300 sm:max-w-none sm:p-5",
         isSignature
-          ? "!overflow-visible border-[#49bfff] bg-[linear-gradient(145deg,#00A9FF_0%,#008fe8_52%,#0077FF_100%)] shadow-[0_32px_72px_-34px_rgba(0,135,225,0.72)] lg:-translate-y-3"
+          ? "!overflow-visible border-[#49bfff] bg-[linear-gradient(145deg,#020b14_0%,#063c70_48%,#00A9FF_100%)] shadow-[0_32px_72px_-34px_rgba(0,91,170,0.74)] lg:-translate-y-3"
           : isElite
             ? "border-[#b9d8f5] shadow-[0_24px_56px_-38px_rgba(9,34,62,0.42)] hover:-translate-y-0.5"
             : "border-[#c2dbf2] shadow-[0_24px_56px_-38px_rgba(9,34,62,0.38)] hover:-translate-y-0.5",
@@ -1094,19 +1100,30 @@ function PricingTermsNotice({ className }: { className?: string }) {
 }
 
 function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
+  const [activeMockup, setActiveMockup] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveMockup((current) => (current + 1) % premiumMockups.length);
+    }, 3200);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const mockup = premiumMockups[activeMockup];
+
   return (
-    <div className="border-shine border-shine-blue relative mx-auto mt-12 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#38bdf8]/55 bg-[linear-gradient(135deg,#0068c8_0%,#008fe8_55%,#00A9FF_100%)] p-5 text-white shadow-[0_34px_82px_-44px_rgba(0,126,191,0.68)] sm:max-w-7xl sm:p-7 lg:mt-14 lg:p-8">
-      <div className="pointer-events-none absolute -right-14 -top-20 h-72 w-72 rounded-full bg-[#00A9FF]/28 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-72 rounded-full bg-[#38bdf8]/10 blur-3xl" />
+    <div className="border-shine border-shine-blue relative mx-auto mt-10 w-full max-w-[calc(100vw-40px)] overflow-hidden rounded-[22px] border border-[#38bdf8]/45 bg-[linear-gradient(135deg,#020b14_0%,#041d34_34%,#075a91_72%,#00A9FF_100%)] p-4 text-white shadow-[0_34px_82px_-44px_rgba(0,72,145,0.72)] sm:max-w-7xl sm:p-6 lg:mt-12 lg:p-6">
+      <div className="pointer-events-none absolute -right-14 -top-20 h-72 w-72 rounded-full bg-[#00A9FF]/24 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-72 rounded-full bg-[#0077FF]/14 blur-3xl" />
       <Image src="/onelink-primary-logo.png" alt="" width={10895} height={2720} className="pointer-events-none absolute -bottom-10 -right-24 w-[48%] rotate-[-7deg] opacity-[0.022] brightness-0 invert" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#6bcfff,transparent)] opacity-55" />
-      <div className="relative grid gap-7 lg:grid-cols-[220px_minmax(0,1fr)_290px] lg:items-center lg:gap-9">
+      <div className="relative grid gap-5 lg:grid-cols-[200px_minmax(0,1fr)_280px] lg:items-center lg:gap-7">
         <div className="lg:order-2">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#ead7a4]/45 bg-[#d8b86a]/12 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.11em] text-[#f4dfad]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#e4c77f] shadow-[0_0_10px_rgba(228,199,127,0.72)]" />
             Premium Custom Build
           </span>
-          <div className="mt-4 flex items-center gap-3.5">
+          <div className="mt-3 flex items-center gap-3">
             <PricingBrandMark
               tone="essential"
               className="h-11 w-11 rounded-[13px] border-white/20 [&_img]:w-6"
@@ -1116,10 +1133,10 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
               <h3 className="font-display mt-1 text-[1.55rem] font-bold leading-[1.12] tracking-[-0.04em] text-white sm:text-[1.85rem]">Built for brands that need more.</h3>
             </div>
           </div>
-          <p className="mt-3 max-w-2xl text-[14px] font-normal leading-[1.65] text-white/68 sm:text-[15px]">
+          <p className="mt-2.5 max-w-2xl text-[13px] font-medium leading-[1.55] text-white/72 sm:text-[14px]">
             For established businesses, agencies and multi-location brands needing premium design, advanced functionality and custom setup.
           </p>
-          <div className="mt-5 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-1.5 sm:grid-cols-2">
             {enterpriseHighlights.slice(0, 4).map((highlight) => (
               <span key={highlight} className="inline-flex items-center gap-2 text-[11px] font-semibold text-white/78">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#55c5ff]/14 text-[#8bdcff]"><Icon name="check" className="h-3 w-3" /></span>
@@ -1129,17 +1146,26 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
           </div>
         </div>
 
-        <div className="relative mx-auto flex h-[260px] w-full max-w-[230px] items-end justify-center self-end lg:order-1 lg:h-[310px]">
-          <div className="pointer-events-none absolute bottom-3 h-28 w-48 rounded-full bg-[#00A9FF]/12 blur-3xl" />
-          <div className="absolute bottom-5 right-0 z-0 w-[72%] rotate-[6deg] overflow-hidden rounded-[18px] border-[3px] border-white/75 bg-white shadow-[0_22px_34px_-18px_rgba(0,26,70,0.66)]">
-            <Image src={velouraPremium} alt="Veloura Salon OneLink Premium preview" quality={90} sizes="170px" className="h-auto w-full object-contain" />
-          </div>
-          <div className="absolute bottom-0 left-0 z-10 w-[88%] -rotate-[5deg] overflow-hidden rounded-[20px] border-[4px] border-white bg-white shadow-[0_26px_40px_-18px_rgba(0,26,70,0.76)]">
-            <Image src={burgerBazaarPremium} alt="Burger Bazaar OneLink Premium preview" quality={92} sizes="210px" className="h-auto w-full object-contain" />
+        <div className="relative mx-auto flex h-[225px] w-full max-w-[200px] items-end justify-center self-end lg:order-1 lg:h-[260px]">
+          <div className="pointer-events-none absolute bottom-1 h-24 w-44 rounded-full bg-[#00A9FF]/22 blur-3xl" />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={mockup.alt}
+              initial={{ opacity: 0, x: 24, scale: 0.94, rotate: 4 }}
+              animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
+              exit={{ opacity: 0, x: -24, scale: 0.94, rotate: -4 }}
+              transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 flex items-end justify-center"
+            >
+              <Image src={mockup.src} alt={mockup.alt} quality={92} sizes="200px" className="h-full w-auto object-contain object-bottom drop-shadow-[0_24px_30px_rgba(0,0,0,0.42)]" />
+            </motion.div>
+          </AnimatePresence>
+          <div className="absolute bottom-1 z-20 flex items-center gap-1.5 rounded-full border border-white/16 bg-[#020b14]/55 px-2.5 py-1.5 backdrop-blur">
+            {premiumMockups.map((item, index) => <span key={item.alt} className={index === activeMockup ? "h-1.5 w-4 rounded-full bg-[#00A9FF]" : "h-1.5 w-1.5 rounded-full bg-white/45"} />)}
           </div>
         </div>
 
-        <div className="rounded-[18px] border border-white/70 bg-white p-5 text-[#111821] shadow-[0_22px_48px_-28px_rgba(0,0,0,0.55)] sm:p-6 lg:order-3">
+        <div className="rounded-[18px] border border-white/70 bg-white p-4 text-[#111821] shadow-[0_22px_48px_-28px_rgba(0,0,0,0.55)] sm:p-5 lg:order-3">
           <p className="text-[10px] font-extrabold uppercase tracking-[0.13em] text-[#087cbc]">Premium OneLink</p>
           <p className="mt-2.5 text-[11px] font-bold uppercase tracking-[0.09em] text-[#718096]">Starting from</p>
           <div className="mt-1.5 flex items-center gap-2.5">
@@ -1149,8 +1175,8 @@ function EnterprisePanel({ href, plan }: { href: string; plan: Plan }) {
             <span className="rounded-full bg-[#edf8ff] px-2 py-1 text-[9px] font-extrabold uppercase tracking-[0.06em] text-[#087cbc]">+ GST</span>
           </div>
           <p className="mt-3 text-[12px] font-medium leading-relaxed text-[#64748b]">Custom-built around your business requirements.</p>
-          <a href={href} className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[12px] bg-[#00A9FF] px-4 text-[15px] font-bold text-white shadow-[0_14px_28px_-15px_rgba(0,126,191,0.58)] transition hover:-translate-y-0.5 hover:bg-[#008fd9]">
-            Discuss Your Requirements
+          <a href={href} className="mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[12px] bg-[linear-gradient(135deg,#00A9FF,#0077FF)] px-4 text-[14px] font-bold text-white shadow-[0_14px_28px_-15px_rgba(0,126,191,0.58)] transition hover:-translate-y-0.5 hover:brightness-110">
+            Discuss Now
             <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 8h9" /><path d="M8.5 3l4.5 5-4.5 5" /></svg>
           </a>
         </div>

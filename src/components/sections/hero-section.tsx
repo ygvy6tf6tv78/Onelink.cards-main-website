@@ -80,6 +80,24 @@ export function HeroSection() {
             <ActionLink href="#work" variant="secondary" withArrow className="col-span-2 h-12 min-w-0 !rounded-[15px] border border-[#d9e2ea] !bg-white px-3 text-[14px] font-extrabold !text-[#064083] shadow-[0_12px_28px_-24px_rgba(9,34,62,0.3)] hover:border-[#8fc4e8] hover:!bg-[#f8fcff] [&_svg]:h-4 [&_svg]:w-4">
               View Live Examples
             </ActionLink>
+            <div className="col-span-2 mt-3 w-full border-t border-[#d8e2ea] pt-5">
+              <p className="text-left text-[12px] font-extrabold leading-5 text-[#435267]">
+                Connect with the tools your customers already use.
+              </p>
+              <div className="mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex min-w-max items-center justify-start gap-5 pr-4">
+                  <div className="flex h-9 items-center justify-center">
+                    <Icon name="whatsapp" className="h-8 w-8 text-[#25D366]" />
+                    <span className="sr-only">WhatsApp</span>
+                  </div>
+                  {heroIntegrations.map((item) => (
+                    <div key={item.label} className="flex h-9 items-center justify-center">
+                      <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain`} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="mt-7 hidden w-full max-w-[470px] flex-row flex-nowrap items-stretch gap-3 sm:flex">
               <ActionLink
@@ -126,26 +144,6 @@ export function HeroSection() {
               </div>
             </div>
           </div>
-          </HeroEntrance>
-          <HeroEntrance delay={0.34} y={8} className="w-full sm:hidden">
-            <div className="mt-6 w-full border-t border-[#d8e2ea] pt-5">
-              <p className="text-left text-[12px] font-extrabold leading-5 text-[#435267]">
-                Connect with the tools your customers already use.
-              </p>
-              <div className="mt-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <div className="flex min-w-max items-center justify-start gap-5 pr-4">
-                  <div className="flex h-9 items-center justify-center">
-                    <Icon name="whatsapp" className="h-8 w-8 text-[#25D366]" />
-                    <span className="sr-only">WhatsApp</span>
-                  </div>
-                  {heroIntegrations.map((item) => (
-                    <div key={item.label} className="flex h-9 items-center justify-center">
-                      <img src={item.image} alt={item.label} className={`${item.imageClass} object-contain`} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </HeroEntrance>
         </div>
         <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} relative z-20 min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>

@@ -29,14 +29,30 @@ export default function PortfolioPage() {
                 priority
                 className="pointer-events-none absolute -right-8 -bottom-48 w-[280px] rotate-[-14deg] opacity-[0.08] blur-[1px] sm:-right-2 sm:-bottom-56 sm:w-[360px] lg:w-[400px]"
               />
-              <div className="pointer-events-none absolute bottom-[-178px] right-16 hidden h-[365px] w-[174px] rotate-[10deg] lg:block">
+              <div className="pointer-events-none absolute bottom-[-22px] right-10 hidden h-[250px] w-[390px] lg:block" aria-hidden="true">
                 <Image
                   src="/pricing-mockup-burger-bazaar.png"
                   alt=""
-                  fill
-                  sizes="174px"
-                  className="object-contain object-top drop-shadow-[0_24px_36px_rgba(0,9,24,0.48)]"
-                  aria-hidden="true"
+                  width={150}
+                  height={315}
+                  sizes="150px"
+                  className="absolute bottom-[-45px] left-4 w-[130px] -rotate-[12deg] opacity-65 drop-shadow-[0_20px_30px_rgba(0,9,24,0.38)]"
+                />
+                <Image
+                  src="/pricing-mockup-vastukar.png"
+                  alt=""
+                  width={150}
+                  height={315}
+                  sizes="150px"
+                  className="absolute bottom-[-38px] right-4 w-[132px] rotate-[13deg] opacity-65 drop-shadow-[0_20px_30px_rgba(0,9,24,0.38)]"
+                />
+                <Image
+                  src="/pricing-mockup-new-vision.png"
+                  alt=""
+                  width={180}
+                  height={378}
+                  sizes="180px"
+                  className="absolute bottom-[-78px] left-[108px] z-10 w-[168px] rotate-[4deg] drop-shadow-[0_28px_40px_rgba(0,9,24,0.52)]"
                 />
               </div>
               <div className="relative max-w-3xl text-left lg:pr-20">

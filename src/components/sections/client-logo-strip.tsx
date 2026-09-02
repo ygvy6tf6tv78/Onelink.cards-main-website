@@ -27,8 +27,8 @@ export function ClientLogoStrip() {
       const section = sectionRef.current;
       if (!section) return;
       const offset = Math.max(-180, Math.min(180, section.getBoundingClientRect().top - window.innerHeight * 0.5));
-      if (leftMockupRef.current) leftMockupRef.current.style.transform = `translate3d(0, ${offset * -0.16}px, 0) rotate(-13deg)`;
-      if (rightMockupRef.current) rightMockupRef.current.style.transform = `translate3d(0, ${offset * 0.12}px, 0) rotate(13deg)`;
+      if (leftMockupRef.current) leftMockupRef.current.style.transform = `translate3d(0, ${offset * -0.16}px, 0) rotate(13deg)`;
+      if (rightMockupRef.current) rightMockupRef.current.style.transform = `translate3d(0, ${offset * 0.12}px, 0) rotate(-13deg)`;
     };
     const requestUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(updateMockups);

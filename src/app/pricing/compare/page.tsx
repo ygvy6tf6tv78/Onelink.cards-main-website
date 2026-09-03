@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Compare OneLink Plans",
   description: "Compare Essential, Signature and Elite OneLink features.",
-};
+  path: "/pricing/compare",
+});
 
 const rows = [
   ["Premium Custom OneLink", "✓", "✓", "✓"],

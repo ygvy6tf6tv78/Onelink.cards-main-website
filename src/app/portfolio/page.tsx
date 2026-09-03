@@ -4,12 +4,13 @@ import { Suspense } from "react";
 import { portfolioItems } from "@/content/portfolio";
 import { PortfolioBrowser, PortfolioCategoryPicker } from "@/components/portfolio/portfolio-browser";
 import { Reveal } from "@/components/ui/reveal";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Portfolio — OneLink",
-  description: "Real OneLink pages live for restaurants, consultants, retail, and more.",
-  alternates: { canonical: "/portfolio" },
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Portfolio — Smart Business Page Examples",
+  description: "Explore real OneLink smart business pages for restaurants, clinics, architects, consultants, retail brands and more.",
+  path: "/portfolio",
+});
 
 export default function PortfolioPage() {
   return (

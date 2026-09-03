@@ -25,6 +25,24 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [{ type: "host", value: "onelink.cards" }],
+        destination: "https://www.onelink.cards/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "getonelink.in" }],
+        destination: "https://www.onelink.cards/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.getonelink.in" }],
+        destination: "https://www.onelink.cards/:path*",
+        permanent: true,
+      },
+      {
         source: "/index.html",
         destination: "/",
         permanent: true,
@@ -41,9 +59,11 @@ const nextConfig: NextConfig = {
       { source: "/book/:path*", headers: noIndexHeaders },
       { source: "/payment/:path*", headers: noIndexHeaders },
       { source: "/demo/:path*", headers: noIndexHeaders },
+      { source: "/quickbill/:path*", headers: noIndexHeaders },
+      { source: "/--12/:path*", headers: noIndexHeaders },
       {
-        source: "/onelink-social-preview-final-2026.png",
-        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+        source: "/onelink-og-2026.jpg",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
     ];
   },

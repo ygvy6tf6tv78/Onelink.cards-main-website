@@ -7,45 +7,28 @@ import "@fontsource/manrope/700.css";
 import "@fontsource/manrope/800.css";
 import "./globals.css";
 import { LayoutWrapper } from "@/components/layout/layout-wrapper";
+import { METADATA_BASE, SOCIAL_PREVIEW } from "@/lib/seo";
 
-/** Canonical site URL (include www if that is what users share). */
-const defaultSiteOrigin = "https://www.onelink.cards";
-const siteOrigin = (
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-  process.env.NEXT_PUBLIC_APP_URL?.trim() ||
-  defaultSiteOrigin
-).replace(/\/$/, "");
-const metadataBase = new URL(`${siteOrigin}/`);
-/** Full homepage URL for og:url (match what people share). */
-const openGraphPageUrl = new URL("/", metadataBase).href;
-
-/** Absolute URL — WhatsApp / Telegram require a fully qualified og:image (PNG, not SVG). */
-const socialImageAbsolute = new URL("/onelink-social-preview-final-2026.png", metadataBase).href;
-
-const socialPreview = {
-  url: socialImageAbsolute,
-  width: 2748,
-  height: 2382,
-  alt: "Stop sharing links. Share OneLink.",
-  type: "image/png" as const,
-};
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
+const bingSiteVerification = process.env.BING_SITE_VERIFICATION?.trim();
 
 export const metadata: Metadata = {
   title: {
-    default: "OneLink Smart Business Page for Every Customer Action",
+    default: "OneLink — Smart Digital Business Card & Business Page",
     template: "%s | OneLink",
   },
   description:
-    "OneLink brings services, menus, products, bookings, payments, reviews, locations and customer enquiries into one professionally designed business page.",
+    "Create a premium OneLink digital business card and smart business page for services, products, bookings, payments, reviews, locations and customer enquiries.",
   applicationName: "OneLink",
-  authors: [{ name: "OneLink", url: metadataBase }],
+  authors: [{ name: "OneLink", url: METADATA_BASE }],
   creator: "OneLink",
   publisher: "OneLink",
+  category: "Business Services",
   manifest: "/manifest.webmanifest",
   formatDetection: {
     telephone: false,
   },
-  metadataBase,
+  metadataBase: METADATA_BASE,
   alternates: {
     canonical: "/",
   },
@@ -60,22 +43,28 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: {
+    ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+    ...(bingSiteVerification
+      ? { other: { "msvalidate.01": bingSiteVerification } }
+      : {}),
+  },
   openGraph: {
     title: "Stop sharing links. Share OneLink.",
     description:
       "One smart business page for services, bookings, payments, reviews, locations and every important customer action.",
-    url: openGraphPageUrl,
+    url: "/",
     siteName: "OneLink",
     locale: "en_IN",
     type: "website",
-    images: [socialPreview],
+    images: [SOCIAL_PREVIEW],
   },
   twitter: {
     card: "summary_large_image",
     title: "Stop sharing links. Share OneLink.",
     description:
       "One smart business page for services, bookings, payments, reviews, locations and every important customer action.",
-    images: [socialPreview],
+    images: [SOCIAL_PREVIEW],
   },
 };
 
@@ -97,7 +86,7 @@ export default function RootLayout({
       </body>
       <Script
         src="https://checkout.razorpay.com/v1/checkout.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </html>
   );

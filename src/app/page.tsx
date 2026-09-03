@@ -15,6 +15,7 @@ const structuredData = [
     name: "OneLink",
     alternateName: ["OneLink Cards", "OneLink Smart Business Page"],
     inLanguage: "en-IN",
+    publisher: { "@id": "https://www.onelink.cards/#organization" },
   },
   {
     "@context": "https://schema.org",
@@ -27,6 +28,7 @@ const structuredData = [
       "@type": "ImageObject",
       url: "https://www.onelink.cards/onelink-primary-logo.png",
     },
+    image: "https://www.onelink.cards/onelink-og-2026.jpg",
     description: "OneLink is a premium mobile-first smart business page and customer-action platform.",
     parentOrganization: {
       "@type": "Organization",
@@ -49,7 +51,12 @@ const structuredData = [
     "@id": "https://www.onelink.cards/#service",
     name: "OneLink Smart Business Page",
     serviceType: "Smart business page and customer-action platform",
+    category: ["Digital business card", "Smart business page", "Business services"],
     provider: { "@id": "https://www.onelink.cards/#organization" },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType: "Businesses, agencies and multi-location brands",
+    },
     areaServed: { "@type": "Country", name: "India" },
     description: "A professionally designed mobile-first business page for services, menus, products, bookings, payments, reviews, locations and customer enquiries.",
     url: "https://www.onelink.cards/",

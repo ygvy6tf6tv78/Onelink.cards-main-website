@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/book/", "/payment/", "/demo/"],
+      disallow: ["/api/", "/book/", "/payment/", "/demo/", "/quickbill/", "/--12/"],
     },
     sitemap: "https://www.onelink.cards/sitemap.xml",
     host: "https://www.onelink.cards",

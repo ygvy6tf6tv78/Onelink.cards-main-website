@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
 import { PricingSection } from "@/components/sections/pricing-section";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Pricing & Packages",
   description:
     "Compare OneLink Essential, Signature, Elite and Enterprise packages, choose Platform Care, and calculate your complete package price.",
-  alternates: {
-    canonical: "/pricing",
-  },
-  openGraph: {
-    title: "OneLink Pricing & Packages",
-    description:
-      "One-time design and development plus flexible Platform Care for your OneLink business page.",
-    url: "/pricing",
-  },
-};
+  path: "/pricing",
+});
 
 export default function PricingPage() {
   return (

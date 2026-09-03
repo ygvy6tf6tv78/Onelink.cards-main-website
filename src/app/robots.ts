@@ -5,9 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/book/", "/payment/", "/demo/", "/quickbill/", "/--12/"],
+      disallow: ["/api/", "/book/", "/payment/", "/demo/", "/quickbill/", "/--12/", "/internal-billing-app/"],
     },
-    sitemap: "https://www.onelink.cards/sitemap.xml",
-    host: "https://www.onelink.cards",
+    sitemap: "https://getonelink.in/sitemap.xml",
+    host: "https://getonelink.in",
   };
 }

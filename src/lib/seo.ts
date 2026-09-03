@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const SITE_NAME = "OneLink";
-export const SITE_ORIGIN = "https://www.onelink.cards";
+export const SITE_ORIGIN = "https://getonelink.in";
 export const METADATA_BASE = new URL(`${SITE_ORIGIN}/`);
 
 export const SOCIAL_PREVIEW = {

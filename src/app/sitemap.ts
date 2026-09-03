@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.onelink.cards";
+  const baseUrl = "https://getonelink.in";
 
   return [
     { url: `${baseUrl}/`, changeFrequency: "weekly", priority: 1 },

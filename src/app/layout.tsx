@@ -14,17 +14,25 @@ const bingSiteVerification = process.env.BING_SITE_VERIFICATION?.trim();
 
 export const metadata: Metadata = {
   title: {
-    default: "OneLink — Smart Digital Business Card & Business Page",
+    default: "OneLink | Smart Business Pages for Bookings, Payments & More",
     template: "%s | OneLink",
   },
   description:
-    "Create a premium OneLink digital business card and smart business page for services, products, bookings, payments, reviews, locations and customer enquiries.",
+    "OneLink brings your services, products, bookings, payments, reviews and customer actions together in one smart business page.",
   applicationName: "OneLink",
   authors: [{ name: "OneLink", url: METADATA_BASE }],
   creator: "OneLink",
   publisher: "OneLink",
   category: "Business Services",
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   formatDetection: {
     telephone: false,
   },
@@ -50,9 +58,9 @@ export const metadata: Metadata = {
       : {}),
   },
   openGraph: {
-    title: "Stop sharing links. Share OneLink.",
+    title: "OneLink | Smart Business Pages for Bookings, Payments & More",
     description:
-      "One smart business page for services, bookings, payments, reviews, locations and every important customer action.",
+      "OneLink brings your services, products, bookings, payments, reviews and customer actions together in one smart business page.",
     url: "/",
     siteName: "OneLink",
     locale: "en_IN",
@@ -61,9 +69,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stop sharing links. Share OneLink.",
+    title: "OneLink | Smart Business Pages for Bookings, Payments & More",
     description:
-      "One smart business page for services, bookings, payments, reviews, locations and every important customer action.",
+      "OneLink brings your services, products, bookings, payments, reviews and customer actions together in one smart business page.",
     images: [SOCIAL_PREVIEW],
   },
 };

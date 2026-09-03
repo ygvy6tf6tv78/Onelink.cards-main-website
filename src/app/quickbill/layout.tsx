@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false, noarchive: true },
@@ -8,6 +7,6 @@ export const metadata: Metadata = {
   twitter: null,
 };
 
-export default function BookLayout() {
-  notFound();
+export default function QuickBillLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

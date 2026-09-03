@@ -26,20 +26,8 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "onelink.cards" }],
-        destination: "https://www.onelink.cards/:path*",
-        permanent: true,
-      },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "getonelink.in" }],
-        destination: "https://www.onelink.cards/:path*",
-        permanent: true,
-      },
-      {
-        source: "/:path*",
         has: [{ type: "host", value: "www.getonelink.in" }],
-        destination: "https://www.onelink.cards/:path*",
+        destination: "https://getonelink.in/:path*",
         permanent: true,
       },
       {
@@ -61,6 +49,7 @@ const nextConfig: NextConfig = {
       { source: "/demo/:path*", headers: noIndexHeaders },
       { source: "/quickbill/:path*", headers: noIndexHeaders },
       { source: "/--12/:path*", headers: noIndexHeaders },
+      { source: "/internal-billing-app/:path*", headers: noIndexHeaders },
       {
         source: "/onelink-og-2026.jpg",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],

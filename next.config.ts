@@ -25,12 +25,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.getonelink.in" }],
-        destination: "https://getonelink.in/:path*",
-        permanent: true,
-      },
-      {
         source: "/index.html",
         destination: "/",
         permanent: true,

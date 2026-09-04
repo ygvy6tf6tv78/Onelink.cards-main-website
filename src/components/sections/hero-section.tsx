@@ -72,7 +72,7 @@ export function HeroSection() {
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.2} x={-22} y={10} className="order-4 sm:order-none">
-            <p className="mt-1 max-w-[52ch] text-pretty text-[15px] font-medium leading-[1.72] text-[#475970] sm:mt-6 sm:text-[16px] sm:leading-[1.7] sm:text-[#27364a]">
+            <p className="mt-3 max-w-[52ch] text-pretty text-[15px] font-medium leading-[1.72] text-[#475970] sm:mt-6 sm:text-[16px] sm:leading-[1.7] sm:text-[#27364a]">
               Bring your services, products, bookings, payments and reviews together in one seamless place. Make it easier for customers to connect and easier for you to manage.
             </p>
           </HeroEntrance>

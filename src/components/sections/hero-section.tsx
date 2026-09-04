@@ -14,7 +14,7 @@ const heroIntegrations = [
   { label: "Google Maps", image: "/integration-logos/google-maps.png", imageClass: "h-7 w-7" },
   { label: "Razorpay", image: "/payment-logos/razorpay.svg", imageClass: "h-[19px] w-auto max-w-[78px]" },
   { label: "UPI", image: "/payment-logos/upi.svg", imageClass: "h-[23px] w-auto max-w-[54px]" },
-  { label: "Instagram", image: "/integration-logos/instagram.png", imageClass: "h-7 w-7" },
+  { label: "Instagram", image: "/integration-logos/instagram.png", imageClass: "h-[26px] w-[26px] shrink-0" },
 ] as const;
 
 const trustedBusinesses = [
@@ -36,9 +36,9 @@ export function HeroSection() {
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_35%,rgba(0,169,255,0.1),transparent_42%),linear-gradient(180deg,#ffffff_0%,#f7fbff_72%,#ffffff_100%)] sm:hidden" aria-hidden />
       <div className="pointer-events-none absolute left-1/2 top-0 z-[1] h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0.06)_42%,transparent_72%)] blur-2xl" aria-hidden />
-      <div className={`${styles.heroGrid} relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-6 px-4 pb-3 pt-[5.85rem] sm:px-6 sm:gap-7 sm:pb-5 sm:pt-36 md:gap-6 md:pb-4 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-6 lg:pt-[160px]`}>
-        <div className="flex min-w-0 flex-col items-start justify-center text-left">
-          <HeroEntrance delay={0.03} x={-18} y={8}>
+      <div className={`${styles.heroGrid} relative z-10 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-0 px-4 pb-3 pt-[5.85rem] sm:gap-7 sm:px-6 sm:pb-5 sm:pt-36 md:gap-6 md:pb-4 md:pt-28 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8 lg:pb-6 lg:pt-[160px]`}>
+        <div className="contents min-w-0 text-left sm:flex sm:flex-col sm:items-start sm:justify-center">
+          <HeroEntrance delay={0.03} x={-18} y={8} className="order-1 sm:order-none">
             <div className="mt-2 flex items-center gap-3 sm:mt-4">
               <div className="flex -space-x-2" aria-label="Featured OneLink businesses">
                 {trustedBusinesses.map((business) => (
@@ -57,19 +57,19 @@ export function HeroSection() {
               </div>
             </div>
           </HeroEntrance>
-          <HeroEntrance delay={0.12} x={-24} y={10}>
+          <HeroEntrance delay={0.12} x={-24} y={10} className="order-2 sm:order-none">
             <h1 className="font-display mt-4 max-w-none text-[clamp(35px,10.25vw,40px)] font-[720] leading-[1.08] tracking-[-0.055em] sm:mt-7 sm:text-[50px] md:text-[48px] lg:text-[52px] xl:text-[60px]">
               <span className="block whitespace-nowrap text-[#111827] lg:hidden">Stop sharing links.</span>
               <span className="hidden whitespace-nowrap text-[#111827] lg:block">Stop sharing links.</span>
               <span className="mt-1 block whitespace-nowrap text-[#00A9FF] [text-shadow:0_3px_0_rgba(255,255,255,0.72),0_10px_24px_rgba(0,105,190,0.2)] lg:text-white lg:[text-shadow:0_3px_0_rgba(61,91,121,0.34),0_9px_20px_rgba(0,48,105,0.34),0_18px_38px_rgba(0,55,120,0.22)]">Share OneLink.</span>
             </h1>
           </HeroEntrance>
-          <HeroEntrance delay={0.2} x={-22} y={10}>
+          <HeroEntrance delay={0.2} x={-22} y={10} className="order-4 sm:order-none">
             <p className="mt-4 max-w-[52ch] text-pretty text-[15px] font-medium leading-[1.72] text-[#475970] sm:mt-6 sm:text-[16px] sm:leading-[1.7] sm:text-[#27364a]">
               Bring your services, products, bookings, payments and reviews together in one seamless place. Make it easier for customers to connect and easier for you to manage.
             </p>
           </HeroEntrance>
-          <HeroEntrance delay={0.29} x={-20} y={10} className="min-w-0 w-full">
+          <HeroEntrance delay={0.29} x={-20} y={10} className="order-5 min-w-0 w-full sm:order-none">
           <div className="mt-5 grid w-full grid-cols-2 gap-2.5 sm:hidden">
             <ActionLink href="#pricing" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,135,225,0.7)] [&_svg]:h-4 [&_svg]:w-4">
               Get Your OneLink
@@ -124,7 +124,7 @@ export function HeroSection() {
             </ActionLink>
           </div>
           </HeroEntrance>
-          <HeroEntrance delay={0.38} x={-16} y={8} className="hidden sm:block">
+          <HeroEntrance delay={0.38} x={-16} y={8} className="order-6 hidden sm:order-none sm:block">
           <div className="mt-5 w-full max-w-xl pt-2">
             <p className="text-left text-[11px] font-bold leading-5 text-[#435267] sm:text-[12px]">
               Connect with the tools your customers already use.
@@ -153,7 +153,7 @@ export function HeroSection() {
           </div>
           </HeroEntrance>
         </div>
-        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} relative z-20 min-w-0 overflow-visible pb-2 pt-2 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
+        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} order-3 relative z-20 min-w-0 overflow-visible pb-0 pt-0 sm:order-none sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">

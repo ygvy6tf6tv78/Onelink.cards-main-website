@@ -44,23 +44,41 @@ export function HeroMockupShowcase() {
         <div className="relative flex min-h-[392px] justify-center pb-1 pt-3 sm:min-h-[520px] sm:items-center sm:pb-2 sm:pt-6 lg:min-h-[430px] lg:pb-2 lg:pt-7">
           <div className="pointer-events-none absolute -inset-x-5 top-[58px] z-[3] h-[300px] sm:inset-x-0 sm:top-[64px] sm:h-[330px] lg:top-[48px]" aria-hidden="true">
             <motion.div
-              key={`previous-${previousSlide.id}`}
-              initial={{ opacity: 0, x: 64, rotate: 0, scale: 0.84 }}
-              animate={{ opacity: 0.72, x: 0, rotate: -8, scale: 0.9, y: [0, -4, 0] }}
-              transition={{ opacity: { duration: 0.55 }, x: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }, rotate: { duration: 0.7 }, scale: { duration: 0.7 }, y: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" } }}
-              className="absolute -left-[3%] top-12 w-[108px] origin-bottom-right opacity-55 sm:left-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:left-[1%] lg:w-[148px] xl:left-[4%]"
+              animate={{ rotate: [-8, -6.8, -8], y: [0, -4, 0] }}
+              transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              className="absolute -left-[3%] top-12 w-[108px] origin-bottom-right transform-gpu opacity-55 [backface-visibility:hidden] [will-change:transform] sm:left-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:left-[1%] lg:w-[148px] xl:left-[4%]"
             >
-              <Image src={previousSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain drop-shadow-[0_24px_40px_rgba(12,45,70,0.24)]" />
+              <AnimatePresence initial={false} mode="sync">
+                <motion.div
+                  key={previousSlide.id}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 0.72, scale: 0.9 }}
+                  exit={{ opacity: 0, scale: 0.94, position: "absolute", inset: 0 }}
+                  transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                  className="transform-gpu [backface-visibility:hidden]"
+                >
+                  <Image src={previousSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain sm:drop-shadow-[0_24px_40px_rgba(12,45,70,0.24)]" />
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
 
             <motion.div
-              key={`next-${nextSlide.id}`}
-              initial={{ opacity: 0, x: -64, rotate: 0, scale: 0.84 }}
-              animate={{ opacity: 0.72, x: 0, rotate: 8, scale: 0.9, y: [0, -5, 0] }}
-              transition={{ opacity: { duration: 0.55 }, x: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }, rotate: { duration: 0.7 }, scale: { duration: 0.7 }, y: { duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" } }}
-              className="absolute -right-[3%] top-12 w-[108px] origin-bottom-left opacity-55 sm:right-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:right-[1%] lg:w-[148px] xl:right-[4%]"
+              animate={{ rotate: [8, 6.8, 8], y: [0, -5, 0] }}
+              transition={{ duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              className="absolute -right-[3%] top-12 w-[108px] origin-bottom-left transform-gpu opacity-55 [backface-visibility:hidden] [will-change:transform] sm:right-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:right-[1%] lg:w-[148px] xl:right-[4%]"
             >
-              <Image src={nextSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain drop-shadow-[0_24px_40px_rgba(12,45,70,0.24)]" />
+              <AnimatePresence initial={false} mode="sync">
+                <motion.div
+                  key={nextSlide.id}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 0.72, scale: 0.9 }}
+                  exit={{ opacity: 0, scale: 0.94, position: "absolute", inset: 0 }}
+                  transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                  className="transform-gpu [backface-visibility:hidden]"
+                >
+                  <Image src={nextSlide.src} alt="" sizes="296px" quality={85} loading="eager" className="h-auto w-full object-contain sm:drop-shadow-[0_24px_40px_rgba(12,45,70,0.24)]" />
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
 
             <div className="absolute inset-x-[18%] bottom-2 h-14 rounded-[50%] bg-[radial-gradient(ellipse,rgba(6,64,131,0.22)_0%,rgba(255,255,255,0.32)_45%,transparent_72%)] blur-lg" />
@@ -72,7 +90,7 @@ export function HeroMockupShowcase() {
                 <AnimatePresence mode="popLayout" initial={false}>
                     <motion.div
                       key={activeSlide.id}
-                      className="absolute inset-0"
+                      className="absolute inset-0 transform-gpu [backface-visibility:hidden] [will-change:transform,opacity]"
                       initial={{ opacity: 0, x: 70, scale: 0.92, rotateY: -18 }}
                       animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
                       exit={{ opacity: 0, x: -70, scale: 0.92, rotateY: 18 }}
@@ -92,7 +110,7 @@ export function HeroMockupShowcase() {
                           fetchPriority="high"
                           quality={92}
                           sizes="(max-width: 640px) 432px, (max-width: 1024px) 540px, 592px"
-                          className="origin-[center_top] object-contain object-top drop-shadow-[0_34px_74px_rgba(14,30,37,0.18)]"
+                          className="origin-[center_top] object-contain object-top sm:drop-shadow-[0_34px_74px_rgba(14,30,37,0.18)]"
                         />
                       </motion.div>
                     </motion.div>

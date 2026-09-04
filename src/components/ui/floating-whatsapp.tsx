@@ -34,15 +34,29 @@ export function FloatingWhatsApp() {
         ) : null}
       </AnimatePresence>
 
-      <button
+      <motion.span
+        aria-hidden="true"
+        animate={isOpen ? { opacity: 0, scale: 1 } : { opacity: [0.24, 0, 0.24], scale: [1, 1.3, 1] }}
+        transition={{ duration: 3.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        className="pointer-events-none absolute inset-0 rounded-full border border-[#00A9FF]/45"
+      />
+      <motion.button
         type="button"
         onClick={() => setIsOpen((value) => !value)}
         aria-expanded={isOpen}
         aria-label={isOpen ? "Close contact options" : "Open contact options"}
-        className="grid h-14 w-14 place-items-center rounded-full border-[3px] !border-white bg-[#00A9FF] text-white shadow-[0_16px_38px_-12px_rgba(0,169,255,0.72),0_0_0_1px_rgba(0,126,191,0.2)] transition-colors duration-200 hover:bg-[#008ed9] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#00A9FF]/25"
+        animate={isOpen ? { y: 0, rotate: 0 } : { y: [0, -4, 0], rotate: [0, 2, 0] }}
+        whileHover={{ scale: 1.06, y: -3 }}
+        whileTap={{ scale: 0.94 }}
+        transition={{
+          y: { duration: 3.2, repeat: isOpen ? 0 : Number.POSITIVE_INFINITY, ease: "easeInOut" },
+          rotate: { duration: 3.2, repeat: isOpen ? 0 : Number.POSITIVE_INFINITY, ease: "easeInOut" },
+          scale: { duration: 0.2, ease: "easeOut" },
+        }}
+        className="relative grid h-14 w-14 place-items-center rounded-full border-[3px] !border-white bg-[linear-gradient(145deg,#13b8ff_0%,#0097e7_58%,#007fc8_100%)] text-white shadow-[0_18px_42px_-13px_rgba(0,169,255,0.76),inset_0_1px_0_rgba(255,255,255,0.38),0_0_0_1px_rgba(0,126,191,0.18)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#00A9FF]/25"
       >
         <Icon name={isOpen ? "close" : "phone"} className="h-6 w-6" />
-      </button>
+      </motion.button>
     </div>
   );
 }

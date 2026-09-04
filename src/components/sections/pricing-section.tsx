@@ -148,16 +148,16 @@ export function PricingSection({
       id="pricing"
       className={cn(
         "relative scroll-mt-28 overflow-hidden bg-transparent px-5 sm:px-6 lg:px-8",
-        dedicatedPage ? "py-5 sm:py-6 lg:py-7" : "py-12 sm:py-14 lg:py-16",
+        dedicatedPage ? "pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pt-12" : "py-12 sm:py-14 lg:py-16",
       )}
     >
       <div className="pointer-events-none absolute -left-24 top-[26%] h-72 w-72 rounded-full bg-[#00A9FF]/[0.055] blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute -right-28 top-[52%] h-80 w-80 rounded-full bg-[#087cbc]/[0.05] blur-3xl" aria-hidden />
       <div className="relative mx-auto max-w-7xl">
-        <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-5 sm:mb-6" : "mb-10 sm:mb-12")}>
+        <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-8 sm:mb-10" : "mb-10 sm:mb-12")}>
           <Reveal x={-28} y={14} alwaysShow={staticReveal}>
-            <SectionBadge label="Pricing" className={cn("-mt-2", dedicatedPage && "md:hidden")} />
-            <h2 className={cn("section-title-gradient font-display font-bold leading-[1.08] tracking-[-0.045em]", dedicatedPage ? "mt-3 text-[28px] sm:text-[31px] md:mt-0 lg:text-[34px]" : "mt-4 text-[32px] sm:text-[36px] lg:text-[42px]")}>
+            <SectionBadge label="Pricing" className="-mt-2" />
+            <h2 className={cn("section-title-gradient font-display font-bold leading-[1.08] tracking-[-0.045em]", dedicatedPage ? "mt-4 text-[32px] sm:text-[40px] lg:text-[46px]" : "mt-4 text-[32px] sm:text-[36px] lg:text-[42px]")}>
               Choose the Right OneLink
             </h2>
             <p className={cn("font-semibold leading-relaxed tracking-[-0.015em] text-[#526173]", dedicatedPage ? "mt-2 text-[14px] sm:text-[15px] lg:text-[16px]" : "mt-3 text-[17px] sm:text-[19px]")}>
@@ -183,12 +183,13 @@ export function PricingSection({
           )}
         </div>
 
-        {false ? <PricingPackageBuilder key="disabled" /> : null}
+        {dedicatedPage ? <PricingPackageBuilder key={dedicatedSelectedPlanId} initialPlanId={dedicatedSelectedPlanId} /> : null}
 
         {dedicatedPage ? (
           <>
             <Reveal delay={0.16} y={14} alwaysShow={staticReveal}><QuickBillPricingPromo /></Reveal>
             <Reveal delay={0.18} y={14} alwaysShow={staticReveal}><QuickBillPackageBuilder /></Reveal>
+            <PricingTermsNotice className="mx-auto mt-6 max-w-6xl" />
           </>
         ) : null}
 
@@ -483,7 +484,7 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
 
   return (
     <div>
-      <div className="mx-auto mb-4 grid w-full max-w-[590px] grid-cols-3 rounded-[14px] border border-[#c9deef] bg-white/90 p-1 shadow-[0_16px_36px_-30px_rgba(9,34,62,0.5)] backdrop-blur sm:mb-5">
+      <div className="mx-auto mb-6 grid w-full max-w-[590px] grid-cols-3 gap-1 rounded-[20px] border border-[#d5e5f1] bg-white/90 p-1.5 shadow-[0_12px_32px_-24px_rgba(9,34,62,0.35)] sm:mb-7">
         {plans.map((plan) => {
           const isSelected = selectedPlanId === plan.id;
           return (
@@ -532,7 +533,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
 
   return (
     <article className={cn(
-      "relative w-full overflow-hidden rounded-[20px] border p-3.5 shadow-[0_24px_60px_-44px_rgba(9,34,62,0.28)] sm:p-4",
+      "relative w-full overflow-hidden rounded-[26px] border p-5 shadow-[0_24px_60px_-44px_rgba(9,34,62,0.28)] sm:p-7 lg:p-8",
       isSignature
         ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E_0%,#064083_52%,#0077FF_100%)] text-white shadow-[0_34px_82px_-45px_rgba(0,67,155,0.82)]"
         : plan.id === "essential"
@@ -553,7 +554,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
         <div className={cn("mt-3 rounded-[12px] border px-3 py-3", isSignature ? "border-white/20 bg-white/10" : "border-[#d4e4ef] bg-white/75")}><p className={cn("text-[10px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>Recommended for</p><p className={cn("mt-1 text-[14px] font-semibold leading-relaxed", isSignature ? "text-white/88" : "text-[#526173]")}>{planCopy.recommended}</p></div>
       </header>
 
-      <div className="mt-4 grid gap-3 md:grid-cols-[0.82fr_1.22fr_1.16fr] md:items-stretch md:gap-3">
+      <div className="mt-6 grid gap-4 lg:grid-cols-[0.82fr_1.22fr_1.16fr] lg:items-stretch">
         <section className={cn("rounded-[16px] border p-3.5 sm:p-4", isSignature ? "border-white/25 bg-white/[0.1]" : "border-[#a9cee8] bg-[#f4faff] shadow-[0_16px_34px_-26px_rgba(9,34,62,0.42)]")}>
           <p className={cn("text-[10px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>One-Time Setup</p>
           <div className="mt-3 flex flex-wrap items-end gap-2.5">

@@ -78,7 +78,7 @@ export function HeroSection() {
           </HeroEntrance>
           <HeroEntrance delay={0.29} x={-20} y={10} className="order-5 min-w-0 w-full sm:order-none">
           <div className="mt-5 grid w-full grid-cols-2 gap-2.5 sm:hidden">
-            <ActionLink href="#pricing" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,135,225,0.7)] [&_svg]:h-4 [&_svg]:w-4">
+            <ActionLink href="/pricing" variant="blue" withArrow className="h-12 min-w-0 !rounded-[15px] bg-[linear-gradient(135deg,#00A9FF_0%,#0077FF_100%)] px-3 text-[13px] font-bold shadow-[0_16px_30px_-18px_rgba(0,135,225,0.7)] [&_svg]:h-4 [&_svg]:w-4">
               Get Your OneLink
             </ActionLink>
             <ActionLink href={whatsappHref} variant="whatsapp" className="h-12 min-w-0 !rounded-[15px] px-3 text-[13px] font-bold shadow-[0_16px_30px_-20px_rgba(37,211,102,0.45)]">
@@ -121,7 +121,7 @@ export function HeroSection() {
                 See OneLink in Action
               </ActionLink>
             <ActionLink
-              href="#pricing"
+              href="/pricing"
               variant="secondary"
               withArrow
               className="h-12 min-w-0 flex-1 !rounded-[15px] border-2 border-[#168fd4] !bg-white/92 px-4 text-[13px] font-extrabold !text-[#064083] shadow-[0_16px_34px_-20px_rgba(0,70,140,0.48)] backdrop-blur-md hover:border-[#087bc1] hover:!bg-white [&_svg]:h-4 [&_svg]:w-4"

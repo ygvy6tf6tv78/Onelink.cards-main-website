@@ -44,7 +44,7 @@ export function ClientLogoStrip() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-transparent px-4 pb-8 pt-12 sm:px-6 sm:pb-10 sm:pt-14 lg:px-8 lg:pb-12 lg:pt-16" aria-labelledby="client-trust-title">
+    <section ref={sectionRef} className="relative overflow-x-clip overflow-y-visible bg-transparent px-4 pb-8 pt-5 sm:px-6 sm:pb-10 sm:pt-8 lg:px-8 lg:pb-12 lg:pt-10" aria-labelledby="client-trust-title">
       <div ref={leftMockupRef} className="pointer-events-none absolute -left-[104px] top-10 z-[1] hidden w-[205px] origin-center opacity-[0.38] will-change-transform lg:block">
         <Image src={burgerBazaarMockup} alt="" className="h-auto w-full object-contain drop-shadow-[0_26px_48px_rgba(5,48,83,0.2)]" sizes="205px" aria-hidden="true" />
       </div>

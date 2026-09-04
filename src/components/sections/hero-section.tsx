@@ -17,6 +17,13 @@ const heroIntegrations = [
   { label: "Instagram", image: "/integration-logos/instagram.png", imageClass: "h-[26px] w-[26px] shrink-0" },
 ] as const;
 
+const mobileHeroIntegrations = [
+  heroIntegrations[0],
+  heroIntegrations[1],
+  heroIntegrations[4],
+  heroIntegrations[3],
+] as const;
+
 const trustedBusinesses = [
   { name: "Burger Bazaar", id: "burger-bazaar" },
   { name: "Vastukar Architects", id: "vastukar" },
@@ -65,7 +72,7 @@ export function HeroSection() {
             </h1>
           </HeroEntrance>
           <HeroEntrance delay={0.2} x={-22} y={10} className="order-4 sm:order-none">
-            <p className="mt-4 max-w-[52ch] text-pretty text-[15px] font-medium leading-[1.72] text-[#475970] sm:mt-6 sm:text-[16px] sm:leading-[1.7] sm:text-[#27364a]">
+            <p className="mt-1 max-w-[52ch] text-pretty text-[15px] font-medium leading-[1.72] text-[#475970] sm:mt-6 sm:text-[16px] sm:leading-[1.7] sm:text-[#27364a]">
               Bring your services, products, bookings, payments and reviews together in one seamless place. Make it easier for customers to connect and easier for you to manage.
             </p>
           </HeroEntrance>
@@ -91,10 +98,9 @@ export function HeroSection() {
                     <Icon name="whatsapp" className="h-8 w-8 text-[#25D366]" />
                     <span className="sr-only">WhatsApp</span>
                   </div>
-                  {heroIntegrations.map((item) => item.label === "Instagram" ? (
-                    <a key={item.label} href={siteConfig.social.instagram} target="_blank" rel="noreferrer" className="flex h-9 items-center justify-center gap-1.5 rounded-full pr-2 text-[11px] font-extrabold text-[#d62976]">
-                      <img src={item.image} alt="" className={`${item.imageClass} object-contain`} />
-                      Follow us
+                  {mobileHeroIntegrations.map((item) => item.label === "Instagram" ? (
+                    <a key={item.label} href={siteConfig.social.instagram} target="_blank" rel="noreferrer" aria-label="Follow OneLink on Instagram" className="flex h-9 items-center justify-center">
+                      <img src={item.image} alt="" className="h-7 w-7 object-contain" />
                     </a>
                   ) : (
                     <div key={item.label} className="flex h-9 items-center justify-center">
@@ -153,7 +159,7 @@ export function HeroSection() {
           </div>
           </HeroEntrance>
         </div>
-        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} order-3 relative z-20 mt-14 min-w-0 overflow-visible pb-0 pt-0 sm:order-none sm:mt-0 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:pt-1`}>
+        <HeroEntrance delay={0.14} x={28} y={16} className={`${styles.heroVisual} order-3 relative z-20 mt-14 min-w-0 overflow-visible pb-0 pt-0 sm:order-none sm:mt-0 sm:pb-0 sm:pt-0 md:mx-auto md:w-[80%] lg:mx-0 lg:w-auto lg:translate-x-6 lg:pt-1 xl:translate-x-8`}>
           <div className="absolute -z-10 left-0 top-8 h-[220px] w-[220px] rounded-full bg-[var(--accent-glow)] blur-[78px] pointer-events-none sm:-left-6 sm:top-6 sm:h-[320px] sm:w-[320px] sm:blur-[90px]" />
           <div className="absolute -z-10 right-0 bottom-8 h-[190px] w-[190px] rounded-full bg-[rgba(11,126,200,0.1)] blur-[60px] pointer-events-none sm:-right-6 sm:bottom-6 sm:h-[250px] sm:w-[250px] sm:blur-[70px]" />
           <div className="relative">

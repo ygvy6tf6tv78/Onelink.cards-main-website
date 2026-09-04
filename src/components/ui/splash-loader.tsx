@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Wordmark } from "@/components/ui/brand-mark";
 
-export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
+export function SplashLoader({
+  onComplete,
+  onFinished,
+}: {
+  onComplete?: () => void;
+  onFinished?: () => void;
+}) {
   const [isVisible, setIsVisible] = useState(true);
   const [isFlying, setIsFlying] = useState(false);
   const [navOffset, setNavOffset] = useState({ x: 0, y: 0 });
@@ -23,12 +29,12 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
 
     calculateTarget();
     window.addEventListener("resize", calculateTarget);
-    const flyTimer = window.setTimeout(() => setIsFlying(true), 820);
-    const revealTimer = window.setTimeout(() => onComplete?.(), 1820);
+    const flyTimer = window.setTimeout(() => setIsFlying(true), 520);
+    const revealTimer = window.setTimeout(() => onComplete?.(), 1400);
     const closeTimer = window.setTimeout(() => {
       setIsVisible(false);
       document.body.style.overflow = "unset";
-    }, 2120);
+    }, 1580);
 
     return () => {
       window.clearTimeout(flyTimer);
@@ -40,11 +46,11 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
   }, [onComplete]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={onFinished}>
       {isVisible && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } }}
+          exit={{ opacity: 0, transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] } }}
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-white"
         >
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00A9FF]/[0.075] blur-[90px]" />
@@ -55,8 +61,8 @@ export function SplashLoader({ onComplete }: { onComplete?: () => void }) {
                 ? { opacity: 1, scale: 0.48, x: navOffset.x, y: navOffset.y }
                 : { opacity: 1, scale: 1, x: 0, y: 0 }}
               transition={isFlying
-                ? { duration: 0.98, ease: [0.16, 1, 0.3, 1] }
-                : { duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+                ? { duration: 0.82, ease: [0.16, 1, 0.3, 1] }
+                : { duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
               className="relative flex flex-col items-center justify-center"
             >
               <div className="relative h-[52px] w-[220px] sm:h-[62px] sm:w-[260px]">

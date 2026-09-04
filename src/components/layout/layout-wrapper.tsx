@@ -17,7 +17,9 @@ interface LayoutWrapperProps {
 export function LayoutWrapper({ children }: LayoutWrapperProps) {
   const pathname = usePathname();
   const [splashComplete, setSplashComplete] = useState(pathname !== "/");
+  const [splashHasPlayed, setSplashHasPlayed] = useState(pathname !== "/");
   const handleSplashComplete = useCallback(() => setSplashComplete(true), []);
+  const handleSplashFinished = useCallback(() => setSplashHasPlayed(true), []);
 
   // Hide main navbar and footer on booking, payment, and legal routes
   const isExcluded = 
@@ -44,7 +46,9 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
 
   return (
     <SplashCompleteProvider value={splashComplete}>
-      {pathname === "/" ? <SplashLoader onComplete={handleSplashComplete} /> : null}
+      {pathname === "/" && !splashHasPlayed ? (
+        <SplashLoader onComplete={handleSplashComplete} onFinished={handleSplashFinished} />
+      ) : null}
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={pathname} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }} className="flex-grow">

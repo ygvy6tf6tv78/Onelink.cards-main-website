@@ -36,7 +36,7 @@ export function HeroMockupShowcase() {
   const nextSlide = slides[(activeIndex + 1) % slides.length];
 
   return (
-    <div className="relative z-20 isolate mx-auto -mt-8 max-w-[610px] py-0 sm:-mt-10 sm:py-1 lg:-mt-7 lg:py-0 max-[639px]:pb-2">
+    <div className="relative z-20 isolate mx-auto -mt-8 max-w-[610px] py-0 sm:-mt-10 sm:py-1 lg:-mt-7 lg:py-0 max-[639px]:pb-5">
       <div className="absolute inset-x-14 top-12 h-36 rounded-full bg-[rgba(0,169,255,0.1)] blur-3xl sm:top-20 sm:h-52" />
       <div className="absolute left-4 top-10 h-20 w-20 rounded-full bg-white/70 blur-2xl sm:left-10 sm:top-12 sm:h-28 sm:w-28" />
 
@@ -102,7 +102,7 @@ export function HeroMockupShowcase() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto mt-1 flex w-fit items-center gap-1.5 rounded-full border border-slate-900/[0.08] bg-white/88 px-3 py-2 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.34)] backdrop-blur">
+        <div className="relative z-20 mx-auto mt-1 hidden w-fit items-center gap-1.5 rounded-full border border-slate-900/[0.08] bg-white/88 px-3 py-2 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.34)] backdrop-blur sm:flex">
           {slides.map((slide, index) => (
             <button
               key={slide.id}

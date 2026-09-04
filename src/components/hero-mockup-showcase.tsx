@@ -23,22 +23,13 @@ const slides: Array<{
 
 export function HeroMockupShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 639px)");
-    const updateViewport = () => setIsMobile(mediaQuery.matches);
-    updateViewport();
-    mediaQuery.addEventListener("change", updateViewport);
-    return () => mediaQuery.removeEventListener("change", updateViewport);
-  }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
-    }, isMobile ? 4200 : 3200);
+    }, 3200);
     return () => window.clearInterval(timer);
-  }, [isMobile]);
+  }, []);
 
   const activeSlide = slides[activeIndex];
   const previousSlide = slides[(activeIndex - 1 + slides.length) % slides.length];
@@ -53,9 +44,9 @@ export function HeroMockupShowcase() {
         <div className="relative flex min-h-[392px] justify-center pb-1 pt-3 sm:min-h-[520px] sm:items-center sm:pb-2 sm:pt-6 lg:min-h-[430px] lg:pb-2 lg:pt-7">
           <div className="pointer-events-none absolute -inset-x-5 top-[58px] z-[3] h-[300px] sm:inset-x-0 sm:top-[64px] sm:h-[330px] lg:top-[48px]" aria-hidden="true">
             <motion.div
-              animate={{ y: [0, -4, 0], rotate: isMobile ? 0 : [-8, -6.8, -8] }}
+              animate={{ rotate: [-8, -6.8, -8], y: [0, -4, 0] }}
               transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-              className="absolute left-[18%] top-12 w-[108px] origin-bottom-right transform-gpu opacity-55 [backface-visibility:hidden] [will-change:transform] sm:left-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:left-[1%] lg:w-[148px] xl:left-[4%]"
+              className="absolute -left-[3%] top-12 w-[108px] origin-bottom-right transform-gpu opacity-55 [backface-visibility:hidden] [will-change:transform] sm:left-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:left-[1%] lg:w-[148px] xl:left-[4%]"
             >
               <AnimatePresence initial={false} mode="sync">
                 <motion.div
@@ -72,9 +63,9 @@ export function HeroMockupShowcase() {
             </motion.div>
 
             <motion.div
-              animate={{ y: [0, -5, 0], rotate: isMobile ? 0 : [8, 6.8, 8] }}
+              animate={{ rotate: [8, 6.8, 8], y: [0, -5, 0] }}
               transition={{ duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-              className="absolute right-[18%] top-12 w-[108px] origin-bottom-left transform-gpu opacity-55 [backface-visibility:hidden] [will-change:transform] sm:right-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:right-[1%] lg:w-[148px] xl:right-[4%]"
+              className="absolute -right-[3%] top-12 w-[108px] origin-bottom-left transform-gpu opacity-55 [backface-visibility:hidden] [will-change:transform] sm:right-[3%] sm:top-6 sm:w-[124px] sm:opacity-100 lg:right-[1%] lg:w-[148px] xl:right-[4%]"
             >
               <AnimatePresence initial={false} mode="sync">
                 <motion.div
@@ -100,14 +91,10 @@ export function HeroMockupShowcase() {
                     <motion.div
                       key={activeSlide.id}
                       className="absolute inset-0 transform-gpu [backface-visibility:hidden] [will-change:transform,opacity]"
-                      initial={isMobile
-                        ? { opacity: 0, x: 0, scale: 0.86, rotateY: 0 }
-                        : { opacity: 0, x: 70, scale: 0.92, rotateY: -18 }}
+                      initial={{ opacity: 0, x: 70, scale: 0.92, rotateY: -18 }}
                       animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
-                      exit={isMobile
-                        ? { opacity: 0, x: 0, scale: 1.06, rotateY: 0 }
-                        : { opacity: 0, x: -70, scale: 0.92, rotateY: 18 }}
-                      transition={{ duration: isMobile ? 1.08 : 0.88, ease: [0.16, 1, 0.3, 1] }}
+                      exit={{ opacity: 0, x: -70, scale: 0.92, rotateY: 18 }}
+                      transition={{ duration: 0.88, ease: [0.16, 1, 0.3, 1] }}
                     >
                       <motion.div
                         animate={{ y: [0, -3, 0] }}

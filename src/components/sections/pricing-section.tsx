@@ -148,16 +148,16 @@ export function PricingSection({
       id="pricing"
       className={cn(
         "relative scroll-mt-28 overflow-hidden bg-transparent px-5 sm:px-6 lg:px-8",
-        dedicatedPage ? "pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pt-12" : "py-12 sm:py-14 lg:py-16",
+        dedicatedPage ? "pb-12 pt-3 sm:pb-16 sm:pt-4" : "py-12 sm:py-14 lg:py-16",
       )}
     >
       <div className="pointer-events-none absolute -left-24 top-[26%] h-72 w-72 rounded-full bg-[#00A9FF]/[0.055] blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute -right-28 top-[52%] h-80 w-80 rounded-full bg-[#087cbc]/[0.05] blur-3xl" aria-hidden />
       <div className="relative mx-auto max-w-7xl">
-        <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-8 sm:mb-10" : "mb-10 sm:mb-12")}>
+        <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-4 sm:mb-5" : "mb-10 sm:mb-12")}>
           <Reveal x={-28} y={14} alwaysShow={staticReveal}>
             <SectionBadge label="Pricing" className={cn("-mt-2", dedicatedPage && "border-[#b5d6ed] bg-white px-5 py-2 tracking-[0.18em] shadow-sm")} />
-            <h2 className={cn("section-title-gradient font-display font-bold leading-[1.08] tracking-[-0.045em]", dedicatedPage ? "mt-4 text-[32px] sm:text-[40px] lg:text-[46px]" : "mt-4 text-[32px] sm:text-[36px] lg:text-[42px]")}>
+            <h2 className={cn("section-title-gradient font-display font-bold leading-[1.08] tracking-[-0.045em]", dedicatedPage ? "mt-3 text-[28px] sm:text-[32px] lg:text-[36px]" : "mt-4 text-[32px] sm:text-[36px] lg:text-[42px]")}>
               Choose the Right OneLink
             </h2>
             <p className={cn("font-semibold leading-relaxed tracking-[-0.015em] text-[#526173]", dedicatedPage ? "mt-2 text-[14px] sm:text-[15px] lg:text-[16px]" : "mt-3 text-[17px] sm:text-[19px]")}>
@@ -525,7 +525,6 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
     signature: { title: "Convert More Customers", recommended: "Businesses that want enquiries, bookings, orders and customer leads.", features: ["Everything in Essential", "Admin Panel", "Self-manage images, services & pricing", "Appointment / Booking Requests", "Order / Takeaway Requests", "Enquiry & Lead Capture", "Customer contact data", "WhatsApp/manual booking management", "100 Personalized QR Visiting Cards", "QR Sticker Design Pack"] },
     elite: { title: "Automate Your Business", recommended: "Businesses that want bookings and customer operations to run automatically.", features: ["Everything in Signature", "Advanced Booking System", "Live Slot Availability", "Automatic Slot Blocking", "Auto Confirmations & Reminders", "Customer Database", "Booking / Order History", "Advanced Analytics", "Automation Workflows", "QuickBill Included", "100 Personalized QR Visiting Cards"] },
   }[plan.id as TopPlanId];
-  const mockupStack = pricingMockupStackOrder[plan.id as TopPlanId].map((id) => pricingMockups[id]);
   const selectedOption = plan.maintenanceOptions.find((option) => option.id === selectedCare) ?? plan.maintenanceOptions[0];
   const firstPayment = setupAmount + (selectedOption?.price ?? 0);
 
@@ -533,9 +532,9 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
 
   return (
     <article className={cn(
-      "relative w-full overflow-hidden rounded-[26px] border p-5 shadow-[0_24px_60px_-44px_rgba(9,34,62,0.28)] sm:p-7 lg:p-8",
+      "relative w-full overflow-hidden rounded-[24px] border p-4 shadow-[0_24px_60px_-44px_rgba(9,34,62,0.28)] sm:p-5",
       isSignature
-        ? "border-[#244866] bg-[radial-gradient(ellipse_at_100%_0%,#14558a_0%,transparent_52%),linear-gradient(145deg,#10283e_0%,#091b2e_100%)] text-white shadow-[0_28px_65px_-34px_rgba(9,34,62,0.55)]"
+        ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E_0%,#064083_52%,#0077FF_100%)] text-white shadow-[0_28px_65px_-34px_rgba(9,34,62,0.55)]"
         : plan.id === "essential"
           ? "border-[#d5e3ed] bg-[linear-gradient(145deg,#ffffff_0%,#f2f8fc_100%)] text-[#111821]"
           : "border-[#c8dbe9] bg-[linear-gradient(145deg,#ffffff_0%,#ecf4fb_100%)] text-[#111821]",
@@ -554,7 +553,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
         <div className={cn("mt-4 max-w-2xl border-l-2 pl-4", isSignature ? "border-[#79b9e8]/50" : "border-[#9fcce7]")}><p className={cn("text-[10px] font-bold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>Recommended for</p><p className={cn("mt-1 text-[14px] font-medium leading-relaxed", isSignature ? "text-white/80" : "text-[#526173]")}>{planCopy.recommended}</p></div>
       </header>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-[0.82fr_1.22fr_1.16fr] lg:items-stretch">
+      <div className="mt-4 grid gap-3 sm:grid-cols-[0.8fr_1.2fr] sm:items-stretch">
         <section className={cn("rounded-[16px] border p-3.5 sm:p-4", isSignature ? "border-white/25 bg-white/[0.1]" : "border-[#a9cee8] bg-[#f4faff] shadow-[0_16px_34px_-26px_rgba(9,34,62,0.42)]")}>
           <p className={cn("text-[10px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>One-Time Setup</p>
           <div className="mt-3 flex flex-wrap items-end gap-2.5">
@@ -602,29 +601,9 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
           </div>
         </section>
 
-        <aside className={cn("relative min-h-[250px] h-full overflow-hidden rounded-[17px] border md:min-h-[260px]", isSignature ? "border-white/25 bg-[radial-gradient(circle_at_50%_72%,rgba(0,169,255,0.34),transparent_62%),rgba(255,255,255,0.08)]" : "border-[#9fc8e5] bg-[radial-gradient(circle_at_50%_72%,rgba(0,169,255,0.24),transparent_62%),#e7f4fd]")}>
-          <div className="absolute inset-0 overflow-hidden">
-            {mockupStack.map((item, index) => (
-              <Image
-                key={item.src}
-                src={item.src}
-                alt={item.alt}
-                width={700}
-                height={1400}
-                className={cn(
-                  "absolute top-0 h-[235px] w-auto max-w-none object-contain object-top drop-shadow-[0_22px_24px_rgba(9,34,62,0.26)] transition-transform duration-500 sm:h-[250px] md:h-[260px]",
-                  index === 0 && "left-[8%] z-10 -rotate-[5deg] scale-[0.76] opacity-65",
-                  index === 1 && "right-[8%] z-20 rotate-[5deg] scale-[0.82] opacity-82",
-                  index === 2 && "left-1/2 z-30 -translate-x-1/2 scale-100",
-                )}
-                priority={isSignature && index === 2}
-              />
-            ))}
-          </div>
-          <div className={cn("pointer-events-none absolute inset-x-0 bottom-0 z-40 h-16 bg-gradient-to-t to-transparent", isSignature ? "from-[#09223E]" : "from-[#e7f4fd]")} />
-        </aside>
       </div>
-      <section className={cn("mt-4 rounded-[17px] border p-4 sm:p-5", isSignature ? "border-white/20 bg-white/[0.07]" : "border-[#d4e4ef] bg-white/75")}>
+      <details className={cn("group mt-3 rounded-[17px] border p-4", isSignature ? "border-white/20 bg-white/[0.07]" : "border-[#d4e4ef] bg-white/75")}>
+        <summary className="flex min-h-6 cursor-pointer list-none items-center justify-between text-[12px] font-bold [&::-webkit-details-marker]:hidden">What’s included <span aria-hidden="true" className="text-lg transition-transform group-open:rotate-45">+</span></summary>
         <p className={cn("text-[11px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>You Get</p>
         <ul className="mt-3 grid gap-2.5 text-[13px] font-semibold leading-relaxed sm:grid-cols-2">
           {planCopy.features.map((feature) => <li key={feature} className={cn("flex items-start gap-2", isSignature ? "text-white/85" : "text-[#526173]")}><span className={cn("mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full text-[9px]", isSignature ? "bg-white/15 text-[#bfe5ff]" : "bg-[#eaf6ff] text-[#087cbc]")}>✓</span>{feature}</li>)}
@@ -647,7 +626,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
             ) : null}
           </div>
         ) : null}
-      </section>
+      </details>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-current/10 pt-4">
         <Link href="/pricing/compare" className={cn("inline-flex min-h-10 items-center justify-center rounded-[11px] border px-4 text-[12px] font-extrabold transition hover:-translate-y-0.5", isSignature ? "border-white/50 bg-white text-[#064083]" : "border-[#9fc8e5] bg-white text-[#087cbc]")}>Compare all features <span className="ml-1.5" aria-hidden="true">→</span></Link>
         {plan.id === "elite" ? <span className={cn("text-[12px] font-extrabold", isSignature ? "text-[#ffdd79]" : "text-[#378a2e]")}>QuickBill included</span> : null}

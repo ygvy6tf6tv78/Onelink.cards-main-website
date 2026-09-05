@@ -501,7 +501,7 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
 
   return (
     <div>
-      <div className="mx-auto mb-6 grid w-full max-w-[720px] grid-cols-3 gap-2 rounded-[22px] border border-[#dbe7f0] bg-[#edf3f8]/80 p-2 sm:mb-8">
+      <div className="mx-auto mb-5 grid w-full max-w-[620px] grid-cols-3 gap-1 rounded-[16px] border border-[#dce6ee] bg-[#edf3f8] p-1 sm:mb-6">
         {plans.map((plan) => {
           const isSelected = selectedPlanId === plan.id;
           return (
@@ -512,10 +512,10 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
               aria-pressed={isSelected}
               aria-controls="selected-pricing-plan"
               className={cn(
-                "relative flex min-h-[62px] min-w-0 flex-col items-center justify-center gap-1 rounded-[16px] border px-1.5 py-3 text-[11px] font-bold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2 sm:min-h-[76px] sm:text-[14px]",
+                "relative flex min-h-11 min-w-0 items-center justify-center rounded-[12px] border px-2 py-2 text-[12px] font-semibold transition-[background-color,border-color,box-shadow,color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2 sm:min-h-12 sm:text-[14px]",
                 isSelected
-                  ? "border-[#b8d8ed] bg-white text-[#09223E] shadow-[0_6px_18px_-10px_rgba(9,34,62,0.3)]"
-                  : "border-transparent text-[#607084] hover:bg-white/70 hover:text-[#087cbc]",
+                  ? "border-[#bdddf0] bg-[linear-gradient(180deg,#ffffff,#edf8ff)] text-[#086aa5] shadow-[0_2px_6px_rgba(18,64,96,0.08)]"
+                  : "border-transparent bg-transparent text-[#607084] hover:border-[#d9e6ef] hover:bg-white/70 hover:text-[#087cbc]",
               )}
             >
               <span>{plan.name}</span>

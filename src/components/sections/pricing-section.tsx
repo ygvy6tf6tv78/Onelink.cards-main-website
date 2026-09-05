@@ -187,6 +187,23 @@ export function PricingSection({
 
         {dedicatedPage ? (
           <>
+            {enterprisePlan ? (
+              <section className="mx-auto mt-6 grid max-w-6xl gap-5 rounded-[24px] border border-[#2770a8] bg-[linear-gradient(125deg,#09223E,#064083_65%,#087cbc)] p-5 text-white sm:grid-cols-[minmax(0,1fr)_240px] sm:items-center sm:p-6">
+                <div className="min-w-0">
+                  <span className="inline-flex rounded-full border border-[#ead7a4]/40 bg-[#ead7a4]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.12em] text-[#f4dfad]">Premium Custom Build</span>
+                  <h3 className="mt-3 text-xl font-bold tracking-tight">OneLink Premium</h3>
+                  <p className="mt-1 text-sm text-white/80">Built for brands that need more.</p>
+                  <ul className="mt-3 grid gap-2 text-xs leading-relaxed text-white/85 md:grid-cols-2">
+                    {enterpriseHighlights.slice(0, 4).map((highlight) => <li key={highlight} className="flex gap-2"><Icon name="check" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#8bdcff]" />{highlight}</li>)}
+                  </ul>
+                </div>
+                <div className="rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-white/70">Starting from</p>
+                  <p className="mt-1 text-3xl font-bold tracking-tight">{formatCurrency(enterprisePlan.setupAmount)} <span className="text-xs font-semibold">+ GST</span></p>
+                  <a href={enterpriseHref} className="mt-3 flex min-h-11 items-center justify-center rounded-xl bg-white px-4 text-sm font-bold text-[#064083] transition hover:bg-[#eaf6ff]">Discuss Now →</a>
+                </div>
+              </section>
+            ) : null}
             <Reveal delay={0.16} y={14} alwaysShow={staticReveal}><QuickBillPricingPromo /></Reveal>
             <Reveal delay={0.18} y={14} alwaysShow={staticReveal}><QuickBillPackageBuilder /></Reveal>
             <PricingTermsNotice className="mx-auto mt-6 max-w-6xl" />
@@ -244,8 +261,8 @@ function QuickBillPricingPromo() {
     { label: "12 Months", price: "₹2,999", value: true },
   ];
   return (
-    <section className="relative mx-auto mt-8 max-w-6xl overflow-hidden rounded-[24px] border border-[#cfe0f5] bg-[linear-gradient(135deg,#f9fcff_0%,#eef6ff_62%,#f5fbf1_100%)] px-5 py-6 shadow-[0_25px_58px_-42px_rgba(19,61,130,.5)] sm:px-8 sm:py-8">
-      <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,1fr)_220px]">
+    <section className="relative mx-auto mt-6 max-w-6xl overflow-hidden rounded-[24px] border border-[#d4e4db] bg-[radial-gradient(ellipse_at_top_right,#e0f2e7,transparent_65%),linear-gradient(135deg,#ffffff,#f4f9f7)] px-5 py-5 shadow-[0_16px_42px_-32px_rgba(24,65,48,.3)] sm:px-6 sm:py-6">
+      <div className="grid items-center gap-5 md:grid-cols-[minmax(0,1fr)_150px]">
         <div>
           <div className="flex flex-wrap items-center gap-3"><p className="text-[10px] font-extrabold uppercase tracking-[.16em] text-[#378a2e]">Also from OneLink</p><span className="rounded-full border border-[#b8dfa9] bg-white/80 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[.08em] text-[#378a2e]">QuickBill</span></div>
           <h3 className="mt-2 text-2xl font-extrabold tracking-[-.045em] text-[#122d67] sm:text-3xl">Create bills. Share instantly. Track payments.</h3>
@@ -257,7 +274,7 @@ function QuickBillPricingPromo() {
             <p className="text-[10px] font-extrabold uppercase tracking-[.08em] text-[#526173]">{plan.label}</p><p className="mt-1 text-lg font-extrabold text-[#123d9d]">{plan.price}</p>
           </div>)}</div>
         </div>
-        <div className="relative mx-auto w-full max-w-[190px] lg:max-w-[210px]"><Image src="/quickbill-pricing-mockup.png" alt="QuickBill mobile demo" width={2764} height={5805} className="h-auto max-h-[390px] w-full object-contain object-top drop-shadow-[0_24px_26px_rgba(30,68,136,.24)]" /></div>
+        <div className="relative mx-auto w-full max-w-[125px] md:max-w-[150px]"><Image src="/quickbill-pricing-mockup.png" alt="QuickBill mobile demo" width={2764} height={5805} className="h-auto max-h-[300px] w-full object-contain object-top drop-shadow-[0_18px_22px_rgba(24,65,48,.18)]" /></div>
       </div>
     </section>
   );
@@ -608,8 +625,11 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
         </section>
 
       </div>
-      <details open className={cn("group mt-3 rounded-[17px] border p-4", isSignature ? "border-white/20 bg-white/[0.07]" : "border-[#d4e4ef] bg-white/75")}>
-        <summary className="flex min-h-6 cursor-pointer list-none items-center justify-between text-[12px] font-bold [&::-webkit-details-marker]:hidden">What’s included <span aria-hidden="true" className="text-lg transition-transform group-open:rotate-45">+</span></summary>
+      <section className={cn("mt-3 rounded-[17px] border p-4", isSignature ? "border-white/20 bg-white/[0.07]" : "border-[#d4e4ef] bg-white/75")}>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h4 className="text-[12px] font-bold">What’s included</h4>
+          <Link href="/pricing/compare" className={cn("inline-flex min-h-9 items-center rounded-lg border px-3 text-[11px] font-bold transition hover:-translate-y-0.5", isSignature ? "border-white/25 bg-white/10 text-white" : "border-[#c5dcea] bg-white text-[#087cbc]")}>Compare all features →</Link>
+        </div>
         <ul className="mt-3 grid gap-2.5 text-[13px] font-semibold leading-relaxed sm:grid-cols-2">
           {planCopy.features.map((feature) => <li key={feature} className={cn("flex items-start gap-2", isSignature ? "text-white/85" : "text-[#526173]")}><span className={cn("mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full text-[9px]", isSignature ? "bg-white/15 text-[#bfe5ff]" : "bg-[#eaf6ff] text-[#087cbc]")}>✓</span>{feature}</li>)}
         </ul>
@@ -631,11 +651,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
             ) : null}
           </div>
         ) : null}
-      </details>
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-current/10 pt-4">
-        <Link href="/pricing/compare" className={cn("inline-flex min-h-10 items-center justify-center rounded-[11px] border px-4 text-[12px] font-extrabold transition hover:-translate-y-0.5", isSignature ? "border-white/50 bg-white text-[#064083]" : "border-[#9fc8e5] bg-white text-[#087cbc]")}>Compare all features <span className="ml-1.5" aria-hidden="true">→</span></Link>
-        {plan.id === "elite" ? <span className={cn("text-[12px] font-extrabold", isSignature ? "text-[#ffdd79]" : "text-[#378a2e]")}>QuickBill included</span> : null}
-      </div>
+      </section>
     </article>
   );
 }
@@ -1037,7 +1053,7 @@ function QuickBillPackageBuilder() {
   ];
 
   return (
-    <section className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-[24px] border border-[#cfe0f5] bg-white shadow-[0_24px_58px_-42px_rgba(19,61,130,.5)]">
+    <section className="mx-auto mt-3 max-w-6xl overflow-hidden rounded-[20px] border border-[#d4e4db] bg-white shadow-[0_12px_32px_-26px_rgba(24,65,48,.3)]">
       <button type="button" onClick={() => setIsOpen((open) => !open)} aria-expanded={isOpen} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition hover:bg-[#f7fbff] sm:px-8">
         <span><span className="block text-[10px] font-extrabold uppercase tracking-[.15em] text-[#378a2e]">QuickBill</span><strong className="mt-1 block text-xl font-extrabold tracking-[-.03em] text-[#09223E] sm:text-2xl">Build Your QuickBill Package</strong><span className="mt-1 block text-xs font-semibold text-[#718096]">Choose a billing period and see your complete total instantly.</span></span>
         <span className={cn("grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#b8dfa9] bg-[#f5fff2] text-xl font-bold text-[#378a2e] transition", isOpen && "rotate-45")}>+</span>

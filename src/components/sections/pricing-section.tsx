@@ -519,10 +519,6 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
               )}
             >
               <span>{plan.name}</span>
-              <span className={cn("flex min-w-0 flex-col items-center gap-0.5 text-[10px] font-medium leading-snug tabular-nums sm:text-[12px]", isSelected ? "text-[#087cbc]" : "text-[#718096]")}>
-                <span className="text-[9px] sm:text-[10px]">One-time setup cost</span>
-                <span className="font-bold">{formatPricingCurrency(plan.setupAmount)} <span className="text-[9px] font-medium">+ GST</span></span>
-              </span>
             </button>
           );
         })}

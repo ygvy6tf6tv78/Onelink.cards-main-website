@@ -156,7 +156,7 @@ export function PricingSection({
       <div className="relative mx-auto max-w-7xl">
         <div className={cn("mx-auto max-w-3xl text-center", dedicatedPage ? "mb-8 sm:mb-10" : "mb-10 sm:mb-12")}>
           <Reveal x={-28} y={14} alwaysShow={staticReveal}>
-            <SectionBadge label="Pricing" className="-mt-2" />
+            <SectionBadge label="Pricing" className={cn("-mt-2", dedicatedPage && "border-[#b5d6ed] bg-white px-5 py-2 tracking-[0.18em] shadow-sm")} />
             <h2 className={cn("section-title-gradient font-display font-bold leading-[1.08] tracking-[-0.045em]", dedicatedPage ? "mt-4 text-[32px] sm:text-[40px] lg:text-[46px]" : "mt-4 text-[32px] sm:text-[36px] lg:text-[42px]")}>
               Choose the Right OneLink
             </h2>
@@ -484,7 +484,7 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
 
   return (
     <div>
-      <div className="mx-auto mb-6 grid w-full max-w-[590px] grid-cols-3 gap-1 rounded-[20px] border border-[#d5e5f1] bg-white/90 p-1.5 shadow-[0_12px_32px_-24px_rgba(9,34,62,0.35)] sm:mb-7">
+      <div className="mx-auto mb-6 grid w-full max-w-[720px] grid-cols-3 gap-2 rounded-[22px] border border-[#dbe7f0] bg-[#edf3f8]/80 p-2 sm:mb-8">
         {plans.map((plan) => {
           const isSelected = selectedPlanId === plan.id;
           return (
@@ -495,14 +495,14 @@ function DedicatedPricingSelector({ plans, selectedPlanId, onPlanChange }: { pla
               aria-pressed={isSelected}
               aria-controls="selected-pricing-plan"
               className={cn(
-                "relative min-h-10 rounded-[10px] px-2 text-[10px] font-extrabold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2 sm:min-h-11 sm:text-[12px]",
+                "relative flex min-h-[62px] min-w-0 flex-col items-center justify-center gap-1 rounded-[16px] border px-1.5 py-3 text-[11px] font-bold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A9FF] focus-visible:ring-offset-2 sm:min-h-[76px] sm:text-[14px]",
                 isSelected
-                  ? "bg-[linear-gradient(135deg,#09223E_0%,#064083_55%,#0077FF_100%)] text-white shadow-[0_14px_28px_-18px_rgba(0,65,150,0.8)]"
-                  : "text-[#607084] hover:bg-[#edf7ff] hover:text-[#087cbc]",
+                  ? "border-[#b8d8ed] bg-white text-[#09223E] shadow-[0_6px_18px_-10px_rgba(9,34,62,0.3)]"
+                  : "border-transparent text-[#607084] hover:bg-white/70 hover:text-[#087cbc]",
               )}
             >
-              {plan.name}
-              {plan.id === "signature" ? <span className={cn("ml-1 text-[9px]", isSelected ? "text-[#ffdd79]" : "text-[#087cbc]")}>★</span> : null}
+              <span>{plan.name}</span>
+              <span className={cn("text-[10px] font-medium tabular-nums sm:text-[12px]", isSelected ? "text-[#087cbc]" : "text-[#718096]")}>{formatPricingCurrency(plan.setupAmount)} <span className="text-[9px]">setup</span></span>
             </button>
           );
         })}
@@ -535,23 +535,23 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
     <article className={cn(
       "relative w-full overflow-hidden rounded-[26px] border p-5 shadow-[0_24px_60px_-44px_rgba(9,34,62,0.28)] sm:p-7 lg:p-8",
       isSignature
-        ? "border-[#4a9dff] bg-[linear-gradient(145deg,#09223E_0%,#064083_52%,#0077FF_100%)] text-white shadow-[0_34px_82px_-45px_rgba(0,67,155,0.82)]"
+        ? "border-[#244866] bg-[radial-gradient(ellipse_at_100%_0%,#14558a_0%,transparent_52%),linear-gradient(145deg,#10283e_0%,#091b2e_100%)] text-white shadow-[0_28px_65px_-34px_rgba(9,34,62,0.55)]"
         : plan.id === "essential"
-          ? "border-[#86bde3] bg-[linear-gradient(145deg,#e8f5ff_0%,#dceefa_100%)] text-[#111821]"
-          : "border-[#93c3e5] bg-[linear-gradient(145deg,#edf7ff_0%,#dfedf8_100%)] text-[#111821]",
+          ? "border-[#d5e3ed] bg-[linear-gradient(145deg,#ffffff_0%,#f2f8fc_100%)] text-[#111821]"
+          : "border-[#c8dbe9] bg-[linear-gradient(145deg,#ffffff_0%,#ecf4fb_100%)] text-[#111821]",
     )}>
       {isSignature ? (
-        <span className="absolute right-4 top-4 rounded-full border border-white/25 bg-white/12 px-3 py-1 text-[8px] font-extrabold uppercase tracking-[0.1em] text-white shadow-sm sm:right-5 sm:top-5">Recommended</span>
+        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-[#e6cf9b]/40 bg-[#e6cf9b]/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-[#f3dfb2] sm:absolute sm:right-7 sm:top-7 sm:mb-0"><span aria-hidden="true">✦</span> Recommended</span>
       ) : null}
 
-      <header className={cn("max-w-none", isSignature && "pr-24")}>
+      <header className={cn("max-w-none", isSignature && "sm:pr-32")}>
         <p className={cn("text-[9px] font-extrabold uppercase tracking-[0.17em]", isSignature ? "text-[#bfe5ff]" : tone.label)}>{plan.badge}</p>
         <div className="mt-1.5 flex items-center gap-2.5">
           <PricingBrandMark tone={tone.markTone} className="h-9 w-9 rounded-[11px] [&_img]:w-5" />
           <h3 className={cn("text-[21px] font-extrabold tracking-[-0.035em] sm:text-[23px]", isSignature ? "text-white" : "text-[#111821]")}>{plan.name}</h3>
         </div>
         <h4 className={cn("mt-1.5 text-[19px] font-extrabold leading-tight tracking-[-0.025em] sm:text-[22px]", isSignature ? "text-white" : "text-[#111821]")}>{planCopy.title}</h4>
-        <div className={cn("mt-3 rounded-[12px] border px-3 py-3", isSignature ? "border-white/20 bg-white/10" : "border-[#d4e4ef] bg-white/75")}><p className={cn("text-[10px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>Recommended for</p><p className={cn("mt-1 text-[14px] font-semibold leading-relaxed", isSignature ? "text-white/88" : "text-[#526173]")}>{planCopy.recommended}</p></div>
+        <div className={cn("mt-4 max-w-2xl border-l-2 pl-4", isSignature ? "border-[#79b9e8]/50" : "border-[#9fcce7]")}><p className={cn("text-[10px] font-bold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>Recommended for</p><p className={cn("mt-1 text-[14px] font-medium leading-relaxed", isSignature ? "text-white/80" : "text-[#526173]")}>{planCopy.recommended}</p></div>
       </header>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[0.82fr_1.22fr_1.16fr] lg:items-stretch">

@@ -527,6 +527,7 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
   }[plan.id as TopPlanId];
   const selectedOption = plan.maintenanceOptions.find((option) => option.id === selectedCare) ?? plan.maintenanceOptions[0];
   const firstPayment = setupAmount + (selectedOption?.price ?? 0);
+  const setupPreviews = pricingMockupStackOrder[plan.id as TopPlanId].slice(-2).map((id) => pricingMockups[id]);
 
   if (!presentation) return null;
 
@@ -557,10 +558,15 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
         <section className={cn("rounded-[16px] border p-3.5 sm:p-4", isSignature ? "border-white/25 bg-white/[0.1]" : "border-[#a9cee8] bg-[#f4faff] shadow-[0_16px_34px_-26px_rgba(9,34,62,0.42)]")}>
           <p className={cn("text-[10px] font-extrabold uppercase tracking-[0.12em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>One-Time Setup</p>
           <div className="mt-3 flex flex-wrap items-end gap-2.5">
-            <span className={cn("text-[41px] font-extrabold leading-none tracking-[-0.045em] tabular-nums sm:text-[48px]", isSignature ? "text-white" : "text-[#09223E]")}>{formatPricingCurrency(setupAmount)}</span>
+            <span className={cn("text-[32px] font-extrabold leading-none tracking-[-0.045em] tabular-nums sm:text-[36px]", isSignature ? "text-white" : "text-[#09223E]")}>{formatPricingCurrency(setupAmount)}</span>
             <span className={cn("mb-0.5 rounded-full border px-2 py-1 text-[8px] font-extrabold uppercase", isSignature ? "border-white/25 bg-white/10 text-white/85" : "border-[#bde7fb] bg-[#eef9ff] text-[#087cbc]")}>+ GST</span>
           </div>
           <p className={cn("mt-3 border-t pt-3 text-[10px] font-bold leading-relaxed", isSignature ? "border-white/15 text-white/72" : "border-[#cfe2ef] text-[#526173]")}>Custom design, development and complete setup.</p>
+          <div className="mt-3 flex items-end justify-center gap-3" aria-label="OneLink design previews">
+            {setupPreviews.map((preview) => (
+              <Image key={preview.src} src={preview.src} alt={preview.alt} width={700} height={1400} sizes="64px" className="h-[112px] w-[56px] object-contain sm:h-[120px] sm:w-[60px]" />
+            ))}
+          </div>
         </section>
 
         <section className={cn("rounded-[16px] border p-3.5 sm:p-4", isSignature ? "border-white/20 bg-white/[0.065]" : "border-[#a9cee8] bg-[#f4faff]")}>
@@ -592,19 +598,18 @@ function DedicatedPricingPlan({ plan, isSignature = false }: { plan: Plan; isSig
             })}
           </div>
 
-          <div className={cn("mt-3 rounded-[14px] border p-3.5", isSignature ? "border-white/45 bg-white text-[#111821]" : "border-[#9fc8e5] bg-[#e7f4fd] shadow-[0_14px_30px_-26px_rgba(9,34,62,0.42)]")}>
+          <div className={cn("mt-3 rounded-[14px] border p-3", isSignature ? "border-white/45 bg-white text-[#111821]" : "border-[#9fc8e5] bg-[#e7f4fd] shadow-[0_14px_30px_-26px_rgba(9,34,62,0.42)]")}>
             <p className="text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#087cbc]">First Purchase Total</p>
             <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
               <span className="text-[9.5px] font-bold text-[#607084]">Setup + {selectedOption?.label} Care</span>
-              <span className="flex items-end gap-2"><strong className="text-[29px] font-extrabold leading-none tracking-[-0.045em] text-[#064083] tabular-nums sm:text-[34px]">{formatPricingCurrency(firstPayment)}</strong><small className="pb-0.5 text-[8px] font-extrabold uppercase text-[#087cbc]">+ GST</small></span>
+              <span className="flex flex-wrap items-end gap-2"><strong className="text-[25px] font-extrabold leading-none tracking-[-0.045em] text-[#064083] tabular-nums sm:text-[28px]">{formatPricingCurrency(firstPayment)}</strong><small className="pb-0.5 text-[8px] font-extrabold uppercase text-[#087cbc]">+ GST</small></span>
             </div>
           </div>
         </section>
 
       </div>
-      <details className={cn("group mt-3 rounded-[17px] border p-4", isSignature ? "border-white/20 bg-white/[0.07]" : "border-[#d4e4ef] bg-white/75")}>
+      <details open className={cn("group mt-3 rounded-[17px] border p-4", isSignature ? "border-white/20 bg-white/[0.07]" : "border-[#d4e4ef] bg-white/75")}>
         <summary className="flex min-h-6 cursor-pointer list-none items-center justify-between text-[12px] font-bold [&::-webkit-details-marker]:hidden">What’s included <span aria-hidden="true" className="text-lg transition-transform group-open:rotate-45">+</span></summary>
-        <p className={cn("text-[11px] font-extrabold uppercase tracking-[.13em]", isSignature ? "text-[#bfe5ff]" : "text-[#087cbc]")}>You Get</p>
         <ul className="mt-3 grid gap-2.5 text-[13px] font-semibold leading-relaxed sm:grid-cols-2">
           {planCopy.features.map((feature) => <li key={feature} className={cn("flex items-start gap-2", isSignature ? "text-white/85" : "text-[#526173]")}><span className={cn("mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full text-[9px]", isSignature ? "bg-white/15 text-[#bfe5ff]" : "bg-[#eaf6ff] text-[#087cbc]")}>✓</span>{feature}</li>)}
         </ul>

@@ -120,7 +120,7 @@ function CategoryBadge({ filter, active }: { filter: CategoryFilter; active: boo
       <span className={cn("relative inline-flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1", active ? "bg-white/18 text-white ring-white/35" : "bg-[#e8f5ff] text-[#087bd0] ring-[#c7e7fb]")}>
         {previewImage ? <Image src={previewImage} alt="" fill sizes="28px" className="object-cover object-top" aria-hidden="true" /> : <Icon name={filter.icon} className="h-4 w-4" />}
       </span>
-      <span className="min-w-0 whitespace-nowrap leading-[1.1]">{filter.label}</span>
+      <span className="min-w-0 flex-1 whitespace-normal break-words leading-[1.25]">{filter.label}</span>
     </Link>
   );
 }
